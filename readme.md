@@ -7,7 +7,7 @@ JSEC!!!!
 
 Make sure you download Summernote
 
-<code>pip install django-summernote</code>
+<pre><code>pip install django-summernote</code></pre>
 
 
 </body>
