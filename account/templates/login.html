@@ -1,0 +1,84 @@
+## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+<%inherit file="base_template.htm" />
+<%block name="main">
+<% %>
+ 
+<div class="content">
+
+<div class="row">
+  <div class="col-md-4">
+
+  </div>
+  <div class="col-md-4">
+  <h2>Login</h2>
+  </div>
+</div>
+<br/>
+  
+<form class ="form-horizontal" role="form" method ="POST">
+
+
+  %for f in form:
+  %if f.name!='remember':
+    <div class="form-group">
+      <label class="col-sm-4 control-label" for="id_${ f.name }">${ f.label }</label>
+
+        <div class="col-sm-4">
+          ${f} ${f.errors} 
+        </div>
+    </div>
+  %endif
+  %endfor
+
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-4 control-label"></label>
+    <div class="col-sm-4">
+      <a href="/account/forgotpassword/">Forgot My Password?</a>
+    </div>
+  </div>
+
+  %for f in form:
+  %if f.name=='remember':
+    <div class="form-group">
+      <div class="col-sm-offset-4 col-sm-4">
+        <div class="checkbox">
+          <label>
+        ${f} ${f.errors} Remember me
+          </label>
+         </div>
+      </div>
+    </div>
+  %endif
+  %endfor
+
+
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-4">
+
+
+      <input class="btn btn-primary" type="submit" value="Sign In">
+      <a href="/account/newuser/" class="btn btn-success">Create Account</a>
+    </div>
+  </div>
+</form>
+  
+  
+  <div class='row'>
+    <div class='col-md-3'>
+    </div>
+    <div class='col-md-5'>
+      ${form.non_field_errors()}
+    </div>
+
+  </div>
+
+
+</div>
+<div class="vertical_spacer6"></div>
+<div class="vertical_spacer6"></div>
+<div class="vertical_spacer6"></div>
+<div class="vertical_spacer6"></div>
+
+</%block>  
+
+<%block name='top'></%block>

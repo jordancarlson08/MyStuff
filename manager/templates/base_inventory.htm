@@ -1,0 +1,84 @@
+## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+<%inherit file="base_template.htm" />
+<% %>
+
+<%block name="main">
+  <% %>
+
+    <div class="content">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="container">
+
+            <%block name="left_side">
+              <% %>
+                <div class="container bs-docs-container">
+                  <div class="row">
+
+
+                    <div class="col-md-2">
+                      <div class="bs-sidebar hidden-print" role="complementary">
+                        <ul class="nav bs-sidenav">
+                          <div class="btn-group">
+                            <button class="btn btn-default btn dropdown-toggle" type="button" data-toggle="dropdown">
+                              <span class="glyphicon glyphicon-tags"></span><span class="lead"> Inventory</span>  <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <ul class="nav nav-pills nav-stacked">
+                                <li>
+                                  <!--Inventory Management-->
+
+                                  <a href="/manager/searchinventory/"><span class="glyphicon glyphicon-search"></span>
+                                    <small>Search</small></a>
+                                  <a href="/manager/newcatalogitem/"><span class="glyphicon glyphicon-new-window"></span>
+                                    <small>New Catalog Item</small></a>
+                                  <a href="/manager/newinventoryitem/"><span class="glyphicon glyphicon-new-window"></span>
+                                    <small>New Serialized Item</small></a>
+                                  <a href="/manageinventory/"><span class="glyphicon glyphicon-star"></span>
+                                <small>Inventory Dashboard</small></a>
+
+                                  <li class="divider"></li>
+
+                                  <!--Overall Menu Items-->
+
+                                  <li><a href="/managestores"><span class="glyphicon glyphicon-tower"></span> 
+                                <span class="lead"><small>Stores</small></span></a>
+                                  </li>
+                                  <li><a href="/manageusers"><span class="glyphicon glyphicon-user"></span> 
+                                <span class="lead"><small>Users</small></span></a>
+                                  </li>
+                                  <li><a href="/index/"><span class="glyphicon glyphicon-star"></span>
+                                    <span class="lead"><small>Dashboard</small></span></a>
+                                  </li>
+                                </li>
+                              </ul>
+                            </ul>
+                          </div>
+
+
+                          
+                      </div>
+                    </div>
+
+                    <div class="col-md-9" role="main">
+
+                      <%block name="content">
+                        <% %>
+                          <!--This is the content block, it should be overwritten. -->
+                          Content
+                      </%block>
+
+                    </div>
+                  </div>
+                </div>
+            </%block>
+
+          </div>
+        </div>
+      </div>
+    </div>
+</%block>
+
+
+
+                  

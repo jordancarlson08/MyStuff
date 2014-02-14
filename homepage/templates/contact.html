@@ -1,0 +1,46 @@
+## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+<%inherit file="base.htm" />
+
+	<%block name="content">	
+
+	  <h2>Contact Us</h2>
+
+	  <p>We are here to answer any questions you have about MyStuff and digital photography in general.</p>
+	  <p>If there is something you want or need even if you can not find it on our website, let us know and we will do everything we can to help you find it.</p>
+	  <div class="vertical_spacer6"></div>
+	  <form class="form-horizontal" role="form">
+	  	<div class="form-group">
+	  		<label for="inputName" class="col-sm-2 control-label">Name</label>
+	  		<div class="col-sm-5">
+	  			<input type="text" class="form-control" id="inputName" placeholder="Name">
+	  		</div>
+	  	</div>
+	  	<div class="form-group">
+	  		<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+	  		<div class="col-sm-5">
+	  			<input type="email" class="form-control" id="inputEmail" placeholder="Email">
+	  		</div>
+	  	</div>
+	  	<div class="form-group">
+	  		<label for="inputSubject" class="col-sm-2 control-label">Subject</label>
+	  		<div class="col-sm-5">
+	  			<input type="text" class="form-control" id="inputSubject" placeholder="Subject">
+	  		</div>
+	  	</div>
+	  	<div class="form-group">
+	  		<label for="inputMessage" class="col-sm-2 control-label">Message</label>
+	  		<div class="col-sm-5">
+	  			<textarea class="form-control" rows="6" id="inputMessage" placeholder="Message"></textarea>
+	  		</div>
+	  	</div>
+	  	<div class="form-group">
+	  		<label class="col-sm-2 control-label"></label>
+	  		<div class="col-sm-5">
+	  			<button type="submit" class="btn btn-primary">Send</button>
+	  		</div>
+	  	</div>
+	  </form>		
+	  <div class="vertical_spacer6"></div>		
+
+		
+	</%block>  

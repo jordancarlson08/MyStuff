@@ -1,0 +1,235 @@
+ ## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+<%inherit file="base_users.htm" />
+<%block name="content">
+<% %>
+
+
+  <h2> User Profile Information </h2><hr/>
+
+
+  <div class="row">
+    <div class="col-md-2" align="right">
+      <label for="inputEmail3">Username: </label>
+    </div>
+    <div class="col-md-2" align="left">
+      <label for="inputEmail3">${user.username} </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2" align="right">
+      <label for="inputEmail3">Name: </label>
+    </div>
+    <div class="col-md-2" align="left">
+      <label for="inputEmail3">${user.first_name} ${user.last_name} </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2" align="right">
+      <label for="inputEmail3">Email: </label>
+    </div>
+    <div class="col-md-2" align="left">
+      <label for="inputEmail3">${user.email}</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2" align="right">
+      <label for="inputEmail3">Address: </label>
+    </div>
+    <div class="col-md-2" align="left">
+      <label for="inputEmail3">${user.street1}</label>
+    </div>
+  </div>
+  %if user.street2!='':
+  <div class="row">
+    <div class="col-md-2" align="right">
+    </div>
+    <div class="col-md-2" align="left">
+      <label for="inputEmail3">${user.street2}</label>
+    </div>
+  </div>
+  %endif
+
+  <div class="row">
+    <div class="col-md-2" align="right">
+    </div>
+    <div class="col-md-2" align="left">
+      <label for="inputEmail3">${user.city}, ${user.state} ${user.zipCode}</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2" align="right">
+      <label for="inputEmail3">Phone Number: </label>
+    </div>
+    <div class="col-md-2" align="left">
+      <label for="inputEmail3">${user.phone}</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2" align="right">
+      <label for="inputEmail3">Security Question: </label>
+    </div>
+    <div class="col-md-4" align="left">
+      <label for="inputEmail3">${user.security_question}</label>
+    </div>
+  </div>
+
+  ##<div class="row">
+    ##<div class="col-md-2" align="right">
+      ##<label for="inputEmail3">Security Answer: </label>
+    ##</div>
+    ##<div class="col-md-2" align="left">
+      ##<label for="inputEmail3">${user.}</label>
+    ##</div>
+  ##</div>
+
+  <div class="row">
+    <div class="col-md-2" align="right">
+      <label for="inputEmail3">Role: </label>
+    </div>
+    %if user.is_superuser==True:
+    <div class="col-md-2" align="left">
+      <label for="inputEmail3">Admin</label>
+    </div>
+    %elif user.is_staff==True:
+    <div class="col-md-2" align="left">
+      <label for="inputEmail3">Manager</label>
+    </div>
+    %else:
+    <div class="col-md-2" align="left">
+      <label for="inputEmail3">User</label>
+    </div>
+    %endif
+  </div>
+
+
+  <hr/>
+
+  <button class="btn btn-primary" data-toggle="modal" data-target="#changePassword">Change Password</button>
+
+  <!--####### CHANGE PASSWORD MODAL WINDOW ########-->
+
+  <div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          Change Password
+        </div>
+        <div class="modal-body">
+            <form class ="form-horizontal" role="form" method ="POST">
+
+              %for field in passwordForm:
+              
+                <div class="form-group">
+                  <label class="col-sm-4 control-label" for="id_${ field.name }">${ field.label }</label>
+                    <div class="col-sm-4">
+                      ${field} ${field.errors}
+                    </div>
+                </div>
+                
+              %endfor
+              ${form.non_field_errors()}
+          </div>
+          <div class='modal-footer'>
+            <div class="form-group">
+              <div class="col-sm-offset-4 col-sm-4">
+                <input class="btn btn-success" type="submit" value="Save Changes">
+              </div>
+            </div>
+          </div>
+
+          </form>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  <!--####### END CHANGE PASSWORD MODAL WINDOW ########-->
+
+
+
+
+  <button class="btn btn-warning" data-toggle="modal" data-target="#editUser">Edit</button>
+
+
+  <!--####### EDIT USER MODAL WINDOW ########-->
+
+  <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          Edit User Information
+        </div>
+        <div class="modal-body">
+
+          <form class ="form-horizontal" role="form" method ="POST">
+
+            %for field in form:
+            
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="id_${ field.name }">${ field.label }</label>
+                  <div class="col-sm-4">
+                    ${field} ${field.errors}
+                  </div>
+              </div>
+
+            %endfor
+
+        </div>
+        <div class='modal-footer'>
+            <div class="form-group">
+              <div class="col-sm-offset-4 col-sm-4">
+                <input class="btn btn-success" type="submit" value="Save Changes">
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  <!--####### END EDIT USER MODAL WINDOW ########-->
+
+
+
+
+  <button class="btn btn-danger" data-toggle="modal" data-target="#deleteUser">Delete</button>
+
+
+  <!--####### DELETE USER MODAL WINDOW ########-->
+
+  <div class="modal fade" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          Delete Account
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this account?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <a href="/manager/users/${user.id}/delete" class="btn btn-primary">Yes</a>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  <!--####### DELETE USER MODAL WINDOW ########-->
+
+
+
+  <div class='vertical_spacer6'></div>
+
+
+
+
+
+
+
+        
+
+
+
+</%block>

@@ -1,0 +1,133 @@
+  ## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+<%inherit file="base_template.htm" />
+
+<%block name="main">
+
+  <div class="content"> 
+    <div class="row">
+      <div class="col-md-3">
+        <div class="container"> 
+
+          <%block name="left_side">
+            <div class="container bs-docs-container">
+              <div class="row">
+
+
+                <div class="col-md-2">
+                  <div class="bs-sidebar hidden-print" role="complementary">
+                    <ul class="nav bs-sidenav">
+                    <div class="btn-group">
+                      <button class="btn btn-default btn dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span><span class="lead"> Users</span> <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li>
+                                <!--User Management-->
+                               
+                                <a href="/manager/searchusers/"><span class="glyphicon glyphicon-search"></span>
+                                    <small>Search</small></a>
+                                <a href="/account/newemployee/"><span class="glyphicon glyphicon-new-window"></span>
+                                    <small>New User</small></a>
+                                <a href="/manageusers/"><span class="glyphicon glyphicon-home"></span>
+                                <small>User Dashboard</small></a>
+
+                                <li class="divider"></li>
+
+                                <!--Overall Menu Items-->
+                                
+                                <li><a href="/managestores/"><span class="glyphicon glyphicon-search"></span> 
+                                <span class="lead"><small>Stores</small></span></a></li>
+                                <li><a href="/manageinventory/"><span class="glyphicon glyphicon-tags"></span> 
+                                <span class="lead"><small> Inventory</small></span></a></li>
+                                <li><a href="/homepage/index/"><span class="glyphicon glyphicon-star"></span>
+                                    <span class="lead"><small>Dashboard</small></span></a></li>
+                            </li>
+                        </ul>
+                      </ul>
+                    </div>
+
+                        <!-- New Users Modal -->
+                               <!--Insert Courtneys Code Here -->
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="DeleteUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">Nikon  Deleted</h4>
+                                      </div>
+                                      <div class="modal-body">
+
+                                      <form role="form"> 
+                                          <select class="form-control">
+                                            <option>For-Sale</option>
+                                            <option>In-Stock</option>
+                                            <option>Catalog</option>
+                                            <option>Rental</option>
+                                           </select>
+                                      </form>
+
+                                      <p class="lead"> Would you like to delete this user</p>
+
+                                     
+                                        
+                                      </div>
+                                      <div class="modal-footer">
+
+                                        <!-- Delete Rental Item -->
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Save & Close</button>
+                                        
+                                      </div>
+                                    </div><!-- /.modal-content -->
+                                  </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+
+                  </div>
+                </div>
+
+                <div class="col-md-9" role="main">
+
+                  <%block name="content">
+                  <ul class="nav nav-tabs">
+                    <li class="active"><a href="#Product" data-toggle="tab"><strong>In-Stock</strong></a></li>
+                    <li><a href="#Rentals" data-toggle="tab"><strong>Rental</strong></a></li>
+                    <li><a href="#Catalog" data-toggle="tab"><strong>Catalog</strong></a></li>
+                  </ul>
+
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="Product">
+                        Product Class
+
+                    </div>
+                    <div class="tab-pane" id="Catalog">
+                        Catalog Class
+
+                    </div>
+
+                    <div class="tab-pane" id="Rentals">
+                        Rental Class
+
+                    </div>
+                    <script>
+                        $(function () {
+                            $('#myTab a:last').tab('show')
+                        })
+                    </script>
+                  </%block>   
+                  
+                </div>
+              </div>  
+            </div>
+          </%block> 
+
+        </div>
+      </div>  
+    </div>
+  </div>
+</%block>
+
+
+
+                  

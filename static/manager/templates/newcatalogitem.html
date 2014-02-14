@@ -1,0 +1,63 @@
+## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+
+<%inherit file="base_inventory.htm" />
+
+<%block name="content">
+<% %>
+
+<h2>New Catalog Item</h2><hr/>
+</br>
+
+<form class ="form-horizontal" role="form" method ="POST">
+
+  %for f in form:
+
+    <div class="form-group">
+      <label class="col-sm-4 control-label" for="id_${ f.name }">${ f.label }</label>
+        <div class="col-sm-8">
+          ${f} 
+          ${f.errors}
+        </div>
+    </div>
+
+  %endfor
+
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-4">
+      <input class="btn btn-success" type="submit" value="Save">
+    </div>
+  </div>
+</form>
+
+
+<!-- Trash that needs to be removed eventually -->
+<form>
+  <p class="lead">Approved Vendors</p>
+  <hr>
+  <div class="form-group">
+    <label for="avgCost" class="col-sm-3 control-label">
+    </label>
+    <div class="col-sm-8">
+      <select multiple class="form-control">
+        <option>EMEA</option>
+        <option>ABC</option>
+        <option>BestProductSupplier</option>
+      </select>
+    </div>
+  </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-8">
+      <button class="btn btn-info btn" data-toggle="modal" data-target="#ImageLibrary">
+        Product Image Library
+      </button>
+      <button class="btn btn-warning">New Vendor</button>
+      <button class="btn btn-default">Cancel</button>
+      <button type="submit" class="btn btn-success">Save</button>
+    </div>
+  </div>
+</form>
+
+
+
+</%block>   

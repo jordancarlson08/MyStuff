@@ -1,0 +1,19 @@
+ ## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+<%inherit file="base_dash.htm" />
+
+
+## This is the base page for both the dashboards. Sprouting off of this one will be a manager and an admin page with minute
+## differences. What should be on this dashboard template should be included on both pages. Content and left side for this. 
+
+## what can both do?: view/edit personal profile information; view users; view store information; check inventory (will lead to Em's sites); 
+## what can an admin do additionally?: edit users; update store information; create store information; 
+
+##Need to figure out how to make this visibl on the .js or bootstrap file. 
+
+<%block name="content">
+    <h2>Manager Dashboard</h2>
+
+    <p>Welcome back!</p>
+
+    <p>Use the left-side navigation bar to view connecting pages and options.</p>
+</%block>   

@@ -1,0 +1,54 @@
+## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+<%inherit file="base.htm" />
+
+<%block name="left_side">
+
+  <div class="container bs-docs-container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="bs-sidebar hidden-print" role="complementary">
+          <ul class="nav bs-sidenav">
+            <li>
+            Inventory Type
+            <select class="form-control">
+              <option>All</option>
+              <option>Catalog</option>
+              <option>In Store</option>
+              <option>Rental</option>
+            </select>
+            </li>
+            <li>
+            Name
+            <select class="form-control">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            </li>
+            <li>
+            Other 
+            <select class="form-control">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            </li>                        
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9" role="main">
+
+
+        <%block name="content">
+          Site content goes here in sub-templates.
+        </%block>   
+        
+
+      </div>
+    </div>  
+  </div>
+</%block> 
