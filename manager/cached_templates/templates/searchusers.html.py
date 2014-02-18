@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1392184720.944551
+_modified_time = 1392703785.120428
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/searchusers.html'
 _template_uri = 'searchusers.html'
@@ -28,9 +28,9 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        emps = context.get('emps', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        emps = context.get('emps', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\n\n')
@@ -48,9 +48,9 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        emps = context.get('emps', UNDEFINED)
         def content():
             return render_content(context)
+        emps = context.get('emps', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 4
         __M_writer('\n')
@@ -61,7 +61,7 @@ def render_content(context,**pageargs):
         # SOURCE LINE 20
         for u in emps:
             # SOURCE LINE 21
-            __M_writer('      <tr class="clickableRow" href="/manager/users/')
+            __M_writer('      <tr class="clickableRow" href="/manager/employee/')
             __M_writer(str(u.user.id))
             __M_writer('">\n')
             # SOURCE LINE 22

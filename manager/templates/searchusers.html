@@ -18,7 +18,7 @@
   	</thead>
   	<tbody>
   %for u in emps:
-      <tr class="clickableRow" href="/manager/users/${u.user.id}">
+      <tr class="clickableRow" href="/manager/employee/${u.user.id}">
         %if u.user.is_superuser==True:
         <td><span class="label label-info">Admin</span></td>
         %elif u.user.is_staff==True:

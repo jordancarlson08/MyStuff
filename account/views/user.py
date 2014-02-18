@@ -4,7 +4,8 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from manager import models as hmod
 from account import models as amod
 from . import templater
-from django.contrib.auth.decorators import login_required
+from account.admin import user_check
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 @login_required
 def process_request(request):
@@ -17,7 +18,6 @@ def process_request(request):
 		return HttpResponseRedirect('/manager/searchusers/')
 
 	u = amod.User.objects.get(id=request.urlparams[0])
-	e = amod.Employee.objects.get(id=request.urlparams[0])
 	user = u
 
 	if u.is_active == False:
@@ -38,8 +38,6 @@ def process_request(request):
 		'city' : u.city,
 		'state' : u.state,
 		'zipCode' : u.zipCode,
-		'hireDate':e.hireDate,
-		'salary':e.salary,
 		})
 
 	if request.method == 'POST':
@@ -61,9 +59,6 @@ def process_request(request):
 			u.state = form.cleaned_data['state']
 			u.zipCode = form.cleaned_data['zipCode']
 			u.save()
-			e.hireDate = form.cleaned_data['hireDate']
-			e.salary = form.cleaned_data['salary']
-			e.save()
 
 	passwordForm = UserPasswordForm()
 
@@ -83,7 +78,7 @@ def process_request(request):
 	'passwordForm':passwordForm,
 	}
  	
-	return templater.render_to_response(request, 'users.html', tvars)
+	return templater.render_to_response(request, 'user.html', tvars)
 
 class UserForm(forms.Form):
 	
@@ -101,8 +96,7 @@ class UserForm(forms.Form):
 	city = forms.CharField(max_length=25, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Provo',}))
 	state = forms.CharField(max_length=2, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'UT',}))
 	zipCode = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '84601',}))
-	hireDate = forms.DateField(label='Hire Date', widget=forms.DateInput(attrs={'class': 'form-control'}))
-	salary= forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control'}))
+
 
 class UserPasswordForm(forms.Form):
 	password = forms.CharField(label='Current Password', max_length=25, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password',}))

@@ -12,12 +12,15 @@ from django.contrib.auth.decorators import login_required
 def process_request(request):
 	'''Shows a catalog item and its associated serialized items'''
 
+	#Delete Function
 	if request.urlparams[1] == 'delete':
 		c = hmod.CatalogItem.objects.get(id=request.urlparams[0])
 		c.isActive = False
 		c.save()
 		return HttpResponseRedirect('/manager/searchinventory/')
- 
+
+
+ 	#Display Function
 	item = hmod.CatalogItem.objects.get(id=request.urlparams[0])
 	#This should get the serialized items that are tied to the catalog item
 	serial = hmod.SerializedItem.objects.filter(catalogItem=item.id).filter(isActive=True)
@@ -75,6 +78,7 @@ def process_request(request):
 
 
 	tvars = {
+	
 	'item':item,
 	'form':form,
 	'serial':serial,

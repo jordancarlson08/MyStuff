@@ -4,10 +4,10 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1392704366.589842
+_modified_time = 1392703688.54298
 _enable_loop = True
-_template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\account\\templates/user.html'
-_template_uri = 'user.html'
+_template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/employee.html'
+_template_uri = 'employee.html'
 _source_encoding = 'ascii'
 import os, os.path, re
 _exports = ['content']
@@ -59,7 +59,7 @@ def render_content(context,**pageargs):
         # SOURCE LINE 4
  
 
-        __M_writer('\n\n\n  <h2> My Account </h2><hr/>\n\n\n  <div class="row">\n    <div class="col-md-2" align="right">\n      <label for="inputEmail3">Username: </label>\n    </div>\n    <div class="col-md-2" align="left">\n      <label for="inputEmail3">')
+        __M_writer('\n\n\n  <h2> Employee Profile Information </h2><hr/>\n\n\n  <div class="row">\n    <div class="col-md-2" align="right">\n      <label for="inputEmail3">Username: </label>\n    </div>\n    <div class="col-md-2" align="left">\n      <label for="inputEmail3">')
         # SOURCE LINE 15
         __M_writer(str(user.username))
         __M_writer(' </label>\n    </div>\n  </div>\n\n  <div class="row">\n    <div class="col-md-2" align="right">\n      <label for="inputEmail3">Name: </label>\n    </div>\n    <div class="col-md-2" align="left">\n      <label for="inputEmail3">')

@@ -10,3 +10,6 @@ admin.site.register(Employee)
 
 def manager_check(user):
 	return user.is_staff == True
+
+def user_check(user):
+	return user.id

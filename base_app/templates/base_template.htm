@@ -94,7 +94,12 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">${request.user} <b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a href="/dash/">Dashboard</a></li>
-          <li><a href="/manager/users/${request.user.id}">Edit Profile</a></li>
+
+          %if request.user.is_staff == False:
+          <li><a href="/account/user/${request.user.id}">Edit Profile</a></li>
+          %else:
+          <li><a href="/manager/employee/${request.user.id}">Edit Profile</a></li>
+          %endif
           <li><a href="/account/logout/">Logout</a></li>
         </ul>
 
