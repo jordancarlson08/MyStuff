@@ -32,7 +32,6 @@ def process_request(request):
 		'phone' : u.phone,
 		'security_question' : u.security_question,
 		'security_answer' : u.security_answer,
-		'is_staff' : u.is_staff,
 		'street1' : u.street1,
 		'street2' : u.street2,
 		'city' : u.city,
@@ -52,7 +51,7 @@ def process_request(request):
 			u.phone = form.cleaned_data['phone']
 			u.security_question = form.cleaned_data['security_question']
 			u.security_answer = form.cleaned_data['security_answer']	
-			u.is_staff = form.cleaned_data['is_staff'] 
+			u.is_staff = False
 			u.street1 = form.cleaned_data['street1']
 			u.street2 = form.cleaned_data['street2']
 			u.city = form.cleaned_data['city']
@@ -90,7 +89,6 @@ class UserForm(forms.Form):
 	phone = forms.CharField(max_length=25, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '801-555-1234',}))
 	security_question = forms.CharField(label='Security Question', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'What is your mother\'s maiden name?',}))
 	security_answer = forms.CharField(label='Answer', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Smith',}))	
-	is_staff = forms.BooleanField(label='Employee?', widget=forms.CheckboxInput(), required=False, )
 	street1 = forms.CharField(label = "Street 1", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '123 Center St.',}))
 	street2 = forms.CharField(label = "Street 2", required = False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '#242',}))
 	city = forms.CharField(max_length=25, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Provo',}))

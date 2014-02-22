@@ -80,24 +80,6 @@
 
 
 
-  <div class="row">
-    <div class="col-md-2" align="right">
-      <label for="inputEmail3">Role: </label>
-    </div>
-    %if user.is_superuser==True:
-    <div class="col-md-2" align="left">
-      <label for="inputEmail3">Admin</label>
-    </div>
-    %elif user.is_staff==True:
-    <div class="col-md-2" align="left">
-      <label for="inputEmail3">Manager</label>
-    </div>
-    %else:
-    <div class="col-md-2" align="left">
-      <label for="inputEmail3">User</label>
-    </div>
-    %endif
-  </div>
 
 
   <hr/>

@@ -5,7 +5,7 @@ from manager import models as hmod
 from . import templater
 from django.contrib.auth.decorators import login_required
 
-@login_required
+
 def process_request(request):
 	'''Shows the catalog items'''
 
