@@ -1,0 +1,70 @@
+## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+<%inherit file="searchinventory.htm" />
+
+<%block name="content">
+<% %>
+
+
+<h2>Search for "Nikon"</h2>
+<hr/><br/>
+
+<div class='text-left'>
+<ul class="list-inline">
+
+%for i in catItems:
+
+  <li class='clickable'>
+    <a href='/homepage/index/'>
+    <div class="panel panel-primary" >
+      <div class='panel-heading'><h3><strong>${i.manufacturer} ${i.name}</strong></h3></div>
+
+      <div class='panel-body'> <!-- panel body starts -->
+        
+        <ul class='list-inline'>
+
+          <li>
+
+            <!--####### Need to store image path in database as string for dynamic lookup -->
+
+            <img src='/static/catalog/images/NikonCamera.jpg' width='200px'/>
+          </li>
+          <li>
+            <ul class='list-unstyled'>
+              <li>
+                <strong>Price: $ ${i.listPrice}</strong>
+              </li> 
+              <li>
+                SKU: ${i.sku}
+              </li>
+
+            </ul>
+
+            
+          </li>
+        </ul>
+
+      </div> <!-- panel body ends -->
+    </div> <!-- panel ends -->
+  </a>
+  </li> <!-- list item ends -->
+
+
+%endfor
+
+</ul>
+</div>
+
+
+  <div class="vertical_spacer6"></div>
+  <div class="vertical_spacer6"></div>
+
+
+  <script>
+  jQuery(document).ready(function($) {
+        $(".clickableRow").click(function() {
+              window.document.location = $(this).attr("href");
+        });
+  });
+  </script>
+
+</%block>  

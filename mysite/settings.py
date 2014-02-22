@@ -68,6 +68,7 @@ INSTALLED_APPS = (
     'homepage',
     'manager',
     'account',
+    'catalog',
 
     
 )
@@ -168,6 +169,7 @@ MAKO_ENABLED_APPS = (
     'homepage',
     'manager',
     'account',
+    'catalog',
     
 )
 

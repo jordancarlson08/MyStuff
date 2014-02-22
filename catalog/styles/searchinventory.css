@@ -1,0 +1,6 @@
+.clickable a{
+	display:block;
+}
+.clickable a:hover{
+	text-decoration: none;
+}
