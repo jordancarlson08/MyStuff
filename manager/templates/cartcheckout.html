@@ -3,6 +3,7 @@
 
 
 <%block name = "main">
+<% %>
 	<div class="container">
 		<h1>Your Shopping Cart</h1></br>
 		<div class="row">
@@ -57,6 +58,7 @@
 					</table>
 					<br>
 				</div> <!--closes the "well" -->
+
 				<div class="well">
 					<div class="container">
 						<table>
@@ -69,6 +71,14 @@
 						</table>
 					</div>
 				</div> <!--closes the "well" -->
+
+				<div class='well'>
+					<div class='container'>
+						<strong>Promo Code</strong> </br>
+							<input type="name" class="col-md-2" id="fName" placeholder="Promo Code">
+						
+					</div>
+				</div>
 			</div>
 				<div class="col-md-9">
 					<div class="panel-group" id="accordion">
@@ -352,6 +362,7 @@
 														<input type="radio" name="NextUp" value="nextUp">&nbsp;&nbsp;2-3 business days ($10.00)<br>
 														<input type="radio" name="Overnight" value="overnight">&nbsp;&nbsp;Overnight ($25.00)<br>
 														<input type="radio" name="SameDay" value="sameDay">&nbsp;&nbsp;Same-day ($40.00)*<br>
+														<input type="radio" name="InStore" value="sameDay">&nbsp;&nbsp;In-Store Pickup (Free)<br>
 													</form>
 													</br>
 													<p>* Same-day shipping applies only to locations within 3 hours of warehouse location</p>
