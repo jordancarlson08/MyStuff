@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1392956672.604883
+_modified_time = 1393125829.459353
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\catalog\\templates/searchinventory.html'
 _template_uri = 'searchinventory.html'
@@ -28,9 +28,9 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        catItems = context.get('catItems', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        catItems = context.get('catItems', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\n\n')
@@ -48,9 +48,9 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        catItems = context.get('catItems', UNDEFINED)
         def content():
             return render_content(context)
-        catItems = context.get('catItems', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 4
         __M_writer('\n')
@@ -61,7 +61,10 @@ def render_content(context,**pageargs):
         # SOURCE LINE 14
         for i in catItems:
             # SOURCE LINE 15
-            __M_writer('\n  <li class=\'clickable\'>\n    <a href=\'/homepage/index/\'>\n    <div class="panel panel-primary" >\n      <div class=\'panel-heading\'><h3><strong>')
+            __M_writer("\n  <li class='clickable'>\n    <a href='/catalog/inventory/")
+            # SOURCE LINE 17
+            __M_writer(str(i.id))
+            __M_writer('\'>\n    <div class="panel panel-primary" >\n      <div class=\'panel-heading\'><h3><strong>')
             # SOURCE LINE 19
             __M_writer(str(i.manufacturer))
             __M_writer(' ')

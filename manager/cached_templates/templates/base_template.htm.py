@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1392704264.314273
+_modified_time = 1393100831.766516
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\base_app\\templates/base_template.htm'
 _template_uri = 'base_template.htm'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['main', 'top']
+_exports = ['top', 'main']
 
 
 # SOURCE LINE 6
@@ -20,13 +20,13 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def main():
-            return render_main(context._locals(__M_locals))
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        self = context.get('self', UNDEFINED)
-        request = context.get('request', UNDEFINED)
         def top():
             return render_top(context._locals(__M_locals))
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        def main():
+            return render_main(context._locals(__M_locals))
+        request = context.get('request', UNDEFINED)
+        self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 3
         __M_writer('\n')
@@ -46,7 +46,7 @@ def render_body(context,**pageargs):
         __M_writer('\n  \n  </head>\n  <body>\n\n\n  <nav class="navbar navbar-default" role="navigation">\n  <!-- Brand and toggle get grouped for better mobile display -->\n  <div class="navbar-header">\n    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">\n      <span class="sr-only">Toggle navigation</span>\n      <span class="icon-bar"></span>\n      <span class="icon-bar"></span>\n      <span class="icon-bar"></span>\n    </button>\n    <a class="navbar-brand" href="/index/" title="Home"><img src="')
         # SOURCE LINE 43
         __M_writer(str( STATIC_URL ))
-        __M_writer('homepage/images/camera_icon.png" width="90" /></a>\n    <a class="navbar-brand-custom" href="/index/">My Stuff - Digital Life My Way</a>\n\n  </div>\n\n  <!-- Collect the nav links, forms, and other content for toggling -->\n  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\n    \n    <ul class="nav navbar-nav navbar-right">\n      \n      <li><a href="/"><span class="glyphicon glyphicon-camera"></span></a></li>\n      <!--<li><a href="/account/login/">Log In</a></li>\n      <li><a href="/account/logout/">Log Out</a></li>-->\n      <li><a href="#">Stores</a></li>\n      <li><a href="/inventory/">Catalog</a></li>\n      <li class="dropdown">\n        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact Us<b class="caret"></b></a>\n        <ul class="dropdown-menu">\n          <li><a href="/phone/">Call</a></li>\n          <li><a href="/contact/">Email</a></li>\n          <li><a href="http://www.facebook.com">Facebook</a></li>\n        </ul>\n      </li>\n        \n')
+        __M_writer('homepage/images/camera_icon.png" width="90" /></a>\n    <a class="navbar-brand-custom" href="/index/">My Stuff - Digital Life My Way</a>\n\n  </div>\n\n  <!-- Collect the nav links, forms, and other content for toggling -->\n  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\n    \n    <ul class="nav navbar-nav navbar-right">\n      \n      <li><a href="/"><span class="glyphicon glyphicon-camera"></span></a></li>\n      <!--<li><a href="/account/login/">Log In</a></li>\n      <li><a href="/account/logout/">Log Out</a></li>-->\n      <li><a href="#">Stores</a></li>\n      <li><a href="/catalog/searchinventory/">Catalog</a></li>\n      <li class="dropdown">\n        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact Us<b class="caret"></b></a>\n        <ul class="dropdown-menu">\n          <li><a href="/phone/">Call</a></li>\n          <li><a href="/contact/">Email</a></li>\n          <li><a href="http://www.facebook.com">Facebook</a></li>\n        </ul>\n      </li>\n        \n')
         # SOURCE LINE 67
         if request.user.is_anonymous() == True:
             # SOURCE LINE 68
@@ -107,6 +107,24 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_top(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def top():
+            return render_top(context)
+        request = context.get('request', UNDEFINED)
+        __M_writer = context.writer()
+        # SOURCE LINE 116
+        __M_writer('\n')
+        # SOURCE LINE 117
+        if request.user.is_staff == True:
+            # SOURCE LINE 118
+            __M_writer('\n\n  <!-- The Manager Nav Bar -->\n  <ul class="nav nav-tabs navbar-right">\n\n    <li class="dropdown">\n      <a class="btn btn-primary" data-toggle="dropdown" href="#">\n        <span class="glyphicon glyphicon-tags"></span>&nbsp; Inventory <span class="caret"></span>\n      </a>\n      <ul class="dropdown-menu">\n        <li><a href="/manager/searchinventory/"><span class="glyphicon glyphicon-search"></span> Search</a></li>\n        <li><a href="/manager/newcatalogitem/"><span class="glyphicon glyphicon-new-window"></span> New Catalog Item</a></li>\n        <li><a href="/manager/newinventoryitem/"><span class="glyphicon glyphicon-new-window"></span> New Serialized Item</a></li>\n      </ul>\n    </li>\n\n    <li class="dropdown">\n      <a class="btn btn-success" data-toggle="dropdown" href="#">\n        <span class="glyphicon glyphicon-star"></span> Stores <span class="caret"></span>\n      </a>\n      <ul class="dropdown-menu">\n        <li><a href="/manager/searchstores/"><span class="glyphicon glyphicon-search"></span> Search</a></li>\n        <li><a href="/manager/newstore/"><span class="glyphicon glyphicon-new-window"></span> New Store</a></li>\n      </ul>\n    </li>\n\n    <li class="dropdown">\n      <a class="btn btn-danger" data-toggle="dropdown" href="#">\n        <span class="glyphicon glyphicon-user"></span> Users <span class="caret"></span>\n      </a>\n      <ul class="dropdown-menu">\n        <li><a href=""><span class="glyphicon glyphicon-search"></span> Search Users</a></li>\n        <li><a href="/manager/searchusers/"><span class="glyphicon glyphicon-search"></span> Search Employees</a></li>\n        <li><a href="/account/newemployee/"><span class="glyphicon glyphicon-new-window"></span> New Employee</a></li>\n      </ul>\n    </li>\n  </ul>\n  <!-- End Nav Bar -->\n\n\n\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_main(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
@@ -115,24 +133,6 @@ def render_main(context,**pageargs):
         __M_writer = context.writer()
         # SOURCE LINE 165
         __M_writer('\n  Site content goes here in sub-templates.\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_top(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        request = context.get('request', UNDEFINED)
-        def top():
-            return render_top(context)
-        __M_writer = context.writer()
-        # SOURCE LINE 116
-        __M_writer('\n')
-        # SOURCE LINE 117
-        if request.user.is_staff == True:
-            # SOURCE LINE 118
-            __M_writer('\n\n  <!-- The Manager Nav Bar -->\n  <ul class="nav nav-tabs navbar-right">\n\n    <li class="dropdown">\n      <a class="btn btn-primary" data-toggle="dropdown" href="#">\n        <span class="glyphicon glyphicon-tags"></span>&nbsp; Inventory <span class="caret"></span>\n      </a>\n      <ul class="dropdown-menu">\n        <li><a href="/manager/searchinventory/"><span class="glyphicon glyphicon-search"></span> Search</a></li>\n        <li><a href="/manager/newcatalogitem/"><span class="glyphicon glyphicon-new-window"></span> New Catalog Item</a></li>\n        <li><a href="/manager/newinventoryitem/"><span class="glyphicon glyphicon-new-window"></span> New Serialized Item</a></li>\n      </ul>\n    </li>\n\n    <li class="dropdown">\n      <a class="btn btn-success" data-toggle="dropdown" href="#">\n        <span class="glyphicon glyphicon-star"></span> Stores <span class="caret"></span>\n      </a>\n      <ul class="dropdown-menu">\n        <li><a href="/manager/searchstores/"><span class="glyphicon glyphicon-search"></span> Search</a></li>\n        <li><a href="/manager/newstore/"><span class="glyphicon glyphicon-new-window"></span> New Store</a></li>\n      </ul>\n    </li>\n\n    <li class="dropdown">\n      <a class="btn btn-danger" data-toggle="dropdown" href="#">\n        <span class="glyphicon glyphicon-user"></span> Users <span class="caret"></span>\n      </a>\n      <ul class="dropdown-menu">\n        <li><a href=""><span class="glyphicon glyphicon-search"></span> Search Users</a></li>\n        <li><a href="/manager/searchusers/"><span class="glyphicon glyphicon-search"></span> Search Employees</a></li>\n        <li><a href="/account/newemployee/"><span class="glyphicon glyphicon-new-window"></span> New Employee</a></li>\n      </ul>\n    </li>\n  </ul>\n  <!-- End Nav Bar -->\n\n\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()

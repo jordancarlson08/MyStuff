@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1391461161.300804
+_modified_time = 1393126043.113963
 _enable_loop = True
-_template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/base_inventory.htm'
+_template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\catalog\\templates/base_inventory.htm'
 _template_uri = 'base_inventory.htm'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['main', 'content', 'left_side']
+_exports = ['main', 'left_side', 'content']
 
 
 def _mako_get_namespace(context, name):
@@ -30,10 +30,10 @@ def render_body(context,**pageargs):
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         def main():
             return render_main(context._locals(__M_locals))
-        def content():
-            return render_content(context._locals(__M_locals))
         def left_side():
             return render_left_side(context._locals(__M_locals))
+        def content():
+            return render_content(context._locals(__M_locals))
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\n')
@@ -57,10 +57,10 @@ def render_main(context,**pageargs):
     try:
         def main():
             return render_main(context)
-        def content():
-            return render_content(context)
         def left_side():
             return render_left_side(context)
+        def content():
+            return render_content(context)
         __M_writer = context.writer()
         # SOURCE LINE 5
         __M_writer('\n  ')
@@ -79,6 +79,31 @@ def render_main(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_left_side(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def left_side():
+            return render_left_side(context)
+        def content():
+            return render_content(context)
+        __M_writer = context.writer()
+        # SOURCE LINE 13
+        __M_writer('\n              ')
+        # SOURCE LINE 14
+ 
+
+        __M_writer('\n                <div class="container bs-docs-container">\n                  <div class="row">\n\n\n                    <div class="col-md-2">\n                      <div class="bs-sidebar hidden-print" role="complementary">\n                        <ul class="nav bs-sidenav">\n                          <div class="btn-group">\n                            <button class="btn btn-primary btn dropdown-toggle" type="button" data-toggle="dropdown">\n                               Add to Cart \n                            </button>\n                            <ul class="dropdown-menu">\n                              <ul class="nav nav-pills nav-stacked">\n                                <li>\n                                  <!--Inventory Management-->\n\n                                  <a href="/manager/searchinventory/"><span class="glyphicon glyphicon-search"></span>\n                                    <small>Search</small></a>\n                                  <a href="/manager/newcatalogitem/"><span class="glyphicon glyphicon-new-window"></span>\n                                    <small>New Catalog Item</small></a>\n                                  <a href="/manager/newinventoryitem/"><span class="glyphicon glyphicon-new-window"></span>\n                                    <small>New Serialized Item</small></a>\n                                  <a href="/manageinventory/"><span class="glyphicon glyphicon-star"></span>\n                                <small>Inventory Dashboard</small></a>\n\n                                  <li class="divider"></li>\n\n                                  <!--Overall Menu Items-->\n\n                                  <li><a href="/managestores"><span class="glyphicon glyphicon-tower"></span> \n                                <span class="lead"><small>Stores</small></span></a>\n                                  </li>\n                                  <li><a href="/manageusers"><span class="glyphicon glyphicon-user"></span> \n                                <span class="lead"><small>Users</small></span></a>\n                                  </li>\n                                  <li><a href="/index/"><span class="glyphicon glyphicon-star"></span>\n                                    <span class="lead"><small>Dashboard</small></span></a>\n                                  </li>\n                                </li>\n                              </ul>\n                            </ul>\n                          </div>\n\n\n                          \n                      </div>\n                    </div>\n\n                    <div class="col-md-9" role="main">\n\n                      ')
+        if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
+            context['self'].content(**pageargs)
+        
+
+        # SOURCE LINE 69
+        __M_writer('\n\n                    </div>\n                  </div>\n                </div>\n            ')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
@@ -91,31 +116,6 @@ def render_content(context,**pageargs):
  
 
         __M_writer('\n                          <!--This is the content block, it should be overwritten. -->\n                          Content\n                      ')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_left_side(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def content():
-            return render_content(context)
-        def left_side():
-            return render_left_side(context)
-        __M_writer = context.writer()
-        # SOURCE LINE 13
-        __M_writer('\n              ')
-        # SOURCE LINE 14
- 
-
-        __M_writer('\n                <div class="container bs-docs-container">\n                  <div class="row">\n\n\n                    <div class="col-md-2">\n                      <div class="bs-sidebar hidden-print" role="complementary">\n                        <ul class="nav bs-sidenav">\n                          <div class="btn-group">\n                            <button class="btn btn-default btn dropdown-toggle" type="button" data-toggle="dropdown">\n                              <span class="glyphicon glyphicon-tags"></span><span class="lead"> Inventory</span>  <span class="caret"></span>\n                            </button>\n                            <ul class="dropdown-menu">\n                              <ul class="nav nav-pills nav-stacked">\n                                <li>\n                                  <!--Inventory Management-->\n\n                                  <a href="/manager/searchinventory/"><span class="glyphicon glyphicon-search"></span>\n                                    <small>Search</small></a>\n                                  <a href="/manager/newcatalogitem/"><span class="glyphicon glyphicon-new-window"></span>\n                                    <small>New Catalog Item</small></a>\n                                  <a href="/manager/newinventoryitem/"><span class="glyphicon glyphicon-new-window"></span>\n                                    <small>New Serialized Item</small></a>\n                                  <a href="/manageinventory/"><span class="glyphicon glyphicon-star"></span>\n                                <small>Inventory Dashboard</small></a>\n\n                                  <li class="divider"></li>\n\n                                  <!--Overall Menu Items-->\n\n                                  <li><a href="/managestores"><span class="glyphicon glyphicon-tower"></span> \n                                <span class="lead"><small>Stores</small></span></a>\n                                  </li>\n                                  <li><a href="/manageusers"><span class="glyphicon glyphicon-user"></span> \n                                <span class="lead"><small>Users</small></span></a>\n                                  </li>\n                                  <li><a href="/index/"><span class="glyphicon glyphicon-star"></span>\n                                    <span class="lead"><small>Dashboard</small></span></a>\n                                  </li>\n                                </li>\n                              </ul>\n                            </ul>\n                          </div>\n\n\n                          \n                      </div>\n                    </div>\n\n                    <div class="col-md-9" role="main">\n\n                      ')
-        if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
-            context['self'].content(**pageargs)
-        
-
-        # SOURCE LINE 69
-        __M_writer('\n\n                    </div>\n                  </div>\n                </div>\n            ')
         return ''
     finally:
         context.caller_stack._pop_frame()
