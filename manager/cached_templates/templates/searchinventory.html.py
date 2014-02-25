@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1391291790.451765
+_modified_time = 1393364354.919369
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/searchinventory.html'
 _template_uri = 'searchinventory.html'
@@ -38,7 +38,7 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
-        # SOURCE LINE 47
+        # SOURCE LINE 41
         __M_writer('  \n')
         return ''
     finally:
@@ -83,7 +83,7 @@ def render_content(context,**pageargs):
             __M_writer(str(i.categoryID.categoryName))
             __M_writer('</td>\n      </tr>\n')
         # SOURCE LINE 32
-        __M_writer('  \t</tbody>\n  </table>\n\n  <div class="vertical_spacer6"></div>\n  <div class="vertical_spacer6"></div>\n\n\n  <script>\n  jQuery(document).ready(function($) {\n        $(".clickableRow").click(function() {\n              window.document.location = $(this).attr("href");\n        });\n  });\n  </script>\n\n')
+        __M_writer('  \t</tbody>\n  </table>\n\n  <div class="vertical_spacer6"></div>\n  <div class="vertical_spacer6"></div>\n\n\n\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()

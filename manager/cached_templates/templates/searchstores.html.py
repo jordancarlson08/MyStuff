@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1391291832.680778
+_modified_time = 1393363983.607394
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/searchstores.html'
 _template_uri = 'searchstores.html'
@@ -38,7 +38,7 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
-        # SOURCE LINE 48
+        # SOURCE LINE 42
         __M_writer('  \n')
         return ''
     finally:
@@ -86,7 +86,7 @@ def render_content(context,**pageargs):
             __M_writer(str(s.phone))
             __M_writer('</td>\n      </tr>\n')
         # SOURCE LINE 33
-        __M_writer('  \t</tbody>\n</table>\n\n  <div class="vertical_spacer6"></div>\n  <div class="vertical_spacer6"></div>\n\n\n  <script>\n  jQuery(document).ready(function($) {\n        $(".clickableRow").click(function() {\n              window.document.location = $(this).attr("href");\n        });\n  });\n  </script>\n\n')
+        __M_writer('  \t</tbody>\n</table>\n\n  <div class="vertical_spacer6"></div>\n  <div class="vertical_spacer6"></div>\n\n\n\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
