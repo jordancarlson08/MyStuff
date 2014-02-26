@@ -1,2 +1,12 @@
-// this is just an example of placing Javascript in the app
-$('#site_header').text("My Stuff - Digital Life My Way");
+
+
+// $(document).ready(function ()
+//   {
+//   	//What triggers the ajax call
+//       $('#login_button').click(function ()
+//           {
+//           	//Where to load it
+//               $('.list-inline').load('/account/login/');
+
+//           });
+//   });

@@ -1,16 +1,7 @@
-## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
-<%inherit file="searchinventory.htm" />
+<%inherit file="base_ajax.htm" />
 
 <%block name="content">
 <% %>
-
-
-<h2>Search for "Nikon"</h2>
-<hr/><br/>
-
-<div class='text-left'>
-<ul class="list-inline">
-
 %for i in catItems:
 
   <li class='clickable'>
@@ -26,7 +17,7 @@
 
             <!--####### Need to store image path in database as string for dynamic lookup -->
 
-            <img src='/static/catalog/images/NikonCamera.jpg' width='200px'/>
+            <img src='${i.img}' width='200px'/>
           </li>
           <li>
             <ul class='list-unstyled'>
@@ -48,23 +39,6 @@
   </a>
   </li> <!-- list item ends -->
 
+  %endfor
 
-%endfor
-
-</ul>
-</div>
-
-
-  <div class="vertical_spacer6"></div>
-  <div class="vertical_spacer6"></div>
-
-
-  <script>
-  jQuery(document).ready(function($) {
-        $(".clickableRow").click(function() {
-              window.document.location = $(this).attr("href");
-        });
-  });
-  </script>
-
-</%block>  
+  </%block>

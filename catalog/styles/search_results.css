@@ -1,6 +1,11 @@
-.clickable a{
+	.clickable a{
 	display:block;
 }
 .clickable a:hover{
 	text-decoration: none;
+}
+
+.panel-primary{
+	height: 300px;
+	width: 400px;
 }

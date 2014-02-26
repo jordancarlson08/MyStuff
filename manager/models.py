@@ -44,6 +44,7 @@ class CatalogItem(models.Model):
   createdBy = models.ForeignKey(Employee)
   categoryID = models.ForeignKey(Category)
   isActive = models.BooleanField(default=True)
+  img = models.TextField(blank=True, null=True)
 
   def __str__(self):
     return '%s %s' %(self.manufacturer, self.name)
@@ -77,3 +78,12 @@ class SerializedItem(models.Model):
   def __str__(self):
     return '%s %s - %s' %(self.catalogItem.manufacturer, self.catalogItem.name, self.serialNum)
 
+
+# class ImageFolder(models.Model):
+#   catalogItem = models.ForeignKey(CatalogItem, blank=True, null=True)
+#   serializedItem = models.ForeignKey(SerializedItem, blank=True, null=True)
+#   folderPath = models.TextField()
+
+# class Image(models.Model):
+#   imageFolder = models.ForeignKey(ImageFolder)
+#   imgPath = models.TextField()

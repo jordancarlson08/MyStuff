@@ -59,6 +59,15 @@
         <br/>
 
           <li><p>
+            Brand
+            <select id='brand' class="form-control">
+              <option value='All'>All</option>
+              %for i in brands:
+              <option value='${i.manufacturer}'>${i.manufacturer}</option>
+              %endfor  
+            </select>
+          </p></li>
+          <li><p>
             Inventory Type
             <select class="form-control">
               <option>All</option>
@@ -76,18 +85,7 @@
               <option>Ogden</option>
             </select>
           </p></li>
-          <li><p>
-            Brand
-            <select class="form-control">
-              <option>All</option>
-              <option>Canon</option>
-              <option>Nikon</option>
-              <option>Sony</option>
-              <option>Samsung</option>
-              <option>Olympus</option>
-              <option>Kodak</option>
-            </select>
-          </p></li>
+          
           <li><p>
             Category
             <select class="form-control">

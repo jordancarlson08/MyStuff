@@ -8,7 +8,7 @@ from manager.views.newinventoryitem import SerializedItemForm
 import datetime
 from django.contrib.auth.decorators import login_required
 
-@login_required
+
 def process_request(request):
 	'''Shows the serialized item'''
 

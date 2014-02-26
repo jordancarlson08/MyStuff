@@ -10,9 +10,15 @@ from . import templater
 def process_request(request):
 	'''New User Page'''
 
+
+
+	if request.urlparams[0] != '':
+		
+		return HttpResponse('ERRORASDFLKJASDL')
+
+
 	u = amod.User()
 	form = UserForm()
-	#form = StoreForm(empty_permitted=True)
 
 	if request.method == 'POST':
 		form = UserForm(request.POST)
@@ -37,6 +43,7 @@ def process_request(request):
 
 
 	tvars = {
+
 
 	'form':form,
 

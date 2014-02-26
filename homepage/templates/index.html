@@ -1,8 +1,8 @@
 ## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
 <%inherit file="base_template.htm" />
-
-
 <%block name="main">
+<% %>
+
 <div class="vertical_spacer6"></div>
 <div class="vertical_spacer6"></div>
 
@@ -15,7 +15,7 @@
   <div class="vertical_spacer6"></div>
   <div class="vertical_spacer6"></div>
 
-  <a href="/catalog/" class="btn btn-primary btn-lg">View Catalog</a>
+  <a href="/catalog/search/" class="btn btn-primary btn-lg">View Catalog</a>
   <a href="/account/login/" class="btn btn-success btn-lg">Log In</a>
 
 
@@ -27,6 +27,7 @@
 <div class="vertical_spacer6"></div>
 <div class="vertical_spacer6"></div>
 <div class="vertical_spacer6"></div>
+
 </%block>  
 
 <%block name='top'></%block>

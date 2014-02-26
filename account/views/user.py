@@ -8,8 +8,9 @@ from account.admin import user_check
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 @login_required
+#Need other test to only allow user x to access his own account page
 def process_request(request):
-	'''Shows the stores'''
+	'''Shows the specific user'''
 
 	if request.urlparams[1] == 'delete':
 		u = amod.User.objects.get(id=request.urlparams[0])
@@ -44,7 +45,6 @@ def process_request(request):
 		if form.is_valid():
 			#time to save the data
 			u.username = form.cleaned_data['username']
-			# u.set_password(form.cleaned_data['password'])
 			u.first_name = form.cleaned_data['first_name']
 			u.last_name = form.cleaned_data['last_name']
 			u.email = form.cleaned_data['email']

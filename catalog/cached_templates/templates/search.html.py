@@ -4,10 +4,10 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1393372028.447149
+_modified_time = 1393390988.714938
 _enable_loop = True
-_template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\catalog\\templates/searchinventory.html'
-_template_uri = 'searchinventory.html'
+_template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\catalog\\templates/search.html'
+_template_uri = 'search.html'
 _source_encoding = 'ascii'
 import os, os.path, re
 _exports = ['content']
@@ -23,7 +23,7 @@ def _mako_generate_namespaces(context):
     pass
 def _mako_inherit(template, context):
     _mako_generate_namespaces(context)
-    return runtime._inherit_from(context, 'searchinventory.htm', _template_uri)
+    return runtime._inherit_from(context, 'search.htm', _template_uri)
 def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
@@ -37,7 +37,7 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
-        # SOURCE LINE 41
+        # SOURCE LINE 24
         __M_writer('  \r\n')
         return ''
     finally:
@@ -55,7 +55,7 @@ def render_content(context,**pageargs):
         # SOURCE LINE 5
  
 
-        __M_writer('\r\n\r\n\r\n<h2>Search for "Nikon"</h2><button id=\'ajax1\' class=\'btn btn-default\'>Nikon!</button>\r\n<hr/><br/>\r\n\r\n<div class=\'text-left\'>\r\n<ul class="list-inline">\r\n\r\n\r\n<div id=\'result\'>\r\n  \r\n</div>\r\n\r\n\r\n\r\n</ul>\r\n</div>\r\n\r\n\r\n  <div class="vertical_spacer6"></div>\r\n  <div class="vertical_spacer6"></div>\r\n\r\n\r\n  <script>\r\n  jQuery(document).ready(function($) {\r\n        $(".clickableRow").click(function() {\r\n              window.document.location = $(this).attr("href");\r\n        });\r\n  });\r\n  </script>\r\n\r\n\r\n\r\n\r\n\r\n')
+        __M_writer('\r\n\r\n\r\n<h2>Search</h2>\r\n<hr/>\r\n\r\n\r\n<div class=\'text-left\'>\r\n\t<ul class="list-inline">\r\n\r\n\t\t<!-- The Ajax goes here -->\r\n\r\n\t</ul>\r\n</div>\r\n\r\n\r\n<div class="vertical_spacer6"></div>\r\n<div class="vertical_spacer6"></div>\r\n\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
