@@ -1,6 +1,5 @@
 ## this is the skeleton of all pages on our site - it defines the basic structure with our menus, sidebars, etc.
 ## by naming this file with .htm, it can't be viewed directly (urls.py only allows full .html)
-
 ## set up a StaticRenderer object to enable the CSS/JS automatic inclusion magic.
 
 <%! from base_app import static_files %>
@@ -9,26 +8,24 @@
 <!DOCTYPE html>
 <html>
   <meta charset="UTF-8">
+
   <head>
     <title>MyStuff</title>
-    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
-    <link rel="icon" type="image/x-icon"  href="/static/base_app/images/favicon.ico">   
-    <meta content="/homepage/images/camera_icon_75.png" itemprop="image">
+
+    <link rel="icon" type="image/x-icon"  href="/static/base_app/images/favicon.ico">      
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-    
-    <!-- Bootstrap stuff
-    <link rel="stylesheet" href="/static/base_app/styles/bootstrap.css"/>
-    <script src="/static/base_app/scripts/bootstrap.js"></script> -->
-    <script src="/static/base_app/scripts/jquery.loadmodal.js"></script>
 
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-
+  
+    ## global files 
+    <%! from base_app import global_static %>
+    ${ global_static.SITE_WIDE_CSS }
+    ${ global_static.SITE_WIDE_JS }
 
     ## render the css
     ${ static_renderer.get_template_css(request, context)  }
-  
+
   </head>
+
   <body>
 
 
@@ -67,7 +64,7 @@
         
     %if request.user.is_anonymous() == True:
       <li>
-      <a href='/account/login/'>
+      <a id='login_button' href='#'>
       Log In
       </a></li>
 <!--     %elif request.user.is_staff == True:

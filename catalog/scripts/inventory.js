@@ -1,5 +1,6 @@
 
 
+
 //Ajax call, basic example
 $(function() {
 
@@ -8,8 +9,8 @@ $(function() {
 		console.log('This should work');
 
 		$('#gettime_button').loadmodal({
-			url: '/index/',
-			title: 'Shopping Cart',
+			url: '/account/login/',
+			title: 'Login',
 			width: '600px',
 
 

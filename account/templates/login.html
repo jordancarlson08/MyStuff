@@ -1,38 +1,31 @@
 ## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
-<%inherit file="base_template.htm" />
-<%block name="main">
+<%inherit file="base_ajax.htm" />
+<%block name="content">
 <% %>
  
-<div class="content">
 
-<div class="row">
-  <div class="col-md-4">
-
-  </div>
-  <div class="col-md-4">
-  <h2>Login</h2>
-  </div>
-</div>
 <br/>
-  
-<form class ="form-horizontal" role="form" method ="POST">
+<div class="container-fluid">
 
+<form class ="form-horizontal" role="form" method ="POST">
 
   %for f in form:
   %if f.name!='remember':
+  <div class="row">
     <div class="form-group">
-      <label class="col-sm-4 control-label" for="id_${ f.name }">${ f.label }</label>
+      <label class="col-md-3 control-label" for="id_${ f.name }">${ f.label }</label>
 
-        <div class="col-sm-4">
+        <div class="col-md-7">
           ${f} ${f.errors} 
         </div>
     </div>
+  </div>
   %endif
   %endfor
 
   <div class="form-group">
-    <label for="inputPassword3" class="col-sm-4 control-label"></label>
-    <div class="col-sm-4">
+    <label for="inputPassword3" class="col-md-3 control-label"></label>
+    <div class="col-md-4">
       <a href="/account/forgotpassword/">Forgot My Password?</a>
     </div>
   </div>
@@ -40,7 +33,7 @@
   %for f in form:
   %if f.name=='remember':
     <div class="form-group">
-      <div class="col-sm-offset-4 col-sm-4">
+      <div class="col-md-offset-3 col-md-4">
         <div class="checkbox">
           <label>
         ${f} ${f.errors} Remember me
@@ -51,13 +44,15 @@
   %endif
   %endfor
 
-
+<br/>
   <div class="form-group">
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="col-md-offset-3 col-md-8">
 
+      <ul class='list-inline'>
+        <li><input class="btn btn-primary" type="submit" value="Sign In"></button></li>
+        <li><a href="/account/newuser/" class="btn btn-success">Create Account</a></li>
+      </ul>
 
-      <input class="btn btn-primary" type="submit" value="Sign In">
-      <a href="/account/newuser/" class="btn btn-success">Create Account</a>
     </div>
   </div>
 </form>
@@ -71,13 +66,10 @@
     </div>
 
   </div>
+<div id='here'></div>
+<button id='the_button' class='btn btn-default'>Try</button>
 
 
-</div>
-<div class="vertical_spacer6"></div>
-<div class="vertical_spacer6"></div>
-<div class="vertical_spacer6"></div>
-<div class="vertical_spacer6"></div>
 
 </%block>  
 
