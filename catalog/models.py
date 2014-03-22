@@ -4,6 +4,26 @@ from django.conf import settings
 from account.models import User, Employee
 from manager.models import CatalogItem, SerializedItem, Store
 from decimal import *
+from polymorphic import PolymorphicModel
+
+
+
+class Revenue(PolymorphicModel):
+	amount = models.DecimalField(max_digits=16, decimal_places=2, blank=True, null=True)
+
+class SaleItem(Revenue):
+	qty = models.IntegerField()
+
+class Repair(Revenue):
+	dateStart = models.DateField()
+	dateComplete = models.DateField()
+	description = models.DateField()
+	hours = models.DateField()
+	datePickup = models.DateField()
+
+
+
+
 
 class Shipping(models.Model):
 	'''The available Shipping options'''
@@ -26,6 +46,11 @@ class Transaction(models.Model):
   def __str__(self):
     return self.created
 
+class Payment(models.Model):
+	amount = models.DecimalField(max_digits=16, decimal_places=2, blank=True, null=True)
+	paymentType = models.TextField()
+
+
 class Commission(models.Model):
 	created = models.DateField(auto_now=True)
 
@@ -36,7 +61,7 @@ class Ledger(models.Model):
 	def __str__(self):
 		return self.name
 
-class DebitCredit(models.Model):
+class AccountEntry(models.Model):
 	isDebit = models.BooleanField()
 	amount = models.DecimalField(max_digits=16, decimal_places=2, blank=True, null=True)
 	ledger = models.ForeignKey(Ledger)
@@ -44,6 +69,8 @@ class DebitCredit(models.Model):
 class JournalEntry(models.Model):
 	created = models.DateField(auto_now=True)
 	note = models.TextField()
+
+
 
 
 
