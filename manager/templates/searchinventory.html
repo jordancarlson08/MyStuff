@@ -5,35 +5,86 @@
 <% %>
 
 
-  <h2>Inventory Management</h2><hr/><br/>
+ <h2>Inventory Management</h2>
+<hr/>
+<br/>
 
-  <table class="table table-hover">
-  	<thead>
-  		<tr>
-  			<th>SKU</th>
-        <th>Manufacturer</th>
-        <th>Name</th>
-  			<th>List Prices</th>
-        <th>Cost</th>
-  			<th>Category</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-%for i in catItems:
-      <tr class="clickableRow" href="/manager/inventory/${i.id}">
-        <td>${i.sku}</td>
-        <td>${i.manufacturer}</td>
-        <td>${i.name}</td>
-        <td>$ ${i.listPrice}</td>        
-        <td>$ ${i.cost}</td>
-        <td>${i.categoryID.categoryName}</td>
-      </tr>
-%endfor
-  	</tbody>
-  </table>
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#Sale" data-toggle="tab"><strong>Sales Inventory</strong></a>
+  </li>
+  <li>
+    <a href="#Rental" data-toggle="tab"><strong>Rental Inventory</strong></a>
+  </li>
+</ul>
 
-  <div class="vertical_spacer6"></div>
-  <div class="vertical_spacer6"></div>
+<br/>
+<div class="tab-content">
+
+  <div class="tab-pane active" id="Sale">
+    <div class="tab-content">
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>SKU</th>
+            <th>Manufacturer</th>
+            <th>Name</th>
+            <th>List Prices</th>
+            <th>Cost</th>
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          %for i in catItems:
+          <tr class="clickableRow" href="/manager/inventory/${i.id}">
+            <td>${i.sku}</td>
+            <td>${i.manufacturer}</td>
+            <td>${i.name}</td>
+            <td>$ ${i.listPrice}</td>
+            <td>$ ${i.cost}</td>
+            <td>${i.category.subName}</td>
+          </tr>
+          %endfor
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <div class="tab-pane" id="Rental">
+    <div class="tab-content">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Serial Number</th>
+            <th>Manufacturer</th>
+            <th>Name</th>
+            <th>Price/Day</th>
+            <th>Replacement Fee</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          %for i in rental:
+          <tr class="clickableRow" href="/manager/inventory/${i.catalogItem.id}">
+            <td><strong>${i.catalogItem.category.subName}</strong></td>
+            <td>${i.serialNum}</td>
+            <td>${i.catalogItem.manufacturer}</td>
+            <td>${i.catalogItem.name}</td>
+            <td>$ ${i.pricePerDay}</td>
+            <td>$ ${i.replacementFee}</td>
+          </tr>
+          %endfor
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="vertical_spacer6"></div>
+<div class="vertical_spacer6"></div>
 
 
 

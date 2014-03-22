@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
+
 	
 
 #this is inheritance
@@ -30,7 +31,9 @@ class User(AbstractUser):
 
   
 class Employee(models.Model):
+	'''Employee specific info'''
 	user = models.OneToOneField(User)
+	
 	hireDate = models.DateField(blank=True, null=True)
 	salary = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 

@@ -1,200 +1,89 @@
  ## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
-<%inherit file="base_inventory.htm" />
+<%inherit file="base.htm" />
 <%block name="content">
 <% %>
 
+
+
 <h1>${item.manufacturer} ${item.name}</h1><hr>
 
-    <div>
       <div class="tab-content">
-
-
         <div class="text-center">
-          <h3><strong>Catalog Details</strong></h3>
-        </div>
-        <hr>
-  
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>SKU</th>
-              <th>List Price</th>
+          <h3><strong>Details</strong></h3>
+          <hr>
+          <ul class='list-inline'>
+            <li>
+              <!--####### Need to store image path in database as string for dynamic lookup -->
+              <img id='img' src='${item.img}' width='300px'/>
+            </li>
+            <li>
+              <ul class='list-unstyled'>
+                <li>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Category</th>
+                        <th>SKU</th>
+                        <th>List Price</th>
+                      </tr>
+                    </thead>
+                    <tr>
+                      <td>
+                        <label>${item.category.subName}</label>
+                      </td>
+                      <td>${item.sku}</td>
+                      <td>$ ${item.listPrice}</td>
+                    </tr>
+                  </table>
+                </li>
+                <li>
+                  &nbsp;
+                </li>
 
-
-            </tr>
-          </thead>
-
-          <tr onclick="input" data-toggle="modal" href="#catalog">
-
-            <td>
-              <label>${item.categoryID.categoryName}</label>
-            </td>
-            <td>${item.sku}</td>
-            <td>$ ${item.listPrice}</td>
-
-
-          </tr>
-
-        </table>
-
-          <!-- Catalog Edit Button and Delete -->
-          <div class="modal fade bs-modal-lg" id="catalog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title" id="myModalLabel">Edit Product Information</h4>
-                </div>
-
-                <div class="modal-body">
-
-
-                  <form class ="form-horizontal" role="form" method ="POST">
-
-                    %for field in form:
-
-                      <div class="form-group">
-                        <label class="col-sm-4 control-label" for="id_${ field.name }">${ field.label }</label>
-                          <div class="col-sm-8">
-                            ${field} ${field.errors}
-                            <!-- <input type="text" class="form-control" name="${ field.name }" id="id_${ field.name }"> -->
-                          </div>
-                      </div>
-
-                    %endfor
-                    
-                  </div>
-                  <div class ="modal-footer">
-                    <div class="form-group">
-                      <div class="col-sm-offset-7 col-sm-4">
-                        <input class="btn btn-success" type="submit" value="Save Changes">
-                      </div>
-                    </div>
+                <li>
+                  <form class='form-horizontal' role='form' method='POST'>
+                    <ul class='list-inline'>
+                      %for f in form:
+                      <li>
+                        <strong>${f.label}</strong>
+                      </li>
+                      <li>
+                        ${f}
+                      </li>
+                      %endfor
+                      <li>
+                        <a id='cart2'>
+                        <button id='add_button' class='btn btn-primary' type='submit'><span class='glyphicon glyphicon-shopping-cart'></span>&nbsp; Add to Cart</button>
+                        </a>
+                      </li>
+                    </ul>
                   </form>
-
-                </div>
-
-
-              </div>
-              <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-          </div>
-          <!-- /.modal -->  
-
-
-
-
-
-        <ul class="nav nav-pills">
-
-          <li class="active">
-            <button class="btn btn-success btn" data-toggle="modal" data-target="#ImageLibrary">Image Library <span class="badge">1</span>
-            </button>
-          </li>
-
-
-        </ul>
-
-
-
-        <!-- Modal -->
-        <div class="modal fade" id="ImageLibrary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-              </div>
-              <div class="modal-body">
-
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                  <!-- Indicators -->
-                  <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                  </ol>
-
-                  <!-- Wrapper for slides -->
-                  <div class="carousel-inner">
-                    <div class="item active">
-                      <img src="${ STATIC_URL}base_app/images/NikonCamera.jpg" alt="Nikon Camera 1 V2" class="img-rounded">
-                      <div class="carousel-caption">
-                        IMG1.jpg
-                      </div>
-                    </div>
-                    ...
-                  </div>
-
-                  <!-- Controls -->
-                  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                  </a>
-                  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                  </a>
-                </div>
-
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
-
-
+                </li>
+              </ul>
+            </li>
+          </ul>
+      </div>
 
         <br/>
         <h3>Product Description</h3>
         <hr>
-        <p>${item.description}
-          <a href="http://www.nikonusa.com/en/Nikon-Products/Product/Nikon1/27602/Nikon-1-V2.html" class="btn btn-info btn-xs">Go to Nikon</a>
-        </p>
-
-
-        <p></p>
-
-
+        <p>${item.description}</p>
 
         <br/>
         <h3>Tech Specs</h3>
-        <hr/>${item.techSpecs}
-
-
-
+        <hr/>
+        ${item.techSpecs}
         <hr>
 
-
-
-
       </div>
-  	</div>
 </div>
 
 
- <script>
-    $('#popoverData').popover();
-	$('#popoverOption').popover({ trigger: "hover" });
 
-    $(function () {
-        $('#myTab a:last').tab('show')
-    })
+</%block>   
 
-    jQuery(document).ready(function($) {
-          $(".clickableRow").click(function() {
-                window.document.location = $(this).attr("href");
-          });
-    });
 
-</script>
-
+<%block name="left_side">
+<% %>
+<a id='back_button' class='btn btn-default btn-small'><span class='glyphicon glyphicon-arrow-left'></span>&nbsp;Back</a>
 </%block>   

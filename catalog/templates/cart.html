@@ -1,0 +1,59 @@
+## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+<%inherit file="base_ajax.htm" />
+
+<%block name="content">
+<% %>
+%if cart_all:
+
+%for c in cart_all.cartItem_list:
+	%if c.error !='':
+		<div class='alert alert-danger'>${c.error}</div>
+	%endif
+%endfor
+
+<table class='table table-hover'>
+	<thead>
+		<th>Manufacturer</th>
+		<th>Name</th>
+		<th>Price</th>
+		<th>Quantity</th>
+		<th></th>
+	</thead>
+	<tbody>
+		%for c in cart_all.cartItem_list:
+		<tr>
+			<td>${c.item.manufacturer}</td>
+			<td>${c.item.name}</td>
+			<td>${c.item.listPrice}</td>
+			<td>${c.qty}</td>
+			<td><a href='/catalog/cart__delete/${c.item.id}'><button class='btn btn-danger btn-sm'><span class='glyphicon glyphicon-remove'></span></button></a></td>
+		</tr>
+		%endfor
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td><strong>Subtotal:</strong></td>
+			<td>$</td>
+			<td>${cart_all.extended_sum}</td>
+		</tr>
+	</tbody>
+</table>
+
+<a href='/catalog/checkout/' class='btn btn-primary'>Checkout</a>
+
+%else:
+There are no items in your shopping cart. Check out our catalog to find the hottest new items.
+<br/>
+<br/>
+<a href="/catalog/category/" class='btn btn-primary'>Go to Catalog</a>
+
+%endif
+
+</%block>  

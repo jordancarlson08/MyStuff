@@ -28,7 +28,11 @@ def process_request(request):
 			        	# The user is logged out upon closing the browser
 			        	request.session.set_expiry(0)
 			        # Redirect to a success page.
-			        return HttpResponseRedirect('/homepage/dash/')
+			        ################################### WONT WORK #######################
+			        #return HttpResponseRedirect('/homepage/dash/')
+			        return HttpResponse('<script> window.location.href="";</script>')
+
+
 			    else:
 			        # Return a 'disabled account' error message
 			        return HttpResponseRedirect('/manager/searchinventory/')

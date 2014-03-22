@@ -7,7 +7,8 @@
 <br/>
 <div class="container-fluid">
 
-<form class ="form-horizontal" role="form" method ="POST">
+
+<form class ="form-horizontal" role="form" method ="POST" action='/account/login/'>
 
   %for f in form:
   %if f.name!='remember':
@@ -49,12 +50,13 @@
     <div class="col-md-offset-3 col-md-8">
 
       <ul class='list-inline'>
-        <li><input class="btn btn-primary" type="submit" value="Sign In"></button></li>
+        <li><button id='submit_button' class="btn btn-primary" type="submit">Sign In</button></li>
         <li><a href="/account/newuser/" class="btn btn-success">Create Account</a></li>
+        <!-- <li><input type="submit" value="Submit" /></li> -->
       </ul>
 
     </div>
-  </div>
+  </div> 
 </form>
   
   
@@ -66,11 +68,12 @@
     </div>
 
   </div>
-<div id='here'></div>
-<button id='the_button' class='btn btn-default'>Try</button>
 
 
 
 </%block>  
 
 <%block name='top'></%block>
+
+
+##${form(id='login_form' action='/account/login/')}

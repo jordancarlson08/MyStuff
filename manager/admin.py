@@ -5,6 +5,7 @@ from .models import *
 # register any models here
 
 admin.site.register(Category)
+admin.site.register(SubCategory)
 admin.site.register(CatalogItem)
 admin.site.register(Condition)
 admin.site.register(SerializedItem)

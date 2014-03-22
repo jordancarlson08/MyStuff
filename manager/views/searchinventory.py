@@ -10,10 +10,12 @@ def process_request(request):
 	'''Shows the catalog items'''
 
 	catItems = hmod.CatalogItem.objects.all()
+	rental = hmod.SerializedItem.objects.filter(isRental=True)
 
 	tvars = {
 
 	'catItems':catItems,
+	'rental':rental,
 
 	}
 

@@ -4,10 +4,11 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from manager import models as hmod
 from account import models as amod
 from . import templater
-from account.admin import user_check
+from account.admin import user_check, my_account
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 @login_required
+@my_account
 #Need other test to only allow user x to access his own account page
 def process_request(request):
 	'''Shows the specific user'''
@@ -18,46 +19,92 @@ def process_request(request):
 		u.save()
 		return HttpResponseRedirect('/manager/searchusers/')
 
-	u = amod.User.objects.get(id=request.urlparams[0])
-	user = u
+	user = amod.User.objects.get(id=request.urlparams[0])
 
-	if u.is_active == False:
+
+	if user.is_active == False:
+		return Http404()
+
+
+	tvars = {
+	'user':user,
+	}
+ 	
+	return templater.render_to_response(request, 'user.html', tvars)
+
+
+
+
+
+
+def process_request__edit(request):
+	'''Edit the user'''
+
+	user = amod.User.objects.get(id=request.urlparams[0])
+	c = ''
+
+
+	if user.is_active == False:
 		return Http404()
 
 
 	form = UserForm(initial={
-		'username' : u.username,
-		'first_name' : u.first_name,
-		'last_name' : u.last_name,
-		'email' : u.email,
-		'phone' : u.phone,
-		'security_question' : u.security_question,
-		'security_answer' : u.security_answer,
-		'street1' : u.street1,
-		'street2' : u.street2,
-		'city' : u.city,
-		'state' : u.state,
-		'zipCode' : u.zipCode,
+		'username' : user.username,
+		'first_name' : user.first_name,
+		'last_name' : user.last_name,
+		'email' : user.email,
+		'phone' : user.phone,
+		'security_question' : user.security_question,
+		'security_answer' : user.security_answer,
+		'street1' : user.street1,
+		'street2' : user.street2,
+		'city' : user.city,
+		'state' : user.state,
+		'zipCode' : user.zipCode,
 		})
 
 	if request.method == 'POST':
 		form = UserForm(request.POST)
 		if form.is_valid():
 			#time to save the data
-			u.username = form.cleaned_data['username']
-			u.first_name = form.cleaned_data['first_name']
-			u.last_name = form.cleaned_data['last_name']
-			u.email = form.cleaned_data['email']
-			u.phone = form.cleaned_data['phone']
-			u.security_question = form.cleaned_data['security_question']
-			u.security_answer = form.cleaned_data['security_answer']	
-			u.is_staff = False
-			u.street1 = form.cleaned_data['street1']
-			u.street2 = form.cleaned_data['street2']
-			u.city = form.cleaned_data['city']
-			u.state = form.cleaned_data['state']
-			u.zipCode = form.cleaned_data['zipCode']
-			u.save()
+			user.username = form.cleaned_data['username']
+			user.first_name = form.cleaned_data['first_name']
+			user.last_name = form.cleaned_data['last_name']
+			user.email = form.cleaned_data['email']
+			user.phone = form.cleaned_data['phone']
+			user.security_question = form.cleaned_data['security_question']
+			user.security_answer = form.cleaned_data['security_answer']	
+			user.is_staff = False
+			user.street1 = form.cleaned_data['street1']
+			user.street2 = form.cleaned_data['street2']
+			user.city = form.cleaned_data['city']
+			user.state = form.cleaned_data['state']
+			user.zipCode = form.cleaned_data['zipCode']
+			user.save()
+			c = 'Changes Saved'
+			#return HttpResponse('<script> setTimeout(function() {window.location.href = "/index/";}, 2000);</script>')
+
+
+	
+	tvars = {
+	'user':user,
+	'form':form,
+	'c':c,
+	}
+ 	
+	return templater.render_to_response(request, 'edit_user.html', tvars)
+
+
+
+def process_request__password(request):
+	'''Edit the password'''
+
+	user = amod.User.objects.get(id=request.urlparams[0])
+	c = ''
+
+	if user.is_active == False:
+		return Http404()
+
 
 	passwordForm = UserPasswordForm()
 
@@ -65,19 +112,25 @@ def process_request(request):
 		passwordForm = UserPasswordForm(request.POST)
 		if passwordForm.is_valid():
 			#time to save the data
-			if u.check_password(passwordForm.cleaned_data['password']):
+			if user.check_password(passwordForm.cleaned_data['password']):
 				if passwordForm.cleaned_data['newpassword1'] == passwordForm.cleaned_data['newpassword2']:
-					u.set_password(passwordForm.cleaned_data['newpassword1'])
-					u.save()
+					user.set_password(passwordForm.cleaned_data['newpassword1'])
+					user.save()
+					c = 'Changes Saved'
+					#return HttpResponse('<meta http-equiv="refresh" content="2;url=/index/">')
 
 
 	tvars = {
 	'user':user,
-	'form':form,
 	'passwordForm':passwordForm,
+	'c':c,
 	}
- 	
-	return templater.render_to_response(request, 'user.html', tvars)
+		
+	return templater.render_to_response(request, 'edit_password.html', tvars)
+
+
+
+
 
 class UserForm(forms.Form):
 	
@@ -108,3 +161,7 @@ class UserPasswordForm(forms.Form):
 	        raise forms.ValidationError("New password does not match.")
 
 	    return self.cleaned_data
+
+	# def clean_password(self):
+		# I need to get the user some how so i can run the check_password
+		# check_password(passwordForm.cleaned_data['password'])

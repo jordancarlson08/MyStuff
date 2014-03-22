@@ -59,3 +59,7 @@ table tr td a {
     width:100%;
 }
 
+.modal-backdrop.in {
+opacity: .75;
+filter: alpha(opacity=50);
+}

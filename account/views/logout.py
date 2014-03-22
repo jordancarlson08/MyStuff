@@ -12,5 +12,6 @@ def process_request(request):
     logout(request)
 
     tvars = {}
-    
+
+
     return templater.render_to_response(request, 'logout.html', tvars)

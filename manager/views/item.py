@@ -25,17 +25,16 @@ def process_request(request):
 	
 
 	form = SerializedItemForm(initial={		
-		'storeID': s.storeID,
+		'store': s.store,
 		'catalogItem': s.catalogItem,
 		'listPrice':s.listPrice,
 		'cost':s.cost,
 		'commissionRate': s.commissionRate,
 		'serialNum':s.serialNum,
 		'shelfLocation':s.shelfLocation,
-		'conditionID':s.conditionID,
+		'condition':s.condition,
 		'conditionDetails':s.conditionDetails,
 		'isRental':s.isRental,
-		'dateReceived': s.dateReceived,
 
 		})
 
@@ -43,17 +42,16 @@ def process_request(request):
 		form = SerializedItemForm(request.POST)
 		if form.is_valid():
 			#time to save the data
-			s.storeID = form.cleaned_data['storeID']
+			s.store = form.cleaned_data['store']
 			s.catalogItem = form.cleaned_data['catalogItem']
 			s.listPrice = form.cleaned_data['listPrice']
 			s.cost = form.cleaned_data['cost']
 			s.commissionRate = form.cleaned_data['commissionRate']
 			s.serialNum = form.cleaned_data['serialNum']
 			s.shelfLocation = form.cleaned_data['shelfLocation']
-			s.conditionID = form.cleaned_data['conditionID']
+			s.condition = form.cleaned_data['condition']
 			s.conditionDetails = form.cleaned_data['conditionDetails']
 			s.isRental = form.cleaned_data['isRental']
-			s.dateReceived = form.cleaned_data['dateReceived']
 
 			s.save()
 			return HttpResponseRedirect('/manager/inventory/'+str(s.catalogItem.id))

@@ -30,7 +30,7 @@ AUTH_USER_MODEL = 'account.User'
 
 # AUTH_PROFILE_MODULE = 'account.UserProfile'
 
-LOGIN_URL = '/account/login/'
+LOGIN_URL = '/login/'
 
 # Application definition
 

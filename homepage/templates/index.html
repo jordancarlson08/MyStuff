@@ -16,8 +16,19 @@
   <div class="vertical_spacer6"></div>
 
   <a href="/catalog/search/" class="btn btn-primary btn-lg">View Catalog</a>
-  <a href="/account/login/" class="btn btn-success btn-lg">Log In</a>
 
+  %if request.user.is_anonymous() == True:	
+  	<a id="login_button2" class="btn btn-success btn-lg">Log In</a>
+  %else:
+
+  	%if request.user.is_staff == False:
+  	<a class="btn btn-success btn-lg" href="/account/user/${request.user.id}">My Account</a>
+  	%else:
+  	<a class="btn btn-success btn-lg" href="/manager/employee/${request.user.id}">My Account</a>
+  	%endif
+
+
+  %endif
 
 </div>
 </div>

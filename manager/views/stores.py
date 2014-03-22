@@ -47,8 +47,8 @@ def process_request(request):
 
 	urlStore = hmod.Store.objects.get(id=request.urlparams[0])
 
-	items = hmod.SerializedItem.objects.filter(storeID=urlStore.id)
-	itemcount = hmod.SerializedItem.objects.filter(storeID=urlStore.id).count()
+	items = hmod.SerializedItem.objects.filter(store=urlStore.id)
+	itemcount = hmod.SerializedItem.objects.filter(store=urlStore.id).count()
 
 	tvars = {
 	'items':items,
@@ -69,4 +69,4 @@ class StoreForm(forms.Form):
 	state = forms.CharField(max_length=2, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'UT',}))
 	zipCode = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '84601',}))
 	phone = forms.CharField(max_length=25, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '801-555-1234',}))
-	manager = forms.ModelChoiceField(label='Manager', queryset=amod.Employee.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
+	manager = forms.ModelChoiceField(label='Manager', queryset=amod.Employee.objects.filter(user__is_staff='True'), widget=forms.Select(attrs={'class': 'form-control'}))

@@ -4,5 +4,5 @@ from .models import *
 
 # register any models here
 
-
+admin.site.register(Shipping)
 

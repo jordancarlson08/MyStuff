@@ -1,0 +1,102 @@
+ ## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+<%inherit file="base_inventory.htm" />
+<%block name="content">
+<% %>
+
+<h1>${item.catalogItem.manufacturer} ${item.catalogItem.name} - ${item.serialNum}</h1><hr>
+
+
+        <div class="text-center">
+          <h3><strong>Rental Details</strong></h3>
+        </div>
+        <hr>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Serial Number</th>
+              <th>Price/Day</th>
+              <th>Late Fee</th>
+              <th>Replacement Fee</th>
+              <th></th>
+              
+
+            </tr>
+          </thead>
+
+          <tr onclick="input" data-toggle="modal" href="#catalog">
+
+            <td>
+              <label>${item.catalogItem.category.subName}</label>
+            </td>
+            <td>${item.serialNum}</td>
+            <td>${item.pricePerDay}</td>
+            <td>${item.lateFee}</td>
+            <td>${item.replacementFee}</td>
+            <td><button class='btn btn-warning btn-sm'>Edit</button></td>
+
+
+          </tr>
+
+        </table>
+
+        <div class='vertical_spacer6'></div>
+
+        <h3>Rental Status: <label class='label label-danger'>Out for Rent</label>/<label class='label label-success'>Available</label></h3>
+        <hr/>
+        <table class='table'>
+          <thead>
+            <th>Cust. ID</th>
+            <th>Customer</th>
+            <th>Date Out</th>
+            <th>Expected Return</th>  
+          </thead>
+          <tbody>
+            <td>3</td>
+            <td>N. Ford</td>
+            <td>01/04/2014</td>
+            <td>01/07/2014</td>
+          </tbody>          
+        </table>
+        <button class='btn btn-danger'>Return Item</button>/<button class='btn btn-success'>Rent Item</button>
+        
+
+        <div class='vertical_spacer6'></div>
+
+        <h3>Rental History</h3>
+        <hr/>
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Customer</th>
+              <th>Date Out</th>
+              <th>Date In</th>
+              <th>Condition</th>
+              <th></th>           
+            </tr>
+          </thead>
+          <tbody>
+           <!--  %for h in history: -->
+            <tr class='clickableRow' href='/manager/history/'>
+              <td>J. Adams</td>
+              <td>12/30/2013</td>
+              <td>01/04/2014</td>
+              <td>Used - Like New</td>
+              <td><button class='btn btn-primary btn-sm'>Details</button></td>
+            </tr>
+            <!-- %endfor -->
+          </tbody>
+        </table>
+
+
+
+
+      </div>
+  	</div>
+</div>
+
+
+
+</%block>   

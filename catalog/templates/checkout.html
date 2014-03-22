@@ -5,55 +5,66 @@
 <%block name = "main">
 <% %>
 	<div class="container">
-		<h1>Your Shopping Cart</h1></br>
+		<h1>Checkout</h1></br>
 		<div class="row">
 			<div class="col-md-3">
 				<div class="well">
 					<h3>Your Items</h3>
+					<hr/>
+
+
+					%for c in cart_all.cartItem_list:
 					<table>
-						<h5><b>Nikon Coolpix S8000c</b></h5>
-						<tr>
-							<td rowspan="2"><img src="http://lghttp.22373.nexcesscdn.net/80A650/Magento/media/catalog/product/cache/1/small_image/150x/9df78eab33525d08d6e5fb8d27136e95/n/i/nikon_1_s800c_front.jpg" width= 55px alt="Nikon Camera">&nbsp;&nbsp;</td>
-							<td><b>Quantity: </b></td>
-							<td>1</td>
-						</tr>
-						<tr>
-							<td><b>Price: </b></td>
-							<td>$189.99</td>
-						</tr>
-					</table>
-					<hr>
-					<table>
-						<h5><b>Nikon 12-24mm f/4G ED-IF AF-S DX Lens</b></h5>
-						<tr>
-							<td rowspan="2"><img src="https://www.pictureline.com/media/catalog/product/cache/1/small_image/50x/9df78eab33525d08d6e5fb8d27136e95/n/i/nikon_2_12-24_side.jpg" alt="Lens"></td>
-							<td><b>Quantity: </b></td>
-							<td>1</td>
-						</tr>
-						<tr>
-							<td><b>Price: </b></td>
-							<td>$1,224.35</td>
-						</tr>
-					</table>
-					<hr>
+						<h4><strong>${c.item.manufacturer} ${c.item.name}</strong></h4>
+
+						%if c.error !='':
+							<div class='alert alert-danger'><h5>${c.error}</h5></div>
+						%endif
+		
+						<ul class='list-inline'>
+							<li>
+								<img src='${c.item.img}' width='55px' alt="${c.item.manufacturer} ${c.item.name}">
+							</li>
+							<li>
+								<ul class='list-unstyled'>
+									<li>
+										<strong>Price:</strong> $${c.item.listPrice}
+									</li>
+									<li>
+										<strong>Quantity:</strong> ${c.qty}
+									</li>
+									<li>
+										<strong>Extended:</strong> ${c.extended}
+									</li>
+								</ul>
+							</li>
+
+							
+						</ul>
+
+						<hr/>
+					%endfor
+
+
+
 					<table>
 						<tr>
 							<td><b>Subtotal: </b></td>
 							<td></td>
 							<td></td>
-							<td>$1,414.94</td>
+							<td>&nbsp;$ ${cart_all.extended_sum}</td>
 						</tr>
 						<tr>
 							<td><b>Tax: </b></td>
 							<td></td>
 							<td></td>
-							<td>35.00</td>
+							<td>&nbsp;$ ${cart_all.tax}</td>
 						</tr>
 						<tr>
 							<td><b>TOTAL: </b></td>
 							<td></td>
 							<td></td>
-							<td><u>$1,449.94</u></td>
+							<td>&nbsp;<u>$ ${cart_all.total}</u></td>
 						</tr>
 					</table>
 					<br>
@@ -81,16 +92,90 @@
 					</div>
 				</div>
 			</div>
+
+
+
+					
+
+
+
+
+
+
+				<div class="col-md-9">
+
+
+
+					<% bSide = True
+					%>
+
+					<div class="panel-group" id="accordion">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									Billing Address
+								</h4>
+							</div>
+
+							<div class="panel-body">
+								<form class ="form-horizontal" role="form" method ="POST">
+
+								<table>
+
+
+					  %for f in form:
+						%if f.label == 'Same as Billing':
+						<%print('SAME AS BILLING!!!')%>
+						%endif
+					  	%if bSide:
+						<tr>
+						  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					      <td>${ f.label }</td>
+					      <td>${f} ${f.errors}</td>  
+					      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						%else:
+							<td>${ f.label }</td>
+							<td>${f} ${f.errors}</td>  
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+					    %endif
+						
+						<% 
+						print(bSide)
+						bSide = not bSide
+						print(bSide)
+						print('--------------')
+						%>
+					  %endfor
+					</table>
+					  <div class="form-group">
+					    <div class="col-sm-offset-4 col-sm-4">
+					      <input class="btn btn-success" type="submit" value="Save">
+					    </div>
+					  </div>
+					</form>
+
+				</div>
+				
+			</div>
+
+	</div>
+</div>
+
+
+
+
 				<div class="col-md-9">
 					<div class="panel-group" id="accordion">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Billing Address
-									</a>
+									Billing Address
 								</h4>
 							</div>
-							<div id="collapseOne" class="panel-collapse collapse in">
+
 								<div class="panel-body">
 									<div class="container">
 										<form role="form">
@@ -208,7 +293,7 @@
 										</form>
 									</div> <!--ends Billing container-->
 								</div>
-							</div>
+
 						</div> <!-- end of panel, panel-default --> 
 						<div class="panel panel-default">
 							<div class="panel-heading">

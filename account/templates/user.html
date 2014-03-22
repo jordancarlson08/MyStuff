@@ -84,94 +84,9 @@
 
   <hr/>
 
-  <button class="btn btn-primary" data-toggle="modal" data-target="#changePassword">Change Password</button>
-
-  <!--####### CHANGE PASSWORD MODAL WINDOW ########-->
-
-  <div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          Change Password
-        </div>
-        <div class="modal-body">
-            <form class ="form-horizontal" role="form" method ="POST">
-
-              %for field in passwordForm:
-              
-                <div class="form-group">
-                  <label class="col-sm-4 control-label" for="id_${ field.name }">${ field.label }</label>
-                    <div class="col-sm-4">
-                      ${field} ${field.errors}
-                    </div>
-                </div>
-                
-              %endfor
-              ${form.non_field_errors()}
-          </div>
-          <div class='modal-footer'>
-            <div class="form-group">
-              <div class="col-sm-offset-4 col-sm-4">
-                <input class="btn btn-success" type="submit" value="Save Changes">
-              </div>
-            </div>
-          </div>
-
-          </form>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-  <!--####### END CHANGE PASSWORD MODAL WINDOW ########-->
-
-
-
-
-  <button class="btn btn-warning" data-toggle="modal" data-target="#editUser">Edit</button>
-
-
-  <!--####### EDIT USER MODAL WINDOW ########-->
-
-  <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          Edit User Information
-        </div>
-        <div class="modal-body">
-
-          <form class ="form-horizontal" role="form" method ="POST">
-
-            %for field in form:
-            
-              <div class="form-group">
-                <label class="col-sm-4 control-label" for="id_${ field.name }">${ field.label }</label>
-                  <div class="col-sm-4">
-                    ${field} ${field.errors}
-                  </div>
-              </div>
-
-            %endfor
-
-        </div>
-        <div class='modal-footer'>
-            <div class="form-group">
-              <div class="col-sm-offset-4 col-sm-4">
-                <input class="btn btn-success" type="submit" value="Save Changes">
-              </div>
-            </div>
-
-          </form>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-  <!--####### END EDIT USER MODAL WINDOW ########-->
-
-
-
-
+  <button class="btn btn-primary" id='password_button'>Change Password</button>
+  <button class="btn btn-warning" id='edit_button'>Edit</button>
   <button class="btn btn-danger" data-toggle="modal" data-target="#deleteUser">Delete</button>
-
 
   <!--####### DELETE USER MODAL WINDOW ########-->
 

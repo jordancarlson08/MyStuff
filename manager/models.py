@@ -4,6 +4,7 @@ from django.conf import settings
 from account.models import User, Employee
 
 class Store(models.Model):
+  '''Basic Store Model'''
   locationName = models.TextField()
   street1 = models.TextField()
   street2 = models.TextField(blank=True, null=True)
@@ -19,13 +20,32 @@ class Store(models.Model):
 
 
 class Category(models.Model):
+  '''Category used for grouping like items'''
   categoryName = models.TextField()
+  sort = models.IntegerField(null=True, blank=True)
 
   def __str__(self):
     return self.categoryName
 
+class SubCategory(models.Model):
+  '''Sub Category used for grouping more specific like items'''
+  subName = models.TextField()
+  category = models.ForeignKey(Category)
+
+  def __str__(self):
+    return '%s - %s' %(self.category, self.subName)
+
+
+class Condition(models.Model):
+  '''Describes the condition of an item'''
+  condition = models.TextField()
+
+  def __str__(self):
+    return self.condition
+
 
 class CatalogItem(models.Model):
+  '''Catalog Item'''
   name = models.TextField()
   manufacturer = models.TextField(blank=True, null=True)
   listPrice = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
@@ -36,13 +56,9 @@ class CatalogItem(models.Model):
   sku = models.TextField(blank=True, null=True)
   fillPoint = models.IntegerField(blank=True, null=True)
   leadTime = models.TextField(blank=True, null=True)
-  isRental = models.BooleanField(default=False)
-  pricePerDay = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-  replacementFee = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-  lateFee = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-  dateCreated = models.DateField(blank=True, null=True)
+  created = models.DateField(auto_now=True)
   createdBy = models.ForeignKey(Employee)
-  categoryID = models.ForeignKey(Category)
+  category = models.ForeignKey(SubCategory)
   isActive = models.BooleanField(default=True)
   img = models.TextField(blank=True, null=True)
 
@@ -50,29 +66,25 @@ class CatalogItem(models.Model):
     return '%s %s' %(self.manufacturer, self.name)
 
 
-class Condition(models.Model):
-  condition = models.TextField()
-
-  def __str__(self):
-    return self.condition
-
-
-
 class SerializedItem(models.Model):
-  storeID = models.ForeignKey(Store)
+  '''Serialized Item: A rental item or a high value item'''
+  store = models.ForeignKey(Store)
   catalogItem = models.ForeignKey(CatalogItem)
   listPrice = models.DecimalField(max_digits=8, decimal_places=2)
   cost = models.DecimalField(max_digits=8, decimal_places=2)
   commissionRate = models.DecimalField(max_digits=2, decimal_places=2)
   serialNum = models.TextField()
   shelfLocation = models.TextField(blank=True, null=True)
-  conditionID = models.ForeignKey(Condition)
+  condition = models.ForeignKey(Condition)
   conditionDetails = models.TextField()
-  isRental = models.BooleanField(default=False)
-  dateReceived = models.DateField(blank=True, null=True)
-  dateCreated = models.DateField(blank=True, null=True)
+  created = models.DateField(auto_now=True)
   createdBy = models.ForeignKey(Employee)
   isActive = models.BooleanField(default=True)
+
+  isRental = models.BooleanField(default=False)
+  pricePerDay = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+  replacementFee = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+  lateFee = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
 
   def __str__(self):
