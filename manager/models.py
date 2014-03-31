@@ -61,6 +61,7 @@ class CatalogItem(models.Model):
   category = models.ForeignKey(SubCategory)
   isActive = models.BooleanField(default=True)
   img = models.TextField(blank=True, null=True)
+  isSerial = models.BooleanField(default=True)
 
   def __str__(self):
     return '%s %s' %(self.manufacturer, self.name)
@@ -85,6 +86,9 @@ class SerializedItem(models.Model):
   pricePerDay = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
   replacementFee = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
   lateFee = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+
+  isSold = models.BooleanField(default=False)
+  isRented = models.BooleanField(default=False)
 
 
   def __str__(self):

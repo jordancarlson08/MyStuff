@@ -32,6 +32,8 @@ AUTH_USER_MODEL = 'account.User'
 
 LOGIN_URL = '/login/'
 
+
+
 # Application definition
 
 ROOT_URLCONF = 'mysite.urls'
@@ -41,6 +43,34 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')  
+
+
+
+# FACEBOOK
+
+# FACEBOOK_APP_ID = '415227401946294'
+# FACEBOOK_APP_SECRET = '5159c001dc30d7c4950656ba8a3b4de8'
+
+# AUTH_PROFILE_MODULE = 'django_facebook.FacebookProfile'
+
+# TEMPLATE_CONTEXT_PROCESSORS = (
+#     'django.contrib.auth.context_processors.auth',
+#     'django.core.context_processors.debug',
+#     'django.core.context_processors.i18n',
+#     'django.core.context_processors.media',
+#     'django.core.context_processors.static',
+#     'django.core.context_processors.tz',
+#     'django.core.context_processors.request',
+#     'django.contrib.messages.context_processors.messages',
+#     'django_facebook.context_processors.facebook',
+# )
+
+# AUTHENTICATION_BACKENDS = (
+#     'django_facebook.auth_backends.FacebookBackend',
+#     'django.contrib.auth.backends.ModelBackend',
+# )
+
+
 
 MIDDLEWARE_CLASSES = (
     # put your django middleware here - I'm listing some common ones
@@ -64,6 +94,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # then list your custom apps
     'django_summernote',
+    # 'django_facebook',
     'base_app',                # the base templates/css/javascript for all other apps
     'homepage',
     'manager',
@@ -165,6 +196,7 @@ LOGGING = {
 # typically this should be all of the custom apps of your project.
 MAKO_ENABLED_APPS = (
     'django_summernote',
+    # 'django_facebook',
     'base_app',                # the base templates/css/javascript for all other apps
     'homepage',
     'manager',

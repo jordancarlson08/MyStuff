@@ -15,7 +15,7 @@ def process_request(request):
  	#Display Function
 	item = hmod.CatalogItem.objects.get(id=request.urlparams[0])
 	#This should get the serialized items that are tied to the catalog item
-	serial = hmod.SerializedItem.objects.filter(catalogItem=item.id).filter(isActive=True)
+	serial = hmod.SerializedItem.objects.filter(catalogItem=item.id).filter(isActive=True).exclude(isRental=True)
 	c = hmod.CatalogItem.objects.get(id=request.urlparams[0])
 
 	conditions_list = hmod.Condition.objects.all()

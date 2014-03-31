@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1393567102.011653
+_modified_time = 1395636408.551373
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\homepage\\templates/index.html'
 _template_uri = 'index.html'
@@ -28,11 +28,11 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        request = context.get('request', UNDEFINED)
         def top():
             return render_top(context._locals(__M_locals))
         def main():
             return render_main(context._locals(__M_locals))
+        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\n')
@@ -40,13 +40,13 @@ def render_body(context,**pageargs):
             context['self'].main(**pageargs)
         
 
-        # SOURCE LINE 42
+        # SOURCE LINE 46
         __M_writer('  \n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'top'):
             context['self'].top(**pageargs)
         
 
-        # SOURCE LINE 44
+        # SOURCE LINE 48
         __M_writer('\n')
         return ''
     finally:
@@ -67,9 +67,9 @@ def render_top(context,**pageargs):
 def render_main(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        request = context.get('request', UNDEFINED)
         def main():
             return render_main(context)
+        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 3
         __M_writer('\n')
@@ -100,7 +100,7 @@ def render_main(context,**pageargs):
             # SOURCE LINE 29
             __M_writer('\n\n')
         # SOURCE LINE 32
-        __M_writer('\n</div>\n</div>\n\n<div class="vertical_spacer6"></div>\n<div class="vertical_spacer6"></div>\n<div class="vertical_spacer6"></div>\n<div class="vertical_spacer6"></div>\n<div class="vertical_spacer6"></div>\n\n')
+        __M_writer('\n</div>\n</div>\n\n\n\n\n\n<div class="vertical_spacer6"></div>\n<div class="vertical_spacer6"></div>\n<div class="vertical_spacer6"></div>\n<div class="vertical_spacer6"></div>\n<div class="vertical_spacer6"></div>\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()

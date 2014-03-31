@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1395439433.828835
+_modified_time = 1395961137.670605
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/searchinventory.html'
 _template_uri = 'searchinventory.html'
@@ -28,10 +28,11 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        rental = context.get('rental', UNDEFINED)
         catItems = context.get('catItems', UNDEFINED)
+        rental = context.get('rental', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        serial = context.get('serial', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\n\n')
@@ -39,8 +40,8 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
-        # SOURCE LINE 91
-        __M_writer('  \n')
+        # SOURCE LINE 220
+        __M_writer('  \n\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -49,69 +50,184 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        rental = context.get('rental', UNDEFINED)
         catItems = context.get('catItems', UNDEFINED)
+        rental = context.get('rental', UNDEFINED)
         def content():
             return render_content(context)
+        serial = context.get('serial', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 4
         __M_writer('\n')
         # SOURCE LINE 5
  
 
-        __M_writer('\n\n\n <h2>Inventory Management</h2>\n<hr/>\n<br/>\n\n<ul class="nav nav-tabs">\n  <li class="active">\n    <a href="#Sale" data-toggle="tab"><strong>Sales Inventory</strong></a>\n  </li>\n  <li>\n    <a href="#Rental" data-toggle="tab"><strong>Rental Inventory</strong></a>\n  </li>\n</ul>\n\n<br/>\n<div class="tab-content">\n\n  <div class="tab-pane active" id="Sale">\n    <div class="tab-content">\n\n      <table class="table table-hover">\n        <thead>\n          <tr>\n            <th>SKU</th>\n            <th>Manufacturer</th>\n            <th>Name</th>\n            <th>List Prices</th>\n            <th>Cost</th>\n            <th>Category</th>\n          </tr>\n        </thead>\n        <tbody>\n')
-        # SOURCE LINE 39
+        __M_writer('\n\n\n <h2>Inventory Management</h2>\n<hr/>\n<br/>\n\n<ul class="nav nav-tabs">\n  <li class="active">\n    <a href="#Catalog" data-toggle="tab"><strong>Catalog</strong></a>\n  </li>\n  <li>\n    <a href="#Sale" data-toggle="tab"><strong>Sales Inventory</strong></a>\n  </li>\n  <li>\n    <a href="#Rental" data-toggle="tab"><strong>Rental Inventory</strong></a>\n  </li>\n</ul>\n\n<br/>\n<div class="tab-content">\n\n  <div class="tab-pane active" id="Catalog"><!-- Catalog Tab -->\n    <div class="tab-content">\n\n      <table class="table table-hover">\n        <thead>\n          <tr>\n            <th>SKU</th>\n            <th>Manufacturer</th>\n            <th>Name</th>\n            <th>List Prices</th>\n            <th>Cost</th>\n            <th>Category</th>\n          </tr>\n        </thead>\n        <tbody>\n')
+        # SOURCE LINE 42
         for i in catItems:
-            # SOURCE LINE 40
+            # SOURCE LINE 43
             __M_writer('          <tr class="clickableRow" href="/manager/inventory/')
             __M_writer(str(i.id))
             __M_writer('">\n            <td>')
-            # SOURCE LINE 41
+            # SOURCE LINE 44
             __M_writer(str(i.sku))
             __M_writer('</td>\n            <td>')
-            # SOURCE LINE 42
+            # SOURCE LINE 45
             __M_writer(str(i.manufacturer))
             __M_writer('</td>\n            <td>')
-            # SOURCE LINE 43
+            # SOURCE LINE 46
             __M_writer(str(i.name))
             __M_writer('</td>\n            <td>$ ')
-            # SOURCE LINE 44
+            # SOURCE LINE 47
             __M_writer(str(i.listPrice))
             __M_writer('</td>\n            <td>$ ')
-            # SOURCE LINE 45
+            # SOURCE LINE 48
             __M_writer(str(i.cost))
             __M_writer('</td>\n            <td>')
-            # SOURCE LINE 46
+            # SOURCE LINE 49
             __M_writer(str(i.category.subName))
             __M_writer('</td>\n          </tr>\n')
-        # SOURCE LINE 49
-        __M_writer('        </tbody>\n      </table>\n\n    </div>\n  </div>\n\n  <div class="tab-pane" id="Rental">\n    <div class="tab-content">\n      <table class="table table-hover">\n        <thead>\n          <tr>\n            <th>Serial Number</th>\n            <th>Manufacturer</th>\n            <th>Name</th>\n            <th>Price/Day</th>\n            <th>Replacement Fee</th>\n            <th>Category</th>\n          </tr>\n        </thead>\n        <tbody>\n')
+        # SOURCE LINE 52
+        __M_writer('        </tbody>\n      </table>\n\n    </div>\n  </div><!--  End Catalog Tab -->\n\n  <div class="tab-pane" id="Sale"><!--  Sale Inventory Tab -->\n    <div class="tab-content">\n      <table class="table table-hover">\n        <thead>\n          <tr>\n            <th>Manufacturer</th>\n            <th>Name</th>\n          </tr>\n        </thead>\n        </table>\n          <div class="panel-group" id="accordion">\n          ')
         # SOURCE LINE 69
-        for i in rental:
-            # SOURCE LINE 70
-            __M_writer('          <tr class="clickableRow" href="/manager/inventory/')
-            __M_writer(str(i.catalogItem.id))
-            __M_writer('">\n            <td>')
-            # SOURCE LINE 71
-            __M_writer(str(i.serialNum))
-            __M_writer('</td>\n            <td>')
-            # SOURCE LINE 72
-            __M_writer(str(i.catalogItem.manufacturer))
-            __M_writer('</td>\n            <td>')
-            # SOURCE LINE 73
-            __M_writer(str(i.catalogItem.name))
-            __M_writer('</td>\n            <td>$ ')
-            # SOURCE LINE 74
-            __M_writer(str(i.pricePerDay))
-            __M_writer('</td>\n            <td>$ ')
-            # SOURCE LINE 75
-            __M_writer(str(i.replacementFee))
-            __M_writer('</td>\n            <td>')
+ 
+
+        previousName = ''
+        newName = ''
+        
+        
+        
+        # SOURCE LINE 74
+        __M_writer('\n')
+        # SOURCE LINE 75
+        for i in serial:
             # SOURCE LINE 76
+            __M_writer('\n          ')
+            # SOURCE LINE 77
+            newName = i.catalogItem.manufacturer +' '+ i.catalogItem.name 
+            
+            __M_writer('\n\n')
+            # SOURCE LINE 79
+            if newName != previousName and previousName != '':
+                # SOURCE LINE 80
+                __M_writer('                      </tbody>\n                    </table>\n                  </div>\n                </div>\n              </div>\n')
+            # SOURCE LINE 86
+            __M_writer('\n')
+            # SOURCE LINE 87
+            if newName != previousName:
+                # SOURCE LINE 88
+                __M_writer('                <div class="panel panel-default">\n                  <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse_')
+                # SOURCE LINE 89
+                __M_writer(str(i.id))
+                __M_writer('">\n                    <h4 id=\'title_')
+                # SOURCE LINE 90
+                __M_writer(str(i.id))
+                __M_writer('\' class="panel-title">\n                        <span class=\'glyphicon glyphicon-plus\'></span>&nbsp; ')
+                # SOURCE LINE 91
+                __M_writer(str(i.catalogItem.manufacturer))
+                __M_writer(' ')
+                __M_writer(str(i.catalogItem.name))
+                __M_writer('\n                    </h4>\n                  </div>\n                  <div id="collapse_')
+                # SOURCE LINE 94
+                __M_writer(str(i.id))
+                __M_writer('" class="panel-collapse collapse">\n                    <div class="panel-body">\n                      <table class=\'table table-hover\'>\n                        <thead>\n                          <tr>\n                            <th>Serial Number</th>\n                            <th>Name</th>\n                            <th>List Prices</th>\n                            <th>Cost</th>\n                            <th>Condition</th>\n                            <th>Category</th>\n                          </tr>\n                        </thead>\n                        <tbody>\n')
+            # SOURCE LINE 109
+            __M_writer('\n                          <tr>\n                            <td>')
+            # SOURCE LINE 111
+            __M_writer(str(i.serialNum))
+            __M_writer('</td>\n                            <td>')
+            # SOURCE LINE 112
+            __M_writer(str(i.catalogItem.manufacturer))
+            __M_writer(' ')
+            __M_writer(str(i.catalogItem.name))
+            __M_writer('</td>\n                            <td>$ ')
+            # SOURCE LINE 113
+            __M_writer(str(i.listPrice))
+            __M_writer('</td>\n                            <td>$ ')
+            # SOURCE LINE 114
+            __M_writer(str(i.cost))
+            __M_writer('</td>\n                            <td>')
+            # SOURCE LINE 115
+            __M_writer(str(i.condition.condition))
+            __M_writer('</td>\n                            <td>')
+            # SOURCE LINE 116
             __M_writer(str(i.catalogItem.category.subName))
-            __M_writer('</td>\n          </tr>\n')
-        # SOURCE LINE 79
-        __M_writer('        </tbody>\n      </table>\n    </div>\n  </div>\n</div>\n\n<div class="vertical_spacer6"></div>\n<div class="vertical_spacer6"></div>\n\n\n\n\n')
+            __M_writer('</td>\n                          </tr>\n\n            ')
+            # SOURCE LINE 119
+            previousName = newName 
+            
+            __M_writer('\n')
+        # SOURCE LINE 121
+        __M_writer('                  </tbody>\n                </table>\n              </div>\n            </div>\n          </div>\n        </div>\n    </div>\n  </div><!--  End Rental Inventory Tab -->\n\n\n\n\n\n\n  <div class="tab-pane" id="Rental"><!--  Rental Inventory Tab -->\n    <div class="tab-content">\n      <table class="table table-hover">\n        <thead>\n          <tr>\n            <th>Category</th>\n            <th>Serial Number</th>\n            <th>Manufacturer</th>\n            <th>Name</th>\n            <th>Price/Day</th>\n            <th>Replacement Fee</th>\n            <th></th>\n\n          </tr>\n        </thead>\n        </table>\n          <div class="panel-group" id="accordion">\n          ')
+        # SOURCE LINE 152
+ 
+
+        previousName = ''
+        newName = ''
+        
+        
+        
+        # SOURCE LINE 157
+        __M_writer('\n')
+        # SOURCE LINE 158
+        for i in rental:
+            # SOURCE LINE 159
+            __M_writer('\n          ')
+            # SOURCE LINE 160
+            newName = i.catalogItem.manufacturer +' '+ i.catalogItem.name 
+            
+            __M_writer('\n\n')
+            # SOURCE LINE 162
+            if newName != previousName and previousName != '':
+                # SOURCE LINE 163
+                __M_writer('                      </tbody>\n                    </table>\n                  </div>\n                </div>\n              </div>\n')
+            # SOURCE LINE 169
+            __M_writer('\n')
+            # SOURCE LINE 170
+            if newName != previousName:
+                # SOURCE LINE 171
+                __M_writer('                <div class="panel panel-default">\n                  <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse_')
+                # SOURCE LINE 172
+                __M_writer(str(i.id))
+                __M_writer('">\n                    <h4 id=\'title_')
+                # SOURCE LINE 173
+                __M_writer(str(i.id))
+                __M_writer('\' class="panel-title">\n                        <span class=\'glyphicon glyphicon-plus\'></span>&nbsp; ')
+                # SOURCE LINE 174
+                __M_writer(str(i.catalogItem.manufacturer))
+                __M_writer(' ')
+                __M_writer(str(i.catalogItem.name))
+                __M_writer('\n                    </h4>\n                  </div>\n                  <div id="collapse_')
+                # SOURCE LINE 177
+                __M_writer(str(i.id))
+                __M_writer('" class="panel-collapse collapse">\n                    <div class="panel-body">\n                      <table class=\'table table-hover\'>\n                        <thead>\n                          <tr>\n                            <th>Serial Number</th>\n                            <th>Name</th>\n                            <th>Price/Day</th>\n                            <th>Replacement Fee</th>\n                            <th>Category</th>\n                            <th></th>\n                          </tr>\n                        </thead>\n                        <tbody>\n')
+            # SOURCE LINE 192
+            __M_writer('\n                          <tr>\n                            <td>')
+            # SOURCE LINE 194
+            __M_writer(str(i.serialNum))
+            __M_writer('</td>\n                            <td>')
+            # SOURCE LINE 195
+            __M_writer(str(i.catalogItem.manufacturer))
+            __M_writer(' ')
+            __M_writer(str(i.catalogItem.name))
+            __M_writer('</td>\n                            <td>$ ')
+            # SOURCE LINE 196
+            __M_writer(str(i.pricePerDay))
+            __M_writer('</td>\n                            <td>$ ')
+            # SOURCE LINE 197
+            __M_writer(str(i.replacementFee))
+            __M_writer('</td>\n                            <td>')
+            # SOURCE LINE 198
+            __M_writer(str(i.catalogItem.category.subName))
+            __M_writer("</td>\n                            <td><button id='rent_")
+            # SOURCE LINE 199
+            __M_writer(str(i.id))
+            __M_writer("' class='btn btn-warning'><span class='glyphicon glyphicon-shopping-cart'></span>&nbsp; Rent</button></td>\n                          </tr>\n\n            ")
+            # SOURCE LINE 202
+            previousName = newName 
+            
+            __M_writer('\n')
+        # SOURCE LINE 204
+        __M_writer('                  </tbody>\n                </table>\n              </div>\n            </div>\n          </div>\n        </div>\n    </div>\n  </div><!--  End Rental Inventory Tab -->\n</div>\n\n<div class="vertical_spacer6"></div>\n<div class="vertical_spacer6"></div>\n\n\n\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()

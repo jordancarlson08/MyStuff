@@ -4,7 +4,6 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 
 	
-
 #this is inheritance
 class User(AbstractUser):
 	'''This adds custom fields to the User'''
@@ -25,6 +24,8 @@ class User(AbstractUser):
 	city = models.TextField(blank=True, null=True)
 	state = models.TextField(blank=True, null=True)
 	zipCode = models.IntegerField(blank=True, null=True)
+	passwordResetCode = models.TextField(blank=True, null=True)
+	passwordResetExp = models.DateField(blank=True, null=True)
 	
 	def __str__(self):
   		return '%s %s' %(self.first_name, self.last_name)
@@ -39,7 +40,4 @@ class Employee(models.Model):
 
 	def __str__(self):
 		return '%s %s' %(self.user.first_name, self.user.last_name)
-
-
-
 

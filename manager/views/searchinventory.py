@@ -7,14 +7,16 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def process_request(request):
-	'''Shows the catalog items'''
+	'''Shows the inventory'''
 
 	catItems = hmod.CatalogItem.objects.all()
-	rental = hmod.SerializedItem.objects.filter(isRental=True)
+	serial = hmod.SerializedItem.objects.exclude(isRental=True).order_by('catalogItem__id')
+	rental = hmod.SerializedItem.objects.filter(isRental=True).order_by('catalogItem__id')
 
 	tvars = {
 
 	'catItems':catItems,
+	'serial':serial,
 	'rental':rental,
 
 	}

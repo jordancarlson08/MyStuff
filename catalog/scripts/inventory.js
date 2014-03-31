@@ -6,14 +6,12 @@ $(function() {
 
   $('#add_button').off('click.add').on('click.add', function(){
 
+
 	$('#add_button').animate({
-		width: '135px',
-		height:'40px'
-	});
-	$('#add_button').animate({
-		width: '120px',
+		width: '141px',
 		height:'34px'
 	});
+	$('#add_button').html('<span class="glyphicon glyphicon-ok"></span>&nbsp; Added to Cart!');
 
   });
 

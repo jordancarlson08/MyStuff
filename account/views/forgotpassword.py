@@ -34,11 +34,11 @@ def process_request(request):
 
 class ForgotForm(forms.Form):
 	'''Login Form'''
-	username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Username'}))
+	email = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Email Address'}))
 
 	#I need to get this error to show up in my custom form. non_field_errors doesnt work
 	def clean(self):
-		user = amod.User.objects.get(username=self.cleaned_data['username'])
+		user = amod.User.objects.get(email=self.cleaned_data['email'])
 		if user == None:
 			raise forms.ValidationError('Incorrect Username')
 		return self.cleaned_data

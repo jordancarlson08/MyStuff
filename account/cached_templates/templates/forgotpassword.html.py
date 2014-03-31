@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1392159340.027789
+_modified_time = 1395527328.751052
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\account\\templates/forgotpassword.html'
 _template_uri = 'forgotpassword.html'
@@ -38,7 +38,7 @@ def render_body(context,**pageargs):
             context['self'].main(**pageargs)
         
 
-        # SOURCE LINE 45
+        # SOURCE LINE 49
         __M_writer('  \n')
         return ''
     finally:
@@ -57,23 +57,23 @@ def render_main(context,**pageargs):
         # SOURCE LINE 4
  
 
-        __M_writer('\n\n<div class="content">\n\n<div class="row">\n  <div class="col-md-4">\n\n  </div>\n  <div class="col-md-4">\n  <h2>My Stuff Login Help</h2>\n  </div>\n</div>\n<br/>\n  \n<form class ="form-horizontal" role="form" method ="POST">\n\n')
-        # SOURCE LINE 20
+        __M_writer('\n\n<div class="content">\n\n<div class="row">\n  <div class="col-md-4">\n\n  </div>\n  <div class="col-md-4">\n  <h2>My Stuff Login Help</h2>\n  <p>Enter your email address below and we will send you an email so you can reset your password</p>\n  </div>\n</div>\n<br/>\n\n\n\n\n<form class ="form-horizontal" role="form" method ="POST">\n\n')
+        # SOURCE LINE 24
         for f in form:
-            # SOURCE LINE 21
+            # SOURCE LINE 25
             __M_writer('\n    <div class="form-group">\n      <label class="col-sm-4 control-label" for="id_')
-            # SOURCE LINE 23
+            # SOURCE LINE 27
             __M_writer(str( f.name ))
             __M_writer('">')
             __M_writer(str( f.label ))
             __M_writer('</label>\n        <div class="col-sm-4">\n          ')
-            # SOURCE LINE 25
+            # SOURCE LINE 29
             __M_writer(str(f))
             __M_writer(' ')
             __M_writer(str(f.errors))
             __M_writer('\n        </div>\n    </div>\n\n')
-        # SOURCE LINE 30
-        __M_writer('\n  <div class="form-group">\n    <div class="col-sm-offset-4 col-sm-4">\n\n\n      <input class="btn btn-success" type="submit" value="Next">\n\n    </div>\n  </div>\n</form>\n\n<div class="vertical_spacer6"></div>\n\n</div>\n\n')
+        # SOURCE LINE 34
+        __M_writer('\n  <div class="form-group">\n    <div class="col-sm-offset-4 col-sm-4">\n\n\n      <input class="btn btn-success" type="submit" value="Send">\n\n    </div>\n  </div>\n</form>\n\n<div class="vertical_spacer6"></div>\n\n</div>\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()

@@ -32,7 +32,8 @@ def process_request(request):
 			#Catalog Item specific attributes
 			c.fillPoint = form.cleaned_data['fillPoint'] 
 			c.leadTime = form.cleaned_data['leadTime'] 
-			c.category = form.cleaned_data['category']		
+			c.category = form.cleaned_data['category']
+			c.isSerial = form.cleaned_data['isSerial']		
 			c.save()
 
 			return HttpResponseRedirect('/manager/searchinventory/')
@@ -57,3 +58,4 @@ class CatalogItemForm(forms.Form):
 	sku = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'SKU',}))
 	fillPoint = forms.IntegerField(label='Fill Point', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Fill Point',}))
 	leadTime = forms.CharField(label='Avg. Lead Time', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Lead Time ex. 2 Weeks',}))
+	isSerial = forms.BooleanField(label='Serial Numbers?', required=False )

@@ -15,8 +15,11 @@ def process_request(request):
 
  	#Display Function
 	item = hmod.CatalogItem.objects.get(id=request.urlparams[0])
-	form = AddCartForm()
+	item_count = hmod.SerializedItem.objects.filter(catalogItem=item).exclude(isRental=True).count()
+	rental_count = hmod.SerializedItem.objects.filter(catalogItem=item).exclude(isRental=False).count()
 
+	#Add to cart function
+	form = AddCartForm()
 	form = AddCartForm(initial={		
 		'quantity': 1,
 		})
@@ -37,6 +40,8 @@ def process_request(request):
 	tvars = {
 	
 	'item':item,
+	'item_count':item_count,
+	'rental_count':rental_count,
 	'form':form,
 
 	}

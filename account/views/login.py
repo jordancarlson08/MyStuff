@@ -6,6 +6,8 @@ from account import models as amod
 from . import templater
 from manager.views.stores import StoreForm
 from django.contrib.auth import authenticate, login
+from ldap3 import Server, Connection, AUTH_SIMPLE, STRATEGY_SYNC, STRATEGY_ASYNC_THREADED, SEARCH_SCOPE_WHOLE_SUBTREE, GET_ALL_INFO
+
 
 def process_request(request):
 	'''Login Page'''
@@ -16,6 +18,15 @@ def process_request(request):
 	if request.method =='POST':
 		form = LoginForm(request.POST)
 		if form.is_valid():
+
+
+			# define the server and the connection
+			s = Server('http://128.187.61.50', port = 80, get_info = GET_ALL_INFO)  # define an unsecure LDAP server, requesting info on DSE and schema
+			c = Connection(s, user=form.cleaned_data['username'], password=form.cleaned_data['password'], authentication=AUTH_SIMPLE)
+			c.unbind()
+
+
+
 			user = authenticate(username=form.cleaned_data['username'], 
 				password=form.cleaned_data['password'])
 			if user is not None:
@@ -59,7 +70,6 @@ class LoginForm(forms.Form):
 	password = forms.CharField(max_length=32, widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Password'}))
 	remember = forms.BooleanField(required = False, label='Remember me', widget=forms.CheckboxInput())
 
-	#I need to get this error to show up in my custom form. non_field_errors doesnt work
 	def clean(self):
 		user = authenticate(username=self.cleaned_data['username'], password=self.cleaned_data['password'])
 		if user == None:

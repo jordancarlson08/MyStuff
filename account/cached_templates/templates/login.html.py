@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1393566790.085963
+_modified_time = 1395798336.461141
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\account\\templates/login.html'
 _template_uri = 'login.html'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['top', 'content']
+_exports = ['content', 'top']
 
 
 def _mako_get_namespace(context, name):
@@ -28,11 +28,11 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def top():
-            return render_top(context._locals(__M_locals))
-        form = context.get('form', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        form = context.get('form', UNDEFINED)
+        def top():
+            return render_top(context._locals(__M_locals))
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\n')
@@ -40,25 +40,14 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
-        # SOURCE LINE 74
+        # SOURCE LINE 75
         __M_writer('  \n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'top'):
             context['self'].top(**pageargs)
         
 
-        # SOURCE LINE 76
+        # SOURCE LINE 77
         __M_writer('\n\n\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_top(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def top():
-            return render_top(context)
-        __M_writer = context.writer()
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -67,9 +56,9 @@ def render_top(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        form = context.get('form', UNDEFINED)
         def content():
             return render_content(context)
+        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 3
         __M_writer('\n')
@@ -110,7 +99,18 @@ def render_content(context,**pageargs):
         __M_writer('\n<br/>\n  <div class="form-group">\n    <div class="col-md-offset-3 col-md-8">\n\n      <ul class=\'list-inline\'>\n        <li><button id=\'submit_button\' class="btn btn-primary" type="submit">Sign In</button></li>\n        <li><a href="/account/newuser/" class="btn btn-success">Create Account</a></li>\n        <!-- <li><input type="submit" value="Submit" /></li> -->\n      </ul>\n\n    </div>\n  </div> \n</form>\n  \n  \n  <div class=\'row\'>\n    <div class=\'col-md-3\'>\n    </div>\n    <div class=\'col-md-5\'>\n      ')
         # SOURCE LINE 67
         __M_writer(str(form.non_field_errors()))
-        __M_writer('\n    </div>\n\n  </div>\n\n\n\n')
+        __M_writer('\n    </div>\n\n  </div>\n\n\n\n\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_top(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def top():
+            return render_top(context)
+        __M_writer = context.writer()
         return ''
     finally:
         context.caller_stack._pop_frame()

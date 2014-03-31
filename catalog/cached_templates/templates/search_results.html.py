@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1393391652.084383
+_modified_time = 1395800680.621358
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\catalog\\templates/search_results.html'
 _template_uri = 'search_results.html'
@@ -55,29 +55,29 @@ def render_content(context,**pageargs):
         # SOURCE LINE 4
  
 
-        __M_writer('\r\n')
-        # SOURCE LINE 5
+        __M_writer('\r\n\r\n')
+        # SOURCE LINE 6
         for i in catItems:
-            # SOURCE LINE 6
+            # SOURCE LINE 7
             __M_writer("\r\n  <li class='clickable'>\r\n    <a href='/catalog/inventory/")
-            # SOURCE LINE 8
+            # SOURCE LINE 9
             __M_writer(str(i.id))
             __M_writer('\'>\r\n    <div class="panel panel-primary" >\r\n      <div class=\'panel-heading\'><h3><strong>')
-            # SOURCE LINE 10
+            # SOURCE LINE 11
             __M_writer(str(i.manufacturer))
             __M_writer(' ')
             __M_writer(str(i.name))
             __M_writer("</strong></h3></div>\r\n\r\n      <div class='panel-body'> <!-- panel body starts -->\r\n        \r\n        <ul class='list-inline'>\r\n\r\n          <li>\r\n\r\n            <!--####### Need to store image path in database as string for dynamic lookup -->\r\n\r\n            <img src='")
-            # SOURCE LINE 20
+            # SOURCE LINE 21
             __M_writer(str(i.img))
             __M_writer("' width='200px'/>\r\n          </li>\r\n          <li>\r\n            <ul class='list-unstyled'>\r\n              <li>\r\n                <strong>Price: $ ")
-            # SOURCE LINE 25
+            # SOURCE LINE 26
             __M_writer(str(i.listPrice))
             __M_writer('</strong>\r\n              </li> \r\n              <li>\r\n                SKU: ')
-            # SOURCE LINE 28
+            # SOURCE LINE 29
             __M_writer(str(i.sku))
             __M_writer('\r\n              </li>\r\n\r\n            </ul>\r\n\r\n            \r\n          </li>\r\n        </ul>\r\n\r\n      </div> <!-- panel body ends -->\r\n    </div> <!-- panel ends -->\r\n  </a>\r\n  </li> <!-- list item ends -->\r\n\r\n')
-        # SOURCE LINE 43
+        # SOURCE LINE 44
         __M_writer('\r\n  ')
         return ''
     finally:
