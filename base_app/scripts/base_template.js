@@ -47,6 +47,7 @@ $(function() {
 	});
 });
 
+
   window.fbAsyncInit = function() {
   FB.init({
     appId      : '415227401946294',
@@ -100,6 +101,10 @@ $(function() {
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-      console.log('Good to see you, ' + response.name + '.');
+      console.log('Name: ' + response.first_name);
+      console.log('Last: ' + response.last_name);
+      console.log('Email: ' + response.email);
+      
     });
   }
+

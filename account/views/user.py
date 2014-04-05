@@ -4,12 +4,11 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from manager import models as hmod
 from account import models as amod
 from . import templater
-from account.admin import user_check, my_account
+from base_app.user_util import user_check, my_account
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 @login_required
 @my_account
-#Need other test to only allow user x to access his own account page
 def process_request(request):
 	'''Shows the specific user'''
 

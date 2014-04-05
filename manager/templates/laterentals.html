@@ -1,0 +1,131 @@
+## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+<%inherit file="searchstores.htm" />
+
+<%block name="content">
+<% %>
+
+  <h2>Outstanding Rentals</h2><hr/><br/>
+
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+        <h4 class="panel-title">
+            30 Days
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <table class='table table-hover'>
+            <thead>
+              <tr>
+                <th>Rental ID</th>
+                <th>Serial Number</th>
+                <th>Item</th>
+                <th>Customer</th>
+                <th>Date Out</th>
+                <th>Date Due</th>
+                <th>Days Late</th>
+              </tr>
+            </thead>
+            <tbody>
+              %for r in rental30_info_list:
+              <tr>
+                <td>${r.rental.id}</td>
+                <td>${r.item.serialNum}</td>
+                <td>${r.item.catalogItem.manufacturer} ${r.item.catalogItem.name}</td>
+                <td>${r.user.first_name} ${r.user.last_name}</td>
+                <td>${r.rental.dateOut}</td>
+                <td>${r.rental.dateDue}</td> 
+                <td>${r.daysLate}</td>
+              </tr>
+              %endfor
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+        <h4 class="panel-title">
+            60 Days
+        </h4>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse">
+        <div class="panel-body">
+          <table class='table table-hover'>
+            <thead>
+              <tr>
+                <th>Rental ID</th>
+                <th>Serial Number</th>
+                <th>Item</th>
+                <th>Customer</th>
+                <th>Date Out</th>
+                <th>Date Due</th>
+                <th>Days Late</th>
+              </tr>
+            </thead>
+            <tbody>
+              %for r in rental60_info_list:
+              <tr>
+                <td>${r.rental.id}</td>
+                <td>${r.item.serialNum}</td>
+                <td>${r.item.catalogItem.manufacturer} ${r.item.catalogItem.name}</td>
+                <td>${r.user.first_name} ${r.user.last_name}</td>
+                <td>${r.rental.dateOut}</td>
+                <td>${r.rental.dateDue}</td> 
+                <td>${r.daysLate}</td>
+              </tr>
+              %endfor
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+        <h4 class="panel-title">
+            90+ Days
+        </h4>
+      </div>
+      <div id="collapseThree" class="panel-collapse collapse">
+        <div class="panel-body">
+          <table class='table table-hover'>
+            <thead>
+              <tr>
+                <th>Rental ID</th>
+                <th>Serial Number</th>
+                <th>Item</th>
+                <th>Customer</th>
+                <th>Date Out</th>
+                <th>Date Due</th>
+                <th>Days Late</th>
+              </tr>
+            </thead>
+            <tbody>
+              %for r in rental90_info_list:
+              <tr>
+                <td>${r.rental.id}</td>
+                <td>${r.item.serialNum}</td>
+                <td>${r.item.catalogItem.manufacturer} ${r.item.catalogItem.name}</td>
+                <td>${r.user.first_name} ${r.user.last_name}</td>
+                <td>${r.rental.dateOut}</td>
+                <td>${r.rental.dateDue}</td> 
+                <td>${r.daysLate}</td>
+              </tr>
+              %endfor
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <a href="/manager/laterentals__email/" class='btn btn-primary'><span class='glyphicon glyphicon-send'></span>&nbsp; Send Overdue Notice</a> #FixLater --- Jquery animate/ change text to "sent"
+
+  <div class="vertical_spacer6"></div>
+  <div class="vertical_spacer6"></div>
+
+
+
+
+</%block>  

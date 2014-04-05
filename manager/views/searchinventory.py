@@ -10,8 +10,8 @@ def process_request(request):
 	'''Shows the inventory'''
 
 	catItems = hmod.CatalogItem.objects.all()
-	serial = hmod.SerializedItem.objects.exclude(isRental=True).order_by('catalogItem__id')
-	rental = hmod.SerializedItem.objects.filter(isRental=True).order_by('catalogItem__id')
+	serial = hmod.SerializedItem.objects.exclude(isRental=True).order_by('catalogItem__id').exclude(isSold=True)
+	rental = hmod.SerializedItem.objects.filter(isRental=True).order_by('isRented').order_by('catalogItem__id')
 
 	tvars = {
 

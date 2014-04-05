@@ -30,24 +30,22 @@ class SaleSerialItem(models.Model):
 class Repair(Revenue):
 	'''Class for repairs'''
 	#amount: DecimalField
-	dateStart = models.DateField()
-	dateComplete = models.DateField()
+	dateStart = models.DateField(auto_now=True)
+	estComplete = models.DateField()
+	estCost = models.DecimalField(max_digits=16, decimal_places=2)
+	dateComplete = models.DateField(blank=True, null=True)
 	description = models.TextField()
-	hours = models.DecimalField(max_digits=16, decimal_places=2)
-	datePickup = models.DateField()
-
-class Rental(Revenue):
-	'''Class for rentals'''
-	#amount: DecimalField
-	dateOut = models.DateField()
-	dateDue = models.DateField()
-	dateIn = models.DateField()
-	item = models.ForeignKey(SerializedItem)
+	hours = models.DecimalField(max_digits=16, decimal_places=2, blank=True, null=True)
+	datePickup = models.DateField(blank=True, null=True)
+	itemName = models.TextField()
+	status = models.TextField()
+	user = models.ForeignKey(User)
+	isOpen = models.BooleanField(default=True)
 
 class Fee(PolymorphicModel):
 	'''Class for fees'''
 	amount = models.DecimalField(max_digits=16, decimal_places=2)
-	waived = models.BooleanField()
+	waived = models.BooleanField(default=False)
 
 class Late(Fee):
 	'''Class for late fee'''
@@ -55,8 +53,24 @@ class Late(Fee):
 
 class Damage(Fee):
 	'''Class for damage fee'''
-	description = models.TextField()
+	description = models.TextField(blank=True, null=True)
 
+class Rental(Revenue):
+	'''Class for rentals'''
+	#amount: DecimalField
+	dateOut = models.DateField()
+	dateDue = models.DateField()
+
+class RentalItem(models.Model):
+	'''Class for single rental item'''
+	rental = models.ForeignKey(Rental)
+	item = models.ForeignKey(SerializedItem)
+
+class RentalReturn(Revenue):
+	'''Class for rental returns'''
+	rental = models.OneToOneField(Rental)
+	dateIn = models.DateField()
+	fee = models.ManyToManyField(Fee)
 
 class Shipping(models.Model):
 	'''The available Shipping options'''
@@ -112,6 +126,14 @@ class JournalEntry(models.Model):
 
 
 #Classes to handle the cart more effectively
+class RepairCartItem(object):
+	def __init__(self, rid):
+
+		self.rid = rid
+		self.repair = Repair.objects.get(id=rid)
+
+
+#Classes to handle the cart more effectively
 class RentalCartItem(object):
 	def __init__(self, serializedItem):
 
@@ -142,14 +164,14 @@ class CartItem(object):
 
 
 class Cart(object):
-	def __init__(self, cartItem_list, rentalItem_list):
+	def __init__(self, cartItem_list, rentalItem_list, repairItem_list):
 		self.cartItem_list = cartItem_list
 		self.rentalItem_list = rentalItem_list
+		self.repairItem_list = repairItem_list
 		extend = []
 		if self.cartItem_list:
 			for c in cartItem_list:
 				extend.append(c.extended)
-
 
 		TWOPLACES = Decimal(10) ** -2
 

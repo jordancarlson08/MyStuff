@@ -19,13 +19,12 @@ def process_request(request):
 		form = LoginForm(request.POST)
 		if form.is_valid():
 
+			# # define the server and the connection
+			s = Server('128.187.61.50', port = 636, get_info = GET_ALL_INFO)  # define an unsecure LDAP server, requesting info on DSE and schema
+			c = Connection(s, auto_bind = True, client_strategy = STRATEGY_SYNC, user=form.cleaned_data['username'], password=form.cleaned_data['password'], authentication=AUTH_SIMPLE)
+			print(s.info) # display info from the DSE. OID are decoded when recognized by the library
 
-			# define the server and the connection
-			s = Server('http://128.187.61.50', port = 80, get_info = GET_ALL_INFO)  # define an unsecure LDAP server, requesting info on DSE and schema
-			c = Connection(s, user=form.cleaned_data['username'], password=form.cleaned_data['password'], authentication=AUTH_SIMPLE)
 			c.unbind()
-
-
 
 			user = authenticate(username=form.cleaned_data['username'], 
 				password=form.cleaned_data['password'])

@@ -1,0 +1,45 @@
+## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+<%inherit file="searchstores.htm" /><% %>
+
+<%block name="content"><% %>
+
+  <h2>Rental Returns</h2>
+  <hr/>
+  <br/>
+
+  <table class="table table-hover">
+  	<thead>
+  		<tr>
+        <th>ID</th>
+  			<th>Serial Number</th>
+  			<th>Item</th>
+        <th>Customer</th>
+  			<th>Date Out</th>
+        <th>Date Due</th>
+        <th></th>
+  		</tr>
+  	</thead>
+  	<tbody>
+%for r in rentalInfo_list:
+      <tr>
+        <td>${r.transaction.id}</td>
+        <td>${r.item.serialNum}</td>
+        <td>${r.item.catalogItem.manufacturer} ${r.item.catalogItem.name}</td>
+        <td>${r.user.first_name} ${r.user.last_name}</td>
+        <td>${r.rental.dateOut}</td>
+      %if r.isLate == True: 
+        <td><span class="label label-danger">${r.rental.dateDue}</span></td> 
+        <td><a href='/manager/fees/${r.rental.id}/late' ><button class='btn btn-warning btn-sm'><span class='glyphicon glyphicon-share'></span>&nbsp; Return</button></a></td>
+      %else:
+        <td><span class="label label-success">${r.rental.dateDue}</span></td>
+        <td><a href='/manager/fees/${r.rental.id}' ><button class='btn btn-warning btn-sm'><span class='glyphicon glyphicon-share'></span>&nbsp; Return</button></a></td>
+      %endif
+      </tr>
+%endfor
+  	</tbody>
+</table>
+
+  <div class="vertical_spacer6"></div>
+  <div class="vertical_spacer6"></div>
+
+</%block>  

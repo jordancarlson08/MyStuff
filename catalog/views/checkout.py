@@ -5,231 +5,365 @@ from manager.models import *
 from catalog.models import *
 from account.models import *
 from . import templater
-import datetime
+from datetime import *
 from decimal import *
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+import requests
 
 @login_required
 def process_request(request):
 	'''Checkout process'''
 
+	## Constants ##
+	SALES_TAX = 0.065
+
 	##### Everything to handle the 'cart' on the checkout page #####
 	cart_all =[]
-	rent_list =[]
 	cart_list =[]
+	rent_list =[]
+	repair_list=[]
+	subtotal_list = []
 
-	# Shopping Cart
+	isCartEmpty=True
+	isRentEmpty=True
+	isRepairEmpty=True
+
 	cart = request.session.get('cart', {})
+	rent = request.session.get('rent', {})
+	repair = request.session.get('repair', {})
 
 	for p in cart.keys():
 		item = CatalogItem.objects.get(id=p)
 		cart_item = CartItem(item, int(cart[p]))
 		cart_list.append(cart_item)
-		cart_all = Cart(cart_list, rent_list)
-		
-	# Rental Cart
-	rent = request.session.get('rent', {})
+		cart_all = Cart(cart_list, rent_list, repair_list)
+		isCartEmpty=False
 
 	for p in rent.keys():
 		item = SerializedItem.objects.get(id=p)
 		rent_item = RentalCartItem(item)
 		rent_list.append(rent_item)
-		cart_all = Cart(cart_list, rent_list)
-		
+		cart_all = Cart(cart_list, rent_list, repair_list)
+		isRentEmpty=False
+
+	for p in repair.keys():
+		repair_item = RepairCartItem(p)
+		repair_list.append(repair_item)
+		cart_all = Cart(cart_list, rent_list, repair_list)
+		isRepairEmpty=False
+
 	##### Cart End #####
 
 	##### Checkout Form Stuff ######
 
-	# Get User existing info #
-	customer = User.objects.get(id=request.user.id)
+	isEmployee = 'NotSet'
+	try:
+		# Get employee
+		currentEmployee = Employee.objects.get(user__id=request.user.id)
+		isEmployee = True
+	except:
+		# Get User
+		currentCustomer = User.objects.get(id=request.user.id)
+		isEmployee = False
 
-	# Prefill with existing info #
-	form = CheckoutForm(initial={
-		'bill_first_name': customer.first_name,
-		'bill_last_name': customer.last_name,
-		'bill_phone': customer.phone,
-		'bill_email': customer.email,
-		'bill_street1': customer.street1,
-		'bill_street2': customer.street2,
-		'bill_city': customer.city,
-		'bill_state': customer.state,
-		'bill_zipCode': customer.zipCode,
+	#Error Handling: If its a user that has rentals in his cart (should be impossible) redirect to the homepage and clear cart
+	if (isEmployee == False and isRentEmpty == False):
+		request.session['rent'] = {}
+		return HttpResponseRedirect('/catalog/category')
+
+	if (isEmployee==False):
+		# Prefill with existing info --- Remove card info later ---
+		form = CheckoutForm(initial={
+			'bill_first_name': currentCustomer.first_name,
+			'bill_last_name': currentCustomer.last_name,
+			'bill_phone': currentCustomer.phone,
+			'bill_email': currentCustomer.email,
+			'bill_street1': currentCustomer.street1,
+			'bill_street2': currentCustomer.street2,
+			'bill_city': currentCustomer.city,
+			'bill_state': currentCustomer.state,
+			'bill_zipCode': currentCustomer.zipCode,
+			'card': '4732817300654',
+			'code': '411',
+			'exp_month': '10',
+			'exp_year': '14',
+			})
+	else:
+		# Prefill only card info --- Remove later --- #TestingPurposes
+		form = CheckoutForm(initial={
+			'card': '4732817300654',
+			'code': '411',
+			'exp_month': '10',
+			'exp_year': '14',
+			})
+
+	#TestingPurposes
+	# At this point we know if there are sale items and rentals in the checkout and if its an employee or a user
+	#case 1 - User - Sale Items
+		#need Shipping
+		#dont display days or username
+	#case 2 - Employee - Sale Items
+		#dont display days
+	#case 3 - Employee - Rental Items
+	#case 4 - Employee - Sale & Rental Items
+
+	if request.method == 'POST': #Only execute if the form has been submitted #FixLater #100 --- Execute only if form is valid --- remove from below
+	# form = CheckoutForm(request.POST)
+	# if form.is_valid():
+		t = Transaction() #Create one transaction for the entire checkout
+		t.user = User.objects.get(id=99999)
+		t.employee = Employee.objects.get(id=99999)    #Online Sales Employee (Commissionless)
+		t.store = Store.objects.get(id=99999) 
+		t.subtotal = 0
+		t.tax = 0
+		t.total = 0
+		t.save()
+
+
+		################################################
+		###############  SALE REVENUE  #################
+		################################################
+
+		if (isCartEmpty==False):
+			print("----------------------------------") #TestingPurposes
+			print("Cart isn't empty ---- Process Sale") #TestingPurposes
+			print("----------------------------------") #TestingPurposes
+			if request.method == 'POST': #FixLater --- Remove once FixLater #100 has been addressed
+				form = CheckoutForm(request.POST) #FixLater --- Remove once FixLater #100 has been addressed
+				if form.is_valid(): #FixLater --- Remove once FixLater #100 has been addressed
+
+					r = Sale()
+					r.amount = 0
+					r.save()
+					items_list=[]
+					ssi = ''
+					sci = ''
+					for i in cart.keys():
+						item = CatalogItem.objects.get(id=i)
+						if item.isSerial == True:
+							# Get the serialized items for the given cat item excluding already sold and rentals ---------------------# This part should only give new items (not tested)
+							actual_list = SerializedItem.objects.filter(catalogItem=item).exclude(isRental=True).filter(isSold=False) #.filter(condition=Condition.objects.get(id=1))
+							print('Actual_list') #TestingPurposes
+							print(actual_list) #TestingPurposes
+							actual = actual_list[0] #get the first of the list, bad practice... #FixLater --- the part just above this might not make it so bad
+							actual.isSold = True
+							actual.save()
+							ssi = SaleSerialItem()
+							ssi.item = actual
+							ssi.sale = r
+							ssi.save()
+							items_list.append(actual.listPrice)
+
+						else:
+							sci = SaleCatItem()
+							sci.qty = cart[i]
+							sci.item = item
+							sci.sale = r
+							sci.save()
+							items_list.append(item.listPrice * sci.qty)
+
+
+					r.amount = sum(items_list) #updates the Revenue(Sale).amount to the subtotal of all items in cart
+					r.save()
+
+					if(isEmployee!=True):
+						t.user = currentCustomer 					   #Logged In User
+						t.employee = Employee.objects.get(id=99999)    #Online Sales Employee (Commissionless)
+						t.store = Store.objects.get(id=99999) 		   #Online Sales Store
+					else: # Case 2
+						t.user = User.objects.get(id=99999) 		   #Walk-in Customer
+						t.employee = currentEmployee				   #Logged In Employee
+						t.store = Store.objects.get(id=99999)		   #Whatever Store ----- #FixLater
+
+					print("------------------------------------") #TestingPurposes
+					print("Before .save") #TestingPurposes
+					print("------------------------------------") #TestingPurposes
+
+					t.save()
+					t.revenue.add(r)
+					t.save()
+
+					subtotal_list.append(r.amount)
+					print("------------------------------------") #TestingPurposes
+					print("END of Sale") #TestingPurposes
+					print("------------------------------------") #TestingPurposes
+
+					################################################
+					############ END: SALE REVENUE  ################
+					################################################
+
+
+		################################################
+		############## RENTAL REVENUE  #################
+		################################################
+
+		if (isRentEmpty==False):
+			print("------------------------------------") #TestingPurposes
+			print("Rental isn't empty -- Process rental") #TestingPurposes
+			print("------------------------------------") #TestingPurposes
+			if request.method == 'POST': #FixLater --- Remove once FixLater #100 has been addressed
+				form = CheckoutForm(request.POST) #FixLater --- Remove once FixLater #100 has been addressed
+				if form.is_valid(): #FixLater --- Remove once FixLater #100 has been addressed
+
+					#Revenue Source --- Rental
+					r = Rental()
+					r.dateOut = date.today()
+					r.dateDue = datetime.now() + timedelta(days=form.cleaned_data['days'])
+					r.amount = 0
+					r.save()
+
+					items_list=[]
+
+					for i in rent.keys():
+						item = SerializedItem.objects.get(id=i)
+						item.isRented = True
+						item.save()
+
+						ri = RentalItem()
+						ri.item = item
+						ri.rental = r
+						ri.save()
+						items_list.append(item.pricePerDay * form.cleaned_data['days'])
+
+					r.amount = sum(items_list)
+					r.save()
+
+
+					try:
+						t.user = form.cleaned_data['username']
+						# t.user = User.objects.get(username=form.cleaned_data['username']) #TestingPurposes
+					except:
+						t.user = User.objects.get(id=99999)
+						print('Could not find user, used user_id 99999')
+
+					t.employee = currentEmployee
+					t.store = Store.objects.get(id=1) #FixLater -- don't hardcode the store
+					t.save()
+					t.revenue.add(r)
+					t.save()
+
+					subtotal_list.append(r.amount)
+
+					################################################
+					########### END: RENTAL REVENUE  ###############
+					################################################
+
+		################################################
+		############## REPAIR REVENUE  #################
+		################################################
+
+		if (isRepairEmpty==False):
+			print("------------------------------------") #TestingPurposes
+			print("Repair isn't empty -- Process rental") #TestingPurposes
+			print("------------------------------------") #TestingPurposes
+			if request.method == 'POST': #FixLater --- Remove once FixLater #100 has been addressed
+				form = CheckoutForm(request.POST) #FixLater --- Remove once FixLater #100 has been addressed
+				if form.is_valid(): #FixLater --- Remove once FixLater #100 has been addressed
+
+					#Get existing Repair and update the crap out of it
+					user = ''
+					rev_list=[]
+					for a in repair.keys():
+						r = Repair.objects.get(id=a)
+						r.datePickup = datetime.now()
+						r.dateComplete = form.cleaned_data['dateComplete']
+						r.description  = form.cleaned_data['description']
+						r.hours = form.cleaned_data['hours']
+						r.status = form.cleaned_data['status']
+						r.amount = form.cleaned_data['amount']
+						r.isOpen = False
+						rev_list.append(r.amount)
+						r.save()
+						user = r.user
+						t.save()
+						t.revenue.add(r)
+						t.save()
+
+					if (user!=''):
+						t.user = user
+					else:
+						t.user = User.objects.get(id=99999) #TestingPurposes --- should never happen -- #FixLater
+					t.employee = currentEmployee
+					t.store = Store.objects.get(id=1) #FixLater -- don't hardcode the store
+					t.save()
+
+					subtotal_list.append(sum(rev_list))
+
+					################################################
+					########### END: REPAIR REVENUE  ###############
+					################################################
+
+					
+		t.subtotal = sum(subtotal_list)
+		t.tax = t.subtotal * Decimal(SALES_TAX)
+		t.total = t.subtotal + t.tax
+		if (isEmployee !=True):
+			t.paymentType = "CC"
+		else:
+			t.paymentType = "CC" #FixLater --- Could add a drop down to checkout page for CC or Cash payment --- Maybe should leave it
+
+		t.save()
+
+
+
+		################################################
+		######### SEND CHARGE TO REST SERVER ###########
+		################################################
+
+		# send the request with the data
+		API_URL = 'http://dithers.cs.byu.edu/iscore/api/v1/charges'
+		API_KEY = 'b5559636bffb4c3d6896c1fd169da803'
+		amount = str(t.total)
+		description = 'Transaction: %s; Charge for %s' %(t.id, t.user.email)
+		r = requests.post(API_URL, data={
+		  'apiKey': API_KEY,
+		  'currency': 'usd',
+		  'amount': amount,
+		  'type': 'Visa',
+		  'number': form.cleaned_data['card'],
+		  'exp_month': form.cleaned_data['exp_month'],
+		  'exp_year': form.cleaned_data['exp_year'],
+		  'cvc': form.cleaned_data['code'],
+		  'name': 'Cosmo Limesandal',
+		  'description': description,
 		})
 
-	if request.method == 'POST':
-		form = CheckoutForm(request.POST)
-		if form.is_valid():
-			#time to save the data
-			t = Transaction()
-			revenue = Sale()
-			items_list=[]
-			ssi = ''
-			sci = ''
-			for i in cart.keys():
-				item = CatalogItem.objects.get(id=i)
-				if item.isSerial == True:
-					# Get the serialized items for the given cat item excluding already sold and rentals
-					actual_list = SerializedItem.objects.filter(catalogItem=item)
-					# get the first of the list, bad practice... fix later
-					print(actual_list)
-					actual = actual_list[0]
+		# just for debugging, print the response text
+		print(r.text)
 
-					#Mark Item as sold
-					actual.isSold = True
-					actual.save()
-
-					ssi = SaleSerialItem()
-					ssi.item = actual
+		# parse the response to a dictionary
+		resp = r.json()
+		print(resp['ID'])
 
 
-					items_list.append(actual.listPrice)
+		################################################
+		################# SEND EMAIL ###################
+		################################################
 
-				else:
-					sci = SaleCatItem()
-					sci.qty = cart[i]
-					sci.item = item
+		# Sends a receipt - maybe put this into a special redirect.py page or something
+		send_mail('Receipt for transaction number %s' %(str(t.id)), 'This is your transaction: %s' %(r.text), 'webmaster@digitallifemyway.com',
+		['jordancarlson08@gmail.com'], fail_silently=False)
 
-					items_list.append(item.listPrice * sci.qty)
+		# Clear out shopping cart
+		request.session['cart'] = {}	
+		request.session['rent'] = {}
+		request.session['repair'] = {}
 
-
-			revenue.amount = sum(items_list)
-			revenue.save()
-
-			if ssi != '':
-				ssi.sale = revenue
-				ssi.save()
-			if sci != '':
-				sci.sale=revenue
-				sci.save()
-
-
-
-
-
-			if Employee.objects.get(user=request.user): #Should execute as true if the logged in user is an employee
-				t.user = User.objects.get(id=99999) 					#Walk-in (Dummy)
-				t.employee = Employee.objects.get(user=request.user)	#Actual Employee
-				t.store = Store.objects.get(id=1) 						#Store
-			else:
-				t.user = User.objects.get(id=request.user.id)  #Actual User
-				t.employee = Employee.objects.get(id=99999)    #Online (Dummy)
-				t.store = Store.objects.get(id=99999) 		   #Online (Dummy)
-
+		return HttpResponseRedirect('/catalog/category')
 			
-
-			t.subtotal = revenue.amount
-			t.tax = revenue.amount * Decimal(.065)
-			t.total = t.subtotal + t.tax
-			t.paymentType = "CC"
-
-			t.save()
-			t.revenue.add(revenue)
-			t.save()
-
-			request.session['cart'] = {}
-
-			return HttpResponseRedirect('/catalog/category')
-			
-
-
 
 
 	tvars = {
 
 	'form':form,
 	'cart_all':cart_all,
+	'isRentEmpty':isRentEmpty,
+	'isCartEmpty':isCartEmpty,
 
 	}
 
 	return templater.render_to_response(request, 'checkout.html', tvars)
-
-
-
-
-@login_required
-def process_request__rental(request):
-	'''Checkout process'''
-
-	##### Everything to handle the 'cart' on the checkout page #####
-	cart_all =[]
-	rent_list =[]
-	cart_list =[]
-
-	# Shopping Cart
-	cart = request.session.get('cart', {})
-
-	for p in cart.keys():
-		item = CatalogItem.objects.get(id=p)
-		cart_item = CartItem(item, int(cart[p]))
-		cart_list.append(cart_item)
-		cart_all = Cart(cart_list, rent_list)
-		
-	# Rental Cart
-	rent = request.session.get('rent', {})
-
-	for p in rent.keys():
-		item = SerializedItem.objects.get(id=p)
-		rent_item = RentalCartItem(item)
-		rent_list.append(rent_item)
-		cart_all = Cart(cart_list, rent_list)
-		
-	##### Cart End #####
-
-	##### Checkout Form Stuff ######
-
-	# Get User existing info #
-	# customer = User.objects.get(id=request.user.id)
-	# Prefill with existing info #
-	# form = CheckoutForm(initial={
-	# 	'bill_first_name': customer.first_name,
-	# 	'bill_last_name': customer.last_name,
-	# 	'bill_phone': customer.phone,
-	# 	'bill_email': customer.email,
-	# 	'bill_street1': customer.street1,
-	# 	'bill_street2': customer.street2,
-	# 	'bill_city': customer.city,
-	# 	'bill_state': customer.state,
-	# 	'bill_zipCode': customer.zipCode,
-	# 	})
-
-	form = CheckoutForm()
-
-	if request.method == 'POST':
-		form = CheckoutForm(request.POST)
-		if form.is_valid():
-			#time to save the data
-			c.name = form.cleaned_data['name'] 
-			c.manufacturer = form.cleaned_data['manufacturer'] 
-			c.listPrice = form.cleaned_data['listPrice'] 
-			c.cost = form.cleaned_data['cost']
-			c.commissionRate = form.cleaned_data['commissionRate'] 
-			c.description = form.cleaned_data['description'] 
-			c.techSpecs = form.cleaned_data['techSpecs'] 
-			c.sku = form.cleaned_data['sku'] 
-			c.fillPoint = form.cleaned_data['fillPoint'] 
-			c.leadTime = form.cleaned_data['leadTime'] 
-			c.category = form.cleaned_data['category']
-			c.save()
-			return HttpResponseRedirect('/manager/inventory/' + str(request.urlparams[0]))
-			
-
-
-
-
-	tvars = {
-
-	'form':form,
-	'cart_all':cart_all,
-
-	}
-
-	return templater.render_to_response(request, 'checkout.html', tvars)
-
-
-
-
-
-
 
 
 
@@ -268,6 +402,17 @@ class CheckoutForm(forms.Form):
 	code = forms.IntegerField(label='Security Code', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '445'}))
 	exp_month = forms.IntegerField(label='Expiration Month', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'MM'}))
 	exp_year = forms.IntegerField(label='Expiration Year', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'YYYY'}))
+	# Rental stuff
+	days = forms.IntegerField(required= False, label='Days to Rent', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '2'}))
+	username = forms.CharField(required= False, label='Username', max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username',}))
+	username = forms.ModelChoiceField(label='User', queryset=User.objects.all(), widget=forms.Select(attrs={'class': 'form-control',}))
+	# Repair Stuff
 
-
+	#Do Date Pickup automaticly
+	#datePickup = forms.DateField(label='Hire Date', widget=forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Date Pickedup',}))
+	dateComplete = forms.DateField(required=False, label='Date Complete', widget=forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Date Complete',}))
+	description = forms.CharField(required=False, label='Description', widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description',}))
+	hours = forms.DecimalField(required=False, label='Hours', max_digits=8, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Hours',}))
+	status = forms.CharField(required=False, label='Status', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Status',}))
+	amount = forms.DecimalField(required=False, label='Cost', max_digits=8, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Cost',}))
 

@@ -1,0 +1,70 @@
+## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+<%inherit file="base.htm" />
+
+<%block name="content">
+<% %>
+
+  <h2>Repairs</h2><hr/><br/>
+
+%if repairs:
+  <table class="table table-hover">
+  	<thead>
+  		<tr>
+  			<th>ID</th>
+  			<th>Item</th>
+        <th>Date Received</th>
+  			<th>Est. Completion</th>
+  			<th>Status</th>
+        <th>Mark as Complete</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+%for r in repairs:
+      <tr>
+        <td>${r.id}</td>
+        <td>${r.itemName}</td>
+        <td>${r.dateStart}</td>
+        <td>${r.estComplete}</td>
+        <td>${r.status}</td>
+        %if r.dateComplete != None:
+        <td>
+            <button id='complete_button_${r.id}' class='btn btn-default'>
+              <span class='glyphicon glyphicon-check'></span>
+            </button> 
+          <button id='add_button_${r.id}' class='btn btn-warning'>
+            <span class='glyphicon glyphicon-shopping-cart'></span>&nbsp; Add to Cart
+          </button>
+        </td>
+        %else:
+        <td>
+            <button id='complete_button_${r.id}' class='btn btn-default'>
+              <span class='glyphicon glyphicon-unchecked'></span>
+            </button> 
+          <button id='add_button_${r.id}' class='btn btn-warning'>
+            <span class='glyphicon glyphicon-shopping-cart'></span>&nbsp; Add to Cart
+          </button>
+        </td>
+        %endif
+      </tr>
+%endfor
+  	</tbody>
+</table>
+
+%else:
+  <p>It looks like you don't have any active repairs at this time. Go find some work.</p>
+  <div class="vertical_spacer6"></div>
+  <div class="vertical_spacer6"></div>
+%endif
+
+<a href="/manager/repairs__email/" class='btn btn-primary'>
+  <span class='glyphicon glyphicon-send'></span>&nbsp; Send Notice of Completion
+</a> #FixLater --- Jquery animate/ change text to "sent"
+
+
+  <div class="vertical_spacer6"></div>
+  <div class="vertical_spacer6"></div>
+
+
+
+
+</%block>  

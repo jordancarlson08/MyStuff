@@ -71,6 +71,29 @@
 	<br/>
 	%endif
 
+	%if cart_all.repairItem_list:
+	<h3>Repairs</h3>
+	<table class='table table-striped'>
+		<thead>
+			<th>Name</th>
+			<th>Est. Complete</th>
+			<th></th>
+		</thead>
+		<tbody>
+			<!-- Repair Items -->
+			%for c in cart_all.repairItem_list:
+			<tr>
+				<td>${c.repair.user.first_name} ${c.repair.user.last_name}</td>
+				<td>${c.repair.estComplete}</td>
+				<td><a href='/catalog/cart__delete/${c.repair.id}/repair/'><button class='btn btn-danger btn-sm'><span class='glyphicon glyphicon-remove'></span></button></a></td>
+			</tr>
+			%endfor
+		</tbody>
+	</table>
+	<br/>
+	%endif
+	
+
 	<a href='/catalog/checkout/' class='btn btn-primary'>Checkout</a>
 
 %else:

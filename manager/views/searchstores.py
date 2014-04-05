@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 def process_request(request):
 	'''Shows the stores'''
 
-	stores = hmod.Store.objects.filter(isActive="TRUE").order_by('locationName')
+	stores = hmod.Store.objects.filter(isActive="TRUE").order_by('locationName').exclude(id=99999)
 
 	tvars = {
 

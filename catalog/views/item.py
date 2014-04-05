@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from manager import models as hmod
 from . import templater
 from manager.views.newcatalogitem import CatalogItemForm
-from manager.views.newinventoryitem import SerializedItemForm
+from manager.views.newserializeditem import SerializedItemForm
 import datetime
 from django.contrib.auth.decorators import login_required
 

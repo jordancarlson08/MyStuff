@@ -4,13 +4,15 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from manager import models as hmod
 from . import templater
 from manager.views.newcatalogitem import CatalogItemForm
-from manager.views.newinventoryitem import SerializedItemForm
+from manager.views.newserializeditem import SerializedItemForm
 import datetime
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 
 @login_required
 def process_request(request):
 	'''Shows a catalog item and its associated serialized items'''
+
 
  	#Display Function
 	item = hmod.CatalogItem.objects.get(id=request.urlparams[0])

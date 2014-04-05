@@ -6,7 +6,7 @@ from catalog.models import *
 from account.models import *
 from . import templater
 from manager.views.newcatalogitem import CatalogItemForm
-from manager.views.newinventoryitem import SerializedItemForm
+from manager.views.newserializeditem import SerializedItemForm
 import datetime
 from django.contrib.auth.decorators import login_required
 

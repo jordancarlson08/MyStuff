@@ -4,9 +4,9 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1388985594.621538
+_modified_time = 1396734001.651472
 _enable_loop = True
-_template_filename = 'C:\\Users\\Jordan Carlson\\Code\\django-mako-plus-master\\base_app\\styles/base_template.cssm'
+_template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\base_app\\styles/base_template.cssm'
 _template_uri = 'base_template.cssm'
 _source_encoding = 'ascii'
 import os, os.path, re
@@ -29,7 +29,7 @@ def render_body(context,**pageargs):
         
         
         __M_locals_builtin_stored = __M_locals_builtin()
-        __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in ['i','font_color','random'] if __M_key in __M_locals_builtin_stored]))
+        __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in ['font_color','i','random'] if __M_key in __M_locals_builtin_stored]))
         # SOURCE LINE 11
         __M_writer('\n\n#site_header {\n  display: inline-block;\n  margin-left: 12px;\n  font-size: 36px; \n  color: #')
         # SOURCE LINE 17

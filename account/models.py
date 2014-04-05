@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
+from manager.models import *
 
 	
 #this is inheritance
@@ -25,7 +26,7 @@ class User(AbstractUser):
 	state = models.TextField(blank=True, null=True)
 	zipCode = models.IntegerField(blank=True, null=True)
 	passwordResetCode = models.TextField(blank=True, null=True)
-	passwordResetExp = models.DateField(blank=True, null=True)
+	passwordResetExp = models.DateTimeField(blank=True, null=True)
 	
 	def __str__(self):
   		return '%s %s' %(self.first_name, self.last_name)
@@ -34,9 +35,9 @@ class User(AbstractUser):
 class Employee(models.Model):
 	'''Employee specific info'''
 	user = models.OneToOneField(User)
-	
 	hireDate = models.DateField(blank=True, null=True)
 	salary = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+
 
 	def __str__(self):
 		return '%s %s' %(self.user.first_name, self.user.last_name)

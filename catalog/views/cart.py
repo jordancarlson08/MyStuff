@@ -10,8 +10,9 @@ def process_request(request):
 	'''Gets the cart'''
 
 	cart_all =[]
-	rent_list =[]
 	cart_list =[]
+	rent_list =[]
+	repair_list = []
 
 	# Shopping Cart
 	cart = request.session.get('cart', {})
@@ -20,7 +21,7 @@ def process_request(request):
 		item = hmod.CatalogItem.objects.get(id=p)
 		cart_item = CartItem(item, int(cart[p]))
 		cart_list.append(cart_item)
-		cart_all = Cart(cart_list, rent_list)
+		cart_all = Cart(cart_list, rent_list, repair_list)
 		
 	# Rental Cart
 	rent = request.session.get('rent', {})
@@ -29,7 +30,15 @@ def process_request(request):
 		item = hmod.SerializedItem.objects.get(id=p)
 		rent_item = RentalCartItem(item)
 		rent_list.append(rent_item)
-		cart_all = Cart(cart_list, rent_list)
+		cart_all = Cart(cart_list, rent_list, repair_list)
+
+	# Repair Cart
+	repair = request.session.get('repair', {})
+
+	for p in repair.keys():
+		repair_item = RepairCartItem(p)
+		repair_list.append(repair_item)
+		cart_all = Cart(cart_list, rent_list, repair_list)
 		
 
 	tvars = {
@@ -54,8 +63,10 @@ def process_request__add(request):
 	cart = request.session.get('cart', {})
 	## Rental Cart
 	rent = request.session.get('rent', {})
+	## Repair Cart
+	repair = request.session.get('repair', {})
 
-	if(request.urlparams[2] != 'rental'):
+	if(request.urlparams[2] != 'rental' and request.urlparams[2] != 'repair'):
 		if pid in cart:
 			cart[pid] += quantity
 		else:
@@ -67,9 +78,17 @@ def process_request__add(request):
 		else:
 			rent[pid] = quantity
 
+	if(request.urlparams[2] == 'repair'):
+		if pid in repair:
+			repair[pid] += quantity
+		else:
+			repair[pid] = quantity
+
+
 	## This gives django the new carts
-	request.session['rent'] = rent
 	request.session['cart'] = cart
+	request.session['rent'] = rent
+	request.session['repair'] = repair
 
 	return HttpResponse('<script> window.location.href="/catalog/inventory/";</script>')
 
@@ -78,30 +97,44 @@ def process_request__add(request):
 def process_request__delete(request):
 	'''Removes an item from the cart'''
 
-	# Remove from shopping cart
-	cart = request.session.get('cart', {})
-	pid = str(request.urlparams[0])
+	if(request.urlparams[2] != 'rental' and request.urlparams[1] != 'repair'):
+		# Remove from shopping cart
+		cart = request.session.get('cart', {})
+		pid = str(request.urlparams[0])
 
-	if pid in cart:
-		del cart[pid]
-	else: 
-		#raise ItemNotFoundException
-		print('Item not found in this cart')
+		if pid in cart:
+			del cart[pid]
+		else: 
+			#raise ItemNotFoundException
+			print('Item not found in this cart')
 
-	request.session['cart'] = cart
+		request.session['cart'] = cart
 
-	# Remove from rental cart
-	rent = request.session.get('rent', {})
-	pid = str(request.urlparams[0])
+	if(request.urlparams[1] == 'rental'):
+		# Remove from rental cart
+		rent = request.session.get('rent', {})
+		pid = str(request.urlparams[0])
 
-	if pid in rent:
-		del rent[pid]
-	else: 
-		#raise ItemNotFoundException
-		print('Item not found in this rent')
+		if pid in rent:
+			del rent[pid]
+		else: 
+			#raise ItemNotFoundException
+			print('Rental not found in this cart')
 
-	request.session['rent'] = rent
+		request.session['rent'] = rent
 
+	if(request.urlparams[1] == 'repair'):
+		# Remove from repair cart
+		repair = request.session.get('repair', {})
+		pid = str(request.urlparams[0])
+
+		if pid in repair:
+			del repair[pid]
+		else: 
+			#raise ItemNotFoundException
+			print('Repair not found in this cart')
+
+		request.session['repair'] = repair
 
 	return HttpResponse('<script> window.location.href="/catalog/category/";</script>')
 

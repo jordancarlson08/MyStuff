@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from manager import models as hmod
 from . import templater
 from manager.views.newcatalogitem import CatalogItemForm
-from manager.views.newinventoryitem import SerializedItemForm
+from manager.views.newserializeditem import SerializedItemForm
 import datetime
 
 
@@ -15,7 +15,7 @@ def process_request(request):
 
  	#Display Function
 	item = hmod.CatalogItem.objects.get(id=request.urlparams[0])
-	item_count = hmod.SerializedItem.objects.filter(catalogItem=item).exclude(isRental=True).count()
+	item_count = hmod.SerializedItem.objects.filter(catalogItem=item).exclude(isRental=True).exclude(isSold=True).exclude(isActive=False).count()
 	rental_count = hmod.SerializedItem.objects.filter(catalogItem=item).exclude(isRental=False).count()
 
 	#Add to cart function

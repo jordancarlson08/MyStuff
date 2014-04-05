@@ -97,7 +97,7 @@
 
 					
 
-
+<!-- MAIN PART -->
 
 
 
@@ -127,19 +127,40 @@
 						%if f.label == 'Same as Billing':
 						<%print('SAME AS BILLING!!!')%>
 						%endif
-					  	%if bSide:
-						<tr>
-						  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-					      <td>${ f.label }</td>
-					      <td>${f} ${f.errors}</td>  
-					      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-						%else:
-							<td>${ f.label }</td>
-							<td>${f} ${f.errors}</td>  
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-						</tr>
+
+						%if isRentEmpty == True and (f.label !='Days to Rent' and f.label !='Username'):
+
+						  	%if bSide:
+							<tr>
+							  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						      <td>${ f.label }</td>
+						      <td>${f} ${f.errors}</td>  
+						      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							%else:
+								<td>${ f.label }</td>
+								<td>${f} ${f.errors}</td>  
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+							</tr>
+						    %endif
+
+						%elif isRentEmpty == False:
+					      	%if bSide:
+					    	<tr>
+					    	  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					          <td>${ f.label }</td>
+					          <td>${f} ${f.errors}</td>  
+					          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					    	%else:
+					    		<td>${ f.label }</td>
+					    		<td>${f} ${f.errors}</td>  
+					    	</tr>
+					    	<tr>
+					    		<td>&nbsp;</td>
+					    	</tr>
+					        %endif
+
 					    %endif
 						
 						<% 
@@ -164,386 +185,8 @@
 	</div>
 </div>
 
-
-
-
-				<div class="col-md-9">
-					<div class="panel-group" id="accordion">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									Billing Address
-								</h4>
-							</div>
-
-								<div class="panel-body">
-									<div class="container">
-										<form role="form">
-											<div class="form-group">
-												<div class="col-md-4">
-													<table>
-														<tr>
-															<td>
-																<label for="BillFirstName">First Name</label>
-																<input type="name" class="form-control" id="fName" placeholder="First">
-															</td>
-														</tr>
-														<tr class="spacer"></tr>
-														<tr class="spacer"></tr> 
-														<tr>
-															<td>
-																<label for="BillLastName">Last Name</label>
-																<input type="name" class="form-control" id="lName" placeholder="Last">
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<label for="BillNumber">Phone Number</label>
-																<input type="phone" class="form-control" id="phone" placeholder="Phone">
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<label for="BillEm">Email</label>
-																<input type="email" class="form-control" id="email" placeholder="Email">
-															</td>
-														</tr>
-													</table>
-												</div>
-												<div class="col-md-5">
-													<table>
-														<tr>
-															<td>
-																<label for="BillStreet">Street Address</label>
-																<input type="address" class="form-control" id="sAdd" placeholder="Address">
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<label for="BillCity">City</label>
-																<input type="address" class="form-control" id="city" placeholder="City">
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<label for="BillState">State</label>
-																<select class="form-control">
-																	<option>Select One</option>
-																	<option>AK</option>
-																	<option>AL</option>
-																	<option>AR</option>
-																	<option>AZ</option>
-																	<option>CA</option>
-																	<option>CO</option>
-																	<option>DE</option>
-																	<option>FL</option>
-																	<option>GA</option>
-																	<option>HI</option>
-																	<option>IA</option>
-																	<option>ID</option>
-																	<option>IL</option>
-																	<option>IN</option>
-																	<option>KS</option>
-																	<option>KY</option>
-																	<option>LA</option>
-																	<option>MA</option>
-																	<option>MD</option>
-																	<option>ME</option>
-																	<option>MI</option>
-																	<option>MN</option>
-																	<option>MO</option>
-																	<option>MS</option>
-																	<option>MT</option>
-																	<option>NC</option>
-																	<option>ND</option>
-																	<option>NE</option>
-																	<option>NH</option>
-																	<option>NJ</option>
-																	<option>NM</option>
-																	<option>NV</option>
-																	<option>NY</option>
-																	<option>OH</option>
-																	<option>OK</option>
-																	<option>OR</option>
-																	<option>PA</option>
-																	<option>RI</option>
-																	<option>SC</option>
-																	<option>SD</option>
-																	<option>TN</option>
-																	<option>TX</option>
-																	<option>UT</option>
-																	<option>VT</option>
-																	<option>WA</option>
-																	<option>WI</option>
-																	<option>WV</option>
-																	<option>WY</option>
-																</select>
-																
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<label for="BillZip">Zip Code</label>
-																<input type="zip" class="form-control" id="zipcode" placeholder="Zip Code">
-															</td>
-														</tr>
-													</table>
-												</div>
-											</div>
-										</form>
-									</div> <!--ends Billing container-->
-								</div>
-
-						</div> <!-- end of panel, panel-default --> 
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Shipping Address
-									</a>
-								</h4>
-							</div>
-							<div id="collapseTwo" class="panel-collapse collapse in">
-								<div class="panel-body">
-									<div class="container">
-										<form role="form">
-											<div class="form-group">
-												<div class="col-md-4">
-													<table>
-														<tr>
-															<td>
-																<label for="ShipFirstName">First Name</label>
-																<input type="name" class="form-control" id="fName" placeholder="First">
-															</td>
-														</tr>
-														<tr class="spacer"></tr>
-														<tr class="spacer"></tr> 
-														<tr>
-															<td>
-																<label for="ShipLastName">Last Name</label>
-																<input type="name" class="form-control" id="lName" placeholder="Last">
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<label for="ShipNumber">Phone Number</label>
-																<input type="phone" class="form-control" id="phone" placeholder="Phone">
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<label for="ShipEm">Email</label>
-																<input type="email" class="form-control" id="email" placeholder="Email">
-															</td>
-														</tr>
-													</table>
-												</div>
-												<div class="col-md-4">
-													<table>
-														<tr>
-															<td>
-																<label for="ShipStreet">Street Address</label>
-																<input type="address" class="form-control" id="sAdd" placeholder="Address">
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<label for="ShipCity">City</label>
-																<input type="address" class="form-control" id="city" placeholder="City">
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<label for="ShipState">State</label>
-																<select class="form-control">
-																	<option>Select One</option>
-																	<option>AK</option>
-																	<option>AL</option>
-																	<option>AR</option>
-																	<option>AZ</option>
-																	<option>CA</option>
-																	<option>CO</option>
-																	<option>DE</option>
-																	<option>FL</option>
-																	<option>GA</option>
-																	<option>HI</option>
-																	<option>IA</option>
-																	<option>ID</option>
-																	<option>IL</option>
-																	<option>IN</option>
-																	<option>KS</option>
-																	<option>KY</option>
-																	<option>LA</option>
-																	<option>MA</option>
-																	<option>MD</option>
-																	<option>ME</option>
-																	<option>MI</option>
-																	<option>MN</option>
-																	<option>MO</option>
-																	<option>MS</option>
-																	<option>MT</option>
-																	<option>NC</option>
-																	<option>ND</option>
-																	<option>NE</option>
-																	<option>NH</option>
-																	<option>NJ</option>
-																	<option>NM</option>
-																	<option>NV</option>
-																	<option>NY</option>
-																	<option>OH</option>
-																	<option>OK</option>
-																	<option>OR</option>
-																	<option>PA</option>
-																	<option>RI</option>
-																	<option>SC</option>
-																	<option>SD</option>
-																	<option>TN</option>
-																	<option>TX</option>
-																	<option>UT</option>
-																	<option>VT</option>
-																	<option>WA</option>
-																	<option>WI</option>
-																	<option>WV</option>
-																	<option>WY</option>
-																</select>
-																
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<label for="ShipZip">Zip Code</label>
-																<input type="zip" class="form-control" id="zipcode" placeholder="Zip Code">
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<form>
-																	<input type="checkbox" name="SameAdd" value="Address">&nbsp;&nbsp;Check if shipping address and billing address are the same<br>
-																</form>
-															</td>
-														</tr>
-													</table>
-												</div>
-											</div>
-										</form>
-									</div> <!--ends Shipping container-->
-								</div>
-							</div>
-						</div> <!-- end of panel, panel-default -->
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Shipping Method
-									</a>
-								</h4>
-							</div>
-							<div id="collapseThree" class="panel-collapse collapse in">
-								<div class="panel-body">
-									<div class="container">
-										<form role="form">
-											<div class="form-group">
-												<div class="col-md-6">
-													<h5><b>Choose a delivery method</b></h5>
-													<form>
-														<input type="radio" name="Standard" value="standard">&nbsp;&nbsp;4-7 business days ($4.00)<br>
-														<input type="radio" name="NextUp" value="nextUp">&nbsp;&nbsp;2-3 business days ($10.00)<br>
-														<input type="radio" name="Overnight" value="overnight">&nbsp;&nbsp;Overnight ($25.00)<br>
-														<input type="radio" name="SameDay" value="sameDay">&nbsp;&nbsp;Same-day ($40.00)*<br>
-														<input type="radio" name="InStore" value="sameDay">&nbsp;&nbsp;In-Store Pickup (Free)<br>
-													</form>
-													</br>
-													<p>* Same-day shipping applies only to locations within 3 hours of warehouse location</p>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div> <!-- end of panel, panel-default -->
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Payment Information
-									</a>
-								</h4>
-							</div>
-							<div id="collapseFour" class="panel-collapse collapse in">
-								<div class="panel-body">
-									<div class="container">
-										<form role="form">
-											<div class="form-group">
-												<div class="col-md-4">
-													<table>
-														<tr>
-															<td>
-																<label for="CardNumber">Card Number</label>
-																<input type="card" class="form-control" id="cardNum" placeholder="XXXX-XXXX-XXXX-XXXX">
-															</td>
-														</tr>
-														
-														<tr>
-															<td>
-																<label for="ExpMonth">Expiration Month</label>
-																<select class="form-control">
-																	<option>Select One</option>
-																	<option>1</option>
-																	<option>2</option>
-																	<option>3</option>
-																	<option>4</option>
-																	<option>5</option>
-																	<option>6</option>
-																	<option>7</option>
-																	<option>8</option>
-																	<option>9</option>
-																	<option>10</option>
-																	<option>11</option>
-																	<option>12</option>
-																</select>
-															</td>
-															
-														</tr>
-													</table>
-												</div>
-												<div class="col-md-4">
-													<table>
-														<tr>
-															<td>
-																<label for="SecurityCode">Security Code</label>
-																<input type="SecCode" class="form-control" id="sCard" placeholder="XXX">
-																<span class="glyphicon glyphicon-question-sign"></span>
-															</td>
-														</tr>
-														<tr>
-															<td> 
-																<label for="ExpYr">Expiration Year</label>
-																<select class="form-control">
-																	<option>Select One</option>
-																	<option>2020</option>
-																	<option>2019</option>
-																	<option>2018</option>
-																	<option>2017</option>
-																	<option>2016</option>
-																	<option>2015</option>
-																	<option>2014</option>
-																</select>
-															</td>
-														</tr>
-													</table>
-													</br>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div> <!-- end of panel, panel-default -->
-					</div> <!--end accordion-->
-					</br>
-					<a class="btn btn-warning" button type="button"><span class="glyphicon glyphicon-shopping-cart">&nbsp;&nbsp;Confirm</span></a>
-
-				</div> <!--ends col-md-9 --> 
-			</div>
-		</div> <!--ends container-->
 	</div>
+</div>
 </%block>
 
 

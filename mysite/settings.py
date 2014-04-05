@@ -33,6 +33,14 @@ AUTH_USER_MODEL = 'account.User'
 LOGIN_URL = '/login/'
 
 
+#Email
+EMAIL_HOST = 'mx-mail.digitallifemyway.com'
+EMAIL_HOST_USER = 'webmaster@digitallifemyway.com'
+EMAIL_PORT = 25
+EMAIL_USE_TLS = False
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 
 # Application definition
 

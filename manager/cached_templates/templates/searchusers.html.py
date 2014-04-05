@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1393364362.628417
+_modified_time = 1396734092.573429
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/searchusers.html'
 _template_uri = 'searchusers.html'
@@ -31,6 +31,7 @@ def render_body(context,**pageargs):
         emps = context.get('emps', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        user_list = context.get('user_list', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\n\n')
@@ -38,7 +39,7 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
-        # SOURCE LINE 50
+        # SOURCE LINE 95
         __M_writer('  \n')
         return ''
     finally:
@@ -51,47 +52,67 @@ def render_content(context,**pageargs):
         emps = context.get('emps', UNDEFINED)
         def content():
             return render_content(context)
+        user_list = context.get('user_list', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 4
         __M_writer('\n')
         # SOURCE LINE 5
  
 
-        __M_writer('\n\n  <h2>Employee Management</h2><hr/><br/>\n\n  <table class="table table-hover">\n  \t<thead>\n  \t\t<tr>\n        <th>Role</th>\n  \t\t\t<th>Username</th>\n  \t\t\t<th>First Name</th>\n  \t\t\t<th>Last Name</th>\n        <th>Email</th>\n  \t\t</tr>\n  \t</thead>\n  \t<tbody>\n')
-        # SOURCE LINE 20
+        __M_writer('\n\n  <h2>User Management</h2>\n  <hr/>\n  <br/>\n\n  <ul class="nav nav-tabs">\n    <li class="active">\n      <a href="#Employee" data-toggle="tab"><strong>Employees</strong></a>\n    </li>\n    <li>\n      <a href="#User" data-toggle="tab"><strong>Users</strong></a>\n    </li>\n  </ul>\n\n\n  <div class="tab-content">\n\n    <div class="tab-pane active" id="Employee"><!-- Employee Tab -->\n      <div class="tab-content">\n\n        <table class="table table-hover">\n          <thead>\n            <tr>\n              <th>Role</th>\n              <th>Username</th>\n              <th>First Name</th>\n              <th>Last Name</th>\n              <th>Email</th>\n            </tr>\n          </thead>\n          <tbody>\n')
+        # SOURCE LINE 37
         for u in emps:
-            # SOURCE LINE 21
-            __M_writer('      <tr class="clickableRow" href="/manager/employee/')
+            # SOURCE LINE 38
+            __M_writer('            <tr class="clickableRow" href="/manager/employee/')
             __M_writer(str(u.user.id))
             __M_writer('">\n')
-            # SOURCE LINE 22
+            # SOURCE LINE 39
             if u.user.is_superuser==True:
-                # SOURCE LINE 23
-                __M_writer('        <td><span class="label label-info">Admin</span></td>\n')
-                # SOURCE LINE 24
+                # SOURCE LINE 40
+                __M_writer('              <td><span class="label label-info">Admin</span></td>\n')
+                # SOURCE LINE 41
             elif u.user.is_staff==True:
-                # SOURCE LINE 25
-                __M_writer('        <td><span class="label label-success">Manager</span></td>\n')
-                # SOURCE LINE 26
+                # SOURCE LINE 42
+                __M_writer('              <td><span class="label label-success">Manager</span></td>\n')
+                # SOURCE LINE 43
             else:
-                # SOURCE LINE 27
-                __M_writer('        <td><span class="label label-danger">Employee</span></td>\n')
-            # SOURCE LINE 29
-            __M_writer('\n        <td>')
-            # SOURCE LINE 30
+                # SOURCE LINE 44
+                __M_writer('              <td><span class="label label-danger">Employee</span></td>\n')
+            # SOURCE LINE 46
+            __M_writer('              <td>')
             __M_writer(str(u.user.username))
-            __M_writer('</td>\n        <td>')
-            # SOURCE LINE 31
+            __M_writer('</td>\n              <td>')
+            # SOURCE LINE 47
             __M_writer(str(u.user.first_name))
-            __M_writer('</td>\n        <td>')
-            # SOURCE LINE 32
+            __M_writer('</td>\n              <td>')
+            # SOURCE LINE 48
             __M_writer(str(u.user.last_name))
-            __M_writer('</td>\n        <td>')
-            # SOURCE LINE 33
+            __M_writer('</td>\n              <td>')
+            # SOURCE LINE 49
             __M_writer(str(u.user.email))
-            __M_writer('</td>\n      </tr>\n\n')
-        # SOURCE LINE 37
-        __M_writer('  \t</tbody>\n\n\n\n\n\n  </table>\n\n  <div class="vertical_spacer6"></div>\n  <div class="vertical_spacer6"></div>\n\n\n\n')
+            __M_writer('</td>\n            </tr>\n')
+        # SOURCE LINE 52
+        __M_writer('          </tbody>\n        </table>\n      </div>\n    </div><!--  End Employee Tab -->\n\n    <div class="tab-pane" id="User"><!-- User Tab -->\n      <div class="tab-content">\n\n        <table class="table table-hover">\n          <thead>\n            <tr>\n              <th>Username</th>\n              <th>First Name</th>\n              <th>Last Name</th>\n              <th>Email</th>\n            </tr>\n          </thead>\n          <tbody>\n')
+        # SOURCE LINE 70
+        for u in user_list:
+            # SOURCE LINE 71
+            __M_writer('            <tr class="clickableRow" href="/account/user/')
+            __M_writer(str(u.id))
+            __M_writer('">\n              <td>')
+            # SOURCE LINE 72
+            __M_writer(str(u.username))
+            __M_writer('</td>\n              <td>')
+            # SOURCE LINE 73
+            __M_writer(str(u.first_name))
+            __M_writer('</td>\n              <td>')
+            # SOURCE LINE 74
+            __M_writer(str(u.last_name))
+            __M_writer('</td>\n              <td>')
+            # SOURCE LINE 75
+            __M_writer(str(u.email))
+            __M_writer('</td>\n            </tr>\n')
+        # SOURCE LINE 78
+        __M_writer('          </tbody>\n        </table>\n      </div>\n    </div><!--  End User Tab -->\n\n\n\n\n\n\n  \n\n  <div class="vertical_spacer6"></div>\n  <div class="vertical_spacer6"></div>\n\n\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()

@@ -42,6 +42,7 @@ def process_request(request):
 			e.user = u
 			e.hireDate = form.cleaned_data['hireDate']
 			e.salary = form.cleaned_data['salary']
+			# e.store = form.cleaned_data['store']
 			e.save()
 			return HttpResponseRedirect('/manager/searchusers/')
 
@@ -73,6 +74,7 @@ class UserForm(forms.Form):
 	zipCode = forms.IntegerField( widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '84601',}))
 	hireDate = forms.DateField(label='Hire Date', widget=forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Hire Date',}))
 	salary= forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control', 'placeholder': 'Salary',}))
+	# store = forms.ModelChoiceField(label='Store', queryset=hmod.Store.objects.all(), widget=forms.Select(attrs={'class': 'form-control',}))
 
 	def clean_username(self):
 	   username = self.cleaned_data.get('username')

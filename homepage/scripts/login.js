@@ -19,6 +19,6 @@ var QueryString = function () {
       query_string[pair[0]].push(pair[1]);
     }
   }
-  	console.log(QueryString.next);
+    console.log(QueryString.next);
     return query_string;
 } ();

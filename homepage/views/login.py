@@ -6,11 +6,11 @@ from account import models as amod
 from . import templater
 from account.views.login import LoginForm
 from django.contrib.auth import authenticate, login
+import facebook
+import requests
 
 def process_request(request):
 	'''Login Page'''
-
-
 
 	form = LoginForm()
 	if request.method =='POST':
@@ -46,5 +46,4 @@ def process_request(request):
 
 
 	return templater.render_to_response(request, 'login.html', tvars)
-
 

@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1393445650.297661
+_modified_time = 1396734020.588472
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/searchstores.html'
 _template_uri = 'searchstores.html'
@@ -28,9 +28,9 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        stores = context.get('stores', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        stores = context.get('stores', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\n\n')
@@ -48,9 +48,9 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        stores = context.get('stores', UNDEFINED)
         def content():
             return render_content(context)
+        stores = context.get('stores', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 4
         __M_writer('\n')

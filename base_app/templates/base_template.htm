@@ -57,7 +57,12 @@
           &nbsp; Shopping Cart &nbsp;
           <% 
           cart = request.session.get('cart', {})
-          cart_length = len(cart.keys())
+          rent = request.session.get('rent', {})
+          repair = request.session.get('repair', {})
+          cart_length = len(cart.keys()) + len(rent.keys()) + len(repair.keys())
+          isStaff = False
+          if request.user.is_staff == True:
+            isStaff = True
           %>
           %if cart_length !=0:
           <span class="badge">${cart_length}</span>
@@ -67,6 +72,23 @@
       <!--<li><a href="/account/login/">Log In</a></li>
       <li><a href="/account/logout/">Log Out</a></li>-->
       <li><a href="/catalog/category/">Catalog</a></li>
+      %if isStaff == True:
+      <li>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Rentals<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/manager/searchinventory/">New Rental</a></li>
+          <li><a href="/manager/returns/">Returns</a></li>
+          <li><a href="/manager/laterentals/">Late Rentals</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Repairs<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/manager/newrepair/">New Repair</a></li>
+          <li><a href="/manager/repairs/">Checkout Repair</a></li>
+        </ul>
+      </li>
+      %else:
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact Us<b class="caret"></b></a>
         <ul class="dropdown-menu">
@@ -75,43 +97,26 @@
           <li><a href="http://www.facebook.com">Facebook</a></li>
         </ul>
       </li>
+      %endif
         
     %if request.user.is_anonymous() == True:
       <li>
       <a id='login_button' href='#'>
       Log In
       </a></li>
-<!--     %elif request.user.is_staff == True:
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="/manageinventory/">Inventory</a></li>
-          <li><a href="/managestores/">Stores</a></li>
-          <li><a href="/manageusers/">Users</a></li>
-        </ul>
-      </li>
-  
-      <li>
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">${request.user} <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="/manageinventory/">Dashboard</a></li>
-          <li><a href="/manager/users/${request.user.id}">Edit Profile</a></li>
-          <li><a href="/account/logout/">Logout</a></li>
-        </ul>
-
-      </li> -->
 
     %else:
       <li>
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">${request.user} <b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a href="/dash/">Dashboard</a></li>
-
-          %if request.user.is_staff == False:
+        %if request.user.is_staff == False:
+          <li><a href="/index/not_implemented_yet">Rentals</a></li>
+          <li><a href="/account/repairstatus/">Repairs</a></li>
           <li><a href="/account/user/${request.user.id}">Edit Profile</a></li>
-          %else:
+        %else:
           <li><a href="/manager/employee/${request.user.id}">Edit Profile</a></li>
-          %endif
+        %endif
           <li><a href="/account/logout/">Logout</a></li>
         </ul>
 
@@ -126,6 +131,7 @@
 </nav>
 
 <%block name="top">
+<% %>
 %if request.user.is_staff == True:
 
 
@@ -139,7 +145,7 @@
       <ul class="dropdown-menu">
         <li><a href="/manager/searchinventory/"><span class="glyphicon glyphicon-search"></span> Search</a></li>
         <li><a href="/manager/newcatalogitem/"><span class="glyphicon glyphicon-new-window"></span> New Catalog Item</a></li>
-        <li><a href="/manager/newinventoryitem/"><span class="glyphicon glyphicon-new-window"></span> New Serialized Item</a></li>
+        <li><a href="/manager/newserializeditem/"><span class="glyphicon glyphicon-new-window"></span> New Serialized Item</a></li>
       </ul>
     </li>
 
@@ -158,8 +164,8 @@
         <span class="glyphicon glyphicon-user"></span> Users <span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
-        <li><a href=""><span class="glyphicon glyphicon-search"></span> Search Users</a></li>
-        <li><a href="/manager/searchusers/"><span class="glyphicon glyphicon-search"></span> Search Employees</a></li>
+        <li><a href="/manager/searchusers/"><span class="glyphicon glyphicon-search"></span> Search Users</a></li>
+        <li><a href="/account/newuser/"><span class="glyphicon glyphicon-new-window"></span> New User</a></li>
         <li><a href="/account/newemployee/"><span class="glyphicon glyphicon-new-window"></span> New Employee</a></li>
       </ul>
     </li>

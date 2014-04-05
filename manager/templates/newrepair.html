@@ -1,0 +1,39 @@
+## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+
+<%inherit file="base_inventory.htm" />
+
+<%block name="content">
+<% %>
+
+<h2>New Repair</h2><hr/>
+</br>
+
+<!-- Custom Form -->
+<form class ="form-horizontal" role="form" method ="POST">
+
+<!--   Loop through the fields of the form -->
+  %for f in form:
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="id_${ f.name }">${ f.label }</label> <!-- the label -->
+        <div class="col-sm-8">
+          ${f} <!-- The input box -->
+          ${f.errors}
+        </div>
+    </div>
+
+  %endfor
+
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-4">
+      <input class="btn btn-success" type="submit" value="Save">
+    </div>
+  </div>
+</form>
+
+
+
+
+
+
+</%block>   
