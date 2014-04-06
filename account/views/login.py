@@ -1,8 +1,8 @@
 from django import forms
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from manager import models as hmod
-from account import models as amod
+from manager.models import *
+from account.models import *
 from . import templater
 from manager.views.stores import StoreForm
 from django.contrib.auth import authenticate, login
@@ -11,8 +11,6 @@ from ldap3 import Server, Connection, AUTH_SIMPLE, STRATEGY_SYNC, STRATEGY_ASYNC
 
 def process_request(request):
 	'''Login Page'''
-
-
 
 	form = LoginForm()
 	if request.method =='POST':
@@ -35,6 +33,10 @@ def process_request(request):
 			if user is not None:
 			    if user.is_active:
 			        login(request, user)
+
+			        #gets the history session and adds them to the database for the user
+			        add_history_to_database(request, user)
+
 			        if form.cleaned_data['remember'] == True:
 			        	# The user is logged out after 'x' seconds
 			        	request.session.set_expiry(300)
@@ -75,3 +77,26 @@ class LoginForm(forms.Form):
 		if user == None:
 			raise forms.ValidationError('Incorrect Username or Password')
 		return self.cleaned_data
+
+
+def add_history_to_database(request, user):
+	'''Adds the history session info to the database'''
+
+	history = request.session.get('history', {})
+	history = sorted(history, key=history.__getitem__)
+
+	existHist = History.objects.filter(user=user)
+
+	for h in existHist:
+		for i in history:
+			if str(h.catalogItem.id) == str(i):
+				h.save()
+			else:
+				h = History()
+				h.user = user
+				h.catalogItem = CatalogItem.objects.get(id=i)
+				h.save()
+
+	request.session['history'] = {}
+
+

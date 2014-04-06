@@ -36,9 +36,6 @@ def process_request(request):
 			return HttpResponseRedirect(url)
 
 	#History - Recently Viewed Item
-	#advanced - in progress
-	history = request.session.get('history', {})
-
 
 	#Basic - working
 	if request.user.is_authenticated()==True:
@@ -55,7 +52,11 @@ def process_request(request):
 			h.user = user
 			h.catalogItem = item
 			h.save()
-
+	else:
+		#advanced - in progress
+		history = request.session.get('history', {})
+		history[item.id] = datetime.now().isoformat()
+		request.session['history'] = history
 				
 
 	tvars = {
