@@ -54,10 +54,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 
 
 
-# FACEBOOK
 
-# FACEBOOK_APP_ID = '415227401946294'
-# FACEBOOK_APP_SECRET = '5159c001dc30d7c4950656ba8a3b4de8'
 
 # AUTH_PROFILE_MODULE = 'django_facebook.FacebookProfile'
 
@@ -101,6 +98,13 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     # then list your custom apps
+
+    #allauth stuff
+    # 'django.contrib.sites',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.facebook',
     'django_summernote',
     # 'django_facebook',
     'base_app',                # the base templates/css/javascript for all other apps
@@ -203,8 +207,15 @@ LOGGING = {
 # which of our apps will be used with the Mako engine. 
 # typically this should be all of the custom apps of your project.
 MAKO_ENABLED_APPS = (
-    'django_summernote',
+
+    #allauth stuff
+    # 'django.contrib.sites',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.facebook',
     # 'django_facebook',
+    'django_summernote',
     'base_app',                # the base templates/css/javascript for all other apps
     'homepage',
     'manager',
@@ -254,6 +265,34 @@ SUMMERNOTE_CONFIG = {
 
 }
 
+
+# AUTHENTICATION_BACKENDS = (
+#     # Needed to login by username in Django admin, regardless of `allauth`
+#     "django.contrib.auth.backends.ModelBackend",
+#     # `allauth` specific authentication methods, such as login by e-mail
+#     "allauth.account.auth_backends.AuthenticationBackend"
+# )
+ 
+# TEMPLATE_CONTEXT_PROCESSORS = (
+#     "django.core.context_processors.request",
+#     "django.contrib.auth.context_processors.auth",
+#     "allauth.account.context_processors.account",
+#     "allauth.socialaccount.context_processors.socialaccount",
+# )
+ 
+# # auth and allauth settings
+# LOGIN_REDIRECT_URL = '/'
+# SOCIALACCOUNT_QUERY_EMAIL = True
+# SOCIALACCOUNT_PROVIDERS = {
+#     'facebook': {
+#         'SCOPE': ['email', 'publish_stream'],
+#         'METHOD': 'js_sdk'  # instead of 'oauth2'
+#     }
+# }
+# FACEBOOK
+
+# FACEBOOK_APP_ID = '415227401946294'
+# FACEBOOK_APP_SECRET = '5159c001dc30d7c4950656ba8a3b4de8'
 
 
 ###  End of settings for the base_app Controller

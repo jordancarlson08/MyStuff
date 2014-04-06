@@ -13,12 +13,22 @@
 
   </div>
   <div class="col-md-4">
+    %if isSent == True:
+    <div class='alert alert-success'>
+      <h2>Email Sent</h2>
+      <br/>
+      <p>You should be recieving your password reset link shortly.</p>
+      <br/>
+    </div>
+    %else:
     <div class='alert alert-success'>
       <h2>Sign-out Successful</h2>
       <br/>
       <p>You have successfully signed out of MyStuff's Central Authentication Service.</p>
       <br/>
     </div>
+    %endif
+
   </div>
 </div>
 </div>

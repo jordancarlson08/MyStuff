@@ -11,6 +11,7 @@ urls = [
     # the standard admnistrator for django
     url(r'^admin/', include(admin.site.urls)),
     url(r'^summernote/', include('django_summernote.urls')),
+    # url(r'^accounts/', include('allauth.urls')),
 
 ]
 

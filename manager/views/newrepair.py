@@ -8,6 +8,7 @@ from . import templater
 from django_summernote.widgets import SummernoteWidget
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from base_app.user_util import get_users_only
 
 @login_required
 def process_request(request):
@@ -45,8 +46,7 @@ def process_request(request):
 
 class RepairForm(forms.Form):
 	'''A form for new Repairs'''
-	#FixLater -- Change queryset to not include employees... just users
-	user = forms.ModelChoiceField(label='User', queryset=User.objects.all(), widget=forms.Select(attrs={'class': 'form-control',}))
+	user = forms.ModelChoiceField(label='User', queryset=get_users_only(), widget=forms.Select(attrs={'class': 'form-control',}))
 	itemName = forms.CharField(label='Item Name', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Item Name',}))
 	description = forms.CharField(widget=SummernoteWidget()) #Special Rich Text Field
 	estComplete = forms.DateField(label='Est. Complete Date', widget=forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Est. Complete Date',}))

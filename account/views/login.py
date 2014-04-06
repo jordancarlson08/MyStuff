@@ -19,12 +19,16 @@ def process_request(request):
 		form = LoginForm(request.POST)
 		if form.is_valid():
 
-			# # define the server and the connection
-			s = Server('128.187.61.50', port = 636, get_info = GET_ALL_INFO)  # define an unsecure LDAP server, requesting info on DSE and schema
-			c = Connection(s, auto_bind = True, client_strategy = STRATEGY_SYNC, user=form.cleaned_data['username'], password=form.cleaned_data['password'], authentication=AUTH_SIMPLE)
-			print(s.info) # display info from the DSE. OID are decoded when recognized by the library
-
-			c.unbind()
+			try:
+				# define the server and the connection
+				s = Server('128.187.61.50', port = 636, get_info = GET_ALL_INFO)  # define an unsecure LDAP server, requesting info on DSE and schema
+				c = Connection(s, auto_bind = True, client_strategy = STRATEGY_SYNC, user=form.cleaned_data['username'], password=form.cleaned_data['password'], authentication=AUTH_SIMPLE)
+				print(s.info) # display info from the DSE. OID are decoded when recognized by the library
+				c.unbind()
+			except:
+				print('-----------------------------------------------')
+				print('Failed to authenticate against Active Directory')
+				print('-----------------------------------------------')
 
 			user = authenticate(username=form.cleaned_data['username'], 
 				password=form.cleaned_data['password'])
@@ -53,20 +57,17 @@ def process_request(request):
 
 
 	tvars = {
-
 	'form':form,
-
 	}
 
 
 	return templater.render_to_response(request, 'login.html', tvars)
 
 
-
 class LoginForm(forms.Form):
 	'''Login Form'''
 	username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Username'}))
-	password = forms.CharField(max_length=32, widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Password'}))
+	password = forms.CharField(max_length=50, widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Password'}))
 	remember = forms.BooleanField(required = False, label='Remember me', widget=forms.CheckboxInput())
 
 	def clean(self):

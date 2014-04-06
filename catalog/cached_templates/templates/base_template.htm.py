@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396750894.43422
+_modified_time = 1396755636.229495
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\base_app\\templates/base_template.htm'
 _template_uri = 'base_template.htm'
@@ -23,14 +23,13 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        request = context.get('request', UNDEFINED)
-        self = context.get('self', UNDEFINED)
-        def main():
-            return render_main(context._locals(__M_locals))
+        len = context.get('len', UNDEFINED)
         def top():
             return render_top(context._locals(__M_locals))
-        len = context.get('len', UNDEFINED)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        def main():
+            return render_main(context._locals(__M_locals))
+        request = context.get('request', UNDEFINED)
+        self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 4
         __M_writer('\r\n')
@@ -54,10 +53,7 @@ def render_body(context,**pageargs):
         # SOURCE LINE 27
         __M_writer('    ')
         __M_writer(str( static_renderer.get_template_css(request, context)  ))
-        __M_writer('\r\n\r\n  </head>\r\n\r\n  <body>\r\n     <div id="fb-root"></div>\r\n\r\n\r\n  <nav class="navbar navbar-default" role="navigation">\r\n  <!-- Brand and toggle get grouped for better mobile display -->\r\n  <div class="navbar-header">\r\n    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">\r\n      <span class="sr-only">Toggle navigation</span>\r\n      <span class="icon-bar"></span>\r\n      <span class="icon-bar"></span>\r\n      <span class="icon-bar"></span>\r\n    </button>\r\n    <a class="navbar-brand" href="/index/" title="Home"><img src="')
-        # SOURCE LINE 44
-        __M_writer(str( STATIC_URL ))
-        __M_writer('homepage/images/camera_icon.png" width="90" /></a>\r\n    <a class="navbar-brand-custom" href="/index/">My Stuff - Digital Life My Way</a>\r\n\r\n  </div>\r\n\r\n  <!-- Collect the nav links, forms, and other content for toggling -->\r\n  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\r\n    \r\n    <ul class="nav navbar-nav navbar-right">\r\n      \r\n      <li>\r\n        <a id=\'cart_button\' href="#">\r\n          <span class="glyphicon glyphicon-shopping-cart"></span>\r\n          &nbsp; Shopping Cart &nbsp;\r\n          ')
+        __M_writer('\r\n\r\n  </head>\r\n\r\n  <body>\r\n     <div id="fb-root"></div>\r\n\r\n\r\n  <nav class="navbar navbar-default" role="navigation">\r\n  <!-- Brand and toggle get grouped for better mobile display -->\r\n  <div class="navbar-header">\r\n    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">\r\n      <span class="sr-only">Toggle navigation</span>\r\n      <span class="icon-bar"></span>\r\n      <span class="icon-bar"></span>\r\n      <span class="icon-bar"></span>\r\n    </button>\r\n    <a class="navbar-brand" href="/index/" title="Home"><img src="/static/homepage/images/camera_icon.png" width="90" /></a>\r\n    <a class="navbar-brand-custom" href="/index/">My Stuff - Digital Life My Way</a>\r\n\r\n  </div>\r\n\r\n  <!-- Collect the nav links, forms, and other content for toggling -->\r\n  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\r\n    \r\n    <ul class="nav navbar-nav navbar-right">\r\n      \r\n      <li>\r\n        <a id=\'cart_button\' href="#">\r\n          <span class="glyphicon glyphicon-shopping-cart"></span>\r\n          &nbsp; Shopping Cart &nbsp;\r\n          ')
         # SOURCE LINE 58
  
         cart = request.session.get('cart', {})
@@ -70,7 +66,7 @@ def render_body(context,**pageargs):
         
         
         __M_locals_builtin_stored = __M_locals_builtin()
-        __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in ['rent','cart','isStaff','cart_length','repair'] if __M_key in __M_locals_builtin_stored]))
+        __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in ['cart_length','isStaff','rent','cart','repair'] if __M_key in __M_locals_builtin_stored]))
         # SOURCE LINE 66
         __M_writer('\r\n')
         # SOURCE LINE 67
@@ -149,9 +145,9 @@ def render_body(context,**pageargs):
 def render_top(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        request = context.get('request', UNDEFINED)
         def top():
             return render_top(context)
+        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 133
         __M_writer('\r\n')

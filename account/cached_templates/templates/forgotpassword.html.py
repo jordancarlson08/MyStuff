@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396750703.106385
+_modified_time = 1396810770.62947
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\account\\templates/forgotpassword.html'
 _template_uri = 'forgotpassword.html'
@@ -38,7 +38,7 @@ def render_body(context,**pageargs):
             context['self'].main(**pageargs)
         
 
-        # SOURCE LINE 49
+        # SOURCE LINE 50
         __M_writer('  \r\n')
         return ''
     finally:
@@ -57,23 +57,26 @@ def render_main(context,**pageargs):
         # SOURCE LINE 4
  
 
-        __M_writer('\r\n\r\n<div class="content">\r\n\r\n<div class="row">\r\n  <div class="col-md-4">\r\n\r\n  </div>\r\n  <div class="col-md-4">\r\n  <h2>My Stuff Login Help</h2>\r\n  <p>Enter your username below and we will send you an email so you can reset your password</p>\r\n  </div>\r\n</div>\r\n<br/>\r\n\r\n\r\n\r\n\r\n<form class ="form-horizontal" role="form" method ="POST">\r\n\r\n')
-        # SOURCE LINE 24
+        __M_writer('\r\n\r\n<div class="content">\r\n\r\n<div class="row">\r\n  <div class="col-md-4">\r\n\r\n  </div>\r\n  <div class="col-md-4">\r\n  <h2>My Stuff Login Help</h2>\r\n  <p>Enter your username below and we will send you an email so you can reset your password</p>\r\n  </div>\r\n</div>\r\n<br/>\r\n\r\n\r\n<form class ="form-horizontal" role="form" method ="POST">\r\n\r\n')
+        # SOURCE LINE 22
         for f in form:
-            # SOURCE LINE 25
+            # SOURCE LINE 23
             __M_writer('\r\n    <div class="form-group">\r\n      <label class="col-sm-4 control-label" for="id_')
-            # SOURCE LINE 27
+            # SOURCE LINE 25
             __M_writer(str( f.name ))
             __M_writer('">')
             __M_writer(str( f.label ))
             __M_writer('</label>\r\n        <div class="col-sm-4">\r\n          ')
-            # SOURCE LINE 29
+            # SOURCE LINE 27
             __M_writer(str(f))
             __M_writer(' ')
             __M_writer(str(f.errors))
             __M_writer('\r\n        </div>\r\n    </div>\r\n\r\n')
-        # SOURCE LINE 34
-        __M_writer('\r\n  <div class="form-group">\r\n    <div class="col-sm-offset-4 col-sm-4">\r\n\r\n\r\n      <input class="btn btn-success" type="submit" value="Send">\r\n\r\n    </div>\r\n  </div>\r\n</form>\r\n\r\n<div class="vertical_spacer6"></div>\r\n\r\n</div>\r\n\r\n')
+        # SOURCE LINE 32
+        __M_writer('\r\n  <div class="form-group">\r\n    <div class="col-sm-offset-4 col-sm-4">\r\n      <input id=\'reset_button\' class="btn btn-success" type="submit" value="Reset"> \r\n    </div>\r\n  </div>\r\n</form>\r\n\r\n<div class=\'row\'>\r\n  <div class=\'col-md-offset-4 col-md-5\'>\r\n    ')
+        # SOURCE LINE 42
+        __M_writer(str(form.non_field_errors()))
+        __M_writer('\r\n  </div>\r\n</div>\r\n\r\n<div class="vertical_spacer6"></div>\r\n\r\n</div>\r\n\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()

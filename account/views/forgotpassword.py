@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
 from uuid import *
 from datetime import *
+from django.core.mail import EmailMultiAlternatives, EmailMessage
 
 def process_request(request):
 	'''Login Page'''
@@ -21,17 +22,26 @@ def process_request(request):
 			u = User.objects.get(username=form.cleaned_data['username'])
 			email = u.email
 			hours3 = datetime.now() + timedelta(hours=3)
-			#generate code and expiration date
+			# Generate Code and Expiration
 			u.passwordResetCode = uuid4()
 			u.passwordResetExp = hours3
-			print(hours3)
 			u.save()
 
 			url = 'http://localhost:8000/account/resetpassword/'+str(u.passwordResetCode)
 
-			send_mail('Reset your password', 'Please use this link to reset your password %s, you have until %s to reset your password' %(url ,hours3), 'webmaster@digitallifemyway.com',[email], fail_silently=False)
+			#HTML/TXT Email
+			tvars = {'url':url}
+			html_content = templater.render(request, 'email_forgot_password.html', tvars)
+			subject, from_email= 'Reset Your Password', 'webmaster@digitallifemyway.com'
+			text_content = 'Please use this link to reset your password %s, for security purposes this link will only be valid for the next 3 hours.' %(url)
+			msg = EmailMultiAlternatives(subject, text_content, from_email, [email])
+			msg.attach_alternative(html_content, "text/html")
+			msg.send()
 
-			return HttpResponseRedirect('/index/')
+			#Display confirmation page
+			isSent=True
+			tvars = {'isSent':isSent}
+			return templater.render_to_response(request, 'logout.html', tvars)
 
 
 	tvars = {
@@ -45,5 +55,15 @@ def process_request(request):
 
 
 class ForgotForm(forms.Form):
-	'''Login Form'''
+	'''Forgot Password Form'''
 	username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Username'}))
+
+	def clean(self):
+		try:
+			user = User.objects.get(username=self.cleaned_data['username'])
+		except:
+			user = None
+
+		if user == None:
+			raise forms.ValidationError("That user doesn't exist in our system")
+		return self.cleaned_data
