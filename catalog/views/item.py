@@ -8,7 +8,9 @@ from manager.views.newserializeditem import SerializedItemForm
 import datetime
 from django.contrib.auth.decorators import login_required
 
-
+############
+#FixLater --- Does this page do anything??? i don't think so... double check and then delete
+#############
 def process_request(request):
 	'''Shows the serialized item'''
 

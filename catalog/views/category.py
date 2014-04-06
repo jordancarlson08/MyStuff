@@ -47,12 +47,16 @@ def process_request(request):
 
 	catItems = hmod.CatalogItem.objects.all()
 	brands = hmod.CatalogItem.objects.distinct('manufacturer')
-
 	category_list = hmod.Category.objects.all().order_by('id')
+
+	if request.user.is_authenticated()==True:
+		history= hmod.History.objects.filter(user=request.user).order_by('-last')
+	else:
+		history=''
 
 	tvars = {
 
-
+	'history':history,
 	'category':category,
 	'subCategory':subCategory,
 	'message': message,

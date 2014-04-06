@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396751636.205353
+_modified_time = 1396812786.146086
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\catalog\\templates/inventory.html'
 _template_uri = 'inventory.html'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['left_side', 'content']
+_exports = ['content', 'left_side']
 
 
 def _mako_get_namespace(context, name):
@@ -29,13 +29,13 @@ def render_body(context,**pageargs):
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         rental_count = context.get('rental_count', UNDEFINED)
-        def left_side():
-            return render_left_side(context._locals(__M_locals))
-        def content():
-            return render_content(context._locals(__M_locals))
-        item = context.get('item', UNDEFINED)
         form = context.get('form', UNDEFINED)
         item_count = context.get('item_count', UNDEFINED)
+        def left_side():
+            return render_left_side(context._locals(__M_locals))
+        item = context.get('item', UNDEFINED)
+        def content():
+            return render_content(context._locals(__M_locals))
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\r\n')
@@ -56,32 +56,15 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_left_side(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def left_side():
-            return render_left_side(context)
-        __M_writer = context.writer()
-        # SOURCE LINE 106
-        __M_writer('\r\n')
-        # SOURCE LINE 107
- 
-
-        __M_writer("\r\n<a id='back_button' class='btn btn-default btn-small'><span class='glyphicon glyphicon-arrow-left'></span>&nbsp;Back</a>\r\n")
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        item_count = context.get('item_count', UNDEFINED)
-        form = context.get('form', UNDEFINED)
+        item = context.get('item', UNDEFINED)
         def content():
             return render_content(context)
         rental_count = context.get('rental_count', UNDEFINED)
-        item = context.get('item', UNDEFINED)
+        item_count = context.get('item_count', UNDEFINED)
+        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 3
         __M_writer('\r\n')
@@ -117,7 +100,7 @@ def render_content(context,**pageargs):
             __M_writer(str(f))
             __M_writer('\r\n                      </li>\r\n')
         # SOURCE LINE 54
-        __M_writer("                      <li>\r\n                        <a>\r\n                        <button id='add_button' class='btn btn-primary' type='submit'><span class='glyphicon glyphicon-shopping-cart'></span>&nbsp; Add to Cart</button>\r\n                        </a>\r\n                      </li>\r\n                    </ul>\r\n                  </form>\r\n                </li>\r\n                <li>\r\n                  &nbsp;\r\n                </li>\r\n                <ul class='list list-inline'>\r\n                  <li>\r\n")
+        __M_writer("                      <li>\r\n                        <a>\r\n                        <button id='add_button' class='btn btn-primary' type='submit'><span class='glyphicon glyphicon-shopping-cart'></span>&nbsp; Add to Cart</button>\r\n                        </a>\r\n                      </li>\r\n                    </ul>\r\n                  </form>\r\n                </li>\r\n                <li>\r\n                  &nbsp;\r\n                </li>\r\n                <ul class='list list-inline'>\r\n                  <li> <!-- #FixLater : Check if isSerial == false set it so its always in stock -->\r\n")
         # SOURCE LINE 67
         if item_count == 0:
             # SOURCE LINE 68
@@ -127,7 +110,7 @@ def render_content(context,**pageargs):
             # SOURCE LINE 70
             __M_writer("                    <span class='label label-success'>In Stock.</span>\r\n")
         # SOURCE LINE 72
-        __M_writer('                  </li>\r\n                  <li>\r\n')
+        __M_writer('                  </li>\r\n                  <li> <!-- #FixLater : Check if isSerial == false and dont show this if it does -->\r\n')
         # SOURCE LINE 74
         if rental_count == 0:
             # SOURCE LINE 75
@@ -144,6 +127,23 @@ def render_content(context,**pageargs):
         # SOURCE LINE 95
         __M_writer(str(item.techSpecs))
         __M_writer('\r\n        <hr>\r\n\r\n      </div>\r\n</div>\r\n\r\n\r\n\r\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_left_side(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def left_side():
+            return render_left_side(context)
+        __M_writer = context.writer()
+        # SOURCE LINE 106
+        __M_writer('\r\n')
+        # SOURCE LINE 107
+ 
+
+        __M_writer("\r\n<a id='back_button' class='btn btn-default btn-small'><span class='glyphicon glyphicon-arrow-left'></span>&nbsp;Back</a>\r\n")
         return ''
     finally:
         context.caller_stack._pop_frame()

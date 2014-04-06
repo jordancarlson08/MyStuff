@@ -89,13 +89,53 @@
 </ol>
 %endif
 
-
-
-
-
-
-
 ${message}
+
+
+<h3>Recently Viewed Items</h3>
+
+<div class='text-left'>
+  <ul class="list-inline">
+
+    %for h in history:
+
+      <li class='clickable'>
+        <a href='/catalog/inventory/${h.catalogItem.id}'>
+        <div class="panel panel-primary" >
+          <div class='panel-heading'><h3><strong>${h.catalogItem.manufacturer} ${h.catalogItem.name}</strong></h3></div>
+
+          <div class='panel-body'> <!-- panel body starts -->
+            
+            <ul class='list-inline'>
+
+              <li>
+
+                <img src='${h.catalogItem.img}' width='200px'/>
+
+              </li>
+              <li>
+                <ul class='list-unstyled'>
+                  <li>
+                    <strong>Price: $ ${h.catalogItem.listPrice}</strong>
+                  </li> 
+                  <li>
+                    SKU: ${h.catalogItem.sku}
+                  </li>
+
+                </ul>
+              </li>
+            </ul>
+
+          </div> <!-- panel body ends -->
+        </div> <!-- panel ends -->
+      </a>
+      </li> <!-- list item ends -->
+
+    %endfor
+  </ul>
+</div>
+
+
 
 <div class='text-left'>
 	<ul class="list-inline">

@@ -63,14 +63,14 @@
                   &nbsp;
                 </li>
                 <ul class='list list-inline'>
-                  <li>
+                  <li> <!-- #FixLater : Check if isSerial == false set it so its always in stock -->
                     %if item_count == 0:
                     <span class='label label-danger'>Out of Stock.</span>
                     %else:
                     <span class='label label-success'>In Stock.</span>
                     %endif
                   </li>
-                  <li>
+                  <li> <!-- #FixLater : Check if isSerial == false and dont show this if it does -->
                     %if rental_count == 0:
                     <span class='label label-danger'>No Rentals Available.</span>
                     %else:

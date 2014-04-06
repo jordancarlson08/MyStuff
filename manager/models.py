@@ -98,7 +98,10 @@ class SerializedItem(models.Model):
 class History(models.Model):
   user = models.ForeignKey(User)
   catalogItem = models.ForeignKey(CatalogItem)
+  last = models.DateTimeField()
 
+  def __str__(self):
+    return 'User: %s; Item: %s %s;' %(self.user.username, self.catalogItem.manufacturer, self.catalogItem.name)
 
 
 
