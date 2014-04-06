@@ -36,24 +36,24 @@ def process_request(request):
 			return HttpResponseRedirect(url)
 
 	#History - Recently Viewed Item
+	#advanced - in progress
+	history = request.session.get('history', {})
+
+
+	#Basic - working
 	if request.user.is_authenticated()==True:
 		user = request.user
 		isRecorded = False
 		history = History.objects.filter(user=user)
-		print('-----History------')
-		print(history)
-		print('-----End History------')
 		for h in history:
 			if h.catalogItem == item:
 				isRecorded = True
-				h.last = datetime.now()
 				h.save()
 
 		if isRecorded!=True:
 			h = History()
 			h.user = user
 			h.catalogItem = item
-			h.last = datetime.now()
 			h.save()
 
 				

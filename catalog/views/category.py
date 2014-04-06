@@ -12,6 +12,7 @@ def process_request(request):
 	items = []
 	category = ''
 	subCategory = ''
+	history=''
 
 	form = SearchForm()
 	if request.method == 'GET':
@@ -41,6 +42,8 @@ def process_request(request):
 	else:
 		if not items:
 			message = "Welcome! Select a category from the menu on the left to get started."
+			if request.user.is_authenticated()==True:
+				history= hmod.History.objects.filter(user=request.user).order_by('-last')
 		else:
 			message = ''
 
@@ -48,11 +51,6 @@ def process_request(request):
 	catItems = hmod.CatalogItem.objects.all()
 	brands = hmod.CatalogItem.objects.distinct('manufacturer')
 	category_list = hmod.Category.objects.all().order_by('id')
-
-	if request.user.is_authenticated()==True:
-		history= hmod.History.objects.filter(user=request.user).order_by('-last')
-	else:
-		history=''
 
 	tvars = {
 

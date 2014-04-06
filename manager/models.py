@@ -81,12 +81,10 @@ class SerializedItem(models.Model):
   created = models.DateField(auto_now=True)
   createdBy = models.ForeignKey(Employee)
   isActive = models.BooleanField(default=True)
-
   isRental = models.BooleanField(default=False)
   pricePerDay = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
   replacementFee = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
   lateFee = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-
   isSold = models.BooleanField(default=False)
   isRented = models.BooleanField(default=False)
 
@@ -98,7 +96,7 @@ class SerializedItem(models.Model):
 class History(models.Model):
   user = models.ForeignKey(User)
   catalogItem = models.ForeignKey(CatalogItem)
-  last = models.DateTimeField()
+  last = models.DateTimeField(auto_now_add=True)
 
   def __str__(self):
     return 'User: %s; Item: %s %s;' %(self.user.username, self.catalogItem.manufacturer, self.catalogItem.name)

@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396813879.646756
+_modified_time = 1396815501.683212
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\catalog\\templates/category.html'
 _template_uri = 'category.html'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['content', 'left_side']
+_exports = ['left_side', 'content']
 
 
 def _mako_get_namespace(context, name):
@@ -28,17 +28,17 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        history = context.get('history', UNDEFINED)
-        def content():
-            return render_content(context._locals(__M_locals))
-        subCategory = context.get('subCategory', UNDEFINED)
-        category = context.get('category', UNDEFINED)
-        form = context.get('form', UNDEFINED)
-        items = context.get('items', UNDEFINED)
         def left_side():
             return render_left_side(context._locals(__M_locals))
-        message = context.get('message', UNDEFINED)
+        items = context.get('items', UNDEFINED)
+        history = context.get('history', UNDEFINED)
+        category = context.get('category', UNDEFINED)
+        subCategory = context.get('subCategory', UNDEFINED)
+        form = context.get('form', UNDEFINED)
         category_list = context.get('category_list', UNDEFINED)
+        def content():
+            return render_content(context._locals(__M_locals))
+        message = context.get('message', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\r\n\r\n')
@@ -54,102 +54,6 @@ def render_body(context,**pageargs):
 
         # SOURCE LINE 189
         __M_writer('  \r\n\r\n\r\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_content(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        history = context.get('history', UNDEFINED)
-        def content():
-            return render_content(context)
-        subCategory = context.get('subCategory', UNDEFINED)
-        category = context.get('category', UNDEFINED)
-        items = context.get('items', UNDEFINED)
-        message = context.get('message', UNDEFINED)
-        __M_writer = context.writer()
-        # SOURCE LINE 74
-        __M_writer('\r\n')
-        # SOURCE LINE 75
- 
-
-        __M_writer('\r\n\r\n\r\n<h2>Catalog</h2><hr/>\r\n')
-        # SOURCE LINE 79
-        if category != '':
-            # SOURCE LINE 80
-            __M_writer('<ol class="breadcrumb">\r\n  <li><a href=\'/catalog/category/\'>Catalog</a></li>\r\n')
-            # SOURCE LINE 82
-            if subCategory == '':
-                # SOURCE LINE 83
-                __M_writer("  <li class='active'>")
-                __M_writer(str(category.categoryName))
-                __M_writer('</li>\r\n')
-            # SOURCE LINE 85
-            if subCategory != '':
-                # SOURCE LINE 86
-                __M_writer("  <li><a href='/catalog/category/")
-                __M_writer(str(category.id))
-                __M_writer("'>")
-                __M_writer(str(category.categoryName))
-                __M_writer('</a></li>\r\n  <li class="active">')
-                # SOURCE LINE 87
-                __M_writer(str(subCategory.subName))
-                __M_writer('</li>\r\n')
-            # SOURCE LINE 89
-            __M_writer('</ol>\r\n')
-        # SOURCE LINE 91
-        __M_writer('\r\n')
-        # SOURCE LINE 92
-        __M_writer(str(message))
-        __M_writer('\r\n\r\n\r\n<h3>Recently Viewed Items</h3>\r\n\r\n<div class=\'text-left\'>\r\n  <ul class="list-inline">\r\n\r\n')
-        # SOURCE LINE 100
-        for h in history:
-            # SOURCE LINE 101
-            __M_writer("\r\n      <li class='clickable'>\r\n        <a href='/catalog/inventory/")
-            # SOURCE LINE 103
-            __M_writer(str(h.catalogItem.id))
-            __M_writer('\'>\r\n        <div class="panel panel-primary" >\r\n          <div class=\'panel-heading\'><h3><strong>')
-            # SOURCE LINE 105
-            __M_writer(str(h.catalogItem.manufacturer))
-            __M_writer(' ')
-            __M_writer(str(h.catalogItem.name))
-            __M_writer("</strong></h3></div>\r\n\r\n          <div class='panel-body'> <!-- panel body starts -->\r\n            \r\n            <ul class='list-inline'>\r\n\r\n              <li>\r\n\r\n                <img src='")
-            # SOURCE LINE 113
-            __M_writer(str(h.catalogItem.img))
-            __M_writer("' width='200px'/>\r\n\r\n              </li>\r\n              <li>\r\n                <ul class='list-unstyled'>\r\n                  <li>\r\n                    <strong>Price: $ ")
-            # SOURCE LINE 119
-            __M_writer(str(h.catalogItem.listPrice))
-            __M_writer('</strong>\r\n                  </li> \r\n                  <li>\r\n                    SKU: ')
-            # SOURCE LINE 122
-            __M_writer(str(h.catalogItem.sku))
-            __M_writer('\r\n                  </li>\r\n\r\n                </ul>\r\n              </li>\r\n            </ul>\r\n\r\n          </div> <!-- panel body ends -->\r\n        </div> <!-- panel ends -->\r\n      </a>\r\n      </li> <!-- list item ends -->\r\n\r\n')
-        # SOURCE LINE 135
-        __M_writer('  </ul>\r\n</div>\r\n\r\n\r\n\r\n<div class=\'text-left\'>\r\n\t<ul class="list-inline">\r\n\r\n\t\t\r\n')
-        # SOURCE LINE 144
-        for i in items:
-            # SOURCE LINE 145
-            __M_writer("\r\n      <li class='clickable'>\r\n        <a href='/catalog/inventory/")
-            # SOURCE LINE 147
-            __M_writer(str(i.id))
-            __M_writer('\'>\r\n        <div class="panel panel-primary" >\r\n          <div class=\'panel-heading\'><h3><strong>')
-            # SOURCE LINE 149
-            __M_writer(str(i.manufacturer))
-            __M_writer(' ')
-            __M_writer(str(i.name))
-            __M_writer("</strong></h3></div>\r\n\r\n          <div class='panel-body'> <!-- panel body starts -->\r\n            \r\n            <ul class='list-inline'>\r\n\r\n              <li>\r\n\r\n                <img src='")
-            # SOURCE LINE 157
-            __M_writer(str(i.img))
-            __M_writer("' width='200px'/>\r\n\r\n              </li>\r\n              <li>\r\n                <ul class='list-unstyled'>\r\n                  <li>\r\n                    <strong>Price: $ ")
-            # SOURCE LINE 163
-            __M_writer(str(i.listPrice))
-            __M_writer('</strong>\r\n                  </li> \r\n                  <li>\r\n                    SKU: ')
-            # SOURCE LINE 166
-            __M_writer(str(i.sku))
-            __M_writer('\r\n                  </li>\r\n\r\n                </ul>\r\n\r\n                \r\n              </li>\r\n            </ul>\r\n\r\n          </div> <!-- panel body ends -->\r\n        </div> <!-- panel ends -->\r\n      </a>\r\n      </li> <!-- list item ends -->\r\n\r\n')
-        # SOURCE LINE 181
-        __M_writer('\r\n\t</ul>\r\n</div>\r\n\r\n\r\n<div class="vertical_spacer6"></div>\r\n<div class="vertical_spacer6"></div>\r\n\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -216,6 +120,108 @@ def render_left_side(context,**pageargs):
             __M_writer('\r\n\r\n\r\n\t\t</ul>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n')
         # SOURCE LINE 67
         __M_writer('</div>\r\n\r\n\r\n\r\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_content(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        category = context.get('category', UNDEFINED)
+        items = context.get('items', UNDEFINED)
+        history = context.get('history', UNDEFINED)
+        subCategory = context.get('subCategory', UNDEFINED)
+        def content():
+            return render_content(context)
+        message = context.get('message', UNDEFINED)
+        __M_writer = context.writer()
+        # SOURCE LINE 74
+        __M_writer('\r\n')
+        # SOURCE LINE 75
+ 
+
+        __M_writer('\r\n\r\n\r\n<h2>Catalog</h2><hr/>\r\n')
+        # SOURCE LINE 79
+        if category != '':
+            # SOURCE LINE 80
+            __M_writer('<ol class="breadcrumb">\r\n  <li><a href=\'/catalog/category/\'>Catalog</a></li>\r\n')
+            # SOURCE LINE 82
+            if subCategory == '':
+                # SOURCE LINE 83
+                __M_writer("  <li class='active'>")
+                __M_writer(str(category.categoryName))
+                __M_writer('</li>\r\n')
+            # SOURCE LINE 85
+            if subCategory != '':
+                # SOURCE LINE 86
+                __M_writer("  <li><a href='/catalog/category/")
+                __M_writer(str(category.id))
+                __M_writer("'>")
+                __M_writer(str(category.categoryName))
+                __M_writer('</a></li>\r\n  <li class="active">')
+                # SOURCE LINE 87
+                __M_writer(str(subCategory.subName))
+                __M_writer('</li>\r\n')
+            # SOURCE LINE 89
+            __M_writer('</ol>\r\n')
+        # SOURCE LINE 91
+        __M_writer('\r\n')
+        # SOURCE LINE 92
+        __M_writer(str(message))
+        __M_writer('\r\n\r\n')
+        # SOURCE LINE 94
+        if history:
+            # SOURCE LINE 95
+            __M_writer('<h3>Recently Viewed Items</h3>\r\n\r\n<div class=\'text-left\'>\r\n  <ul class="list-inline">\r\n\r\n')
+            # SOURCE LINE 100
+            for h in history:
+                # SOURCE LINE 101
+                __M_writer("\r\n      <li class='clickable'>\r\n        <a href='/catalog/inventory/")
+                # SOURCE LINE 103
+                __M_writer(str(h.catalogItem.id))
+                __M_writer('\'>\r\n        <div class="panel panel-primary" >\r\n          <div class=\'panel-heading\'><h3><strong>')
+                # SOURCE LINE 105
+                __M_writer(str(h.catalogItem.manufacturer))
+                __M_writer(' ')
+                __M_writer(str(h.catalogItem.name))
+                __M_writer("</strong></h3></div>\r\n\r\n          <div class='panel-body'> <!-- panel body starts -->\r\n            \r\n            <ul class='list-inline'>\r\n\r\n              <li>\r\n\r\n                <img src='")
+                # SOURCE LINE 113
+                __M_writer(str(h.catalogItem.img))
+                __M_writer("' width='200px'/>\r\n\r\n              </li>\r\n              <li>\r\n                <ul class='list-unstyled'>\r\n                  <li>\r\n                    <strong>Price: $ ")
+                # SOURCE LINE 119
+                __M_writer(str(h.catalogItem.listPrice))
+                __M_writer('</strong>\r\n                  </li> \r\n                  <li>\r\n                    SKU: ')
+                # SOURCE LINE 122
+                __M_writer(str(h.catalogItem.sku))
+                __M_writer('\r\n                  </li>\r\n\r\n                </ul>\r\n              </li>\r\n            </ul>\r\n\r\n          </div> <!-- panel body ends -->\r\n        </div> <!-- panel ends -->\r\n      </a>\r\n      </li> <!-- list item ends -->\r\n\r\n')
+            # SOURCE LINE 135
+            __M_writer('  </ul>\r\n</div>\r\n')
+        # SOURCE LINE 138
+        __M_writer('\r\n\r\n<div class=\'text-left\'>\r\n\t<ul class="list-inline">\r\n\r\n\t\t\r\n')
+        # SOURCE LINE 144
+        for i in items:
+            # SOURCE LINE 145
+            __M_writer("\r\n      <li class='clickable'>\r\n        <a href='/catalog/inventory/")
+            # SOURCE LINE 147
+            __M_writer(str(i.id))
+            __M_writer('\'>\r\n        <div class="panel panel-primary" >\r\n          <div class=\'panel-heading\'><h3><strong>')
+            # SOURCE LINE 149
+            __M_writer(str(i.manufacturer))
+            __M_writer(' ')
+            __M_writer(str(i.name))
+            __M_writer("</strong></h3></div>\r\n\r\n          <div class='panel-body'> <!-- panel body starts -->\r\n            \r\n            <ul class='list-inline'>\r\n\r\n              <li>\r\n\r\n                <img src='")
+            # SOURCE LINE 157
+            __M_writer(str(i.img))
+            __M_writer("' width='200px'/>\r\n\r\n              </li>\r\n              <li>\r\n                <ul class='list-unstyled'>\r\n                  <li>\r\n                    <strong>Price: $ ")
+            # SOURCE LINE 163
+            __M_writer(str(i.listPrice))
+            __M_writer('</strong>\r\n                  </li> \r\n                  <li>\r\n                    SKU: ')
+            # SOURCE LINE 166
+            __M_writer(str(i.sku))
+            __M_writer('\r\n                  </li>\r\n\r\n                </ul>\r\n\r\n                \r\n              </li>\r\n            </ul>\r\n\r\n          </div> <!-- panel body ends -->\r\n        </div> <!-- panel ends -->\r\n      </a>\r\n      </li> <!-- list item ends -->\r\n\r\n')
+        # SOURCE LINE 181
+        __M_writer('\r\n\t</ul>\r\n</div>\r\n\r\n\r\n<div class="vertical_spacer6"></div>\r\n<div class="vertical_spacer6"></div>\r\n\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()

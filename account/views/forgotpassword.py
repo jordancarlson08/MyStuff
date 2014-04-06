@@ -28,7 +28,7 @@ def process_request(request):
 			u.save()
 
 			url = 'http://localhost:8000/account/resetpassword/'+str(u.passwordResetCode)
-			# email = 'jenybabe91@hotmail.com'
+
 			#HTML/TXT Email
 			tvars = {'url':url}
 			html_content = templater.render(request, 'email_forgot_password.html', tvars)
@@ -37,7 +37,6 @@ def process_request(request):
 			msg = EmailMultiAlternatives(subject, text_content, from_email, [email])
 			msg.attach_alternative(html_content, "text/html")
 			msg.send()
-
 			#Display confirmation page
 			isSent=True
 			tvars = {'isSent':isSent}
