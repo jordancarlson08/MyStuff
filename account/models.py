@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
-from manager.models import *
+
 
 	
 #this is inheritance
@@ -41,4 +41,5 @@ class Employee(models.Model):
 
 	def __str__(self):
 		return '%s %s' %(self.user.first_name, self.user.last_name)
+
 

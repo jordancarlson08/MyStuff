@@ -95,6 +95,13 @@ class SerializedItem(models.Model):
     return '%s %s - %s' %(self.catalogItem.manufacturer, self.catalogItem.name, self.serialNum)
 
 
+class History(models.Model):
+  user = models.ForeignKey(User)
+  catalogItem = models.ForeignKey(CatalogItem)
+
+
+
+
 # class ImageFolder(models.Model):
 #   catalogItem = models.ForeignKey(CatalogItem, blank=True, null=True)
 #   serializedItem = models.ForeignKey(SerializedItem, blank=True, null=True)
@@ -103,3 +110,4 @@ class SerializedItem(models.Model):
 # class Image(models.Model):
 #   imageFolder = models.ForeignKey(ImageFolder)
 #   imgPath = models.TextField()
+

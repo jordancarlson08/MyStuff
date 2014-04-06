@@ -12,6 +12,7 @@ import datetime
 def process_request(request):
 	'''Shows a catalog item to the user'''
 
+	
 
  	#Display Function
 	item = hmod.CatalogItem.objects.get(id=request.urlparams[0])
