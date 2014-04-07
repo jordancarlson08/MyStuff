@@ -74,7 +74,7 @@ def process_request(request):
 
 	### CREATE the skip list used for layout of fields ###
 
-	skip_ship = ['ship_first_name', 'ship_last_name', 'ship_phone', 'ship_email', 'ship_street1', 'ship_street2', 'ship_city', 'ship_state', 'ship_zipCode', 'shipping']
+	skip_ship = ['use_bill', 'ship_first_name', 'ship_last_name', 'ship_phone', 'ship_email', 'ship_street1', 'ship_street2', 'ship_city', 'ship_state', 'ship_zipCode', 'shipping']
 	skip_rent = ['days', 'username']
 	skip_repair = ['dateComplete', 'description', 'hours', 'status', 'amount']
 
@@ -426,10 +426,10 @@ class CheckoutForm(forms.Form):
 	username = forms.ModelChoiceField(label='User', queryset=User.objects.all(), widget=forms.Select(attrs={'class': 'form-control',}))
 	# Repair Stuff
 	dateComplete = forms.DateField(required=False, label='Date Complete', widget=forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Date Complete',}))
-	description = forms.CharField(required=False, label='Description', widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description',}))
 	hours = forms.DecimalField(required=False, label='Hours', max_digits=8, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Hours',}))
 	status = forms.CharField(required=False, label='Status', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Status',}))
 	amount = forms.DecimalField(required=False, label='Cost', max_digits=8, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Cost',}))
+	description = forms.CharField(required=False, label='Description', widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description',}))
 	#Payment
 	card = forms.IntegerField(label='Credit Card', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '1234 5678 9012 3456'}))
 	code = forms.IntegerField(label='Security Code', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '445'}))

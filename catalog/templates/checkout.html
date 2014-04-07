@@ -148,7 +148,9 @@
 								<table>
 
 						<!-- create the next panel -->
-
+						
+						<% bSide = True
+						%>
 						%endif
 					%endif
 
@@ -176,6 +178,8 @@
 
 						<!-- create the next panel -->
 
+						<% bSide = True
+						%>
 						%endif
 					%endif
 
@@ -203,6 +207,9 @@
 								<table>
 
 						<!-- create the next panel -->
+
+						<% bSide = True
+						%>
 						%endif
 					%endif
 
@@ -227,12 +234,19 @@
 								<table>
 
 						<!-- create the next panel -->
-
+						
+						<% bSide = True
+						%>
 						%endif
 
 						<!-- ######################## -->
 						<!-- END CREATE PANEL SECTION -->
 						<!-- ######################## -->
+
+					<% td1 = 'style="width:15%"' %>
+					<% td2 = 'style="width:30%"' %>
+					<% td3 = 'style="width:2%"' %>
+					<% td4 = 'style="width:7%"' %>
 
 
 
@@ -244,27 +258,30 @@
 				      	%if bSide: 
 				      	<!-- Left side -->
 				    	<tr>
-				    	  <td>${spacer}</td>
-				          <td><strong>${ f.label }</strong></td>
-				          <td>${spacer}</td>
-				          <td>${f} ${f.errors}</td>  
-				          <td>${spacer}${spacer}</td>
+				    	  <td></td>
+				          <td class='text-right' ${td1}><strong>${ f.label }</strong></td>
+				          <td ${td3}>&nbsp;</td>
+				          <td ${td2}>${f} ${f.errors}</td>  
+				          <td ${td4}></td>
 				    	%else: 
 				    	<!-- Right side -->
-				    		<td><strong>${ f.label }</strong></td>
-				    		<td>${spacer}</td>
-				    		<td>${f} ${f.errors}</td>  
+				    		<td></td>
+				    		<td class='text-right' ${td1}><strong>${ f.label }</strong></td>
+				    		<td ${td3}>&nbsp;</td>
+				    		<td ${td2}>${f} ${f.errors}</td>  
+				    		<td></td>
 				    	</tr>
 				    	<tr>
 				    		<td>&nbsp;</td>
 				    	</tr>
 				        %endif
+
 						<!-- Swap from left to right or from right to left -->
 						<% bSide = not bSide %> 
 
-
 					%endif
-					  %endfor
+					
+					%endfor
 
 					</table>
 					  <div class="form-group">
