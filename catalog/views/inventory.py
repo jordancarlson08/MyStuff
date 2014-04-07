@@ -17,9 +17,6 @@ def process_request(request):
 	item_count = SerializedItem.objects.filter(catalogItem=item).exclude(isRental=True).exclude(isSold=True).exclude(isActive=False).count()
 	rental_count = SerializedItem.objects.filter(catalogItem=item).exclude(isRental=False).count()
 
-	if item_count == 0:
-		disabled
-
 	#Add to cart function
 	form = AddCartForm()
 	form = AddCartForm(initial={		
