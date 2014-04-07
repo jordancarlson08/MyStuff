@@ -4,9 +4,9 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396894521.992345
+_modified_time = 1396893958.481983
 _enable_loop = True
-_template_filename = '/Users/ecookson/Desktop/MyStuff/account/templates/base.htm'
+_template_filename = '/Users/ecookson/Desktop/MyStuff/homepage/templates/base.htm'
 _template_uri = 'base.htm'
 _source_encoding = 'ascii'
 import os, os.path, re
@@ -52,8 +52,8 @@ def render_content(context,**pageargs):
         def content():
             return render_content(context)
         __M_writer = context.writer()
-        # SOURCE LINE 20
-        __M_writer('\n        \n          Site content goes here in sub-templates.\n\n        ')
+        # SOURCE LINE 34
+        __M_writer('\n                    Site content goes here in sub-templates.\n                  ')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -70,29 +70,13 @@ def render_main(context,**pageargs):
             return render_left_side(context)
         __M_writer = context.writer()
         # SOURCE LINE 4
-        __M_writer('\n')
-        # SOURCE LINE 5
- 
-
-        __M_writer('\n\n  <div class="content"> \n    <div class="row">\n      <div class="col-md-2">\n\n          ')
+        __M_writer('\n\n  <div class="content"> \n    <div class="row">\n      <div class="col-md-3">\n        <div class="container"> \n\n          ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'left_side'):
             context['self'].left_side(**pageargs)
         
 
-        # SOURCE LINE 15
-        __M_writer(' ')
- 
-
-        __M_writer('\n      </div>\n\n      <div class="col-md-10" role="main">\n\n        ')
-        if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
-            context['self'].content(**pageargs)
-        
-
-        # SOURCE LINE 24
-        __M_writer(' ')
- 
-
-        __M_writer('   \n                \n      </div>\n    </div>\n  </div>  \n \n\n')
+        # SOURCE LINE 41
+        __M_writer(' \n\n        </div>\n      </div>  \n    </div>\n  </div>\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -101,11 +85,19 @@ def render_main(context,**pageargs):
 def render_left_side(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        def content():
+            return render_content(context)
         def left_side():
             return render_left_side(context)
         __M_writer = context.writer()
         # SOURCE LINE 11
-        __M_writer("\n\n            <a id='back_button' class='btn btn-default btn-small'><span class='glyphicon glyphicon-arrow-left'></span>&nbsp;Back</a>\n\n          ")
+        __M_writer('\n            <div class="container bs-docs-container">\n              <div class="row">\n\n                <div class="col-md-3">\n                  <div class="bs-sidebar hidden-print" role="complementary">\n                    <ul class="nav bs-sidenav">\n                      <li>\n                        <a href="/about/">About Us</a>\n                      </li>\n                      <li>\n                        <a href="/contact/">Contact Us</a>\n                      </li>\n                      <li>\n                        <a href="/terms/">Terms <span class="badge">Updated</span></a>\n                      </li>                        \n                    </ul>\n                  </div>\n                </div>\n\n\n                <div class="col-md-9" role="main">\n\n                  ')
+        if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
+            context['self'].content(**pageargs)
+        
+
+        # SOURCE LINE 36
+        __M_writer('   \n                  \n                </div>\n              </div>  \n            </div>\n          ')
         return ''
     finally:
         context.caller_stack._pop_frame()
