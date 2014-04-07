@@ -1,20 +1,53 @@
 
 
-INSERT INTO manager_category VALUES (1, 'Cameras', 1);
-INSERT INTO manager_category VALUES (2, 'Lenses', 2);
-INSERT INTO manager_category VALUES (3, 'Batteries', 3);
-INSERT INTO manager_category VALUES (4, 'Accessories', 4);
-INSERT INTO manager_category VALUES (5, 'Other', 5);
+-- Categories
+INSERT INTO manager_category VALUES (99991, 'Cameras', 1);
+INSERT INTO manager_category VALUES (99992, 'Lenses', 2);
+INSERT INTO manager_category VALUES (99993, 'Studio & Lighting', 3);
+INSERT INTO manager_category VALUES (99994, 'Tripods', 4);
+INSERT INTO manager_category VALUES (99995, 'Bags & Cases', 5);
 
+-- Sub Categories
+INSERT INTO manager_subcategory VALUES (1, 'Digital SLR', 99991);
+INSERT INTO manager_subcategory VALUES (2, 'Digital Compact', 99991);
+INSERT INTO manager_subcategory VALUES (3, 'Film', 99991);
+INSERT INTO manager_subcategory VALUES (4, 'Batteries', 99991);
+INSERT INTO manager_subcategory VALUES (5, 'Accessories', 99991);
+INSERT INTO manager_subcategory VALUES (6, 'Standard', 99992);
+INSERT INTO manager_subcategory VALUES (7, 'Wide Angle', 99992);
+INSERT INTO manager_subcategory VALUES (8, 'Portrait', 99992);
+INSERT INTO manager_subcategory VALUES (9, 'Telephoto', 99992);
+INSERT INTO manager_subcategory VALUES (10, 'Macro', 99992);
+INSERT INTO manager_subcategory VALUES (11, 'Fisheye', 99992);
+INSERT INTO manager_subcategory VALUES (12, 'Dedicated Flash', 99993);
+INSERT INTO manager_subcategory VALUES (13, 'Macro Ring Light Flash', 99993);
+INSERT INTO manager_subcategory VALUES (14, 'Hammerhead Flash', 99993);
+INSERT INTO manager_subcategory VALUES (15, 'Light Reflectors', 99993);
+INSERT INTO manager_subcategory VALUES (16, 'Softboxes', 99993);
+INSERT INTO manager_subcategory VALUES (17, 'Umbrellas', 99993);
+INSERT INTO manager_subcategory VALUES (18, 'Diffusers', 99993);
+INSERT INTO manager_subcategory VALUES (19, 'Lamps & Bulbs', 99993);
+INSERT INTO manager_subcategory VALUES (20, 'Travel & Compact', 99994);
+INSERT INTO manager_subcategory VALUES (21, 'Photo ', 99994);
+INSERT INTO manager_subcategory VALUES (22, 'Monopods', 99994);
+INSERT INTO manager_subcategory VALUES (23, 'Light Stands', 99994);
+INSERT INTO manager_subcategory VALUES (24, 'Backpacks', 99995);
+INSERT INTO manager_subcategory VALUES (25, 'Shoulder Bags', 99995);
+INSERT INTO manager_subcategory VALUES (26, 'Sling Bags', 99995);
+INSERT INTO manager_subcategory VALUES (27, 'Belt Packs', 99995);
+INSERT INTO manager_subcategory VALUES (28, 'Hard Cases', 99995);
+INSERT INTO manager_subcategory VALUES (29, 'Soft Cases', 99995);
+INSERT INTO manager_subcategory VALUES (30, 'Camera & Lense', 99995);
+INSERT INTO manager_subcategory VALUES (31, 'Tripod', 99995);
+INSERT INTO manager_subcategory VALUES (32, 'Lighting', 99995);
+
+-- Conditions
 INSERT INTO manager_condition VALUES (1, 'New');
 INSERT INTO manager_condition VALUES (2, 'Used - Like New');
 INSERT INTO manager_condition VALUES (3, 'Used - Good');
 INSERT INTO manager_condition VALUES (4, 'Used - Poor');
 INSERT INTO manager_condition VALUES (5, 'Used - As Is');
 
-INSERT INTO manager_subcategory VALUES (1, 'Digital SLR', 1);
-INSERT INTO manager_subcategory VALUES (2, 'Digital Compact', 1);
-INSERT INTO manager_subcategory VALUES (3, 'Film', 1);
 
 -- User:       webmaster
 -- Password:   Password1
