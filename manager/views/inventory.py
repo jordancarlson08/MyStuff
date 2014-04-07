@@ -36,11 +36,8 @@ def process_request(request):
 		'fillPoint': c.fillPoint,
 		'leadTime': c.leadTime,
 		'category':c.category,
-
-
+		'isSerial':c.isSerial,
 		})
-
-
 
 	if request.method == 'POST':
 		form = CatalogItemForm(request.POST)
@@ -57,6 +54,9 @@ def process_request(request):
 			c.fillPoint = form.cleaned_data['fillPoint'] 
 			c.leadTime = form.cleaned_data['leadTime'] 
 			c.category = form.cleaned_data['category']
+			c.isSerial = form.cleaned_data['isSerial']
+			img = request.FILES.get('img', None)
+			c.img = '/static/catalog/images/products/'+str(img)
 			c.save()
 			return HttpResponseRedirect('/manager/inventory/' + str(request.urlparams[0]))
 			

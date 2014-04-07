@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396840300.19732
+_modified_time = 1396843718.221968
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/inventory.html'
 _template_uri = 'inventory.html'
@@ -28,15 +28,15 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        item = context.get('item', UNDEFINED)
-        serial = context.get('serial', UNDEFINED)
-        form = context.get('form', UNDEFINED)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         conditions_list = context.get('conditions_list', UNDEFINED)
-        rentals = context.get('rentals', UNDEFINED)
+        serial = context.get('serial', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        rentals = context.get('rentals', UNDEFINED)
+        item = context.get('item', UNDEFINED)
         stores_list = context.get('stores_list', UNDEFINED)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\r\n')
@@ -54,15 +54,15 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        item = context.get('item', UNDEFINED)
-        serial = context.get('serial', UNDEFINED)
-        form = context.get('form', UNDEFINED)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         conditions_list = context.get('conditions_list', UNDEFINED)
-        rentals = context.get('rentals', UNDEFINED)
+        serial = context.get('serial', UNDEFINED)
         def content():
             return render_content(context)
+        rentals = context.get('rentals', UNDEFINED)
+        item = context.get('item', UNDEFINED)
         stores_list = context.get('stores_list', UNDEFINED)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 3
         __M_writer('\r\n')
@@ -174,7 +174,7 @@ def render_content(context,**pageargs):
         __M_writer('</td>\r\n            <td>')
         # SOURCE LINE 274
         __M_writer(str(item.leadTime))
-        __M_writer('</td>\r\n\r\n\r\n          </tr>\r\n\r\n        </table>\r\n\r\n          <!-- Catalog Edit Button and Delete -->\r\n          <div class="modal fade bs-modal-lg" id="catalog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\r\n            <div class="modal-dialog modal-lg">\r\n              <div class="modal-content">\r\n\r\n                <div class="modal-header">\r\n                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\r\n                  <h4 class="modal-title" id="myModalLabel">Edit Product Information</h4>\r\n                </div>\r\n\r\n                <div class="modal-body">\r\n\r\n\r\n                  <form class ="form-horizontal" role="form" method ="POST">\r\n\r\n')
+        __M_writer('</td>\r\n\r\n\r\n          </tr>\r\n\r\n        </table>\r\n\r\n          <!-- Catalog Edit Button and Delete -->\r\n          <div class="modal fade bs-modal-lg" id="catalog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\r\n            <div class="modal-dialog modal-lg">\r\n              <div class="modal-content">\r\n\r\n                <div class="modal-header">\r\n                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\r\n                  <h4 class="modal-title" id="myModalLabel">Edit Product Information</h4>\r\n                </div>\r\n\r\n                <div class="modal-body">\r\n\r\n\r\n                  <form class ="form-horizontal" role="form" method ="POST" enctype="multipart/form-data">\r\n\r\n')
         # SOURCE LINE 296
         for field in form:
             # SOURCE LINE 297

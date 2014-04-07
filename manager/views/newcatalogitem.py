@@ -11,14 +11,15 @@ from django.contrib.auth.decorators import login_required
 def process_request(request):
 	'''Create a new catalog item'''
 
-	c = mmod.CatalogItem()
+	
 	form = CatalogItemForm()
 
 	if request.method == 'POST':
-		form = CatalogItemForm(request.POST)
+		form = CatalogItemForm(request.POST, request.FILES)
 		if form.is_valid():
 
-			#Inherited attributes
+			c = mmod.CatalogItem()
+
 			c.name = form.cleaned_data['name'] 
 			c.manufacturer = form.cleaned_data['manufacturer'] 
 			c.listPrice = form.cleaned_data['listPrice'] 
@@ -28,12 +29,12 @@ def process_request(request):
 			c.techSpecs = form.cleaned_data['techSpecs'] 
 			c.sku = form.cleaned_data['sku']
 			c.createdBy = amod.Employee.objects.get(user_id=request.user.id)
-
-			#Catalog Item specific attributes
 			c.fillPoint = form.cleaned_data['fillPoint'] 
 			c.leadTime = form.cleaned_data['leadTime'] 
 			c.category = form.cleaned_data['category']
-			c.isSerial = form.cleaned_data['isSerial']		
+			c.isSerial = form.cleaned_data['isSerial']
+			img = request.FILES.get('img', None)
+			c.img = '/static/catalog/images/products/'+str(img)
 			c.save()
 
 			return HttpResponseRedirect('/manager/searchinventory/')
@@ -59,3 +60,4 @@ class CatalogItemForm(forms.Form):
 	fillPoint = forms.IntegerField(label='Fill Point', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Fill Point',}))
 	leadTime = forms.CharField(label='Avg. Lead Time', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Lead Time ex. 2 Weeks',}))
 	isSerial = forms.BooleanField(label='Serial Numbers?', required=False )
+	img = forms.ImageField(label='Select a image', help_text='max. 42 megabytes', required=False)

@@ -60,7 +60,7 @@ class CatalogItem(models.Model):
   createdBy = models.ForeignKey(Employee)
   category = models.ForeignKey(SubCategory)
   isActive = models.BooleanField(default=True)
-  img = models.TextField(blank=True, null=True)
+  img = models.ImageField(blank=True, null=True, upload_to='products/')
   isSerial = models.BooleanField(default=True)
 
   def __str__(self):
@@ -91,6 +91,11 @@ class SerializedItem(models.Model):
 
   def __str__(self):
     return '%s %s - %s' %(self.catalogItem.manufacturer, self.catalogItem.name, self.serialNum)
+
+
+class Image(models.Model):
+  title= models.TextField()
+  img = models.ImageField(blank=True, null=True, upload_to='products/')
 
 
 class History(models.Model):

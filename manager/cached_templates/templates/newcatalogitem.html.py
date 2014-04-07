@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396755655.872493
+_modified_time = 1396843131.259554
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/newcatalogitem.html'
 _template_uri = 'newcatalogitem.html'
@@ -59,7 +59,7 @@ def render_content(context,**pageargs):
         # SOURCE LINE 6
  
 
-        __M_writer('\r\n\r\n<h2>New Catalog Item</h2><hr/>\r\n</br>\r\n\r\n<!-- Custom Form -->\r\n<form class ="form-horizontal" role="form" method ="POST">\r\n\r\n<!--   Loop through the fields of the form -->\r\n')
+        __M_writer('\r\n\r\n<h2>New Catalog Item</h2><hr/>\r\n</br>\r\n\r\n<!-- Custom Form -->\r\n<form class ="form-horizontal" role="form" method ="POST" enctype="multipart/form-data">\r\n\r\n<!--   Loop through the fields of the form -->\r\n')
         # SOURCE LINE 15
         for f in form:
             # SOURCE LINE 16

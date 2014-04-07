@@ -53,6 +53,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')  
 
 
+# MEDIA_ROOT = '/catalog/images/products/'
+# MEDIA_URL = '/media/'
 
 
 
