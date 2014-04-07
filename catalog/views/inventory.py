@@ -56,6 +56,9 @@ def process_request(request):
 		history[item.id] = datetime.now().isoformat()
 		request.session['history'] = history
 				
+	#Views - BI stuff
+	item.views += 1
+	item.save()
 
 	tvars = {
 	

@@ -62,6 +62,7 @@ class CatalogItem(models.Model):
   isActive = models.BooleanField(default=True)
   img = models.ImageField(blank=True, null=True, upload_to='products/')
   isSerial = models.BooleanField(default=True)
+  views = models.IntegerField(default=0)
 
   def __str__(self):
     return '%s %s' %(self.manufacturer, self.name)
