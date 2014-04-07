@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396751563.658926
+_modified_time = 1396892577.241937
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\catalog\\templates/checkout.html'
 _template_uri = 'checkout.html'
@@ -28,11 +28,11 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        cart_all = context.get('cart_all', UNDEFINED)
-        form = context.get('form', UNDEFINED)
         isRentEmpty = context.get('isRentEmpty', UNDEFINED)
         def main():
             return render_main(context._locals(__M_locals))
+        form = context.get('form', UNDEFINED)
+        cart_all = context.get('cart_all', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\r\n\r\n\r\n')
@@ -40,7 +40,7 @@ def render_body(context,**pageargs):
             context['self'].main(**pageargs)
         
 
-        # SOURCE LINE 190
+        # SOURCE LINE 276
         __M_writer('\r\n\r\n\r\n\r\n\r\n')
         return ''
     finally:
@@ -50,11 +50,11 @@ def render_body(context,**pageargs):
 def render_main(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        cart_all = context.get('cart_all', UNDEFINED)
-        form = context.get('form', UNDEFINED)
         isRentEmpty = context.get('isRentEmpty', UNDEFINED)
         def main():
             return render_main(context)
+        form = context.get('form', UNDEFINED)
+        cart_all = context.get('cart_all', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 5
         __M_writer('\r\n')
@@ -105,83 +105,108 @@ def render_main(context,**pageargs):
         __M_writer('</td>\r\n\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t<td><b>TOTAL: </b></td>\r\n\t\t\t\t\t\t\t<td></td>\r\n\t\t\t\t\t\t\t<td></td>\r\n\t\t\t\t\t\t\t<td>&nbsp;<u>$ ')
         # SOURCE LINE 67
         __M_writer(str(cart_all.total))
-        __M_writer('</u></td>\r\n\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t</table>\r\n\t\t\t\t\t<br>\r\n\t\t\t\t</div> <!--closes the "well" -->\r\n\r\n\t\t\t\t<div class="well">\r\n\t\t\t\t\t<div class="container">\r\n\t\t\t\t\t\t<table>\r\n\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t<td><img src="http://www.logostage.com/logos/american-express.jpg" width=40px alt="AmExpress Logo"></td>\r\n\t\t\t\t\t\t\t\t<td><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MasterCard_logo.png/800px-MasterCard_logo.png" width=50px alt="MaCard Logo"></td>\r\n\t\t\t\t\t\t\t\t<td><img src="http://embroiderystitchbystitch.com/wp-content/uploads/2012/02/Visa-Credit-Card-Logo-5.jpg" width=50px alt="ViCard Logo"></td>\r\n\t\t\t\t\t\t\t\t<td><img src="http://www.credit-card-logos.com/images/discover_credit-card-logos/discover_network2.jpg" width=50px alt="DisCard Logo"></td>\r\n\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div> <!--closes the "well" -->\r\n\r\n\t\t\t\t<div class=\'well\'>\r\n\t\t\t\t\t<div class=\'container\'>\r\n\t\t\t\t\t\t<strong>Promo Code</strong> \r\n\t\t\t\t\t\t</br>\r\n\t\t\t\t\t\t<input type="name" class="col-md-2" id="fName" placeholder="Promo Code">\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\r\n\r\n\r\n\t\t\t\t\t\r\n\r\n<!-- MAIN PART -->\r\n\r\n\r\n\r\n\r\n\t\t\t\t<div class="col-md-9">\r\n\r\n\r\n\r\n\t\t\t\t\t')
-        # SOURCE LINE 109
+        __M_writer('</u></td>\r\n\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t</table>\r\n\t\t\t\t\t<br>\r\n\t\t\t\t</div> <!--closes the "well" -->\r\n\r\n\t\t\t\t<div class="well">\r\n\t\t\t\t\t<div class="container">\r\n\t\t\t\t\t\t<table>\r\n\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t<td><img src="http://www.logostage.com/logos/american-express.jpg" width=40px alt="AmExpress Logo"></td>\r\n\t\t\t\t\t\t\t\t<td><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MasterCard_logo.png/800px-MasterCard_logo.png" width=50px alt="MaCard Logo"></td>\r\n\t\t\t\t\t\t\t\t<td><img src="http://embroiderystitchbystitch.com/wp-content/uploads/2012/02/Visa-Credit-Card-Logo-5.jpg" width=50px alt="ViCard Logo"></td>\r\n\t\t\t\t\t\t\t\t<td><img src="http://www.credit-card-logos.com/images/discover_credit-card-logos/discover_network2.jpg" width=50px alt="DisCard Logo"></td>\r\n\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div> <!--closes the "well" -->\r\n\r\n\t\t\t\t<div class=\'well\'>\r\n\t\t\t\t\t<div class=\'container\'>\r\n\t\t\t\t\t\t<strong>Promo Code</strong> \r\n\t\t\t\t\t\t</br>\r\n\t\t\t\t\t\t<input type="name" class="col-md-2" id="fName" placeholder="Promo Code">\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\r\n\r\n\r\n\t\t\t\t\t\r\n\r\n<!-- MAIN PART -->\r\n\r\n\r\n\t\t\t\t<div class="col-md-9">\r\n\r\n\t\t\t\t\t')
+        # SOURCE LINE 105
         bSide = True
                                                
         
-        # SOURCE LINE 110
-        __M_writer('\r\n\r\n\t\t\t\t\t<div class="panel-group" id="accordion">\r\n\t\t\t\t\t\t<div class="panel panel-default">\r\n\t\t\t\t\t\t\t<div class="panel-heading">\r\n\t\t\t\t\t\t\t\t<h4 class="panel-title">\r\n\t\t\t\t\t\t\t\t\tBilling Address\r\n\t\t\t\t\t\t\t\t</h4>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<div class="panel-body">\r\n\t\t\t\t\t\t\t\t<form class ="form-horizontal" role="form" method ="POST">\r\n\r\n\t\t\t\t\t\t\t\t<table>\r\n\r\n\r\n')
-        # SOURCE LINE 126
+        # SOURCE LINE 106
+        __M_writer('\r\n\r\n\t\t\t\t\t<div class="panel-group" id="accordion">\r\n\t\t\t\t\t\t<div class="panel panel-default">\r\n\t\t\t\t\t\t\t<div class="panel-heading">\r\n\t\t\t\t\t\t\t\t<h4 class="panel-title">\r\n\t\t\t\t\t\t\t\t\tBilling Address\r\n\t\t\t\t\t\t\t\t</h4>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<div class="panel-body">\r\n\t\t\t\t\t\t\t\t<form class ="form-horizontal" role="form" method ="POST">\r\n\t\t\t\t\t\t\t\t<table>\r\n\r\n\r\n')
+        # SOURCE LINE 121
         for f in form:
-            # SOURCE LINE 127
+            # SOURCE LINE 122
             if f.label == 'Same as Billing':
-                # SOURCE LINE 128
+                # SOURCE LINE 123
                 __M_writer('\t\t\t\t\t\t')
                 print('SAME AS BILLING!!!')
                 
-                __M_writer('\r\n')
-            # SOURCE LINE 130
+                __M_writer('\r\n\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t<!-- end the table -->\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<!-- end the panel -->\r\n\r\n\t\t\t\t\t\t<div class="panel panel-default">\r\n\t\t\t\t\t\t\t<div class="panel-heading">\r\n\t\t\t\t\t\t\t\t<h4 class="panel-title">\r\n\t\t\t\t\t\t\t\t\tShipping Address\r\n\t\t\t\t\t\t\t\t</h4>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<div class="panel-body">\r\n\r\n\t\t\t\t\t\t\t\t<table>\r\n\r\n\t\t\t\t\t\t<!-- create the next panel -->\r\n\r\n')
+            # SOURCE LINE 145
+            if f.label == 'Credit Card':
+                # SOURCE LINE 146
+                __M_writer('\t\t\t\t\t\t')
+                print('Credit Card')
+                
+                __M_writer('\r\n\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t<!-- end the table -->\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<!-- end the panel -->\r\n\r\n\t\t\t\t\t\t<div class="panel panel-default">\r\n\t\t\t\t\t\t\t<div class="panel-heading">\r\n\t\t\t\t\t\t\t\t<h4 class="panel-title">\r\n\t\t\t\t\t\t\t\t\tPayment Info\r\n\t\t\t\t\t\t\t\t</h4>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<div class="panel-body">\r\n\r\n\t\t\t\t\t\t\t\t<table>\r\n\r\n\t\t\t\t\t\t<!-- create the next panel -->\r\n\r\n')
+            # SOURCE LINE 168
             __M_writer('\r\n')
-            # SOURCE LINE 131
+            # SOURCE LINE 169
+            if f.label == 'Days to Rent':
+                # SOURCE LINE 170
+                __M_writer('\t\t\t\t\t\t')
+                print('days to rent')
+                
+                __M_writer('\r\n\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t<!-- end the table -->\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<!-- end the panel -->\r\n\r\n\t\t\t\t\t\t<div class="panel panel-default">\r\n\t\t\t\t\t\t\t<div class="panel-heading">\r\n\t\t\t\t\t\t\t\t<h4 class="panel-title">\r\n\t\t\t\t\t\t\t\t\tRental Info\r\n\t\t\t\t\t\t\t\t</h4>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<div class="panel-body">\r\n\r\n\t\t\t\t\t\t\t\t<table>\r\n\r\n\t\t\t\t\t\t<!-- create the next panel -->\r\n\r\n')
+            # SOURCE LINE 192
+            __M_writer('\r\n')
+            # SOURCE LINE 193
+            if f.label == 'Date Complete':
+                # SOURCE LINE 194
+                __M_writer('\t\t\t\t\t\t')
+                print('Date Complete')
+                
+                __M_writer('\r\n\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t<!-- end the table -->\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<!-- end the panel -->\r\n\r\n\t\t\t\t\t\t<div class="panel panel-default">\r\n\t\t\t\t\t\t\t<div class="panel-heading">\r\n\t\t\t\t\t\t\t\t<h4 class="panel-title">\r\n\t\t\t\t\t\t\t\t\tRepair Info\r\n\t\t\t\t\t\t\t\t</h4>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<div class="panel-body">\r\n\r\n\t\t\t\t\t\t\t\t<table>\r\n\r\n\t\t\t\t\t\t<!-- create the next panel -->\r\n\r\n')
+            # SOURCE LINE 216
+            __M_writer('\r\n')
+            # SOURCE LINE 217
             if isRentEmpty == True and (f.label !='Days to Rent' and f.label !='Username'):
-                # SOURCE LINE 132
+                # SOURCE LINE 218
                 __M_writer('\r\n')
-                # SOURCE LINE 133
+                # SOURCE LINE 219
                 if bSide:
-                    # SOURCE LINE 134
+                    # SOURCE LINE 220
                     __M_writer('\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>\r\n\t\t\t\t\t\t      <td>')
-                    # SOURCE LINE 136
+                    # SOURCE LINE 222
                     __M_writer(str( f.label ))
                     __M_writer('</td>\r\n\t\t\t\t\t\t      <td>')
-                    # SOURCE LINE 137
+                    # SOURCE LINE 223
                     __M_writer(str(f))
                     __M_writer(' ')
                     __M_writer(str(f.errors))
                     __M_writer('</td>  \r\n\t\t\t\t\t\t      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>\r\n')
-                    # SOURCE LINE 139
+                    # SOURCE LINE 225
                 else:
-                    # SOURCE LINE 140
+                    # SOURCE LINE 226
                     __M_writer('\t\t\t\t\t\t\t\t<td>')
                     __M_writer(str( f.label ))
                     __M_writer('</td>\r\n\t\t\t\t\t\t\t\t<td>')
-                    # SOURCE LINE 141
+                    # SOURCE LINE 227
                     __M_writer(str(f))
                     __M_writer(' ')
                     __M_writer(str(f.errors))
                     __M_writer('</td>  \r\n\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t<td>&nbsp;</td>\r\n\t\t\t\t\t\t\t</tr>\r\n')
-                # SOURCE LINE 147
+                # SOURCE LINE 233
                 __M_writer('\r\n')
-                # SOURCE LINE 148
+                # SOURCE LINE 234
             elif isRentEmpty == False:
-                # SOURCE LINE 149
+                # SOURCE LINE 235
                 if bSide:
-                    # SOURCE LINE 150
+                    # SOURCE LINE 236
                     __M_writer('\t\t\t\t\t    \t<tr>\r\n\t\t\t\t\t    \t  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>\r\n\t\t\t\t\t          <td>')
-                    # SOURCE LINE 152
+                    # SOURCE LINE 238
                     __M_writer(str( f.label ))
                     __M_writer('</td>\r\n\t\t\t\t\t          <td>')
-                    # SOURCE LINE 153
+                    # SOURCE LINE 239
                     __M_writer(str(f))
                     __M_writer(' ')
                     __M_writer(str(f.errors))
                     __M_writer('</td>  \r\n\t\t\t\t\t          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>\r\n')
-                    # SOURCE LINE 155
+                    # SOURCE LINE 241
                 else:
-                    # SOURCE LINE 156
+                    # SOURCE LINE 242
                     __M_writer('\t\t\t\t\t    \t\t<td>')
                     __M_writer(str( f.label ))
                     __M_writer('</td>\r\n\t\t\t\t\t    \t\t<td>')
-                    # SOURCE LINE 157
+                    # SOURCE LINE 243
                     __M_writer(str(f))
                     __M_writer(' ')
                     __M_writer(str(f.errors))
                     __M_writer('</td>  \r\n\t\t\t\t\t    \t</tr>\r\n\t\t\t\t\t    \t<tr>\r\n\t\t\t\t\t    \t\t<td>&nbsp;</td>\r\n\t\t\t\t\t    \t</tr>\r\n')
-                # SOURCE LINE 163
+                # SOURCE LINE 249
                 __M_writer('\r\n')
-            # SOURCE LINE 165
+            # SOURCE LINE 251
             __M_writer('\t\t\t\t\t\t\r\n\t\t\t\t\t\t')
-            # SOURCE LINE 166
+            # SOURCE LINE 252
  
             print(bSide)
             bSide = not bSide
@@ -189,9 +214,9 @@ def render_main(context,**pageargs):
             print('--------------')
             
             
-            # SOURCE LINE 171
+            # SOURCE LINE 257
             __M_writer('\r\n')
-        # SOURCE LINE 173
+        # SOURCE LINE 259
         __M_writer('\t\t\t\t\t</table>\r\n\t\t\t\t\t  <div class="form-group">\r\n\t\t\t\t\t    <div class="col-sm-offset-4 col-sm-4">\r\n\t\t\t\t\t      <input class="btn btn-success" type="submit" value="Save">\r\n\t\t\t\t\t    </div>\r\n\t\t\t\t\t  </div>\r\n\t\t\t\t\t</form>\r\n\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t</div>\r\n\r\n\t</div>\r\n</div>\r\n\r\n\t</div>\r\n</div>\r\n')
         return ''
     finally:

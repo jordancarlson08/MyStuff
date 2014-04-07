@@ -360,6 +360,7 @@ def process_request(request):
 	'cart_all':cart_all,
 	'isRentEmpty':isRentEmpty,
 	'isCartEmpty':isCartEmpty,
+	'isRepairEmpty': isRepairEmpty,
 
 	}
 
