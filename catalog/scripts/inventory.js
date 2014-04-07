@@ -44,6 +44,32 @@ $(function() {
 
 });
 
+$(function() {
+	
+	$('#add_button_disabled').mouseenter(function(){
+		console.log('Mouseover disabled');
+
+		$('#add_button_disabled').animate({
+
+			width:'600px'
+
+
+		});
+
+	});
+
+	$('#add_button_disabled').mouseleave(function(){
+
+		$('#add_button_disabled').animate({
+
+			width:'300px'
+
+
+		});
+
+	});
+
+});
 
 $(function() {
 

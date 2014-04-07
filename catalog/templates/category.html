@@ -17,24 +17,15 @@
             ${f}
             <button class="btn btn-default btn-block" type="submit"><span class="glyphicon glyphicon-search"></span>&nbsp;Search</button>
           </div>
-          
         </div>
         </div>
       </div>
-
-
     </div>
   %endfor
-
-
 </form>
 
 
-
-
-
 <div class="panel-group" id="accordion">
-
 
 %for c in category_list:
   <div class="panel panel-default">
@@ -92,114 +83,100 @@
 ${message}
 
 %if history:
-<h3>Recently Viewed Items</h3>
+  <h3>Recently Viewed Items</h3>
 
-<div class='text-left'>
-  <ul class="list-inline">
-
-    %if request.user.is_authenticated()==True:
-      %for h in history:
-        <li class='clickable'>
-          <a href='/catalog/inventory/${h.catalogItem.id}'>
-            <div class="panel panel-primary" >
-              <div class='panel-heading'><h3><strong>${h.catalogItem.manufacturer} ${h.catalogItem.name}</strong></h3></div>
-              <div class='panel-body'> <!-- panel body starts -->
-                <ul class='list-inline'>
-                  <li>
-                    <img src='${h.catalogItem.img}' width='200px'/>
-                  </li>
-                  <li>
-                    <ul class='list-unstyled'>
-                      <li>
-                        <strong>Price: $ ${h.catalogItem.listPrice}</strong>
-                      </li> 
-                      <li>
-                        SKU: ${h.catalogItem.sku}
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div> <!-- panel body ends -->
-            </div> <!-- panel ends -->
-          </a>
-        </li> <!-- list item ends -->
-      %endfor
-    %else:
-      %for h in history:
-        <li class='clickable'>
-          <a href='/catalog/inventory/${h.id}'>
-            <div class="panel panel-primary" >
-              <div class='panel-heading'><h3><strong>${h.manufacturer} ${h.name}</strong></h3></div>
-              <div class='panel-body'> <!-- panel body starts -->
-                <ul class='list-inline'>
-                  <li>
-                    <img src='${h.img}' width='200px'/>
-                  </li>
-                  <li>
-                    <ul class='list-unstyled'>
-                      <li>
-                        <strong>Price: $ ${h.listPrice}</strong>
-                      </li> 
-                      <li>
-                        SKU: ${h.sku}
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div> <!-- panel body ends -->
-            </div> <!-- panel ends -->
-          </a>
-        </li> <!-- list item ends -->
-      %endfor
-    %endif
-  </ul>
-</div>
+  <div class='container-fluid'>
+    <div class='row'>
+      %if request.user.is_authenticated()==True:
+        %for h in history:
+          <div class='col-md-4 col-sm-6 col-md-12'>
+            <a href='/catalog/inventory/${h.catalogItem.id}'>
+              <div class="panel panel-primary" >
+                <div class='panel-heading lg-heading'><h3><strong>${h.catalogItem.manufacturer} ${h.catalogItem.name}</strong></h3></div>
+                <div class='panel-body text-center'> <!-- panel body starts -->
+                  <ul class='list-inline'>
+                    <li>
+                      <img class='max-img' src='${h.catalogItem.img}' width='200px'/>
+                    </li>
+                    <li>
+                      <ul class='list-unstyled'>
+                        <li>
+                          <strong>Price: $ ${h.catalogItem.listPrice}</strong>
+                        </li> 
+                        <li>
+                          SKU: ${h.catalogItem.sku}
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div> <!-- panel body ends -->
+              </div> <!-- panel ends -->
+            </a>
+          </div>
+        %endfor
+      %else:
+        %for h in history:
+          <div class='col-md-4 col-sm-6 col-md-12'>
+            <a href='/catalog/inventory/${h.catalogItem.id}'>
+              <div class="panel panel-primary" >
+                <div class='panel-heading lg-heading'><h3><strong>${h.manufacturer} ${h.name}</strong></h3></div>
+                <div class='panel-body text-center'> <!-- panel body starts -->
+                  <ul class='list-inline'>
+                    <li>
+                      <img class='max-img' src='${h.catalogItem.img}' width='200px'/>
+                    </li>
+                    <li>
+                      <ul class='list-unstyled'>
+                        <li>
+                          <strong>Price: $ ${h.listPrice}</strong>
+                        </li> 
+                        <li>
+                          SKU: ${h.sku}
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div> <!-- panel body ends -->
+              </div> <!-- panel ends -->
+            </a>
+          </div>
+        %endfor
+      %endif    
+    </div>
+  </div>
 %endif
 
 
-<div class='text-left'>
-	<ul class="list-inline">
 
-		
+<div class='container-fluid'>
+  <div class='row'>
     %for i in items:
-
-      <li class='clickable'>
+      <div class='col-md-4 col-sm-6 col-md-12'>
         <a href='/catalog/inventory/${i.id}'>
-        <div class="panel panel-primary" >
-          <div class='panel-heading'><h3><strong>${i.manufacturer} ${i.name}</strong></h3></div>
-
-          <div class='panel-body'> <!-- panel body starts -->
-            
-            <ul class='list-inline'>
-
-              <li>
-
-                <img src='${i.img}' width='200px'/>
-
-              </li>
-              <li>
-                <ul class='list-unstyled'>
-                  <li>
-                    <strong>Price: $ ${i.listPrice}</strong>
-                  </li> 
-                  <li>
-                    SKU: ${i.sku}
-                  </li>
-
-                </ul>
-
-                
-              </li>
-            </ul>
-
-          </div> <!-- panel body ends -->
-        </div> <!-- panel ends -->
-      </a>
-      </li> <!-- list item ends -->
-
-      %endfor
-
-	</ul>
+          <div class="panel panel-primary" >
+            <div class='panel-heading lg-heading'><h3><strong>${i.manufacturer} ${i.name}</strong></h3></div>
+            <div class='panel-body text-center'> <!-- panel body starts -->
+              <ul class='list-inline'>
+                <li>
+                  <img class='max-img' src='${i.img}' width='200px'/>
+                </li>
+                <li>
+                  <ul class='list-unstyled'>
+                    <li>
+                      <strong>Price: $ ${i.listPrice}</strong>
+                    </li> 
+                    <li>
+                      SKU: ${i.sku}
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div> <!-- panel body ends -->
+          </div> <!-- panel ends -->
+        </a>
+      </div>
+    %endfor
+  </div>
 </div>
 
 

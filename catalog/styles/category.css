@@ -1,4 +1,4 @@
-	.clickable a{
+.clickable a{
 	display:block;
 }
 .clickable a:hover{
@@ -6,6 +6,15 @@
 }
 
 .panel-primary{
-	height: 300px;
-	width: 400px;
+	height: 350px;
+
+}
+
+.lg-heading{
+	height: 90px;
+}
+
+.max-img{
+	max-height: 175px;
+	width:auto;
 }
