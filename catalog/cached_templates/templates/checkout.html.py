@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396892577.241937
+_modified_time = 1396899629.492687
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\catalog\\templates/checkout.html'
 _template_uri = 'checkout.html'
@@ -28,11 +28,14 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        isRentEmpty = context.get('isRentEmpty', UNDEFINED)
+        cart_all = context.get('cart_all', UNDEFINED)
+        skip_list = context.get('skip_list', UNDEFINED)
+        isRepairEmpty = context.get('isRepairEmpty', UNDEFINED)
         def main():
             return render_main(context._locals(__M_locals))
+        isRentEmpty = context.get('isRentEmpty', UNDEFINED)
+        isEmployee = context.get('isEmployee', UNDEFINED)
         form = context.get('form', UNDEFINED)
-        cart_all = context.get('cart_all', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\r\n\r\n\r\n')
@@ -40,7 +43,7 @@ def render_body(context,**pageargs):
             context['self'].main(**pageargs)
         
 
-        # SOURCE LINE 276
+        # SOURCE LINE 286
         __M_writer('\r\n\r\n\r\n\r\n\r\n')
         return ''
     finally:
@@ -50,11 +53,14 @@ def render_body(context,**pageargs):
 def render_main(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        isRentEmpty = context.get('isRentEmpty', UNDEFINED)
+        cart_all = context.get('cart_all', UNDEFINED)
+        skip_list = context.get('skip_list', UNDEFINED)
+        isRepairEmpty = context.get('isRepairEmpty', UNDEFINED)
         def main():
             return render_main(context)
+        isRentEmpty = context.get('isRentEmpty', UNDEFINED)
+        isEmployee = context.get('isEmployee', UNDEFINED)
         form = context.get('form', UNDEFINED)
-        cart_all = context.get('cart_all', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 5
         __M_writer('\r\n')
@@ -111,113 +117,120 @@ def render_main(context,**pageargs):
                                                
         
         # SOURCE LINE 106
-        __M_writer('\r\n\r\n\t\t\t\t\t<div class="panel-group" id="accordion">\r\n\t\t\t\t\t\t<div class="panel panel-default">\r\n\t\t\t\t\t\t\t<div class="panel-heading">\r\n\t\t\t\t\t\t\t\t<h4 class="panel-title">\r\n\t\t\t\t\t\t\t\t\tBilling Address\r\n\t\t\t\t\t\t\t\t</h4>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<div class="panel-body">\r\n\t\t\t\t\t\t\t\t<form class ="form-horizontal" role="form" method ="POST">\r\n\t\t\t\t\t\t\t\t<table>\r\n\r\n\r\n')
-        # SOURCE LINE 121
+        __M_writer('\r\n\t\t\t\t\t')
+        # SOURCE LINE 107
+        spacer = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' 
+        
+        __M_writer('\r\n\t\t\t\t\t<!-- ######################## -->\r\n\t\t\t\t\t<!-- ## CREATE PANEL SECTION #-->\r\n\t\t\t\t\t<!-- ######################## -->\r\n\r\n\t\t\t\t\t<div class="panel-group" id="accordion">\r\n\r\n\t\t\t\t\t\t<div class="panel panel-default">\r\n\t\t\t\t\t\t\t<div class="panel-heading">\r\n\t\t\t\t\t\t\t\t<h4 class="panel-title">\r\n\t\t\t\t\t\t\t\t\tBilling Address\r\n\t\t\t\t\t\t\t\t</h4>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<div class="panel-body">\r\n\t\t\t\t\t\t\t\t<form class ="form-horizontal" role="form" method ="POST">\r\n\t\t\t\t\t\t\t\t<table>\r\n\r\n\r\n')
+        # SOURCE LINE 126
         for f in form:
-            # SOURCE LINE 122
-            if f.label == 'Same as Billing':
-                # SOURCE LINE 123
-                __M_writer('\t\t\t\t\t\t')
-                print('SAME AS BILLING!!!')
-                
-                __M_writer('\r\n\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t<!-- end the table -->\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<!-- end the panel -->\r\n\r\n\t\t\t\t\t\t<div class="panel panel-default">\r\n\t\t\t\t\t\t\t<div class="panel-heading">\r\n\t\t\t\t\t\t\t\t<h4 class="panel-title">\r\n\t\t\t\t\t\t\t\t\tShipping Address\r\n\t\t\t\t\t\t\t\t</h4>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<div class="panel-body">\r\n\r\n\t\t\t\t\t\t\t\t<table>\r\n\r\n\t\t\t\t\t\t<!-- create the next panel -->\r\n\r\n')
-            # SOURCE LINE 145
+            # SOURCE LINE 127
+            __M_writer('\r\n<!-- IF Logic to only make this if its a user doing the checkout -->\r\n')
+            # SOURCE LINE 129
+            if isEmployee == False:
+                # SOURCE LINE 130
+                if f.label == 'Same as Billing':
+                    # SOURCE LINE 131
+                    __M_writer('\t\t\t\t\t\t')
+                    print('SAME AS BILLING!!!')
+                    
+                    __M_writer('\r\n\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t<!-- end the table -->\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<!-- end the panel -->\r\n\r\n\t\t\t\t\t\t<div class="panel panel-default">\r\n\t\t\t\t\t\t\t<div class="panel-heading">\r\n\t\t\t\t\t\t\t\t<h4 class="panel-title">\r\n\t\t\t\t\t\t\t\t\tShipping Address\r\n\t\t\t\t\t\t\t\t</h4>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<div class="panel-body">\r\n\r\n\t\t\t\t\t\t\t\t<table>\r\n\r\n\t\t\t\t\t\t<!-- create the next panel -->\r\n\r\n')
+            # SOURCE LINE 154
+            __M_writer("\r\n<!-- IF Logic to only make this if the RENT cart isn't empty -->\r\n")
+            # SOURCE LINE 156
+            if isRentEmpty == False:
+                # SOURCE LINE 157
+                if f.label == 'Days to Rent':
+                    # SOURCE LINE 158
+                    __M_writer('\t\t\t\t\t\t')
+                    print('days to rent')
+                    
+                    __M_writer('\r\n\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t<!-- end the table -->\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<!-- end the panel -->\r\n\r\n\t\t\t\t\t\t<div class="panel panel-default">\r\n\t\t\t\t\t\t\t<div class="panel-heading">\r\n\t\t\t\t\t\t\t\t<h4 class="panel-title">\r\n\t\t\t\t\t\t\t\t\tRental Info\r\n\t\t\t\t\t\t\t\t</h4>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<div class="panel-body">\r\n\r\n\t\t\t\t\t\t\t\t<table>\r\n\r\n\t\t\t\t\t\t<!-- create the next panel -->\r\n\r\n')
+            # SOURCE LINE 181
+            __M_writer("\r\n<!-- IF Logic to only make this if the REPAIR cart isn't empty -->\r\n\r\n")
+            # SOURCE LINE 184
+            if isRepairEmpty == False:
+                # SOURCE LINE 185
+                if f.label == 'Date Complete':
+                    # SOURCE LINE 186
+                    __M_writer('\t\t\t\t\t\t')
+                    print('Date Complete')
+                    
+                    __M_writer('\r\n\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t<!-- end the table -->\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<!-- end the panel -->\r\n\r\n\t\t\t\t\t\t<div class="panel panel-default">\r\n\t\t\t\t\t\t\t<div class="panel-heading">\r\n\t\t\t\t\t\t\t\t<h4 class="panel-title">\r\n\t\t\t\t\t\t\t\t\tRepair Info\r\n\t\t\t\t\t\t\t\t</h4>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<div class="panel-body">\r\n\r\n\t\t\t\t\t\t\t\t<table>\r\n\r\n\t\t\t\t\t\t<!-- create the next panel -->\r\n')
+            # SOURCE LINE 208
+            __M_writer('\r\n')
+            # SOURCE LINE 209
             if f.label == 'Credit Card':
-                # SOURCE LINE 146
+                # SOURCE LINE 210
                 __M_writer('\t\t\t\t\t\t')
                 print('Credit Card')
                 
                 __M_writer('\r\n\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t<!-- end the table -->\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<!-- end the panel -->\r\n\r\n\t\t\t\t\t\t<div class="panel panel-default">\r\n\t\t\t\t\t\t\t<div class="panel-heading">\r\n\t\t\t\t\t\t\t\t<h4 class="panel-title">\r\n\t\t\t\t\t\t\t\t\tPayment Info\r\n\t\t\t\t\t\t\t\t</h4>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<div class="panel-body">\r\n\r\n\t\t\t\t\t\t\t\t<table>\r\n\r\n\t\t\t\t\t\t<!-- create the next panel -->\r\n\r\n')
-            # SOURCE LINE 168
-            __M_writer('\r\n')
-            # SOURCE LINE 169
-            if f.label == 'Days to Rent':
-                # SOURCE LINE 170
+            # SOURCE LINE 232
+            __M_writer('\r\n\t\t\t\t\t\t<!-- ######################## -->\r\n\t\t\t\t\t\t<!-- END CREATE PANEL SECTION -->\r\n\t\t\t\t\t\t<!-- ######################## -->\r\n\r\n\r\n\r\n')
+            # SOURCE LINE 239
+            if f.name in skip_list:
+                # SOURCE LINE 240
                 __M_writer('\t\t\t\t\t\t')
-                print('days to rent')
+                print('!!!!SKIPPED!!!')
                 
-                __M_writer('\r\n\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t<!-- end the table -->\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<!-- end the panel -->\r\n\r\n\t\t\t\t\t\t<div class="panel panel-default">\r\n\t\t\t\t\t\t\t<div class="panel-heading">\r\n\t\t\t\t\t\t\t\t<h4 class="panel-title">\r\n\t\t\t\t\t\t\t\t\tRental Info\r\n\t\t\t\t\t\t\t\t</h4>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<div class="panel-body">\r\n\r\n\t\t\t\t\t\t\t\t<table>\r\n\r\n\t\t\t\t\t\t<!-- create the next panel -->\r\n\r\n')
-            # SOURCE LINE 192
-            __M_writer('\r\n')
-            # SOURCE LINE 193
-            if f.label == 'Date Complete':
-                # SOURCE LINE 194
-                __M_writer('\t\t\t\t\t\t')
-                print('Date Complete')
+                __M_writer('\r\n\t\t\t\t\t\t')
+                # SOURCE LINE 241
+                continue
                 
-                __M_writer('\r\n\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t<!-- end the table -->\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<!-- end the panel -->\r\n\r\n\t\t\t\t\t\t<div class="panel panel-default">\r\n\t\t\t\t\t\t\t<div class="panel-heading">\r\n\t\t\t\t\t\t\t\t<h4 class="panel-title">\r\n\t\t\t\t\t\t\t\t\tRepair Info\r\n\t\t\t\t\t\t\t\t</h4>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<div class="panel-body">\r\n\r\n\t\t\t\t\t\t\t\t<table>\r\n\r\n\t\t\t\t\t\t<!-- create the next panel -->\r\n\r\n')
-            # SOURCE LINE 216
-            __M_writer('\r\n')
-            # SOURCE LINE 217
-            if isRentEmpty == True and (f.label !='Days to Rent' and f.label !='Username'):
-                # SOURCE LINE 218
                 __M_writer('\r\n')
-                # SOURCE LINE 219
-                if bSide:
-                    # SOURCE LINE 220
-                    __M_writer('\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>\r\n\t\t\t\t\t\t      <td>')
-                    # SOURCE LINE 222
-                    __M_writer(str( f.label ))
-                    __M_writer('</td>\r\n\t\t\t\t\t\t      <td>')
-                    # SOURCE LINE 223
-                    __M_writer(str(f))
-                    __M_writer(' ')
-                    __M_writer(str(f.errors))
-                    __M_writer('</td>  \r\n\t\t\t\t\t\t      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>\r\n')
-                    # SOURCE LINE 225
-                else:
-                    # SOURCE LINE 226
-                    __M_writer('\t\t\t\t\t\t\t\t<td>')
-                    __M_writer(str( f.label ))
-                    __M_writer('</td>\r\n\t\t\t\t\t\t\t\t<td>')
-                    # SOURCE LINE 227
-                    __M_writer(str(f))
-                    __M_writer(' ')
-                    __M_writer(str(f.errors))
-                    __M_writer('</td>  \r\n\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t<td>&nbsp;</td>\r\n\t\t\t\t\t\t\t</tr>\r\n')
-                # SOURCE LINE 233
+                # SOURCE LINE 242
+            else:
+                # SOURCE LINE 243
+                __M_writer('\t\t\t\t\t')
+                print('!!!!NOT SKIPPED!!!')
+                
                 __M_writer('\r\n')
-                # SOURCE LINE 234
-            elif isRentEmpty == False:
-                # SOURCE LINE 235
-                if bSide:
-                    # SOURCE LINE 236
-                    __M_writer('\t\t\t\t\t    \t<tr>\r\n\t\t\t\t\t    \t  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>\r\n\t\t\t\t\t          <td>')
-                    # SOURCE LINE 238
+                # SOURCE LINE 244
+                if bSide: 
+                    # SOURCE LINE 245
+                    __M_writer('\t\t\t\t      \t<!-- Left side -->\r\n\t\t\t\t    \t<tr>\r\n\t\t\t\t    \t  <td>')
+                    # SOURCE LINE 247
+                    __M_writer(str(spacer))
+                    __M_writer('</td>\r\n\t\t\t\t          <td><strong>')
+                    # SOURCE LINE 248
                     __M_writer(str( f.label ))
-                    __M_writer('</td>\r\n\t\t\t\t\t          <td>')
-                    # SOURCE LINE 239
+                    __M_writer('</strong></td>\r\n\t\t\t\t          <td>')
+                    # SOURCE LINE 249
+                    __M_writer(str(spacer))
+                    __M_writer('</td>\r\n\t\t\t\t          <td>')
+                    # SOURCE LINE 250
                     __M_writer(str(f))
                     __M_writer(' ')
                     __M_writer(str(f.errors))
-                    __M_writer('</td>  \r\n\t\t\t\t\t          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>\r\n')
-                    # SOURCE LINE 241
-                else:
-                    # SOURCE LINE 242
-                    __M_writer('\t\t\t\t\t    \t\t<td>')
+                    __M_writer('</td>  \r\n\t\t\t\t          <td>')
+                    # SOURCE LINE 251
+                    __M_writer(str(spacer))
+                    __M_writer(str(spacer))
+                    __M_writer('</td>\r\n')
+                    # SOURCE LINE 252
+                else: 
+                    # SOURCE LINE 253
+                    __M_writer('\t\t\t\t    \t<!-- Right side -->\r\n\t\t\t\t    \t\t<td><strong>')
+                    # SOURCE LINE 254
                     __M_writer(str( f.label ))
-                    __M_writer('</td>\r\n\t\t\t\t\t    \t\t<td>')
-                    # SOURCE LINE 243
+                    __M_writer('</strong></td>\r\n\t\t\t\t    \t\t<td>')
+                    # SOURCE LINE 255
+                    __M_writer(str(spacer))
+                    __M_writer('</td>\r\n\t\t\t\t    \t\t<td>')
+                    # SOURCE LINE 256
                     __M_writer(str(f))
                     __M_writer(' ')
                     __M_writer(str(f.errors))
-                    __M_writer('</td>  \r\n\t\t\t\t\t    \t</tr>\r\n\t\t\t\t\t    \t<tr>\r\n\t\t\t\t\t    \t\t<td>&nbsp;</td>\r\n\t\t\t\t\t    \t</tr>\r\n')
-                # SOURCE LINE 249
-                __M_writer('\r\n')
-            # SOURCE LINE 251
-            __M_writer('\t\t\t\t\t\t\r\n\t\t\t\t\t\t')
-            # SOURCE LINE 252
- 
-            print(bSide)
-            bSide = not bSide
-            print(bSide)
-            print('--------------')
-            
-            
-            # SOURCE LINE 257
-            __M_writer('\r\n')
-        # SOURCE LINE 259
-        __M_writer('\t\t\t\t\t</table>\r\n\t\t\t\t\t  <div class="form-group">\r\n\t\t\t\t\t    <div class="col-sm-offset-4 col-sm-4">\r\n\t\t\t\t\t      <input class="btn btn-success" type="submit" value="Save">\r\n\t\t\t\t\t    </div>\r\n\t\t\t\t\t  </div>\r\n\t\t\t\t\t</form>\r\n\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t</div>\r\n\r\n\t</div>\r\n</div>\r\n\r\n\t</div>\r\n</div>\r\n')
+                    __M_writer('</td>  \r\n\t\t\t\t    \t</tr>\r\n\t\t\t\t    \t<tr>\r\n\t\t\t\t    \t\t<td>&nbsp;</td>\r\n\t\t\t\t    \t</tr>\r\n')
+                # SOURCE LINE 262
+                __M_writer('\t\t\t\t\t\t<!-- Swap from left to right or from right to left -->\r\n\t\t\t\t\t\t')
+                # SOURCE LINE 263
+                bSide = not bSide 
+                
+                __M_writer(' \r\n\r\n\r\n')
+        # SOURCE LINE 268
+        __M_writer('\r\n\t\t\t\t\t</table>\r\n\t\t\t\t\t  <div class="form-group">\r\n\t\t\t\t\t    <div class="col-sm-offset-4 col-sm-4">\r\n\t\t\t\t\t      <input class="btn btn-success" type="submit" value="Finish Transaction">\r\n\t\t\t\t\t    </div>\r\n\t\t\t\t\t  </div>\r\n\t\t\t\t\t</form>\r\n\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t</div>\r\n\r\n\t</div>\r\n</div>\r\n\r\n\t</div>\r\n</div>\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()

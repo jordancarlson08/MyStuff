@@ -104,8 +104,13 @@
 
 					<% bSide = True
 					%>
+					<% spacer = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' %>
+					<!-- ######################## -->
+					<!-- ## CREATE PANEL SECTION #-->
+					<!-- ######################## -->
 
 					<div class="panel-group" id="accordion">
+
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -119,6 +124,9 @@
 
 
 					  %for f in form:
+
+<!-- IF Logic to only make this if its a user doing the checkout -->
+					%if isEmployee == False:
 						%if f.label == 'Same as Billing':
 						<%print('SAME AS BILLING!!!')%>
 
@@ -142,6 +150,62 @@
 						<!-- create the next panel -->
 
 						%endif
+					%endif
+
+<!-- IF Logic to only make this if the RENT cart isn't empty -->
+					%if isRentEmpty == False:
+						%if f.label == 'Days to Rent':
+						<%print('days to rent')%>
+
+						</table>
+						<!-- end the table -->
+							</div>
+						</div>
+						<!-- end the panel -->
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									Rental Info
+								</h4>
+							</div>
+
+							<div class="panel-body">
+
+								<table>
+
+						<!-- create the next panel -->
+
+						%endif
+					%endif
+
+<!-- IF Logic to only make this if the REPAIR cart isn't empty -->
+
+					%if isRepairEmpty == False:
+						%if f.label == 'Date Complete':
+						<%print('Date Complete')%>
+
+						</table>
+						<!-- end the table -->
+							</div>
+						</div>
+						<!-- end the panel -->
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									Repair Info
+								</h4>
+							</div>
+
+							<div class="panel-body">
+
+								<table>
+
+						<!-- create the next panel -->
+						%endif
+					%endif
+
 						%if f.label == 'Credit Card':
 						<%print('Credit Card')%>
 
@@ -166,100 +230,46 @@
 
 						%endif
 
-						%if f.label == 'Days to Rent':
-						<%print('days to rent')%>
+						<!-- ######################## -->
+						<!-- END CREATE PANEL SECTION -->
+						<!-- ######################## -->
 
-						</table>
-						<!-- end the table -->
-							</div>
-						</div>
-						<!-- end the panel -->
 
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									Rental Info
-								</h4>
-							</div>
 
-							<div class="panel-body">
+					%if f.name in skip_list:
+						<%print('!!!!SKIPPED!!!')%>
+						<%continue%>
+					%else:
+					<%print('!!!!NOT SKIPPED!!!')%>
+				      	%if bSide: 
+				      	<!-- Left side -->
+				    	<tr>
+				    	  <td>${spacer}</td>
+				          <td><strong>${ f.label }</strong></td>
+				          <td>${spacer}</td>
+				          <td>${f} ${f.errors}</td>  
+				          <td>${spacer}${spacer}</td>
+				    	%else: 
+				    	<!-- Right side -->
+				    		<td><strong>${ f.label }</strong></td>
+				    		<td>${spacer}</td>
+				    		<td>${f} ${f.errors}</td>  
+				    	</tr>
+				    	<tr>
+				    		<td>&nbsp;</td>
+				    	</tr>
+				        %endif
+						<!-- Swap from left to right or from right to left -->
+						<% bSide = not bSide %> 
 
-								<table>
 
-						<!-- create the next panel -->
-
-						%endif
-
-						%if f.label == 'Date Complete':
-						<%print('Date Complete')%>
-
-						</table>
-						<!-- end the table -->
-							</div>
-						</div>
-						<!-- end the panel -->
-
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									Repair Info
-								</h4>
-							</div>
-
-							<div class="panel-body">
-
-								<table>
-
-						<!-- create the next panel -->
-
-						%endif
-
-						%if isRentEmpty == True and (f.label !='Days to Rent' and f.label !='Username'):
-
-						  	%if bSide:
-							<tr>
-							  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-						      <td>${ f.label }</td>
-						      <td>${f} ${f.errors}</td>  
-						      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-							%else:
-								<td>${ f.label }</td>
-								<td>${f} ${f.errors}</td>  
-							</tr>
-							<tr>
-								<td>&nbsp;</td>
-							</tr>
-						    %endif
-
-						%elif isRentEmpty == False:
-					      	%if bSide:
-					    	<tr>
-					    	  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-					          <td>${ f.label }</td>
-					          <td>${f} ${f.errors}</td>  
-					          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-					    	%else:
-					    		<td>${ f.label }</td>
-					    		<td>${f} ${f.errors}</td>  
-					    	</tr>
-					    	<tr>
-					    		<td>&nbsp;</td>
-					    	</tr>
-					        %endif
-
-					    %endif
-						
-						<% 
-						print(bSide)
-						bSide = not bSide
-						print(bSide)
-						print('--------------')
-						%>
+					%endif
 					  %endfor
+
 					</table>
 					  <div class="form-group">
 					    <div class="col-sm-offset-4 col-sm-4">
-					      <input class="btn btn-success" type="submit" value="Save">
+					      <input class="btn btn-success" type="submit" value="Finish Transaction">
 					    </div>
 					  </div>
 					</form>

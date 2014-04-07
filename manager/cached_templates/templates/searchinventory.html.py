@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396844516.834424
+_modified_time = 1396897244.283927
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/searchinventory.html'
 _template_uri = 'searchinventory.html'
@@ -28,11 +28,11 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        catItems = context.get('catItems', UNDEFINED)
-        serial = context.get('serial', UNDEFINED)
-        rental = context.get('rental', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        rental = context.get('rental', UNDEFINED)
+        serial = context.get('serial', UNDEFINED)
+        catItems = context.get('catItems', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\r\n\r\n')
@@ -50,11 +50,11 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        catItems = context.get('catItems', UNDEFINED)
-        serial = context.get('serial', UNDEFINED)
-        rental = context.get('rental', UNDEFINED)
         def content():
             return render_content(context)
+        rental = context.get('rental', UNDEFINED)
+        serial = context.get('serial', UNDEFINED)
+        catItems = context.get('catItems', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 4
         __M_writer('\r\n')

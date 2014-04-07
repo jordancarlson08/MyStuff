@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396755638.60882
+_modified_time = 1396897244.306932
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\base_app\\templates/base_template.htm'
 _template_uri = 'base_template.htm'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['top', 'main']
+_exports = ['main', 'top']
 
 
 # SOURCE LINE 5
@@ -23,13 +23,13 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        len = context.get('len', UNDEFINED)
-        def top():
-            return render_top(context._locals(__M_locals))
         def main():
             return render_main(context._locals(__M_locals))
-        request = context.get('request', UNDEFINED)
         self = context.get('self', UNDEFINED)
+        def top():
+            return render_top(context._locals(__M_locals))
+        len = context.get('len', UNDEFINED)
+        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 4
         __M_writer('\r\n')
@@ -66,7 +66,7 @@ def render_body(context,**pageargs):
         
         
         __M_locals_builtin_stored = __M_locals_builtin()
-        __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in ['cart_length','isStaff','rent','cart','repair'] if __M_key in __M_locals_builtin_stored]))
+        __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in ['cart','repair','isStaff','rent','cart_length'] if __M_key in __M_locals_builtin_stored]))
         # SOURCE LINE 66
         __M_writer('\r\n')
         # SOURCE LINE 67
@@ -142,12 +142,25 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_main(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def main():
+            return render_main(context)
+        __M_writer = context.writer()
+        # SOURCE LINE 183
+        __M_writer('\r\n  Site content goes here in sub-templates.\r\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_top(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        request = context.get('request', UNDEFINED)
         def top():
             return render_top(context)
-        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 133
         __M_writer('\r\n')
@@ -159,19 +172,6 @@ def render_top(context,**pageargs):
         if request.user.is_staff == True:
             # SOURCE LINE 136
             __M_writer('\r\n\r\n  <!-- The Manager Nav Bar -->\r\n  <ul class="nav nav-tabs navbar-right">\r\n\r\n    <li class="dropdown">\r\n      <a class="btn btn-primary" data-toggle="dropdown" href="#">\r\n        <span class="glyphicon glyphicon-tags"></span>&nbsp; Inventory <span class="caret"></span>\r\n      </a>\r\n      <ul class="dropdown-menu">\r\n        <li><a href="/manager/searchinventory/"><span class="glyphicon glyphicon-search"></span> Search</a></li>\r\n        <li><a href="/manager/newcatalogitem/"><span class="glyphicon glyphicon-new-window"></span> New Catalog Item</a></li>\r\n        <li><a href="/manager/newserializeditem/"><span class="glyphicon glyphicon-new-window"></span> New Serialized Item</a></li>\r\n      </ul>\r\n    </li>\r\n\r\n    <li class="dropdown">\r\n      <a class="btn btn-success" data-toggle="dropdown" href="#">\r\n        <span class="glyphicon glyphicon-star"></span> Stores <span class="caret"></span>\r\n      </a>\r\n      <ul class="dropdown-menu">\r\n        <li><a href="/manager/searchstores/"><span class="glyphicon glyphicon-search"></span> Search</a></li>\r\n        <li><a href="/manager/newstore/"><span class="glyphicon glyphicon-new-window"></span> New Store</a></li>\r\n      </ul>\r\n    </li>\r\n\r\n    <li class="dropdown">\r\n      <a class="btn btn-danger" data-toggle="dropdown" href="#">\r\n        <span class="glyphicon glyphicon-user"></span> Users <span class="caret"></span>\r\n      </a>\r\n      <ul class="dropdown-menu">\r\n        <li><a href="/manager/searchusers/"><span class="glyphicon glyphicon-search"></span> Search Users</a></li>\r\n        <li><a href="/account/newuser/"><span class="glyphicon glyphicon-new-window"></span> New User</a></li>\r\n        <li><a href="/account/newemployee/"><span class="glyphicon glyphicon-new-window"></span> New Employee</a></li>\r\n      </ul>\r\n    </li>\r\n  </ul>\r\n  <!-- End Nav Bar -->\r\n\r\n\r\n\r\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_main(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def main():
-            return render_main(context)
-        __M_writer = context.writer()
-        # SOURCE LINE 183
-        __M_writer('\r\n  Site content goes here in sub-templates.\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()

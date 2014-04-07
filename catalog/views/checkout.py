@@ -24,6 +24,7 @@ def process_request(request):
 	rent_list =[]
 	repair_list=[]
 	subtotal_list = []
+	skip_list = []
 
 	isCartEmpty=True
 	isRentEmpty=True
@@ -53,6 +54,9 @@ def process_request(request):
 		cart_all = Cart(cart_list, rent_list, repair_list)
 		isRepairEmpty=False
 
+	
+
+
 	##### Cart End #####
 
 	##### Checkout Form Stuff ######
@@ -66,6 +70,23 @@ def process_request(request):
 		# Get User
 		currentCustomer = User.objects.get(id=request.user.id)
 		isEmployee = False
+
+
+	### CREATE the skip list used for layout of fields ###
+
+	skip_ship = ['ship_first_name', 'ship_last_name', 'ship_phone', 'ship_email', 'ship_street1', 'ship_street2', 'ship_city', 'ship_state', 'ship_zipCode', 'shipping']
+	skip_rent = ['days', 'username']
+	skip_repair = ['dateComplete', 'description', 'hours', 'status', 'amount']
+
+	if isEmployee==True:
+		skip_list = skip_list + skip_ship
+	if isRentEmpty == True:
+		skip_list = skip_list + skip_rent
+	if isRepairEmpty == True:
+		skip_list = skip_list + skip_repair
+	print('------------------')
+	print(skip_list) #TestingPurposes
+
 
 	#Error Handling: If its a user that has rentals in his cart (should be impossible) redirect to the homepage and clear cart
 	if (isEmployee == False and isRentEmpty == False):
@@ -358,9 +379,11 @@ def process_request(request):
 
 	'form':form,
 	'cart_all':cart_all,
-	'isRentEmpty':isRentEmpty,
+	'isEmployee': isEmployee,
 	'isCartEmpty':isCartEmpty,
+	'isRentEmpty':isRentEmpty,
 	'isRepairEmpty': isRepairEmpty,
+	'skip_list':skip_list,
 
 	}
 
@@ -398,22 +421,24 @@ class CheckoutForm(forms.Form):
 	ship_zipCode = forms.IntegerField(required=False, label='Zip Code',  widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '84601',}))
 	#Shipping method
 	shipping = forms.ModelChoiceField(label='Shipping Method', queryset=Shipping.objects.all().order_by('price'), widget=forms.Select(attrs={'class': 'form-control',}))
-	#Payment
-	card = forms.IntegerField(label='Credit Card', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '1234 5678 9012 3456'}))
-	code = forms.IntegerField(label='Security Code', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '445'}))
-	exp_month = forms.IntegerField(label='Expiration Month', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'MM'}))
-	exp_year = forms.IntegerField(label='Expiration Year', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'YYYY'}))
 	# Rental stuff
 	days = forms.IntegerField(required= False, label='Days to Rent', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '2'}))
-	username = forms.CharField(required= False, label='Username', max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username',}))
 	username = forms.ModelChoiceField(label='User', queryset=User.objects.all(), widget=forms.Select(attrs={'class': 'form-control',}))
 	# Repair Stuff
-
-	#Do Date Pickup automaticly
-	#datePickup = forms.DateField(label='Hire Date', widget=forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Date Pickedup',}))
 	dateComplete = forms.DateField(required=False, label='Date Complete', widget=forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Date Complete',}))
 	description = forms.CharField(required=False, label='Description', widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description',}))
 	hours = forms.DecimalField(required=False, label='Hours', max_digits=8, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Hours',}))
 	status = forms.CharField(required=False, label='Status', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Status',}))
 	amount = forms.DecimalField(required=False, label='Cost', max_digits=8, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Cost',}))
+	#Payment
+	card = forms.IntegerField(label='Credit Card', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '1234 5678 9012 3456'}))
+	code = forms.IntegerField(label='Security Code', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '445'}))
+	exp_month = forms.IntegerField(label='Expiration Month', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'MM'}))
+	exp_year = forms.IntegerField(label='Expiration Year', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'YYYY'}))
 
+
+
+
+
+
+	

@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396843718.221968
+_modified_time = 1396897259.532958
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/inventory.html'
 _template_uri = 'inventory.html'
@@ -28,14 +28,14 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        conditions_list = context.get('conditions_list', UNDEFINED)
+        item = context.get('item', UNDEFINED)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         serial = context.get('serial', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        rentals = context.get('rentals', UNDEFINED)
-        item = context.get('item', UNDEFINED)
+        conditions_list = context.get('conditions_list', UNDEFINED)
         stores_list = context.get('stores_list', UNDEFINED)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        rentals = context.get('rentals', UNDEFINED)
         form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
@@ -54,14 +54,14 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        conditions_list = context.get('conditions_list', UNDEFINED)
+        item = context.get('item', UNDEFINED)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         serial = context.get('serial', UNDEFINED)
         def content():
             return render_content(context)
-        rentals = context.get('rentals', UNDEFINED)
-        item = context.get('item', UNDEFINED)
+        conditions_list = context.get('conditions_list', UNDEFINED)
         stores_list = context.get('stores_list', UNDEFINED)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        rentals = context.get('rentals', UNDEFINED)
         form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 3
