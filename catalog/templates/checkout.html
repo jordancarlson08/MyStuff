@@ -8,11 +8,12 @@
 		<h1>Checkout</h1></br>
 		<div class="row">
 			<div class="col-md-3">
+
+			%if cart_all:
+
 				<div class="well">
 					<h3>Your Items</h3>
 					<hr/>
-
-
 					%for c in cart_all.cartItem_list:
 					<table>
 						<h4><strong>${c.item.manufacturer} ${c.item.name}</strong></h4>
@@ -44,7 +45,7 @@
 
 						<hr/>
 					%endfor
-
+				
 
 
 					<table>
@@ -69,6 +70,7 @@
 					</table>
 					<br>
 				</div> <!--closes the "well" -->
+			%endif
 
 				<div class="well">
 					<div class="container">
