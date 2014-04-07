@@ -37,6 +37,7 @@ def process_request(request):
 		'leadTime': c.leadTime,
 		'category':c.category,
 		'isSerial':c.isSerial,
+		'img':c.img,
 		})
 
 	if request.method == 'POST':

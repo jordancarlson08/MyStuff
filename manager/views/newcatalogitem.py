@@ -34,7 +34,11 @@ def process_request(request):
 			c.category = form.cleaned_data['category']
 			c.isSerial = form.cleaned_data['isSerial']
 			img = request.FILES.get('img', None)
-			c.img = '/static/catalog/images/products/'+str(img)
+			print(img)
+			if str(img) != 'None':	
+				c.img = '/static/catalog/images/products/'+str(img)
+			else:
+				c.img = '/static/catalog/images/products/default.png'
 			c.save()
 
 			return HttpResponseRedirect('/manager/searchinventory/')
