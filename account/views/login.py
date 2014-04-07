@@ -34,7 +34,7 @@ def process_request(request):
 			    if user.is_active:
 			        login(request, user)
 
-			        #gets the history session and adds them to the database for the user
+			        #converts session to database -- see below
 			        add_history_to_database(request, user)
 
 			        if form.cleaned_data['remember'] == True:
@@ -82,20 +82,23 @@ class LoginForm(forms.Form):
 def add_history_to_database(request, user):
 	'''Adds the history session info to the database'''
 
-	history = request.session.get('history', {})
-	history = sorted(history, key=history.__getitem__)
-
-	existHist = History.objects.filter(user=user)
-
-	for h in existHist:
-		for i in history:
-			if str(h.catalogItem.id) == str(i):
-				h.save()
-			else:
-				h = History()
-				h.user = user
-				h.catalogItem = CatalogItem.objects.get(id=i)
-				h.save()
+	session = request.session.get('history', {})
+	session = sorted(session, key=session.__getitem__)
+	database = History.objects.filter(user=user)
+	database_id=[]
+	for d in database:
+		database_id.append(str(d.catalogItem.id))
+	for i in session:
+		if i in database_id:
+			for d in database:
+				if str(i)== str(d.catalogItem.id):
+					d.user = user
+					d.save()
+		else:
+			h = History()
+			h.user = user
+			h.catalogItem = CatalogItem.objects.get(id=i)
+			h.save()
 
 	request.session['history'] = {}
 

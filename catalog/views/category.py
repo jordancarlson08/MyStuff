@@ -45,7 +45,7 @@ def process_request(request):
 			message = "Welcome! Select a category from the menu on the left to get started."
 			if request.user.is_authenticated()==True:
 				#Use the database if logged in
-				history= hmod.History.objects.filter(user=request.user).order_by('-last')
+				history= hmod.History.objects.filter(user=request.user).order_by('-last')[:5]
 			else:
 				#Use the session if not logged in
 				history={}
@@ -53,7 +53,6 @@ def process_request(request):
 				for i in hist.keys():
 					item = hmod.CatalogItem.objects.get(id=i)
 					history[item]= hist[i]
-				#Sorts the Dict and returns a list
 				history = sorted(history, key=history.__getitem__, reverse=True)
 
 		else:
