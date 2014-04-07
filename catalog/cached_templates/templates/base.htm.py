@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396750894.417322
+_modified_time = 1396892642.330141
 _enable_loop = True
-_template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\catalog\\templates/base.htm'
+_template_filename = '/Users/ecookson/Desktop/MyStuff/catalog/templates/base.htm'
 _template_uri = 'base.htm'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['left_side', 'content', 'main']
+_exports = ['content', 'main', 'left_side']
 
 
 def _mako_get_namespace(context, name):
@@ -28,12 +28,12 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def left_side():
-            return render_left_side(context._locals(__M_locals))
         def content():
             return render_content(context._locals(__M_locals))
         def main():
             return render_main(context._locals(__M_locals))
+        def left_side():
+            return render_left_side(context._locals(__M_locals))
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\n\n')
@@ -41,19 +41,6 @@ def render_body(context,**pageargs):
             context['self'].main(**pageargs)
         
 
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_left_side(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def left_side():
-            return render_left_side(context)
-        __M_writer = context.writer()
-        # SOURCE LINE 11
-        __M_writer('\n\n            Site content goes here in sub-templates.\n\n          ')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -75,12 +62,12 @@ def render_content(context,**pageargs):
 def render_main(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def left_side():
-            return render_left_side(context)
         def content():
             return render_content(context)
         def main():
             return render_main(context)
+        def left_side():
+            return render_left_side(context)
         __M_writer = context.writer()
         # SOURCE LINE 4
         __M_writer('\n')
@@ -106,6 +93,19 @@ def render_main(context,**pageargs):
  
 
         __M_writer('   \n                \n      </div>\n    </div>\n  </div>  \n \n\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_left_side(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def left_side():
+            return render_left_side(context)
+        __M_writer = context.writer()
+        # SOURCE LINE 11
+        __M_writer("\n\n            <a id='back_button' class='btn btn-default btn-small'><span class='glyphicon glyphicon-arrow-left'></span>&nbsp;Back</a>\n\n          ")
         return ''
     finally:
         context.caller_stack._pop_frame()
