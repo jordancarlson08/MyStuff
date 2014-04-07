@@ -391,8 +391,6 @@ def process_request(request):
 
 		return HttpResponseRedirect('/catalog/category')
 			
-
-
 	tvars = {
 
 	'form':form,
