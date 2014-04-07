@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396902101.647305
+_modified_time = 1396902365.051186
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\catalog\\templates/checkout.html'
 _template_uri = 'checkout.html'
@@ -29,13 +29,13 @@ def render_body(context,**pageargs):
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         isEmployee = context.get('isEmployee', UNDEFINED)
-        cart_all = context.get('cart_all', UNDEFINED)
-        isRepairEmpty = context.get('isRepairEmpty', UNDEFINED)
+        isRentEmpty = context.get('isRentEmpty', UNDEFINED)
         skip_list = context.get('skip_list', UNDEFINED)
+        isRepairEmpty = context.get('isRepairEmpty', UNDEFINED)
+        form = context.get('form', UNDEFINED)
         def main():
             return render_main(context._locals(__M_locals))
-        isRentEmpty = context.get('isRentEmpty', UNDEFINED)
-        form = context.get('form', UNDEFINED)
+        cart_all = context.get('cart_all', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\r\n\r\n\r\n')
@@ -54,13 +54,13 @@ def render_main(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         isEmployee = context.get('isEmployee', UNDEFINED)
-        cart_all = context.get('cart_all', UNDEFINED)
-        isRepairEmpty = context.get('isRepairEmpty', UNDEFINED)
+        isRentEmpty = context.get('isRentEmpty', UNDEFINED)
         skip_list = context.get('skip_list', UNDEFINED)
+        isRepairEmpty = context.get('isRepairEmpty', UNDEFINED)
+        form = context.get('form', UNDEFINED)
         def main():
             return render_main(context)
-        isRentEmpty = context.get('isRentEmpty', UNDEFINED)
-        form = context.get('form', UNDEFINED)
+        cart_all = context.get('cart_all', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 5
         __M_writer('\r\n')

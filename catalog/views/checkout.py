@@ -4,12 +4,15 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from manager.models import *
 from catalog.models import *
 from account.models import *
+from base_app.user_util import get_users_only
 from . import templater
 from datetime import *
 from decimal import *
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 import requests
+
+#TestingPurposes -- Find and remove all print statments
 
 @login_required
 def process_request(request):
@@ -150,69 +153,74 @@ def process_request(request):
 			print("----------------------------------") #TestingPurposes
 			print("Cart isn't empty ---- Process Sale") #TestingPurposes
 			print("----------------------------------") #TestingPurposes
-			if request.method == 'POST': #FixLater --- Remove once FixLater #100 has been addressed
-				form = CheckoutForm(request.POST) #FixLater --- Remove once FixLater #100 has been addressed
-				if form.is_valid(): #FixLater --- Remove once FixLater #100 has been addressed
+			# if request.method == 'POST': #FixLater --- Remove once FixLater #100 has been addressed
+			form = CheckoutForm(request.POST) #FixLater --- Remove once FixLater #100 has been addressed
+			if form.is_valid(): #FixLater --- Remove once FixLater #100 has been addressed
 
-					r = Sale()
-					r.amount = 0
-					r.save()
-					items_list=[]
-					ssi = ''
-					sci = ''
-					for i in cart.keys():
-						item = CatalogItem.objects.get(id=i)
-						if item.isSerial == True:
-							# Get the serialized items for the given cat item excluding already sold and rentals ---------------------# This part should only give new items (not tested)
-							actual_list = SerializedItem.objects.filter(catalogItem=item).exclude(isRental=True).filter(isSold=False) #.filter(condition=Condition.objects.get(id=1))
-							print('Actual_list') #TestingPurposes
-							print(actual_list) #TestingPurposes
-							actual = actual_list[0] #get the first of the list, bad practice... #FixLater --- the part just above this might not make it so bad
-							actual.isSold = True
-							actual.save()
-							ssi = SaleSerialItem()
-							ssi.item = actual
-							ssi.sale = r
-							ssi.save()
-							items_list.append(actual.listPrice)
+				r = Sale()
+				r.amount = 0
+				r.save()
+				items_list=[]
+				ssi = ''
+				sci = ''
+				for i in cart.keys():
+					item = CatalogItem.objects.get(id=i)
+					if item.isSerial == True:
+						# Get the serialized items for the given cat item excluding already sold and rentals ---------------------# This part should only give new items (not tested)
+						actual_list = SerializedItem.objects.filter(catalogItem=item).exclude(isRental=True).filter(isSold=False) #.filter(condition=Condition.objects.get(id=1))
+						print('Actual_list') #TestingPurposes
+						print(actual_list) #TestingPurposes
+						actual = actual_list[0] #get the first of the list, bad practice... #FixLater --- the part just above this might not make it so bad
+						actual.isSold = True
+						actual.save()
+						ssi = SaleSerialItem()
+						ssi.item = actual
+						ssi.sale = r
+						ssi.save()
+						items_list.append(actual.listPrice)
 
-						else:
-							sci = SaleCatItem()
-							sci.qty = cart[i]
-							sci.item = item
-							sci.sale = r
-							sci.save()
-							items_list.append(item.listPrice * sci.qty)
+					else:
+						sci = SaleCatItem()
+						sci.qty = cart[i]
+						sci.item = item
+						sci.sale = r
+						sci.save()
+						items_list.append(item.listPrice * sci.qty)
 
 
-					r.amount = sum(items_list) #updates the Revenue(Sale).amount to the subtotal of all items in cart
-					r.save()
+				r.amount = sum(items_list) #updates the Revenue(Sale).amount to the subtotal of all items in cart
+				print('--------SAle Amount!!!!-----')
+				print(r.amount)	
+				r.save()
+				print('--------Sale Amount!!!!-----')
+				print(r.amount)	
 
-					if(isEmployee!=True):
-						t.user = currentCustomer 					   #Logged In User
-						t.employee = Employee.objects.get(id=99999)    #Online Sales Employee (Commissionless)
-						t.store = Store.objects.get(id=99999) 		   #Online Sales Store
-					else: # Case 2
-						t.user = User.objects.get(id=99999) 		   #Walk-in Customer
-						t.employee = currentEmployee				   #Logged In Employee
-						t.store = Store.objects.get(id=99999)		   #Whatever Store ----- #FixLater
+				if(isEmployee!=True):
+					t.user = currentCustomer 					   #Logged In User
+					t.employee = Employee.objects.get(id=99999)    #Online Sales Employee (Commissionless)
+					t.store = Store.objects.get(id=99999) 		   #Online Sales Store
+				else: # Case 2
+					t.user = User.objects.get(id=99999) 		   #Walk-in Customer
+					t.employee = currentEmployee				   #Logged In Employee
+					t.store = Store.objects.get(id=99999)		   #Whatever Store ----- #FixLater
 
-					print("------------------------------------") #TestingPurposes
-					print("Before .save") #TestingPurposes
-					print("------------------------------------") #TestingPurposes
+				print("------------------------------------") #TestingPurposes
+				print("Before .save") #TestingPurposes
+				print("------------------------------------") #TestingPurposes
 
-					t.save()
-					t.revenue.add(r)
-					t.save()
+				t.save()
+				t.revenue.add(r)
+				t.save()
 
-					subtotal_list.append(r.amount)
-					print("------------------------------------") #TestingPurposes
-					print("END of Sale") #TestingPurposes
-					print("------------------------------------") #TestingPurposes
+				subtotal_list.append(r.amount)
+				print(r.amount)
+				print("------------------------------------") #TestingPurposes
+				print("END of Sale") #TestingPurposes
+				print("------------------------------------") #TestingPurposes
 
-					################################################
-					############ END: SALE REVENUE  ################
-					################################################
+				################################################
+				############ END: SALE REVENUE  ################
+				################################################
 
 
 		################################################
@@ -293,6 +301,8 @@ def process_request(request):
 						r.hours = form.cleaned_data['hours']
 						r.status = form.cleaned_data['status']
 						r.amount = form.cleaned_data['amount']
+						print('--------Repair Amount!!!!-----')
+						print(r.amount)
 						r.isOpen = False
 						rev_list.append(r.amount)
 						r.save()
@@ -310,15 +320,22 @@ def process_request(request):
 					t.save()
 
 					subtotal_list.append(sum(rev_list))
+					print('--------Repair Amount!!!!-----')
+					print(subtotal_list)	
 
 					################################################
 					########### END: REPAIR REVENUE  ###############
 					################################################
 
-					
+
+		print('--------Charge Amount!!!!-----')
+		print(subtotal_list)					
 		t.subtotal = sum(subtotal_list)
+		print(t.subtotal)
 		t.tax = t.subtotal * Decimal(SALES_TAX)
+		print(t.tax)
 		t.total = t.subtotal + t.tax
+		print(t.total)
 		if (isEmployee !=True):
 			t.paymentType = "CC"
 		else:
@@ -326,7 +343,8 @@ def process_request(request):
 
 		t.save()
 
-
+		print('--------Charge Amount!!!!-----')
+		print(t.total)
 
 		################################################
 		######### SEND CHARGE TO REST SERVER ###########
@@ -420,10 +438,11 @@ class CheckoutForm(forms.Form):
 	ship_state = forms.CharField(required=False, label='State', max_length=2, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'UT',}))
 	ship_zipCode = forms.IntegerField(required=False, label='Zip Code',  widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '84601',}))
 	#Shipping method
-	shipping = forms.ModelChoiceField(label='Shipping Method', queryset=Shipping.objects.all().order_by('price'), widget=forms.Select(attrs={'class': 'form-control',}))
+	shipping = forms.ModelChoiceField(required=False, label='Shipping Method', queryset=Shipping.objects.all().order_by('price'), widget=forms.Select(attrs={'class': 'form-control',}))
 	# Rental stuff
 	days = forms.IntegerField(required= False, label='Days to Rent', widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '2'}))
-	username = forms.ModelChoiceField(label='User', queryset=User.objects.all(), widget=forms.Select(attrs={'class': 'form-control',}))
+	# username = forms.ModelChoiceField(label='User', queryset=User.objects.all(), widget=forms.Select(attrs={'class': 'form-control',}))
+	username = forms.ModelChoiceField(required =False, label='User', queryset=get_users_only(), widget=forms.Select(attrs={'class': 'form-control',}))
 	# Repair Stuff
 	dateComplete = forms.DateField(required=False, label='Date Complete', widget=forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Date Complete',}))
 	hours = forms.DecimalField(required=False, label='Hours', max_digits=8, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Hours',}))
