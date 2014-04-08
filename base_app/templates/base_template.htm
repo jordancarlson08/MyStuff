@@ -47,11 +47,11 @@
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     
     <ul class="nav navbar-nav navbar-right">
-      
-      <li>
+      <!--placing most overhead options in a block prevents managers from seeing unnecessary items-->
+      <%block name="shopping_cart_navigation_option"><li>
         <a id='cart_button' href="#">
           <span class="glyphicon glyphicon-shopping-cart"></span>
           &nbsp; Shopping Cart &nbsp;
@@ -98,6 +98,7 @@
         </ul>
       </li>
       %endif
+      </%block>
         
     %if request.user.is_anonymous() == True:
       <li>
@@ -109,7 +110,7 @@
       <li>
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">${request.user} <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="/dash/">Dashboard</a></li>
+          <li><a href="/manager/dash/">Dashboard</a></li>
         %if request.user.is_staff == False:
           <li><a href="/index/not_implemented_yet">Rentals</a></li>
           <li><a href="/account/repairstatus/">Repairs</a></li>
@@ -131,50 +132,6 @@
 </nav>
 
 <%block name="top">
-<% %>
-%if request.user.is_staff == True:
-
-
-  <!-- The Manager Nav Bar -->
-  <ul class="nav nav-tabs navbar-right">
-
-    <li class="dropdown">
-      <a class="btn btn-primary" data-toggle="dropdown" href="#">
-        <span class="glyphicon glyphicon-tags"></span>&nbsp; Inventory <span class="caret"></span>
-      </a>
-      <ul class="dropdown-menu">
-        <li><a href="/manager/searchinventory/"><span class="glyphicon glyphicon-search"></span> Search</a></li>
-        <li><a href="/manager/newcatalogitem/"><span class="glyphicon glyphicon-new-window"></span> New Catalog Item</a></li>
-        <li><a href="/manager/newserializeditem/"><span class="glyphicon glyphicon-new-window"></span> New Serialized Item</a></li>
-      </ul>
-    </li>
-
-    <li class="dropdown">
-      <a class="btn btn-success" data-toggle="dropdown" href="#">
-        <span class="glyphicon glyphicon-star"></span> Stores <span class="caret"></span>
-      </a>
-      <ul class="dropdown-menu">
-        <li><a href="/manager/searchstores/"><span class="glyphicon glyphicon-search"></span> Search</a></li>
-        <li><a href="/manager/newstore/"><span class="glyphicon glyphicon-new-window"></span> New Store</a></li>
-      </ul>
-    </li>
-
-    <li class="dropdown">
-      <a class="btn btn-danger" data-toggle="dropdown" href="#">
-        <span class="glyphicon glyphicon-user"></span> Users <span class="caret"></span>
-      </a>
-      <ul class="dropdown-menu">
-        <li><a href="/manager/searchusers/"><span class="glyphicon glyphicon-search"></span> Search Users</a></li>
-        <li><a href="/account/newuser/"><span class="glyphicon glyphicon-new-window"></span> New User</a></li>
-        <li><a href="/account/newemployee/"><span class="glyphicon glyphicon-new-window"></span> New Employee</a></li>
-      </ul>
-    </li>
-  </ul>
-  <!-- End Nav Bar -->
-
-
-
-%endif
 </%block>
 
 
