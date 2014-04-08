@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396928789.629585
+_modified_time = 1396970030.170458
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/dash.html'
 _template_uri = 'dash.html'
@@ -28,11 +28,11 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        request = context.get('request', UNDEFINED)
         def shopping_cart_navigation_option():
             return render_shopping_cart_navigation_option(context._locals(__M_locals))
         def content():
             return render_content(context._locals(__M_locals))
-        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 1
         __M_writer('<!--## This is the base page for both the dashboards. Sprouting off of this one will be a manager and an admin page with minute\r\n')
@@ -80,9 +80,9 @@ def render_shopping_cart_navigation_option(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        request = context.get('request', UNDEFINED)
         def content():
             return render_content(context)
-        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 14
         __M_writer(' ')

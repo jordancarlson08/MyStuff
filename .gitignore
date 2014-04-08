@@ -213,3 +213,19 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+static/
+*.html.py
+*.log
+*.pot
+*.pyc
+.DS_Store
+cached_templates/
+django.mo
+*.tfile
+.emacs-project
+.idea/
+.#*
+__pycache__
+account/cached_templates/templates/newuser.html.py
+manager/cached_templates/templates/dash.html.py
