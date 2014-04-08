@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396756942.252336
+_modified_time = 1396927147.569891
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/searchusers.html'
 _template_uri = 'searchusers.html'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['content']
+_exports = ['shopping_cart_navigation_option', 'content']
 
 
 def _mako_get_namespace(context, name):
@@ -23,14 +23,16 @@ def _mako_generate_namespaces(context):
     pass
 def _mako_inherit(template, context):
     _mako_generate_namespaces(context)
-    return runtime._inherit_from(context, 'searchusers.htm', _template_uri)
+    return runtime._inherit_from(context, 'base.htm', _template_uri)
 def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        emps = context.get('emps', UNDEFINED)
+        def shopping_cart_navigation_option():
+            return render_shopping_cart_navigation_option(context._locals(__M_locals))
         def content():
             return render_content(context._locals(__M_locals))
+        emps = context.get('emps', UNDEFINED)
         user_list = context.get('user_list', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
@@ -46,12 +48,29 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_shopping_cart_navigation_option(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def shopping_cart_navigation_option():
+            return render_shopping_cart_navigation_option(context)
+        __M_writer = context.writer()
+        # SOURCE LINE 6
+        __M_writer(' ')
+ 
+
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        emps = context.get('emps', UNDEFINED)
+        def shopping_cart_navigation_option():
+            return render_shopping_cart_navigation_option(context)
         def content():
             return render_content(context)
+        emps = context.get('emps', UNDEFINED)
         user_list = context.get('user_list', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 4
@@ -59,7 +78,13 @@ def render_content(context,**pageargs):
         # SOURCE LINE 5
  
 
-        __M_writer('\r\n\r\n  <h2>User Management</h2>\r\n  <hr/>\r\n  <br/>\r\n\r\n  <ul class="nav nav-tabs">\r\n    <li class="active">\r\n      <a href="#Employee" data-toggle="tab"><strong>Employees</strong></a>\r\n    </li>\r\n    <li>\r\n      <a href="#User" data-toggle="tab"><strong>Users</strong></a>\r\n    </li>\r\n  </ul>\r\n\r\n\r\n  <div class="tab-content">\r\n\r\n    <div class="tab-pane active" id="Employee"><!-- Employee Tab -->\r\n      <div class="tab-content">\r\n\r\n        <table class="table table-hover">\r\n          <thead>\r\n            <tr>\r\n              <th>Role</th>\r\n              <th>Username</th>\r\n              <th>First Name</th>\r\n              <th>Last Name</th>\r\n              <th>Email</th>\r\n            </tr>\r\n          </thead>\r\n          <tbody>\r\n')
+        __M_writer('\r\n')
+        if 'parent' not in context._data or not hasattr(context._data['parent'], 'shopping_cart_navigation_option'):
+            context['self'].shopping_cart_navigation_option(**pageargs)
+        
+
+        # SOURCE LINE 6
+        __M_writer(' \r\n  <h2>User Management</h2>\r\n  <hr/>\r\n  <br/>\r\n\r\n  <ul class="nav nav-tabs">\r\n    <li class="active">\r\n      <a href="#Employee" data-toggle="tab"><strong>Employees</strong></a>\r\n    </li>\r\n    <li>\r\n      <a href="#User" data-toggle="tab"><strong>Users</strong></a>\r\n    </li>\r\n  </ul>\r\n\r\n\r\n  <div class="tab-content">\r\n\r\n    <div class="tab-pane active" id="Employee"><!-- Employee Tab -->\r\n      <div class="tab-content">\r\n\r\n        <table class="table table-hover">\r\n          <thead>\r\n            <tr>\r\n              <th>Role</th>\r\n              <th>Username</th>\r\n              <th>First Name</th>\r\n              <th>Last Name</th>\r\n              <th>Email</th>\r\n            </tr>\r\n          </thead>\r\n          <tbody>\r\n')
         # SOURCE LINE 37
         for u in emps:
             # SOURCE LINE 38

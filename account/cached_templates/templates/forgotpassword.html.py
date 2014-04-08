@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396813234.988305
+_modified_time = 1396928667.586933
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\account\\templates/forgotpassword.html'
 _template_uri = 'forgotpassword.html'
@@ -28,9 +28,9 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        form = context.get('form', UNDEFINED)
         def main():
             return render_main(context._locals(__M_locals))
+        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\r\n')
@@ -48,16 +48,16 @@ def render_body(context,**pageargs):
 def render_main(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        form = context.get('form', UNDEFINED)
         def main():
             return render_main(context)
+        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 3
         __M_writer('\r\n')
         # SOURCE LINE 4
  
 
-        __M_writer('\r\n\r\n<div class="content">\r\n\r\n<div class="row">\r\n  <div class="col-md-4">\r\n\r\n  </div>\r\n  <div class="col-md-4">\r\n  <h2>My Stuff Login Help</h2>\r\n  <p>Enter your username below and we will send you an email so you can reset your password</p>\r\n  </div>\r\n</div>\r\n<br/>\r\n\r\n\r\n<form class ="form-horizontal" role="form" method ="POST">\r\n\r\n')
+        __M_writer('\r\n\r\n<div class="content">\r\n\r\n<div class="row">\r\n  <div class="col-md-4">\r\n\r\n  </div>\r\n  <div class="col-md-4">\r\n  <h2>Login Help</h2>\r\n  <p>Enter your username below and we will send you an email so you can reset your password</p>\r\n  </div>\r\n</div>\r\n<br/>\r\n\r\n\r\n<form class ="form-horizontal" role="form" method ="POST">\r\n\r\n')
         # SOURCE LINE 22
         for f in form:
             # SOURCE LINE 23

@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396734020.588472
+_modified_time = 1396927460.757466
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/searchstores.html'
 _template_uri = 'searchstores.html'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['content']
+_exports = ['shopping_cart_navigation_option', 'content']
 
 
 def _mako_get_namespace(context, name):
@@ -23,11 +23,13 @@ def _mako_generate_namespaces(context):
     pass
 def _mako_inherit(template, context):
     _mako_generate_namespaces(context)
-    return runtime._inherit_from(context, 'searchstores.htm', _template_uri)
+    return runtime._inherit_from(context, 'base.htm', _template_uri)
 def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        def shopping_cart_navigation_option():
+            return render_shopping_cart_navigation_option(context._locals(__M_locals))
         def content():
             return render_content(context._locals(__M_locals))
         stores = context.get('stores', UNDEFINED)
@@ -38,8 +40,23 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
-        # SOURCE LINE 42
+        # SOURCE LINE 43
         __M_writer('  \n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_shopping_cart_navigation_option(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def shopping_cart_navigation_option():
+            return render_shopping_cart_navigation_option(context)
+        __M_writer = context.writer()
+        # SOURCE LINE 6
+        __M_writer(' ')
+ 
+
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -48,6 +65,8 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        def shopping_cart_navigation_option():
+            return render_shopping_cart_navigation_option(context)
         def content():
             return render_content(context)
         stores = context.get('stores', UNDEFINED)
@@ -57,35 +76,41 @@ def render_content(context,**pageargs):
         # SOURCE LINE 5
  
 
-        __M_writer('\n\n  <h2>Store Management</h2><hr/><br/>\n\n  <table class="table table-hover">\n  \t<thead>\n  \t\t<tr>\n  \t\t\t<th>Store</th>\n  \t\t\t<th>Street 1</th>\n        <th>Street 2</th>\n  \t\t\t<th>City</th>\n  \t\t\t<th>State</th>\n  \t\t\t<th>Zip Code</th>\n        <th>Phone</th>\n  \t\t</tr>\n  \t</thead>\n  \t<tbody>\n')
-        # SOURCE LINE 22
+        __M_writer('\n')
+        if 'parent' not in context._data or not hasattr(context._data['parent'], 'shopping_cart_navigation_option'):
+            context['self'].shopping_cart_navigation_option(**pageargs)
+        
+
+        # SOURCE LINE 6
+        __M_writer(' \n\n  <h2>Store Management</h2><hr/><br/>\n\n  <table class="table table-hover">\n  \t<thead>\n  \t\t<tr>\n  \t\t\t<th>Store</th>\n  \t\t\t<th>Street 1</th>\n        <th>Street 2</th>\n  \t\t\t<th>City</th>\n  \t\t\t<th>State</th>\n  \t\t\t<th>Zip Code</th>\n        <th>Phone</th>\n  \t\t</tr>\n  \t</thead>\n  \t<tbody>\n')
+        # SOURCE LINE 23
         for s in stores:
-            # SOURCE LINE 23
+            # SOURCE LINE 24
             __M_writer('      <tr class="clickableRow" href="/manager/stores/')
             __M_writer(str(s.id))
             __M_writer('">\n        <td>')
-            # SOURCE LINE 24
+            # SOURCE LINE 25
             __M_writer(str(s.locationName))
             __M_writer('</td>\n        <td>')
-            # SOURCE LINE 25
+            # SOURCE LINE 26
             __M_writer(str(s.street1))
             __M_writer('</td>\n        <td>')
-            # SOURCE LINE 26
+            # SOURCE LINE 27
             __M_writer(str(s.street2))
             __M_writer('</td>\n        <td>')
-            # SOURCE LINE 27
+            # SOURCE LINE 28
             __M_writer(str(s.city))
             __M_writer('</td>\n        <td>')
-            # SOURCE LINE 28
+            # SOURCE LINE 29
             __M_writer(str(s.state))
             __M_writer('</td>\n        <td>')
-            # SOURCE LINE 29
+            # SOURCE LINE 30
             __M_writer(str(s.zipCode))
             __M_writer('</td>\n        <td>')
-            # SOURCE LINE 30
+            # SOURCE LINE 31
             __M_writer(str(s.phone))
             __M_writer('</td>\n      </tr>\n')
-        # SOURCE LINE 33
+        # SOURCE LINE 34
         __M_writer('  \t</tbody>\n</table>\n\n  <div class="vertical_spacer6"></div>\n  <div class="vertical_spacer6"></div>\n\n\n\n\n')
         return ''
     finally:

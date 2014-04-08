@@ -51,8 +51,11 @@
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     
     <ul class="nav navbar-nav navbar-right">
+
       <!--placing most overhead options in a block prevents managers from seeing unnecessary items-->
-      <%block name="shopping_cart_navigation_option"><li>
+      <%block name="shopping_cart_navigation_option"> <% %>
+
+      <li>
         <a id='cart_button' href="#">
           <span class="glyphicon glyphicon-shopping-cart"></span>
           &nbsp; Shopping Cart &nbsp;
@@ -99,8 +102,9 @@
         </ul>
       </li>
       %endif
+
       </%block>
-        
+
     %if request.user.is_anonymous() == True:
       <li>
       <a id='login_button' href='#'>
@@ -111,15 +115,15 @@
       <li>
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">${request.user.username} <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="/manager/dash/">Dashboard</a></li>
+          <li><a href="/manager/dash/"><span class='glyphicon glyphicon-globe'></span>&nbsp; Dashboard</a></li>
         %if request.user.is_staff == False:
           <li><a href="/index/not_implemented_yet">Rentals</a></li>
           <li><a href="/account/repairstatus/">Repairs</a></li>
-          <li><a href="/account/user/${request.user.id}">Edit Profile</a></li>
+          <li><a href="/account/user/${request.user.id}"><span class='glyphicon glyphicon-edit'></span>&nbsp; Edit Profile</a></li>
         %else:
-          <li><a href="/manager/employee/${request.user.id}">Edit Profile</a></li>
+          <li><a href="/manager/employee/${request.user.id}"><span class='glyphicon glyphicon-edit'></span>&nbsp; Edit Profile</a></li>
         %endif
-          <li><a href="/account/logout/">Logout</a></li>
+          <li><a href="/account/logout/"><span class='glyphicon glyphicon-log-out'></span>&nbsp; Logout</a></li>
         </ul>
 
       </li>

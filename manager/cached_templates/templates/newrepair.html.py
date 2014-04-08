@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396755646.180151
+_modified_time = 1396929082.157568
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/newrepair.html'
 _template_uri = 'newrepair.html'
@@ -28,9 +28,9 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        form = context.get('form', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\r\n')
@@ -50,9 +50,9 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        form = context.get('form', UNDEFINED)
         def content():
             return render_content(context)
+        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 5
         __M_writer('\r\n')
@@ -68,7 +68,7 @@ def render_content(context,**pageargs):
             __M_writer(str( f.name ))
             __M_writer('">')
             __M_writer(str( f.label ))
-            __M_writer('</label> <!-- the label -->\r\n        <div class="col-sm-8">\r\n          ')
+            __M_writer('</label> <!-- the label -->\r\n        <div class="col-sm-6">\r\n          ')
             # SOURCE LINE 20
             __M_writer(str(f))
             __M_writer(' <!-- The input box -->\r\n          ')
@@ -76,7 +76,7 @@ def render_content(context,**pageargs):
             __M_writer(str(f.errors))
             __M_writer('\r\n        </div>\r\n    </div>\r\n\r\n')
         # SOURCE LINE 26
-        __M_writer('\r\n  <div class="form-group">\r\n    <div class="col-sm-offset-4 col-sm-4">\r\n      <input class="btn btn-success" type="submit" value="Save">\r\n    </div>\r\n  </div>\r\n</form>\r\n\r\n\r\n\r\n\r\n\r\n\r\n')
+        __M_writer('\r\n  <div class="form-group">\r\n    <div class="col-sm-offset-3 col-sm-6">\r\n      <input class="btn btn-success" type="submit" value="Save">\r\n    </div>\r\n  </div>\r\n</form>\r\n\r\n\r\n\r\n\r\n\r\n\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()

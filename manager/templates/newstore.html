@@ -1,12 +1,10 @@
  ## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
-<%inherit file="base_store.htm" />
-
-#New Store Page
-
+<%inherit file="base.htm" />
 <%block name="content">
 <% %>
+<%block name="shopping_cart_navigation_option"> <% %></%block> 
 
-  <h2>New Store Location</h2>
+  <h2>New Store Location</h2><hr/>
 	</br>
 
 <form class ="form-horizontal" role="form" method ="POST">
@@ -14,8 +12,8 @@
   %for f in form:
 
     <div class="form-group">
-      <label class="col-sm-4 control-label" for="id_${ f.name }">${ f.label }</label>
-        <div class="col-sm-4">
+      <label class="col-md-3 control-label" for="id_${ f.name }">${ f.label }</label>
+        <div class="col-md-6">
           ${f} ${f.errors}
         </div>
     </div>
@@ -23,7 +21,7 @@
   %endfor
 
   <div class="form-group">
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="col-md-offset-3 col-md-6">
 
 
       <input class="btn btn-success" type="submit" value="Save">

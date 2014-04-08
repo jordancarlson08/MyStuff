@@ -1,14 +1,14 @@
 ## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
 <%inherit file="base_template.htm" />
 
-<%block name="main">
+<%block name="main"> <% %>
 
   <div class="content"> 
     <div class="row">
       <div class="col-md-3">
         <div class="container"> 
 
-          <%block name="left_side">
+          <%block name="left_side"> <% %>
             <div class="container bs-docs-container">
               <div class="row">
 
@@ -20,7 +20,7 @@
 
                 <div class="col-md-9" role="main">
 
-                  <%block name="content">
+                  <%block name="content"> <% %>
                     Site content goes here in sub-templates.
                   </%block>   
                   

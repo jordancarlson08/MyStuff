@@ -1,9 +1,10 @@
 ## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
 
-<%inherit file="base_inventory.htm" />
+<%inherit file="base.htm" />
 
 <%block name="content">
 <% %>
+<%block name="shopping_cart_navigation_option"> <% %></%block> 
 
 <h2>New Catalog Item</h2><hr/>
 </br>
@@ -15,8 +16,8 @@
   %for f in form:
 
     <div class="form-group">
-      <label class="col-sm-4 control-label" for="id_${ f.name }">${ f.label }</label> <!-- the label -->
-        <div class="col-sm-8">
+      <label class="col-sm-3 control-label" for="id_${ f.name }">${ f.label }</label> <!-- the label -->
+        <div class="col-sm-6">
           ${f} <!-- The input box -->
           ${f.errors}
         </div>
@@ -25,7 +26,7 @@
   %endfor
 
   <div class="form-group">
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="col-sm-offset-3 col-sm-6">
       <input class="btn btn-success" type="submit" value="Save">
     </div>
   </div>

@@ -1,38 +1,37 @@
  ## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
-<%inherit file="base_users.htm" />
-<%block name="content">
-<% %>
+<%inherit file="base_manager.htm" />
+<%block name="content"><% %>
 
-  <h2>New Employee Account</h2><hr/>
-	</br>
+<h2>New Employee Account</h2><hr/>
+</br>
 
-  <form class ="form-horizontal" role="form" method ="POST">
+<form class ="form-horizontal" role="form" method ="POST">
 
-    %for f in form:
+  %for f in form:
 
-    %if f.name == 'street1':
-    <h3>Address</h3><hr/>
-    %endif
+  %if f.name == 'street1':
+  <h3>Address</h3><hr/>
+  %endif
 
-
-      <div class="form-group">
-        <label class="col-sm-4 control-label" for="id_${ f.name }">${ f.label }</label>
-          <div class="col-sm-4">
-            ${f} ${f.errors}
-          </div>
-      </div>
-
-    %endfor
 
     <div class="form-group">
-      <div class="col-sm-offset-4 col-sm-4">
-
-
-        <input class="btn btn-success" type="submit" value="Save">
-
-      </div>
+      <label class="col-sm-3 control-label" for="id_${ f.name }">${ f.label }</label>
+        <div class="col-sm-6">
+          ${f} ${f.errors}
+        </div>
     </div>
-  </form>
+
+  %endfor
+
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-6">
+
+
+      <input class="btn btn-success" type="submit" value="Save">
+
+    </div>
+  </div>
+</form>
 
 
 
