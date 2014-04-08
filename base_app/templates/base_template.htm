@@ -111,14 +111,14 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">${request.user.username} <b class="caret"></b></a>
         <ul class="dropdown-menu">
         %if isEmployee == True:
-          <li><a href="/manager/dash/"><span class='glyphicon glyphicon-globe'></span>&nbsp; Dashboard</a></li>
-          <li><a href="/manager/employee/${request.user.id}"><span class='glyphicon glyphicon-edit'></span>&nbsp; Edit Profile</a></li>
+          <li><a href="/manager/dash/"><span class='glyphicon glyphicon-globe'></span>&nbsp; DASHBOARD</a></li>
+          <li><a href="/manager/employee/${request.user.id}"><span class='glyphicon glyphicon-edit'></span>&nbsp; EDIT PROFILE</a></li>
         %else:
-          <li><a href="/index/not_implemented_yet"><span class='glyphicon glyphicon-camera'></span>&nbsp; Rentals</a></li>
-          <li><a href="/account/repairstatus/"><span class='glyphicon glyphicon-wrench'></span>&nbsp; Repairs</a></li>
-          <li><a href="/account/user/${request.user.id}"><span class='glyphicon glyphicon-edit'></span>&nbsp; Edit Profile</a></li>
+          <li><a href="/index/not_implemented_yet"><span class='glyphicon glyphicon-camera'></span>&nbsp; RENTALS</a></li>
+          <li><a href="/account/repairstatus/"><span class='glyphicon glyphicon-wrench'></span>&nbsp; REPAIRS</a></li>
+          <li><a href="/account/user/${request.user.id}"><span class='glyphicon glyphicon-edit'></span>&nbsp; EDIT PROFILE</a></li>
         %endif
-          <li><a href="/account/logout/"><span class='glyphicon glyphicon-log-out'></span>&nbsp; Logout</a></li>
+          <li><a href="/account/logout/"><span class='glyphicon glyphicon-log-out'></span>&nbsp; LOGOUT</a></li>
         </ul>
 
       </li>

@@ -214,6 +214,8 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
+*/cached_templates/
+
 static/
 *.html.py
 *.log
@@ -227,5 +229,5 @@ django.mo
 .idea/
 .#*
 __pycache__
-account/cached_templates/templates/newuser.html.py
-manager/cached_templates/templates/dash.html.py
+
+
