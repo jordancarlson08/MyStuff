@@ -11,6 +11,7 @@
 
   <head>
     <title>MyStuff Digital Life My Way</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta name="description" content="MyStuff Digital Life My Way offers the best digital cameras, film cameras, lenses, accessories, rentals and repairs."></meta>
     <meta name="keywords" content="Camera, film, rental, repair, digital photography, film photography"></meta>
 
@@ -108,7 +109,7 @@
 
     %else:
       <li>
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">${request.user} <b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">${request.user.username} <b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a href="/manager/dash/">Dashboard</a></li>
         %if request.user.is_staff == False:

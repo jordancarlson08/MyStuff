@@ -37,3 +37,8 @@ def get_users_only():
     emp_id.append(99998)
     user_list = User.objects.filter(is_active=True).exclude(id__in=emp_id)
     return user_list
+
+def get_managers():
+    '''Returns a list of Managers'''
+    emps = Employee.objects.filter(user__is_staff='True').exclude(id=99999)
+    return emps

@@ -15,32 +15,32 @@ $(function() {
 
 	});
 
+
 });
+
+
 
 
 $(function() {
 
-	$('#img').mouseenter(function(){
+	$('#img').click(function() {
+		var clicks = $(this).data('clicks');
+		if (clicks) {
 
-		$('#img').animate({
+			$('#img').animate({
+				width:'600px'
+			});
 
-			width:'600px'
+		} else {
 
-
-		});
-
+			$('#img').animate({
+				width:'300px'
+			});
+		}
+		$(this).data("clicks", !clicks);
 	});
 
-	$('#img').mouseleave(function(){
-
-		$('#img').animate({
-
-			width:'300px'
-
-
-		});
-
-	});
+	$('#img').css( 'cursor', 'pointer' );
 
 });
 
@@ -72,6 +72,7 @@ $(function() {
 });
 
 $(function() {
+
 
 	$('#back_button').mouseenter(function(){
 

@@ -3,6 +3,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from manager import models as hmod
 from account import models as amod
+from base_app.user_util import get_managers
 from . import templater
 from django.contrib.auth.decorators import login_required
 
@@ -69,4 +70,4 @@ class StoreForm(forms.Form):
 	state = forms.CharField(max_length=2, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'UT',}))
 	zipCode = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '84601',}))
 	phone = forms.CharField(max_length=25, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '801-555-1234',}))
-	manager = forms.ModelChoiceField(label='Manager', queryset=amod.Employee.objects.filter(user__is_staff='True'), widget=forms.Select(attrs={'class': 'form-control'}))
+	manager = forms.ModelChoiceField(label='Manager', queryset=get_managers(), widget=forms.Select(attrs={'class': 'form-control'}))

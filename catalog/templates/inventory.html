@@ -14,7 +14,7 @@
           <ul class='list-inline'>
             <li>
               <!--####### Need to store image path in database as string for dynamic lookup -->
-              <img id='img' src='${item.img}' width='300px'/>
+              <img id='img' title="Double click to zoom" src='${item.img}' width='300px'/>
             </li>
             <li>
               <ul class='list-unstyled'>
@@ -53,10 +53,10 @@
                       %endfor
                       <li>
                         <a>
-                          %if item_count!=0:
-                            <button id='add_button' class='btn btn-primary' type='submit'><span class='glyphicon glyphicon-shopping-cart'></span>&nbsp; Add to Cart</button>
+                          %if item_count == 0 and item.isSerial == True:
+                            <button id='add_button_disabled' class='btn btn-danger disabled'><span class='glyphicon glyphicon-ban-circle'></span>&nbsp; Out of Stock</button>
                           %else:
-                            <button id='add_button_disabled' class='btn btn-primary disabled'><span class='glyphicon glyphicon-shopping-cart'></span>&nbsp; Add to Cart</button>
+                            <button id='add_button' class='btn btn-primary' type='submit'><span class='glyphicon glyphicon-shopping-cart'></span>&nbsp; Add to Cart</button>
                           %endif
                         </a>
                       </li>
@@ -68,17 +68,19 @@
                 </li>
                 <ul class='list list-inline'>
                   <li> <!-- #FixLater : Check if isSerial == false set it so its always in stock -->
-                    %if item_count == 0:
-                    <span class='label label-danger'>Out of Stock.</span>
+                    %if item_count != 0:
+                      <span class='label label-success'>In Stock.</span>
                     %else:
-                    <span class='label label-success'>In Stock.</span>
+                    
                     %endif
                   </li>
                   <li> <!-- #FixLater : Check if isSerial == false and dont show this if it does -->
+                    %if item.isSerial == True:
                     %if rental_count == 0:
                     <span class='label label-danger'>No Rentals Available.</span>
                     %else:
                     <span class='label label-warning'>Rent Now.</span>
+                    %endif
                     %endif
                   </li>
                 </ul>

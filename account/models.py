@@ -29,7 +29,7 @@ class User(AbstractUser):
 	passwordResetExp = models.DateTimeField(blank=True, null=True)
 	
 	def __str__(self):
-  		return '%s %s' %(self.first_name, self.last_name)
+  		return '%s %s - %s' %(self.first_name, self.last_name, self.username)
 
   
 class Employee(models.Model):
@@ -40,6 +40,6 @@ class Employee(models.Model):
 
 
 	def __str__(self):
-		return '%s %s' %(self.user.first_name, self.user.last_name)
+		return '%s %s - %s' %(self.user.first_name, self.user.last_name, self.user.username)
 
 

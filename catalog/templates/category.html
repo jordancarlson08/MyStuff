@@ -89,7 +89,7 @@ ${message}
     <div class='row'>
       %if request.user.is_authenticated()==True:
         %for h in history:
-          <div class='col-md-4 col-sm-6 col-md-12'>
+          <div class='col-md-4 col-sm-6 col-xs-12'>
             <a href='/catalog/inventory/${h.catalogItem.id}'>
               <div class="panel panel-primary" >
                 <div class='panel-heading lg-heading'><h3><strong>${h.catalogItem.manufacturer} ${h.catalogItem.name}</strong></h3></div>
@@ -116,7 +116,7 @@ ${message}
         %endfor
       %else:
         %for h in history:
-          <div class='col-md-4 col-sm-6 col-md-12'>
+          <div class='col-md-4 col-sm-6 col-xs-12'>
             <a href='/catalog/inventory/${h.catalogItem.id}'>
               <div class="panel panel-primary" >
                 <div class='panel-heading lg-heading'><h3><strong>${h.manufacturer} ${h.name}</strong></h3></div>
@@ -150,7 +150,7 @@ ${message}
 <div class='container-fluid'>
   <div class='row'>
     %for i in items:
-      <div class='col-md-4 col-sm-6 col-md-12'>
+      <div class='col-md-4 col-sm-6 col-xs-12'>
         <a href='/catalog/inventory/${i.id}'>
           <div class="panel panel-primary" >
             <div class='panel-heading lg-heading'><h3><strong>${i.manufacturer} ${i.name}</strong></h3></div>
