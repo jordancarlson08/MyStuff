@@ -3,34 +3,23 @@
 
 <%block name="main"> <% %>
 
-  <div class="content"> 
-    <div class="row">
-      <div class="col-md-3">
-        <div class="container"> 
-
-          <%block name="left_side"> <% %>
-            <div class="container bs-docs-container">
-              <div class="row">
-
-                <div class="col-md-3">
-                  <div class="bs-sidebar hidden-print" role="complementary">
-                    
-                  </div>     
-                </div>
-
-                <div class="col-md-9" role="main">
-
-                  <%block name="content"> <% %>
-                    Site content goes here in sub-templates.
-                  </%block>   
-                  
-                </div>
-              </div>  
-            </div>
-          </%block> 
-
-        </div>
-      </div>  
+<div class="container-fluid"> 
+  <div class="row">
+    <div class="col-md-2">
+      <%block name="left_side"> <% %>
+      <div class='text-center'>
+        <br/>
+        <a id='back_button' class='btn btn-default btn-small'><span class='glyphicon glyphicon-arrow-left'></span>&nbsp;Back</a>
+      </div>
+       
+      </%block> 
+    </div>     
+    <div class="col-md-10" role="main">
+      <%block name="content"> <% %>
+          Site content goes here in sub-templates.
+      </%block>   
     </div>
   </div>
+</div>
+
 </%block>

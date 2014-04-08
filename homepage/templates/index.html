@@ -3,6 +3,14 @@
 <%block name="main">
 <% %>
 
+<% 
+from base_app.user_util import manager_check, employee_check
+
+isEmployee = employee_check(request.user)
+isManager = manager_check(request.user)
+
+%>
+
 <div class="vertical_spacer6"></div>
 <div class="vertical_spacer6"></div>
 
@@ -21,7 +29,7 @@
   	<a id="login_button2" class="btn btn-success btn-lg">Log In</a>
   %else:
 
-  	%if request.user.is_staff == False:
+  	%if isEmployee == False:
   	<a class="btn btn-success btn-lg" href="/account/user/${request.user.id}">My Account</a>
   	%else:
   	<a class="btn btn-success btn-lg" href="/manager/employee/${request.user.id}">My Account</a>

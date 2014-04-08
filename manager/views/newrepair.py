@@ -6,11 +6,12 @@ from account.models import *
 from catalog.models import *
 from . import templater
 from django_summernote.widgets import SummernoteWidget
-from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
-from base_app.user_util import get_users_only
+from base_app.user_util import *
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 @login_required
+@user_passes_test(employee_check)
 def process_request(request):
 	'''Create a new Repair'''
 

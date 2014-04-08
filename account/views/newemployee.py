@@ -8,7 +8,6 @@ from account.admin import manager_check
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 
-
 @login_required
 @user_passes_test(manager_check)
 def process_request(request):

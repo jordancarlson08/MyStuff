@@ -4,11 +4,13 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from manager import models as hmod
 from catalog.models import *
 from . import templater
-from django.contrib.auth.decorators import login_required
 from datetime import *
 from django.core.mail import send_mail
+from base_app.user_util import *
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 @login_required
+@user_passes_test(manager_check)
 def process_request(request):
 	'''Shows the late rentals'''
 

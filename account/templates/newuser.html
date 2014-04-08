@@ -1,5 +1,5 @@
  ## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
-<%inherit file="base_dash.htm" />
+<%inherit file="base.htm" />
 <%block name="content">
 <% %>
 
@@ -19,8 +19,8 @@
 
 
       <div class="form-group">
-        <label class="col-sm-4 control-label" for="id_${ f.name }">${ f.label }</label>
-          <div class="col-sm-4">
+        <label class="col-sm-3 control-label" for="id_${ f.name }">${ f.label }</label>
+          <div class="col-sm-6">
             ${f} ${f.errors}
           </div>
       </div>
@@ -28,7 +28,7 @@
     %endfor
 
     <div class="form-group">
-      <div class="col-sm-offset-4 col-sm-4">
+      <div class="col-sm-offset-3 col-sm-6">
 
 
         <input class="btn btn-success" type="submit" value="Create Account">

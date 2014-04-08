@@ -24,14 +24,18 @@ def my_account(function):
     '''Decorator that restricts access to the account page to the owner of that page and all managers'''
     def wrapper(request, *args, **kw):
         user=request.user
+        isEmployee = employee_check(user)
         userid = user.id
         url=request.urlparams[0]
         if user.id == int(url) or user.is_staff==True:
             return function(request, *args, **kw)
         else:
-            return HttpResponseRedirect('/account/user/'+str(userid))
-    return wrapper
+            if isEmployee==True:
+                return HttpResponseRedirect('/manager/employee/'+str(userid))
+            else:
+                return HttpResponseRedirect('/account/user/'+str(userid))
 
+    return wrapper
 
 
 def get_users_only():

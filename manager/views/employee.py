@@ -4,9 +4,11 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from manager import models as hmod
 from account import models as amod
 from . import templater
-from django.contrib.auth.decorators import login_required
+from base_app.user_util import *
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 @login_required
+@my_account
 def process_request(request):
 	'''Shows the stores'''
 
@@ -14,10 +16,21 @@ def process_request(request):
 		u = amod.User.objects.get(id=request.urlparams[0])
 		u.is_active = False
 		u.save()
-		return HttpResponseRedirect('/manager/searchusers/')
+		return HttpResponseRedirect('/index/')
 
-	u = amod.User.objects.get(id=request.urlparams[0])
-	e = amod.Employee.objects.get(id=request.urlparams[0])
+	e = ''
+	u = ''
+	
+	try:
+		u = amod.User.objects.get(id=request.urlparams[0])
+	except:
+		return HttpResponseRedirect('/index/')
+	
+	try:
+		e = amod.Employee.objects.get(id=request.urlparams[0])
+	except:
+		return HttpResponseRedirect('/index/')
+
 	user = u
 
 	if u.is_active == False:

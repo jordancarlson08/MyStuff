@@ -5,80 +5,76 @@
 
   <div class="container-fluid"> 
     <div class="row">
-
-      <div class="col-md-2 fixed-sidebar">
+      <div id='sidebar' class="col-md-2 sidebar">
         <%block name="left_side"> <% %>
-          <p><h3>Manager Options</h3></p>
-                <div class="panel-group" id="accordion">
-                  <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                      <h4 class="panel-title">Inventory</h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse">
-                      <div class="panel-body">
-                        <ul class="list-unstyled">
-                          <li><a class='btn btn-default btn-block' href='/manager/searchinventory/'>Search</a></li>
-                          <li><a class='btn btn-default btn-block' href='/manager/newcatalogitem'>New Catalog Item</a></li>
-                          <li><a class='btn btn-default btn-block' href='/manager/newserializeditem/'>New Serialized Item</a></li>
-                        </ul>
-                      </div><!--ends panel body-->
-                    </div><!--ends collapseOne-->
-                  </div><!--ends panel default-->
-                  <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                      <h4 class="panel-title">Users</h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse">
-                      <div class="panel-body">
-                        <ul class="list-unstyled">
-                          <li><a class='btn btn-default btn-block' href='/manager/searchusers/'>Search</a></li>
-                          <li><a class='btn btn-default btn-block' href='/account/newuser'>New User</a></li>
-                          <li><a class='btn btn-default btn-block' href='/account/newemployee/'>New Employee</a></li>
-                        </ul>
-                      </div><!--ends panel body-->
-                    </div><!--ends collapseTwo-->
-                  </div><!--ends panel default-->
-                  <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                      <h4 class="panel-title">Stores</h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse">
-                      <div class="panel-body">
-                        <ul class="list-unstyled">
-                          <li><a class='btn btn-default btn-block' href='/manager/searchstores/'>Search</a></li>
-                          <li><a class='btn btn-default btn-block' href='/manager/newstore'>New Store</a></li>
-                        </ul>
-                      </div><!--ends panel body-->
-                    </div><!--ends collapseThree-->
-                  </div><!--ends panel default-->
-                  <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-                      <h4 class="panel-title">Rentals</h4>
-                    </div>
-                    <div id="collapseFour" class="panel-collapse collapse">
-                      <div class="panel-body">
-                        <ul class="list-unstyled">
-                          <li><a class='btn btn-default btn-block' href='/manager/searchinventory/'>Search</a></li>
-                          <li><a class='btn btn-default btn-block' href='/manager/returns/'>Returns</a></li>
-                          <li><a class='btn btn-default btn-block' href='/manager/laterentals/'>Late Rentals</a></li>
-                        </ul>
-                      </div><!--ends panel body-->
-                    </div><!--ends collapseFour-->
-                  </div><!--ends panel default-->
-                  <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
-                      <h4 class="panel-title">Repairs</h4>
-                    </div>
-                    <div id="collapseFive" class="panel-collapse collapse">
-                      <div class="panel-body">
-                        <ul class="list-unstyled">
-                          <li><a class='btn btn-default btn-block' href='/manager/newrepair/'>New Repairs</a></li>
-                          <li><a class='btn btn-default btn-block' href='/manager/repairs/'>Check Out</a></li>
-                        </ul>
-                      </div><!--ends panel body-->
-                    </div><!--ends collapseFive-->
-                  </div><!--ends panel default-->
-                </div><!--ends panel group and accordion-->
+
+        <%
+        from base_app.user_util import manager_check
+        isManager = manager_check(request.user)
+        %>
+
+        %if isManager == True:
+          <h4 class='extra-padding'>${request.user.first_name} ${request.user.last_name}</h4>
+            <ul class="nav nav-sidebar">
+              <li><a href="/manager/dash/"><strong>Dashboard</strong></a></li>
+            </ul>
+
+            <ul class="nav nav-sidebar">
+              <li class="active"><a href="/manager/searchinventory/"><strong>Inventory</strong></a></li>
+              <li><a href="/manager/newcatalogitem/"> New Catalog Item</a></li>
+              <li><a href="/manager/newserializeditem/"> New Serialized Item</a></li>
+            </ul>
+            
+            <ul class="nav nav-sidebar">
+              <li class="active"><a href="/manager/searchusers/"><strong>Users</strong></a></li>
+              <li><a href="/account/newuser/"> New User</a></li>
+              <li><a href="/account/newemployee/"> New Employee</a></li>
+            </ul>
+
+            <ul class="nav nav-sidebar">
+              <li class="active"><a href="/manager/searchstores/"><strong>Stores</strong></a></li>
+              <li><a href="/manager/newstore/"> New Store</a></li>
+            </ul>
+
+            <ul class="nav nav-sidebar">
+              <li class="active"><a href="/manager/searchinventory/#Rental"><strong>Rentals</strong></a></li>
+              <li><a href="/manager/returns/"> Returns</a></li>
+              <li><a href="/manager/laterentals/"> Outstanding Rentals</a></li>
+            </ul>
+
+            <ul class="nav nav-sidebar">
+              <li class="active"><a href="/manager/repairs/"><strong>Repairs</strong></a></li>
+              <li><a href="/manager/newrepair/"> New Repair</a></li>
+              <li><a href="/manager/repairs/"> Checkout Repair</a></li>
+            </ul>
+        %else:
+          <h4 class='extra-padding'>${request.user.first_name} ${request.user.last_name}</h4>
+            <ul class="nav nav-sidebar">
+              <li><a href="/manager/dash/"><strong>Dashboard</strong></a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+              <li class="active"><a href="/manager/searchinventory/"><strong>Inventory</strong></a></li>
+              <li><a href="/manager/newserializeditem/"> New Serialized Item</a></li>
+            </ul>
+            
+            <ul class="nav nav-sidebar">
+              <li class="active"><a href="/manager/searchusers/"><strong>Users</strong></a></li>
+              <li><a href="/account/newuser/"> New User</a></li>
+            </ul>
+
+            <ul class="nav nav-sidebar">
+              <li class="active"><a href="/manager/searchinventory/#Rental"><strong>Rentals</strong></a></li>
+              <li><a href="/manager/returns/"> Returns</a></li>
+            </ul>
+
+            <ul class="nav nav-sidebar">
+              <li class="active"><a href="/manager/repairs/"><strong>Repairs</strong></a></li>
+              <li><a href="/manager/newrepair/"> New Repair</a></li>
+              <li><a href="/manager/repairs/"> Checkout Repair</a></li>
+            </ul>
+        %endif
+          </div>
+                
         </%block> 
       </div>
 
@@ -92,3 +88,4 @@
   </div>
 
 </%block>
+

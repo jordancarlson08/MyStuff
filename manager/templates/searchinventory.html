@@ -1,14 +1,6 @@
 ## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
 <%inherit file="base.htm" /> <% %>
-<%block name="left_side"> <% %>
 
-%if request.user.is_staff == True:
-MAnager
-%else:
-Employee
-%endif
-
-</%block> 
 
 <%block name="content"> <% %>
 <%block name="shopping_cart_navigation_option"> <% %></%block> 

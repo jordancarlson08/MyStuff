@@ -26,6 +26,11 @@ div.vertical_spacer6{
   height: 72px;
 }
 
+.navbar-default {
+  margin: 0px 0px 0px 0px;
+
+}
+
 .navbar-brand-custom {
   font-family:Poiret One;
   color:#333;
