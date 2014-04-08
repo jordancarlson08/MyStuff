@@ -9,6 +9,14 @@ from catalog.models import *
 def manager_check(user):
 	return user.is_staff == True
 
+def employee_check(user):
+    try:
+        e = Employee.objects.get(user=user)
+        employee = True
+    except:
+        employee = False
+    return employee
+
 def user_check(user):
 	return user.id
 

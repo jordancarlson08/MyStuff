@@ -5,9 +5,11 @@ from manager import models as mmod
 from account import models as amod
 from . import templater
 from django_summernote.widgets import SummernoteWidget
-from django.contrib.auth.decorators import login_required
+from base_app.user_util import *
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 @login_required
+@user_passes_test(manager_check)
 def process_request(request):
 	'''Create a new catalog item'''
 

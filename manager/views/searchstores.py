@@ -3,9 +3,11 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from manager import models as hmod
 from . import templater
-from django.contrib.auth.decorators import login_required
+from base_app.user_util import *
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 @login_required
+@user_passes_test(manager_check)
 def process_request(request):
 	'''Shows the stores'''
 

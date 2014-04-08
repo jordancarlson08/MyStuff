@@ -6,9 +6,11 @@ from . import templater
 from manager.views.newcatalogitem import CatalogItemForm
 from manager.views.newserializeditem import SerializedItemForm
 import datetime
-from django.contrib.auth.decorators import login_required
+from base_app.user_util import *
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 @login_required
+@user_passes_test(manager_check)
 def process_request(request):
 	'''Shows the serialized item'''
 
