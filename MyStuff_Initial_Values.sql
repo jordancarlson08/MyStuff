@@ -48,6 +48,11 @@ INSERT INTO manager_condition VALUES (3, 'Used - Good');
 INSERT INTO manager_condition VALUES (4, 'Used - Poor');
 INSERT INTO manager_condition VALUES (5, 'Used - As Is');
 
+-- Shipping options
+INSERT INTO catalog_shipping VALUES (10, 'Standard (4-7 business days)', 10.00);
+INSERT INTO catalog_shipping VALUES (11, 'Express (2-3 business days)', 20.00);
+INSERT INTO catalog_shipping VALUES (12, 'Next-Day (1 business day)', 40.00);
+
 
 -- User:       webmaster
 -- Password:   Password1
