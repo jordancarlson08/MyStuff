@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from manager import models as hmod
 from account import models as amod
 from . import templater
+from django.contrib.auth import authenticate, login
 from base_app.user_util import user_check, my_account
 from django.contrib.auth.decorators import login_required, user_passes_test
 
@@ -148,7 +149,6 @@ class UserForm(forms.Form):
 
 
 class UserPasswordForm(forms.Form):
-	password = forms.CharField(label='Current Password', max_length=25, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password',}))
 	newpassword1 = forms.CharField(label='New Password',max_length=25, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password',}))
 	newpassword2 = forms.CharField(label='Repeat Password',max_length=25, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password',}))
 
@@ -159,7 +159,3 @@ class UserPasswordForm(forms.Form):
 	        raise forms.ValidationError("New password does not match.")
 
 	    return self.cleaned_data
-
-	# def clean_password(self):
-		# I need to get the user some how so i can run the check_password
-		# check_password(passwordForm.cleaned_data['password'])

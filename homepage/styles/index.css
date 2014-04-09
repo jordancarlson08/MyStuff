@@ -24,6 +24,11 @@
 	font-size: 60px;
 }
 
+.smimg{
+	max-width: 200px;
+	height: auto;
+}
+
 .panel-body > img{
 	max-height:100%;
 	max-width: 100%;
