@@ -13,6 +13,8 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 def process_request(request):
 	'''Records Damage and Late Fees'''
 
+	skip = []
+
 	if (request.urlparams[1] == 'late'):
 		r = Rental.objects.get(id=request.urlparams[0])
 		daysLate = date.today() - r.dateDue
@@ -26,13 +28,17 @@ def process_request(request):
 			'lateFee': sum_fees,
 			})
 	else:
-		form = FeeForm()
+		skip = ['Late Fee', 'Waive Late Fee']
+		form = FeeForm(initial={
+			'waiveLateFee': True,
+			})
 
 	if request.method == 'POST':
 		form = FeeForm(request.POST)
 		if form.is_valid():
-			a = ''
-			b = ''
+			l = ''
+			d = ''
+			r = request.urlparams[0]
 			if (request.urlparams[1] == 'late'):
 				lf = Late()
 				lf.daysLate = daysLate
@@ -42,26 +48,27 @@ def process_request(request):
 				else:
 					lf.amount = form.cleaned_data['lateFee']
 				lf.save()
-				b = lf.id
+				l = lf.id
 
 			df = Damage()
 			df.description = form.cleaned_data['description']
 			df.waived = form.cleaned_data['waiveDamageFee']
 			if (df.waived == True):
-				df.amount = 0
+				df.amount = 0.01
 			else:
 				df.amount = form.cleaned_data['damageFee']
+				df.amount += 0.01
 			df.save()
-			a = df.id 
+			d = df.id 
 
-			params = '%s/%s' %(a, b)
+			params = '%s/%s/%s' %(r, d, l)
 			url = '/catalog/checkout/' +str(params)
-			return HttpResponseRedirect(url) 
+			return HttpResponseRedirect(url)
 
 	tvars = {
 
 	'form':form,
-	'late':request.urlparams[1],
+	'skip':skip,
 
 	}
 
@@ -72,14 +79,16 @@ class FeeForm(forms.Form):
 	'''The form used for damage and late fees'''
 	lateFee = forms.DecimalField(required=False, label='Late Fee', max_digits=8, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Late Fee',}))
 	waiveLateFee = forms.BooleanField(required=False, label='Waive Late Fee')
-	damageFee = forms.DecimalField(label='Damage Fee', max_digits=8, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Damage Fee',}))
+	damageFee = forms.DecimalField(required=False, label='Damage Fee', max_digits=8, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Damage Fee',}))
 	waiveDamageFee = forms.BooleanField(required=False, label='Waive Damage Fee')
 	description = forms.CharField(required=False, label='Damage Description', widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Condition Details',}))
 
+	def clean(self):
+		cleaned_data = super(FeeForm, self).clean()
 
-		### Use in checkout.py ###
-			# rr = RentalReturn()
-			# rr.rental = t.rental
-			# rr.dateIn = date.today()
-			# rr.fee
-			# rr.save()
+		waiveDamageFee = cleaned_data.get("waiveDamageFee")
+		damageFee = cleaned_data.get("damageFee")
+		print(damageFee)
+		if waiveDamageFee == False and damageFee == None:
+			raise forms.ValidationError('Please enter a damage fee.')
+		return cleaned_data

@@ -130,7 +130,6 @@
 <!-- IF Logic to only make this if its a user doing the checkout -->
 					%if isEmployee == False:
 						%if f.label == 'Same as Billing':
-						<%print('SAME AS BILLING!!!')%>
 
 						</table>
 						<!-- end the table -->
@@ -159,7 +158,6 @@
 <!-- IF Logic to only make this if the RENT cart isn't empty -->
 					%if isRentEmpty == False:
 						%if f.label == 'Days to Rent':
-						<%print('days to rent')%>
 
 						</table>
 						<!-- end the table -->
@@ -189,7 +187,6 @@
 
 					%if isRepairEmpty == False:
 						%if f.label == 'Date Complete':
-						<%print('Date Complete')%>
 
 						</table>
 						<!-- end the table -->
@@ -216,7 +213,6 @@
 					%endif
 
 						%if f.label == 'Credit Card':
-						<%print('Credit Card')%>
 
 						</table>
 						<!-- end the table -->
@@ -253,10 +249,8 @@
 
 
 					%if f.name in skip_list:
-						<%print('!!!!SKIPPED!!!')%>
 						<%continue%>
 					%else:
-					<%print('!!!!NOT SKIPPED!!!')%>
 				      	%if bSide: 
 				      	<!-- Left side -->
 				    	<tr>

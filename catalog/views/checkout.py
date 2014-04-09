@@ -56,13 +56,7 @@ def process_request(request):
 		repair_list.append(repair_item)
 		cart_all = Cart(cart_list, rent_list, repair_list)
 		isRepairEmpty=False
-
-	
-
-
 	##### Cart End #####
-
-	##### Checkout Form Stuff ######
 
 	isEmployee = 'NotSet'
 	try:
@@ -74,9 +68,12 @@ def process_request(request):
 		currentCustomer = User.objects.get(id=request.user.id)
 		isEmployee = False
 
+	### Checks if its a Rental Return ###
+	isRentalReturn = False
+	if(request.urlparams[0] != ''):
+		isRentalReturn = True
 
 	### CREATE the skip list used for layout of fields ###
-
 	skip_ship = ['use_bill', 'ship_first_name', 'ship_last_name', 'ship_phone', 'ship_email', 'ship_street1', 'ship_street2', 'ship_city', 'ship_state', 'ship_zipCode', 'shipping']
 	skip_rent = ['days', 'username']
 	skip_repair = ['dateComplete', 'description', 'hours', 'status', 'amount']
@@ -87,9 +84,6 @@ def process_request(request):
 		skip_list = skip_list + skip_rent
 	if isRepairEmpty == True:
 		skip_list = skip_list + skip_repair
-	print('------------------')
-	print(skip_list) #TestingPurposes
-
 
 	#Error Handling: If its a user that has rentals in his cart (should be impossible) redirect to the homepage and clear cart
 	if (isEmployee == False and isRentEmpty == False):
@@ -150,9 +144,6 @@ def process_request(request):
 		################################################
 
 		if (isCartEmpty==False):
-			print("----------------------------------") #TestingPurposes
-			print("Cart isn't empty ---- Process Sale") #TestingPurposes
-			print("----------------------------------") #TestingPurposes
 			# if request.method == 'POST': #FixLater --- Remove once FixLater #100 has been addressed
 			form = CheckoutForm(request.POST) #FixLater --- Remove once FixLater #100 has been addressed
 			if form.is_valid(): #FixLater --- Remove once FixLater #100 has been addressed
@@ -168,8 +159,6 @@ def process_request(request):
 					if item.isSerial == True:
 						# Get the serialized items for the given cat item excluding already sold and rentals ---------------------# This part should only give new items (not tested)
 						actual_list = SerializedItem.objects.filter(catalogItem=item).exclude(isRental=True).filter(isSold=False) #.filter(condition=Condition.objects.get(id=1))
-						print('Actual_list') #TestingPurposes
-						print(actual_list) #TestingPurposes
 						actual = actual_list[0] #get the first of the list, bad practice... #FixLater --- the part just above this might not make it so bad
 						actual.isSold = True
 						actual.save()
@@ -189,11 +178,7 @@ def process_request(request):
 
 
 				r.amount = sum(items_list) #updates the Revenue(Sale).amount to the subtotal of all items in cart
-				print('--------SAle Amount!!!!-----')
-				print(r.amount)	
 				r.save()
-				print('--------Sale Amount!!!!-----')
-				print(r.amount)	
 
 				if(isEmployee!=True):
 					t.user = currentCustomer 					   #Logged In User
@@ -204,19 +189,11 @@ def process_request(request):
 					t.employee = currentEmployee				   #Logged In Employee
 					t.store = Store.objects.get(id=99999)		   #Whatever Store ----- #FixLater
 
-				print("------------------------------------") #TestingPurposes
-				print("Before .save") #TestingPurposes
-				print("------------------------------------") #TestingPurposes
-
 				t.save()
 				t.revenue.add(r)
 				t.save()
 
 				subtotal_list.append(r.amount)
-				print(r.amount)
-				print("------------------------------------") #TestingPurposes
-				print("END of Sale") #TestingPurposes
-				print("------------------------------------") #TestingPurposes
 
 				################################################
 				############ END: SALE REVENUE  ################
@@ -228,9 +205,6 @@ def process_request(request):
 		################################################
 
 		if (isRentEmpty==False):
-			print("------------------------------------") #TestingPurposes
-			print("Rental isn't empty -- Process rental") #TestingPurposes
-			print("------------------------------------") #TestingPurposes
 			if request.method == 'POST': #FixLater --- Remove once FixLater #100 has been addressed
 				form = CheckoutForm(request.POST) #FixLater --- Remove once FixLater #100 has been addressed
 				if form.is_valid(): #FixLater --- Remove once FixLater #100 has been addressed
@@ -279,13 +253,51 @@ def process_request(request):
 					################################################
 
 		################################################
+		############## RENTAL RETURN   #################
+		################################################
+
+		form = CheckoutForm(request.POST)
+		if form.is_valid():
+			if (isRentalReturn==True):
+				rental = Rental.objects.get(id=request.urlparams[0])
+				damage = Damage.objects.get(id=request.urlparams[1])
+				try:
+					late = Late.objects.get(id=request.urlparams[2])
+				except:
+					late = ''
+
+				fee_list = []
+				rr = RentalReturn()
+				rr.rental = rental
+				rr.dateIn = datetime.now()
+				rr.save()
+				rr.fee.add(damage)
+				rr.save()
+				fee_list.append(damage.amount)
+				if late != '':
+					rr.fee.add(late)
+					rr.save()
+					fee_list.append(late.amount)
+
+				lastT = Transaction.objects.get(revenue=rental)
+				t.user = lastT.user
+				t.employee = currentEmployee
+				t.store = lastT.store
+				t.save()
+				t.revenue.add(rr)
+				t.save()
+				subtotal_list.append(sum(fee_list))
+
+			################################################
+			############# END RENTAL RETURN ################
+			################################################
+
+
+		################################################
 		############## REPAIR REVENUE  #################
 		################################################
 
 		if (isRepairEmpty==False):
-			print("------------------------------------") #TestingPurposes
-			print("Repair isn't empty -- Process rental") #TestingPurposes
-			print("------------------------------------") #TestingPurposes
 			if request.method == 'POST': #FixLater --- Remove once FixLater #100 has been addressed
 				form = CheckoutForm(request.POST) #FixLater --- Remove once FixLater #100 has been addressed
 				if form.is_valid(): #FixLater --- Remove once FixLater #100 has been addressed
@@ -301,8 +313,6 @@ def process_request(request):
 						r.hours = form.cleaned_data['hours']
 						r.status = form.cleaned_data['status']
 						r.amount = form.cleaned_data['amount']
-						print('--------Repair Amount!!!!-----')
-						print(r.amount)
 						r.isOpen = False
 						rev_list.append(r.amount)
 						r.save()
@@ -320,22 +330,16 @@ def process_request(request):
 					t.save()
 
 					subtotal_list.append(sum(rev_list))
-					print('--------Repair Amount!!!!-----')
-					print(subtotal_list)	
 
 					################################################
 					########### END: REPAIR REVENUE  ###############
 					################################################
 
-
-		print('--------Charge Amount!!!!-----')
-		print(subtotal_list)					
+				
 		t.subtotal = sum(subtotal_list)
-		print(t.subtotal)
 		t.tax = t.subtotal * Decimal(SALES_TAX)
-		print(t.tax)
 		t.total = t.subtotal + t.tax
-		print(t.total)
+
 		if (isEmployee !=True):
 			t.paymentType = "CC"
 		else:
@@ -343,8 +347,6 @@ def process_request(request):
 
 		t.save()
 
-		print('--------Charge Amount!!!!-----')
-		print(t.total)
 
 		################################################
 		######### SEND CHARGE TO REST SERVER ###########

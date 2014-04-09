@@ -4,9 +4,9 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396906135.057288
+_modified_time = 1397020399.789188
 _enable_loop = True
-_template_filename = '/Users/ecookson/Desktop/MyStuff/manager/templates/fees.html'
+_template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/fees.html'
 _template_uri = 'fees.html'
 _source_encoding = 'ascii'
 import os, os.path, re
@@ -29,19 +29,20 @@ def render_body(context,**pageargs):
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         form = context.get('form', UNDEFINED)
+        skip = context.get('skip', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
         __M_writer = context.writer()
         # SOURCE LINE 2
  
 
-        __M_writer('\n\n')
+        __M_writer('\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
             context['self'].content(**pageargs)
         
 
-        # SOURCE LINE 37
-        __M_writer('  \n')
+        # SOURCE LINE 39
+        __M_writer('  \r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -51,30 +52,36 @@ def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         form = context.get('form', UNDEFINED)
+        skip = context.get('skip', UNDEFINED)
         def content():
             return render_content(context)
         __M_writer = context.writer()
         # SOURCE LINE 4
  
 
-        __M_writer('\n\n  <h2>Rental Fees</h2>\n  <hr/>\n  <br/>\n\n  <!-- Custom Form -->\n  <form class ="form-horizontal" role="form" method ="POST">\n\n  <!--   Loop through the fields of the form -->\n')
-        # SOURCE LINE 14
+        __M_writer('\r\n\r\n  <h2>Rental Fees</h2>\r\n  <hr/>\r\n  <br/>\r\n\r\n  <!-- Custom Form -->\r\n  <form class ="form-horizontal" role="form" method ="POST">\r\n  <div class=\'col-sm-offset-3\'>\r\n    ')
+        # SOURCE LINE 13
+        __M_writer(str(form.non_field_errors()))
+        __M_writer('\r\n  </div>\r\n  <!--   Loop through the fields of the form -->\r\n')
+        # SOURCE LINE 16
         for f in form:
-            # SOURCE LINE 15
-            __M_writer('\n      <div class="form-group">\n        <label class="col-sm-3 control-label" for="id_')
             # SOURCE LINE 17
-            __M_writer(str( f.name ))
-            __M_writer('">')
-            __M_writer(str( f.label ))
-            __M_writer('</label> <!-- the label -->\n          <div class="col-sm-5">\n            ')
-            # SOURCE LINE 19
-            __M_writer(str(f))
-            __M_writer(' <!-- The input box -->\n            ')
-            # SOURCE LINE 20
-            __M_writer(str(f.errors))
-            __M_writer('\n          </div>\n      </div>\n\n')
-        # SOURCE LINE 25
-        __M_writer('\n    <div class="form-group">\n      <div class="col-sm-offset-3 col-sm-4">\n        <input class="btn btn-success" type="submit" value="Checkout">\n      </div>\n    </div>\n  </form>\n\n\n  <div class="vertical_spacer6"></div>\n  <div class="vertical_spacer6"></div>\n\n')
+            if f.label not in skip:
+                # SOURCE LINE 18
+                __M_writer('      <div class="form-group">\r\n        <label class="col-sm-3 control-label" for="id_')
+                # SOURCE LINE 19
+                __M_writer(str( f.name ))
+                __M_writer('">')
+                __M_writer(str( f.label ))
+                __M_writer('</label> <!-- the label -->\r\n          <div class="col-sm-5">\r\n            ')
+                # SOURCE LINE 21
+                __M_writer(str(f))
+                __M_writer(' <!-- The input box -->\r\n            ')
+                # SOURCE LINE 22
+                __M_writer(str(f.errors))
+                __M_writer('\r\n          </div>\r\n      </div>\r\n')
+        # SOURCE LINE 27
+        __M_writer('\r\n    <div class="form-group">\r\n      <div class="col-sm-offset-3 col-sm-4">\r\n        <input class="btn btn-success" type="submit" value="Checkout">\r\n      </div>\r\n    </div>\r\n  </form>\r\n\r\n\r\n  <div class="vertical_spacer6"></div>\r\n  <div class="vertical_spacer6"></div>\r\n\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()

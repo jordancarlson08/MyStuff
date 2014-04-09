@@ -68,7 +68,7 @@ class RentalItem(models.Model):
 
 class RentalReturn(Revenue):
 	'''Class for rental returns'''
-	rental = models.OneToOneField(Rental)
+	rental = models.ForeignKey(Rental)
 	dateIn = models.DateField()
 	fee = models.ManyToManyField(Fee)
 

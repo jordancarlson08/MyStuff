@@ -54,7 +54,6 @@ def process_request(request):
 
 class CatalogItemForm(forms.Form):
 	'''A form for new stores'''
-
 	name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name',}))
 	manufacturer = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Manufacturer',}))
 	category = forms.ModelChoiceField(label='Category' ,queryset=mmod.SubCategory.objects.all(), widget=forms.Select(attrs={'class': 'form-control',}))

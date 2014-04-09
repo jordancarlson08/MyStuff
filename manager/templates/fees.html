@@ -9,10 +9,12 @@
 
   <!-- Custom Form -->
   <form class ="form-horizontal" role="form" method ="POST">
-
+  <div class='col-sm-offset-3'>
+    ${form.non_field_errors()}
+  </div>
   <!--   Loop through the fields of the form -->
     %for f in form:
-
+      %if f.label not in skip:
       <div class="form-group">
         <label class="col-sm-3 control-label" for="id_${ f.name }">${ f.label }</label> <!-- the label -->
           <div class="col-sm-5">
@@ -20,7 +22,7 @@
             ${f.errors}
           </div>
       </div>
-
+      %endif
     %endfor
 
     <div class="form-group">
