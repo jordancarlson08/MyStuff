@@ -7,10 +7,6 @@
 ## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list-->
 <%inherit file="base.htm" /> <% %>
 
-
-<%block name="shopping_cart_navigation_option"> <% %></%block> 
-
-
 <%block name="content"> <% %>
   <h2>Welcome back, ${request.user.first_name} ${request.user.last_name}!</h2></br>
   <p>Use the left-side navigation bar to view connecting pages and options by clicking on each section heading. To view your own account information, log out, or return to your dashboard, use the dropdown menu in the upper right hand corner.</p>

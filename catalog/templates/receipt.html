@@ -1,0 +1,293 @@
+## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+<%inherit file="base.htm" />
+
+
+<%block name = "main">
+<% %>
+<div class="container">
+  %if isWalkin == True:
+  <h1>Thank you!</h1>
+  </br>
+  %else:
+  <h1>Thank you for your Order, ${t.user.first_name} ${t.user.last_name}!</h1>
+  </br>
+  %endif
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">Billing Address</h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <table>
+              	<tbody>
+	                <tr>
+	                  <td><strong>${t.user.first_name} ${t.user.last_name}</strong></td>
+	                </tr>
+					<tr>
+						<td>Stree1</td>
+					</tr>
+					<tr>
+						<td>Stree2</td>
+					</tr>
+					<tr>
+						<td>City, ST 84606</td>
+					</tr>
+					<tr>
+						<td>801-555-5555</td>
+					</tr>
+					<tr>
+						<td>Jordan@digitallifemyway.com</td>
+					</tr>
+				</tbody>
+              </table>          
+            </div> <!--ends of panel body Billing container-->
+          </div>
+        </div>
+        <!-- end of panel, panel-default -->
+
+        %if showShip == True:
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">Shipping Address</h4>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <table>
+              	<tbody>
+	                <tr>
+	                  <td><strong>${t.user.first_name} ${t.user.last_name}</strong></td>
+	                </tr>
+					<tr>
+						<td>Stree1</td>
+					</tr>
+					<tr>
+						<td>Stree2</td>
+					</tr>
+					<tr>
+						<td>City, ST 84606</td>
+					</tr>
+					<tr>
+						<td>801-555-5555</td>
+					</tr>
+					<tr>
+						<td>Jordan@digitallifemyway.com</td>
+					</tr>
+				</tbody>
+              </table>  
+            </div><!--ends Shipping container-->
+          </div>
+        </div>
+        <!-- end of panel, panel-default -->
+
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">Shipping Method</h4>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <div class="container">
+                <form role="form">
+                  <div class="form-group">
+                    <div class="col-md-6">
+                      <h5><b>Delivery method</b></h5>
+                      <form>
+                        <span class="label label-success">Standard</span> 3 - 4 day shipping ($8.00)
+                        <br>
+                      </form>
+                      </br>
+                      <p>* Same-day shipping applies only to locations within 3 hours of warehouse location</p>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of panel, panel-default -->
+        %endif
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">Payment Information</h4>
+          </div>
+          <div id="collapseFour" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <table>
+                <tr>
+                  <td>
+                    <label for="OrderNum">Transaction ID:</label>
+                    <label for="OrderNum">${t.id}</label>
+                  </td>
+
+                </tr>
+                <tr>
+                  <td>
+                    <label for="CardNumber">Card Ending In:</label>
+                    <label for="CardNumber">XXXX-XXXX-XXXX-0654</label>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <label for="ExpMonth">Expiration:</label>
+                    <label for="ExpMonth">10/2014</label>
+                  </td>
+
+                </tr>
+              </table>	  
+            </div>
+          </div>
+        </div>
+        <!-- end of panel, panel-default -->
+      </div>
+      <!--end accordion-->
+
+      <br/>
+      <h4>Email Customer Receipt</h4>
+
+      <form class="form-horizontal" role="form" method="POST">
+        <table class='table'>
+          <tbody>
+            %for f in form:
+            <tr>
+              <td width='99%'>${f}</td>
+              <td>
+                <button type="submit" class='btn btn-primary'>Send</button>
+              </td>
+            </tr>
+            %endfor
+          </tbody>
+        </table>
+      </form>
+    </div><!--ends col-md-4 -->
+	<div class="col-md-8">
+		<div class="panel-group" id="accordion">
+
+		%if sale != '':
+		  <div class="panel panel-default">
+		    <div class="panel-heading"><h4 class="panel-title">SALES</h4>
+		    </div>
+		      <div class="panel-body">
+		      	<table>
+		      		<tbody>
+		      			<tr>
+		      				<td></td>
+		      			</tr>
+		      		</tbody>
+		      	</table>
+		      </div>
+		  </div>
+		%endif
+		%if rental != '':
+		  <div class="panel panel-default">
+		    <div class="panel-heading"><h4 class="panel-title">RENTALS</h4>
+		    </div>
+		      <div class="panel-body">
+		      	...
+		      </div>
+		  </div>
+		%endif
+		%if rentalreturn != '':
+		  <div class="panel panel-default">
+		    <div class="panel-heading"><h4 class="panel-title">RETURNS</h4>
+		    </div>
+		      <div class="panel-body">
+		      	...
+		      </div>
+		  </div>	
+		%endif
+		%if repair != '':
+		  <div class="panel panel-default">
+		    <div class="panel-heading"><h4 class="panel-title">REPAIRS</h4>
+		    </div>
+		      <div class="panel-body">
+		      	...
+		      </div>
+		  </div>
+		%endif
+
+		</div>
+	</div><!--ends col-md-8 -->
+  </div><!--ends row-->
+</div> <!-- End Container -->
+
+</%block>
+
+
+
+
+<div class="well">
+		  <h3>Your Items</h3>
+		  <table>
+		    <h5><b>Nikon Coolpix S8000c</b></h5>
+		    <tr>
+		      <td rowspan="2">
+		        <img src="http://lghttp.22373.nexcesscdn.net/80A650/Magento/media/catalog/product/cache/1/small_image/150x/9df78eab33525d08d6e5fb8d27136e95/n/i/nikon_1_s800c_front.jpg" width=5 5px alt="Nikon Camera">&nbsp;&nbsp;</td>
+		      <td><b>Quantity: </b>
+		      </td>
+		      <td>1</td>
+		    </tr>
+		    <tr>
+		      <td><b>Price: </b>
+		      </td>
+		      <td>$189.99</td>
+		    </tr>
+		  </table>
+		  <hr>
+		  <table>
+		    <h5><b>Nikon 12-24mm f/4G ED-IF AF-S DX Lens</b></h5>
+		    <tr>
+		      <td rowspan="2">
+		        <img src="https://www.pictureline.com/media/catalog/product/cache/1/small_image/50x/9df78eab33525d08d6e5fb8d27136e95/n/i/nikon_2_12-24_side.jpg" alt="Lens">
+		      </td>
+		      <td><b>Quantity: </b>
+		      </td>
+		      <td>1</td>
+		    </tr>
+		    <tr>
+		      <td><b>Price: </b>
+		      </td>
+		      <td>$1,224.35</td>
+		    </tr>
+		  </table>
+
+		  <hr/>
+
+		  <table>
+		    <tr>
+		      <td><b>Subtotal: </b>
+		      </td>
+		      <td></td>
+		      <td></td>
+		      <td>$1,414.94</td>
+		    </tr>
+		    <tr>
+		      <td><b>Tax: </b>
+		      </td>
+		      <td></td>
+		      <td></td>
+		      <td>$35.00</td>
+		    </tr>
+		    <tr>
+		      <td><b>Shipping: </b>
+		      </td>
+		      <td></td>
+		      <td></td>
+		      <td>$8.00</td>
+		    </tr>
+		    <tr>
+		      <td><b>TOTAL: </b>
+		      </td>
+		      <td></td>
+		      <td></td>
+		      <td><u>$1,457.94</u>
+		      </td>
+		    </tr>
+		  </table>
+		  <br>
+		</div><!--closes the "well" -->

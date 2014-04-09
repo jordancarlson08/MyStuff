@@ -5,6 +5,7 @@ from manager.models import *
 from catalog.models import *
 from account.models import *
 from base_app.user_util import get_users_only
+from catalog.accounting import record_sale
 from . import templater
 from datetime import *
 from decimal import *
@@ -130,8 +131,8 @@ def process_request(request):
 	# form = CheckoutForm(request.POST)
 	# if form.is_valid():
 		t = Transaction() #Create one transaction for the entire checkout
-		t.user = User.objects.get(id=99999)
-		t.employee = Employee.objects.get(id=99999)    #Online Sales Employee (Commissionless)
+		t.user = User.objects.get(id=99998)
+		t.employee = Employee.objects.get(id=99998)    #Online Sales Employee (Commissionless)
 		t.store = Store.objects.get(id=99999) 
 		t.subtotal = 0
 		t.tax = 0
@@ -152,6 +153,7 @@ def process_request(request):
 				r.amount = 0
 				r.save()
 				items_list=[]
+				cost_list=[]
 				ssi = ''
 				sci = ''
 				for i in cart.keys():
@@ -167,6 +169,7 @@ def process_request(request):
 						ssi.sale = r
 						ssi.save()
 						items_list.append(actual.listPrice)
+						cost_list.append(actual.cost)
 
 					else:
 						sci = SaleCatItem()
@@ -175,6 +178,7 @@ def process_request(request):
 						sci.sale = r
 						sci.save()
 						items_list.append(item.listPrice * sci.qty)
+						cost_list.append(actual.cost * sci.qty)
 
 
 				r.amount = sum(items_list) #updates the Revenue(Sale).amount to the subtotal of all items in cart
@@ -182,18 +186,42 @@ def process_request(request):
 
 				if(isEmployee!=True):
 					t.user = currentCustomer 					   #Logged In User
-					t.employee = Employee.objects.get(id=99999)    #Online Sales Employee (Commissionless)
+					t.employee = Employee.objects.get(id=99998)    #Online Sales Employee (Commissionless)
 					t.store = Store.objects.get(id=99999) 		   #Online Sales Store
 				else: # Case 2
-					t.user = User.objects.get(id=99999) 		   #Walk-in Customer
+					t.user = User.objects.get(id=99998) 		   #Walk-in Customer
 					t.employee = currentEmployee				   #Logged In Employee
 					t.store = Store.objects.get(id=99999)		   #Whatever Store ----- #FixLater
+
+				#### Add shipping cost ####
+				ship_price = 0
+				if isEmployee == False:
+					try:
+						ship_option = form.cleaned_data['shipping']
+					except:
+						ship_option = None
+
+					if ship_option != None:
+						ship_price = ship_option.price
+						subtotal_list.append(ship_price)
+						cost_list.append(ship_price)
 
 				t.save()
 				t.revenue.add(r)
 				t.save()
 
 				subtotal_list.append(r.amount)
+
+				t.subtotal = r.amount
+				t.tax = r.amount * Decimal(SALES_TAX)
+				t.total = t.subtotal + t.tax
+				t.save()
+
+				# sum of the cost of the items in the sale
+				c = sum(cost_list)
+
+				# Creates the accounting entries for the sale of inventory
+				record_sale(t, c)
 
 				################################################
 				############ END: SALE REVENUE  ################
@@ -237,8 +265,8 @@ def process_request(request):
 						t.user = form.cleaned_data['username']
 						# t.user = User.objects.get(username=form.cleaned_data['username']) #TestingPurposes
 					except:
-						t.user = User.objects.get(id=99999)
-						print('Could not find user, used user_id 99999')
+						t.user = User.objects.get(id=99998)
+						print('Could not find user, used user_id 99998')
 
 					t.employee = currentEmployee
 					t.store = Store.objects.get(id=1) #FixLater -- don't hardcode the store
@@ -329,7 +357,7 @@ def process_request(request):
 					if (user!=''):
 						t.user = user
 					else:
-						t.user = User.objects.get(id=99999) #TestingPurposes --- should never happen -- #FixLater
+						t.user = User.objects.get(id=99998) #TestingPurposes --- should never happen -- #FixLater
 					t.employee = currentEmployee
 					t.store = Store.objects.get(id=1) #FixLater -- don't hardcode the store
 					t.save()
@@ -396,7 +424,7 @@ def process_request(request):
 		request.session['rent'] = {}
 		request.session['repair'] = {}
 
-		return HttpResponseRedirect('/catalog/category')
+		return HttpResponseRedirect('/catalog/receipt/'+str(t.id))
 			
 	tvars = {
 

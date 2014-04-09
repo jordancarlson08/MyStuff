@@ -104,6 +104,11 @@ class Commission(models.Model):
 	'''Class for commissions'''
 	created = models.DateField(auto_now=True)
 
+class JournalEntry(models.Model):
+	'''Class for Journal Entries'''
+	created = models.DateField(auto_now_add=True)
+	transaction = models.ForeignKey(Transaction)
+	note = models.TextField()
 
 class Ledger(models.Model):
 	'''Class for the different accounting ledgers'''
@@ -117,11 +122,9 @@ class AccountEntry(models.Model):
 	isDebit = models.BooleanField()
 	amount = models.DecimalField(max_digits=16, decimal_places=2, blank=True, null=True)
 	ledger = models.ForeignKey(Ledger)
+	journalEntry = models.ForeignKey(JournalEntry)
 
-class JournalEntry(models.Model):
-	'''Class for Journal Entries'''
-	created = models.DateField(auto_now=True)
-	note = models.TextField()
+
 
 
 
