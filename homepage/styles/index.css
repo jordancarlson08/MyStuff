@@ -1,16 +1,45 @@
-body{
-	background-image: url('../../homepage/images/bg4.jpg');
-	background-position: center;
+.no-padding{
+	margin: 0;
 }
 
-div.custom1{
-	text-align: center;
-	color: 333;
+.box-semi{
 
+	width: 75%; 
+	height: 100%;
+	text-align: left;
+	padding-left: 3%;
+
+	border-radius:15px;
+	/* Fallback for web browsers that don't support RGBa */
+    background-color: rgb(0, 0, 0);
+    /* RGBa with 0.75 opacity */
+    background-color: rgba(0, 0, 0, 0.75);
+    /* For IE 5.5 - 7*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+    /* For IE 8*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
 }
 
-h1{
-	color: white; 
-	text-shadow: black 0.1em 0.1em 0.2em;
-	font-size: 45px;	
+.jumbo{
+	font-size: 60px;
+}
+
+.oldbox-semi{
+	position: relative;
+	left:-260px;
+	top:40px;
+	max-width: 630px; /*1330 */
+	height: 400px;
+	text-align: left;
+	padding-left: 25px;
+	padding-top: 110px;
+	border-radius:15px;
+	/* Fallback for web browsers that don't support RGBa */
+    background-color: rgb(0, 0, 0);
+    /* RGBa with 0.75 opacity */
+    background-color: rgba(0, 0, 0, 0.75);
+    /* For IE 5.5 - 7*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+    /* For IE 8*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
 }

@@ -1,0 +1,56 @@
+## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+<%inherit file="base_template.htm" />
+<%block name="main">
+<% %>
+
+<% 
+from base_app.user_util import manager_check, employee_check
+
+isEmployee = employee_check(request.user)
+isManager = manager_check(request.user)
+
+%>
+
+<div class="vertical_spacer6"></div>
+<div class="vertical_spacer6"></div>
+
+
+
+<div class="background-image">
+<div class="custom1">
+
+  <h1>Welcome</h1>
+  <div class="vertical_spacer6"></div>
+  <div class="vertical_spacer6"></div>
+
+  <a href="/catalog/category/" class="btn btn-primary btn-lg">View Catalog</a>
+
+  %if request.user.is_anonymous() == True:	
+  	<a id="login_button2" class="btn btn-success btn-lg">Log In</a>
+  %else:
+
+  	%if isEmployee == False:
+  	<a class="btn btn-success btn-lg" href="/account/user/${request.user.id}">My Account</a>
+  	%else:
+  	<a class="btn btn-success btn-lg" href="/manager/employee/${request.user.id}">My Account</a>
+  	%endif
+
+
+  %endif
+
+</div>
+</div>
+
+
+
+
+
+<div class="vertical_spacer6"></div>
+<div class="vertical_spacer6"></div>
+<div class="vertical_spacer6"></div>
+<div class="vertical_spacer6"></div>
+<div class="vertical_spacer6"></div>
+
+</%block>  
+
+<%block name='top'></%block>
