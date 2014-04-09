@@ -24,6 +24,7 @@ $(function() {
 });
 
 
+
 //Ajax call, basic example
 $(function() {
 

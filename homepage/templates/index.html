@@ -23,12 +23,10 @@ isManager = manager_check(request.user)
   </ol>
 
   <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-
-    <div class="item active">
+  <div class="carousel-inner"> <!-- Start Carousel Inner -->
+    <div class="item active"> <!-- Start Item -->
       <img src="/static/homepage/images/e2.jpg" alt="Digital SLR">
       <div class="carousel-caption">
-
         <div class='box-semi'>
           <div class='vertical_spacer6'></div>
           <div class='jumbo'>Digital SLR</div>
@@ -40,14 +38,11 @@ isManager = manager_check(request.user)
           </ul>
           <br/>
         </div>
-        
       </div>
-    </div>
-
-    <div class="item">
+    </div> <!-- End Item -->
+    <div class="item"> <!-- Start Item -->
       <img src="/static/homepage/images/e3.jpg" alt="Rentals">
       <div class="carousel-caption">        
-
         <div class='box-semi'>
           <div class='vertical_spacer6'></div>
           <div class='jumbo'>Rentals</div>
@@ -59,15 +54,11 @@ isManager = manager_check(request.user)
           </ul>
           <br/>
         </div>
-
-
-    </div>
-  </div>
-
-    <div class="item">
+      </div>
+    </div> <!-- End Item -->
+    <div class="item"> <!-- Start Item -->
       <img src="/static/homepage/images/e1.jpg" alt="Repairs">
       <div class="carousel-caption">
-
         <div class='box-semi'>
           <div class='vertical_spacer6'></div>
           <div class='jumbo'>Repairs</div>
@@ -79,18 +70,163 @@ isManager = manager_check(request.user)
           </ul>
           <br/>
         </div>
-
       </div>
-    </div>
-
-  </div>
-
-</div>
-
-
-
+    </div> <!-- End Item -->
+  </div> <!-- End Carousel Inner -->
+</div> <!-- End Carousel -->
 
 <div class="vertical_spacer6"></div>
+<div class='text-center'>
+  <span id='down_arrow' class='glyphicon glyphicon-download down-arrow'></span>
+</div>
+<div class="vertical_spacer6"></div>
+<div class="vertical_spacer6"></div>
+<div class="vertical_spacer6"></div>
+<div class="vertical_spacer6"></div>
+
+
+<div class='container-fluid'>
+  <div class='row text-center'>
+    <div class='col-md-1'></div>
+
+    <div class='col-md-2'>
+      <a href="/catalog/category/1/">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <img src="/static/catalog/images/products/nikon1v2.jpg" alt="Cameras">
+            <br/><br/>
+            <h3>Cameras</h3>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class='col-md-2'>
+      <a href="/catalog/category/2/">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <img src="/static/catalog/images/products/nikonlens1.jpg" alt="Lenses">
+            <br/><br/>
+            <h3>Lenses</h3>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class='col-md-2'>
+      <a href="/catalog/category/3/">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <img src="/static/catalog/images/products/light1.png" alt="Lighting">
+            <br/><br/>
+            <h3>Lighting</h3>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class='col-md-2'>
+      <a href="/catalog/category/4/">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <img src="/static/catalog/images/products/tripod1.jpg" alt="Tripod">
+            <br/><br/>
+            <h3>Tripods</h3>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class='col-md-2'>
+      <a href="/catalog/category/5/">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <img src="/static/catalog/images/products/bag1.jpg" alt="Bags & Cases">
+            <br/><br/>
+            <h3>Cases</h3>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class='col-md-1'></div>
+  </div>
+
+
+  <div class="vertical_spacer6"></div>
+
+<!-- START FEATURED PRODUCTS -->
+  <div class='row text-center'>
+    <div class='col-md-1'></div>
+    <div class='col-md-10'> <!-- Open Column -->
+      <div class="panel panel-primary"> <!-- Featured Products Panel -->
+        <div class="panel-heading"><strong>Featured Products</strong></div>
+        <div class="panel-body"> <!-- Featured Products Panel Body -->
+          <br/>
+
+          <div class='container-fluid'> <!-- Feat Products Container -->
+            <div class='row'> <!-- Feat Products Row -->
+
+              <div class='col-md-3'>
+                <a href="/catalog/category/5/">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <img src="/static/catalog/images/products/bag1.jpg" alt="Bags & Cases">
+                      <br/><br/>
+                      <h3>Product 1</h3>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <div class='col-md-3'>
+                <a href="/catalog/category/5/">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <img src="/static/catalog/images/products/bag1.jpg" alt="Bags & Cases">
+                      <br/><br/>
+                      <h3>Product 2</h3>
+                    </div>
+                  </div>
+                </a>  
+              </div>
+
+              <div class='col-md-3'>
+                <a href="/catalog/category/5/">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <img src="/static/catalog/images/products/bag1.jpg" alt="Bags & Cases">
+                      <br/><br/>
+                      <h3>Product 3</h3>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <div class='col-md-3'>
+                <a href="/catalog/category/5/">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <img src="/static/catalog/images/products/bag1.jpg" alt="Bags & Cases">
+                      <br/><br/>
+                      <h3>Product 4</h3>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+            </div> <!-- End Feat Products Row -->
+          </div> <!-- End Feat Products Container -->
+
+        </div> <!-- End Featured Products Panel Body -->
+      </div> <!-- End Featured Products Panel -->
+    </div> <!-- Close Column -->
+    <div class='col-md-1'></div>
+</div>
+<!-- END FEATURED PRODUCTS -->
+
+
+
 <div class="vertical_spacer6"></div>
 <div class="vertical_spacer6"></div>
 <div class="vertical_spacer6"></div>

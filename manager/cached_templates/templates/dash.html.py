@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396984747.395417
+_modified_time = 1397008377.493348
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/dash.html'
 _template_uri = 'dash.html'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['content', 'shopping_cart_navigation_option']
+_exports = ['shopping_cart_navigation_option', 'content']
 
 
 def _mako_get_namespace(context, name):
@@ -28,10 +28,10 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def content():
-            return render_content(context._locals(__M_locals))
         def shopping_cart_navigation_option():
             return render_shopping_cart_navigation_option(context._locals(__M_locals))
+        def content():
+            return render_content(context._locals(__M_locals))
         request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 1
@@ -55,8 +55,23 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
-        # SOURCE LINE 24
+        # SOURCE LINE 27
         __M_writer('<!--ends content-->\r\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_shopping_cart_navigation_option(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def shopping_cart_navigation_option():
+            return render_shopping_cart_navigation_option(context)
+        __M_writer = context.writer()
+        # SOURCE LINE 11
+        __M_writer(' ')
+ 
+
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -78,22 +93,7 @@ def render_content(context,**pageargs):
         __M_writer(str(request.user.first_name))
         __M_writer(' ')
         __M_writer(str(request.user.last_name))
-        __M_writer("!</h2></br>\r\n  <p>Use the left-side navigation bar to view connecting pages and options by clicking on each section heading. To view your own account information, log out, or return to your dashboard, use the dropdown menu in the upper right hand corner.</p>\r\n\r\n  <div class='vertical_spacer6'></div>\r\n  <div class='vertical_spacer6'></div>\r\n  <div class='vertical_spacer6'></div>\r\n  <div class='vertical_spacer6'></div>\r\n  <div class='vertical_spacer6'></div>\r\n  <div class='vertical_spacer6'></div>\r\n")
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_shopping_cart_navigation_option(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def shopping_cart_navigation_option():
-            return render_shopping_cart_navigation_option(context)
-        __M_writer = context.writer()
-        # SOURCE LINE 11
-        __M_writer(' ')
- 
-
+        __M_writer("!</h2></br>\r\n  <p>Use the left-side navigation bar to view connecting pages and options by clicking on each section heading. To view your own account information, log out, or return to your dashboard, use the dropdown menu in the upper right hand corner.</p>\r\n\r\n  <div class='vertical_spacer6'></div>\r\n  <div class='vertical_spacer6'></div>\r\n  <div class='vertical_spacer6'></div>\r\n  <div class='vertical_spacer6'></div>\r\n  <div class='vertical_spacer6'></div>\r\n  <div class='vertical_spacer6'></div>\r\n  <div class='vertical_spacer6'></div>\r\n  <div class='vertical_spacer6'></div>\r\n\r\n")
         return ''
     finally:
         context.caller_stack._pop_frame()
