@@ -55,7 +55,7 @@ class SerializedItemForm(forms.Form):
 	catalogItem = forms.ModelChoiceField(label='Catalog Item', queryset=hmod.CatalogItem.objects.filter(isSerial=True), widget=forms.Select(attrs={'class': 'form-control',}))
 	listPrice = forms.DecimalField(label='List Price', max_digits=8, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'List Price',}))
 	cost = forms.DecimalField(max_digits=8, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Cost',}))
-	commissionRate = forms.DecimalField(label='Commission Rate', max_digits=2, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Commission Rate',}))
+	commissionRate = forms.ChoiceField(label='Commission Rate' ,choices=([(0.5, '5%'), (0.10, '10%'), (0.12, '12%'), (0.15, '15%')]), widget=forms.Select(attrs={'class': 'form-control',}))
 	serialNum = forms.CharField(label='Serial Number',widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Serial Number',}))
 	shelfLocation = forms.CharField(label='Shelf Location', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Shelf Location',}))
 	condition = forms.ModelChoiceField( label='Condition', queryset=hmod.Condition.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))

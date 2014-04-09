@@ -54,12 +54,13 @@ def process_request(request):
 
 class CatalogItemForm(forms.Form):
 	'''A form for new stores'''
+
 	name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name',}))
 	manufacturer = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Manufacturer',}))
 	category = forms.ModelChoiceField(label='Category' ,queryset=mmod.SubCategory.objects.all(), widget=forms.Select(attrs={'class': 'form-control',}))
 	listPrice = forms.DecimalField(label='List Price', max_digits=8, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'List Price',}))
 	cost = forms.DecimalField(max_digits=8, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Cost',}))
-	commissionRate = forms.DecimalField(label='Commission Rate', max_digits=2, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Commission Rate',}))
+	commissionRate = forms.ChoiceField(label='Commission Rate' ,choices=([(0.5, '5%'), (0.10, '10%'), (0.12, '12%'), (0.15, '15%')]), widget=forms.Select(attrs={'class': 'form-control',}))
 	description = forms.CharField(widget=SummernoteWidget()) #Special Rich Text Field
 	techSpecs = forms.CharField(label='Tech Specs', widget=SummernoteWidget()) #Special Rich Text Field
 	sku = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'SKU',}))
