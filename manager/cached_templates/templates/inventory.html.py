@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396897259.532958
+_modified_time = 1397068588.287096
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/inventory.html'
 _template_uri = 'inventory.html'
@@ -28,15 +28,15 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        item = context.get('item', UNDEFINED)
+        form = context.get('form', UNDEFINED)
+        stores_list = context.get('stores_list', UNDEFINED)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        rentals = context.get('rentals', UNDEFINED)
+        item = context.get('item', UNDEFINED)
         serial = context.get('serial', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
         conditions_list = context.get('conditions_list', UNDEFINED)
-        stores_list = context.get('stores_list', UNDEFINED)
-        rentals = context.get('rentals', UNDEFINED)
-        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\r\n')
@@ -54,15 +54,15 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        item = context.get('item', UNDEFINED)
+        form = context.get('form', UNDEFINED)
+        stores_list = context.get('stores_list', UNDEFINED)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        rentals = context.get('rentals', UNDEFINED)
+        item = context.get('item', UNDEFINED)
         serial = context.get('serial', UNDEFINED)
         def content():
             return render_content(context)
         conditions_list = context.get('conditions_list', UNDEFINED)
-        stores_list = context.get('stores_list', UNDEFINED)
-        rentals = context.get('rentals', UNDEFINED)
-        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 3
         __M_writer('\r\n')

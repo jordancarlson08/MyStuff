@@ -23,8 +23,8 @@ $(function() {
 		});
 	});
 
-	for ( var i = 0; i < 10; i++ ) {
-		$('#down_arrow').fadeTo(2000,1);
-		$('#down_arrow').fadeTo(2000,0.2);
-	}
+	// for ( var i = 0; i < 10; i++ ) {
+	// 	$('#down_arrow').fadeTo(2000,1);
+	// 	$('#down_arrow').fadeTo(2000,0.2);
+	// }
 });
