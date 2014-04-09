@@ -266,6 +266,11 @@ def process_request(request):
 				except:
 					late = ''
 
+				rental_items = RentalItem.objects.filter(rental=rental)
+				for ri in rental_items:
+					ri.item.isRented = False
+					ri.item.save()
+
 				fee_list = []
 				rr = RentalReturn()
 				rr.rental = rental
