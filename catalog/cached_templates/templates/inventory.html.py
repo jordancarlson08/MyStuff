@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396924148.66405
+_modified_time = 1397014948.603594
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\catalog\\templates/inventory.html'
 _template_uri = 'inventory.html'
@@ -28,10 +28,10 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        item_count = context.get('item_count', UNDEFINED)
+        item = context.get('item', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        item = context.get('item', UNDEFINED)
+        item_count = context.get('item_count', UNDEFINED)
         form = context.get('form', UNDEFINED)
         rental_count = context.get('rental_count', UNDEFINED)
         __M_writer = context.writer()
@@ -51,10 +51,10 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        item_count = context.get('item_count', UNDEFINED)
+        item = context.get('item', UNDEFINED)
         def content():
             return render_content(context)
-        item = context.get('item', UNDEFINED)
+        item_count = context.get('item_count', UNDEFINED)
         form = context.get('form', UNDEFINED)
         rental_count = context.get('rental_count', UNDEFINED)
         __M_writer = context.writer()

@@ -4,29 +4,30 @@
 <%block name="left_side">
 <% %>
 
-
-<!-- Custom Form -->
+<!-- Search Bar -->
 <form class ="form-horizontal" role="form" method ="GET" action='/catalog/category/'>
-<!--   Loop through the fields of the form -->
   %for f in form:
-    <div class="form-group">
-      <div class='text-center'>
-        <div class='container'>
-        <div class='row'>
-          <div class='col-md-2'>
-            ${f}
-            <button class="btn btn-default btn-block" type="submit"><span class="glyphicon glyphicon-search"></span>&nbsp;Search</button>
-          </div>
-        </div>
-        </div>
-      </div>
-    </div>
+    <table>
+      <tr>
+        <td width="99%">
+          ${f}
+        </td>
+        <td>
+          &nbsp;
+        </td>
+        <td>
+          <button class="btn btn-default btn-block" type="submit">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;&nbsp;</button>
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
   %endfor
 </form>
 
-
+<!-- Categories -->
 <div class="panel-group" id="accordion">
-
 %for c in category_list:
   <div class="panel panel-default">
     <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse${c.id}">
