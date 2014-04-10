@@ -159,7 +159,7 @@ class CartItem(object):
 			self.available= len(SerializedItem.objects.filter(catalogItem=catalogItem))
 
 			if self.available < self.qty:
-				self.error = "We are sorry, but we only have %s %s %s in stock at the moment. We have editted the quantity in your cart and will notify you when more become available. Thank You." %(len(SerializedItem.objects.filter(catalogItem=catalogItem)), catalogItem.manufacturer, catalogItem.name)
+				self.error = "We are sorry, but we only have %s %s %s in stock at the moment. We have edited the quantity in your cart and will notify you when more become available. Thank You." %(len(SerializedItem.objects.filter(catalogItem=catalogItem)), catalogItem.manufacturer, catalogItem.name)
 				self.extended= catalogItem.listPrice * int(len(SerializedItem.objects.filter(catalogItem=catalogItem)))
 				self.qty = len(SerializedItem.objects.filter(catalogItem=catalogItem))
 			else:

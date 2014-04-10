@@ -12,6 +12,12 @@ from datetime import *
 def process_request(request):
 	'''Shows a catalog item to the user'''
 
+	cart = request.session.get('cart', {})
+	if request.urlparams[0] in cart:
+		addbutton = 'Added to Cart!'
+	else:
+		addbutton = ''
+
  	#Display Function
 	item = CatalogItem.objects.get(id=request.urlparams[0])
 	item_count = SerializedItem.objects.filter(catalogItem=item).exclude(isRental=True).exclude(isSold=True).exclude(isActive=False).count()
@@ -61,7 +67,8 @@ def process_request(request):
 	item.save()
 
 	tvars = {
-	
+
+	'addbutton':addbutton,
 	'item':item,
 	'item_count':item_count,
 	'rental_count':rental_count,
@@ -71,6 +78,15 @@ def process_request(request):
 
 	return templater.render_to_response(request, 'inventory.html', tvars)
 
+def process_request__getcart(request):
+	'''gets the current cart length'''
+
+	cart = request.session.get('cart', {})
+	rent = request.session.get('rent', {})
+	repair = request.session.get('repair', {})
+	cart_length = len(cart.keys()) + len(rent.keys()) + len(repair.keys())
+
+	return HttpResponse (cart_length)
 
 
 class AddCartForm(forms.Form):

@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1397068275.730386
+_modified_time = 1397148678.743988
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/fees.html'
 _template_uri = 'fees.html'
@@ -23,14 +23,14 @@ def _mako_generate_namespaces(context):
     pass
 def _mako_inherit(template, context):
     _mako_generate_namespaces(context)
-    return runtime._inherit_from(context, 'searchstores.htm', _template_uri)
+    return runtime._inherit_from(context, 'base.htm', _template_uri)
 def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        skip = context.get('skip', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        skip = context.get('skip', UNDEFINED)
         form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
@@ -51,9 +51,9 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        skip = context.get('skip', UNDEFINED)
         def content():
             return render_content(context)
+        skip = context.get('skip', UNDEFINED)
         form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 4

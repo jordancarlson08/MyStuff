@@ -1,25 +1,5 @@
 
 
-$(function() {
-
-	$('form').ajaxForm();
-
-	$('#add_button').off('click.add').on('click.add', function(){
-
-
-		$('#add_button').animate({
-			width: '141px',
-			height:'34px'
-		});
-		$('#add_button').html('<span class="glyphicon glyphicon-ok"></span>&nbsp; Added to Cart!');
-
-	});
-
-
-});
-
-
-
 
 $(function() {
 
@@ -99,18 +79,3 @@ $(function() {
 
 });
 
-
-$(function() {
-
-	$('td').mouseenter(function(){
-
-		$('tr').each(function(){
-			console.log('tr');
-
-		});
-
-
-	});
-
-
-});

@@ -69,3 +69,8 @@ opacity: .75;
 filter: alpha(opacity=50);
 }
 
+.alert-custom {
+background-color: #F64C3D;
+border-color: #ebccd1;
+color: white;
+}

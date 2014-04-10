@@ -41,6 +41,22 @@ def process_request(request):
 		cart_all = Cart(cart_list, rent_list, repair_list)
 		
 
+	# Update Cart
+
+	if request.method == 'POST':
+		qty = request.POST['qty']
+		print(qty)
+		pid = request.urlparams[0]
+		cart = request.session.get('cart', {})
+		if pid in cart:
+			cart[pid] = qty
+		else:
+			cart[pid] = quantity
+
+		request.session['cart'] = cart
+
+		return HttpResponse('<script> window.location.href="";</script>')
+
 	tvars = {
 
 	'cart_all':cart_all,
@@ -90,7 +106,10 @@ def process_request__add(request):
 	request.session['rent'] = rent
 	request.session['repair'] = repair
 
-	return HttpResponse('<script> window.location.href="/catalog/inventory/";</script>')
+	# return HttpResponse('<script> window.location.href="/catalog/inventory/");</script>')
+	return HttpResponseRedirect("/catalog/inventory/"+str(pid))
+
+
 
 
 
@@ -141,4 +160,7 @@ def process_request__delete(request):
 
 
 class AddCartForm(forms.Form):
+	quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Quantity',}))
+
+class EditCartForm(forms.Form):
 	quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Quantity',}))
