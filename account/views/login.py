@@ -3,6 +3,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from manager.models import *
 from account.models import *
+from datetime import *
 from . import templater
 from manager.views.stores import StoreForm
 from django.contrib.auth import authenticate, login
@@ -39,7 +40,7 @@ def process_request(request):
 
 			        if form.cleaned_data['remember'] == True:
 			        	# The user is logged out after 'x' seconds
-			        	request.session.set_expiry(300)
+			        	request.session.set_expiry(1209600)
 			        else:
 			        	# The user is logged out upon closing the browser
 			        	request.session.set_expiry(0)
