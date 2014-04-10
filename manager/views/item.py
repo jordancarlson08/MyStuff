@@ -56,7 +56,7 @@ def process_request(request):
 			s.isRental = form.cleaned_data['isRental']
 
 			s.save()
-			return HttpResponseRedirect('/manager/inventory/'+str(s.catalogItem.id))
+			return HttpResponse('<script> window.location.href="";</script>')
 
 
 

@@ -75,7 +75,7 @@ class RentalInfo(object):
 		if (rental.dateDue < date.today()):
 			self.isLate = True
 
-	def __str__(self): #FixLater
+	def __str__(self):
 		return '%s %s: Out: %s Due: %s' %(self.item.manufacturer, self.item.name, self.rental.dateOut, self.rental.dateDue)
 
 

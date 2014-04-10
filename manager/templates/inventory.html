@@ -1,5 +1,5 @@
  ## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
-<%inherit file="base_inventory.htm" />
+<%inherit file="base.htm" />
 <%block name="content">
 <% %>
 
@@ -151,6 +151,10 @@
       <div class='vertical_spacer6'></div>
       <div class='vertical_spacer6'></div>
       <div class='vertical_spacer6'></div>
+      <div class='vertical_spacer6'></div>
+      <div class='vertical_spacer6'></div>
+      <div class='vertical_spacer6'></div>
+      
       </div>
 
   	</div><!-- END RENTAL TAB -->
@@ -212,7 +216,7 @@
 
 
           %for s in serial:
-          <tr class='clickableRow' href='/manager/item/${s.id}'>        
+          <tr id='item_button_${s.id}'>        
             <!-- The serialized items go here! in  a loop -->
             <td><span class='label label-primary'>${s.store}</span></td>
             <td>${s.condition.condition}</td>
@@ -236,6 +240,12 @@
           
         </div>
       </div>
+      <div class='vertical_spacer6'></div>
+      <div class='vertical_spacer6'></div>
+      <div class='vertical_spacer6'></div>
+      <div class='vertical_spacer6'></div>
+      <div class='vertical_spacer6'></div>
+
     </div> <!-- end serialized tab -->
 
     <!--################# CATALOG #################-->

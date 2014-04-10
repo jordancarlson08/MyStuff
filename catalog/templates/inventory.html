@@ -4,7 +4,6 @@
 <% %>
 
 
-
 <h1>${item.manufacturer} ${item.name}</h1><hr>
 
       <div class="tab-content">
@@ -13,7 +12,6 @@
           <hr>
           <ul class='list-inline'>
             <li>
-              <!--####### Need to store image path in database as string for dynamic lookup -->
               <img id='img' title="Double click to zoom" src='${item.img}' width='300px'/>
             </li>
             <li>
@@ -67,14 +65,14 @@
                   &nbsp;
                 </li>
                 <ul class='list list-inline'>
-                  <li> <!-- #FixLater : Check if isSerial == false set it so its always in stock -->
+                  <li> 
                     %if item_count != 0:
                       <span class='label label-success'>In Stock.</span>
                     %else:
                     
                     %endif
                   </li>
-                  <li> <!-- #FixLater : Check if isSerial == false and dont show this if it does -->
+                  <li> 
                     %if item.isSerial == True:
                     %if rental_count == 0:
                     <span class='label label-danger'>No Rentals Available.</span>
