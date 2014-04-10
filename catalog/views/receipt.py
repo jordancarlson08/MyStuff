@@ -5,6 +5,7 @@ from manager.models import *
 from catalog.models import *
 from account.models import *
 from . import templater
+from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 
 
@@ -70,7 +71,12 @@ def process_request(request):
 		if form.is_valid():
 			print('valid')
 			email = form.cleaned_data['email']
-			###SEND MAIL HERE!!!!
+
+			email = 'jordancarlson08@gmail.com' #TestingPurposes --- delete
+			send_mail('Receipt for transaction number %s' %(str(t.id)), 'This is your transaction: ', 'sales@digitallifemyway.com',
+			[email], fail_silently=False)
+
+
 			return HttpResponseRedirect('/index')
 
 	tvars = {

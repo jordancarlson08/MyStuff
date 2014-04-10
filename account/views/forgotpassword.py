@@ -1,15 +1,11 @@
 from django import forms
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from manager import models as hmod
 from account.models import *
 from . import templater
-from manager.views.stores import StoreForm
-from django.contrib.auth import authenticate, login
-from django.core.mail import send_mail
 from uuid import *
 from datetime import *
-from django.core.mail import EmailMultiAlternatives, EmailMessage
+from django.core.mail import EmailMultiAlternatives, EmailMessage, send_mail
 
 def process_request(request):
 	'''Login Page'''
@@ -30,6 +26,9 @@ def process_request(request):
 			url = 'http://localhost:8000/account/resetpassword/'+str(u.passwordResetCode)
 
 			#HTML/TXT Email
+
+			email= 'jordancarlson08@gmail.com' #TestingPurposes
+
 			tvars = {'url':url}
 			html_content = templater.render(request, 'email_forgot_password.html', tvars)
 			subject, from_email= 'Reset Your Password', 'webmaster@digitallifemyway.com'
@@ -37,6 +36,7 @@ def process_request(request):
 			msg = EmailMultiAlternatives(subject, text_content, from_email, [email])
 			msg.attach_alternative(html_content, "text/html")
 			msg.send()
+
 			#Display confirmation page
 			isSent=True
 			tvars = {'isSent':isSent}
