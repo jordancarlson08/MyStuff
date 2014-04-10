@@ -12,8 +12,16 @@
           <hr>
           <ul class='list-inline'>
             <li>
-              <img id='img' title="Double click to zoom" src='${item.img}' width='300px'/>
+              <ul class='list-unstyled'>
+                <li>
+                  <img id='img' title="Double click to zoom" src='${item.img}' width='300px'/>
+                </li>
+                <li>
+                  <span id='zoom' class='glyphicon glyphicon-zoom-in'></span>
+                </li>
+              </ul>       
             </li>
+            <li>&nbsp;</li>
             <li>
               <ul class='list-unstyled'>
                 <li>
@@ -75,9 +83,9 @@
                   <li> 
                     %if item.isSerial == True:
                     %if rental_count == 0:
-                    <span class='label label-danger'>No Rentals Available.</span>
+                    <span class='label label-danger'>Not available to rent.</span>  
                     %else:
-                    <span class='label label-warning'>Rent Now.</span>
+                    <span class='label label-warning'>Available to rent in store.</span>
                     %endif
                     %endif
                   </li>

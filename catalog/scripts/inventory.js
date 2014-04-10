@@ -42,6 +42,25 @@ $(function() {
 
 	$('#img').css( 'cursor', 'pointer' );
 
+	$('#zoom').click(function() {
+		var clicks = $(this).data('clicks');
+		if (clicks) {
+
+			$('#img').animate({
+				width:'600px'
+			});
+
+		} else {
+
+			$('#img').animate({
+				width:'300px'
+			});
+		}
+		$(this).data("clicks", !clicks);
+	});
+
+	$('#zoom').css( 'cursor', 'pointer' );
+
 });
 
 $(function() {
