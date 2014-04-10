@@ -54,3 +54,8 @@ def get_managers():
     '''Returns a list of Managers'''
     emps = Employee.objects.filter(user__is_staff='True').exclude(id=99999)
     return emps
+
+def get_employees():
+    '''Returns of list of employees without managers'''
+    emps = Employee.objects.exclude(user__is_staff='True').exclude(id=99998)
+    return emps

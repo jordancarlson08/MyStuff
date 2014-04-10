@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1397143571.320375
+_modified_time = 1397156143.407263
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\account\\templates/login.html'
 _template_uri = 'login.html'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['content', 'top']
+_exports = ['top', 'content']
 
 
 def _mako_get_namespace(context, name):
@@ -28,10 +28,10 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def content():
-            return render_content(context._locals(__M_locals))
         def top():
             return render_top(context._locals(__M_locals))
+        def content():
+            return render_content(context._locals(__M_locals))
         form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
@@ -48,6 +48,17 @@ def render_body(context,**pageargs):
 
         # SOURCE LINE 76
         __M_writer('\n\n\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_top(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def top():
+            return render_top(context)
+        __M_writer = context.writer()
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -100,17 +111,6 @@ def render_content(context,**pageargs):
         # SOURCE LINE 66
         __M_writer(str(form.non_field_errors()))
         __M_writer('\n    </div>\n\n  </div>\n\n\n\n\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_top(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def top():
-            return render_top(context)
-        __M_writer = context.writer()
         return ''
     finally:
         context.caller_stack._pop_frame()

@@ -5,7 +5,7 @@ from manager.models import *
 from catalog.models import *
 from account.models import *
 from . import templater
-from django.core.mail import EmailMultiAlternatives, EmailMessage, send_mail
+from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 
 
@@ -75,36 +75,7 @@ def process_request(request):
 			send_mail('Receipt for transaction number %s' %(str(t.id)), 'This is your transaction: ', 'sales@digitallifemyway.com',
 			[email], fail_silently=False)
 
-
-
-			tvars = {
-
-			't':t,
-			'sale':sale,
-			'sci_list':sci_list,
-			'ssi_list':ssi_list,
-			'rental':rental,
-			'ri_list':ri_list,
-			'days':days,
-			'rentalreturn':rentalreturn,
-			'ri_return_list':ri_return_list,
-			'repair':repair,
-			'isWalkin':isWalkin,
-			'showShip':showShip,
-			'form':form,
-
-			}
-
-			html_content = templater.render(request, 'email_receipt.html', tvars)
-			print(html_content)
-			subject, from_email= 'Thank you for your order', 'webmaster@digitallifemyway.com'
-			text_content = 'Please use this link to reset your password , for security purposes this link will only be valid for the next 3 hours.'			
-			msg = EmailMultiAlternatives(subject, text_content, from_email, [email])
-			msg.attach_alternative(html_content, "text/html")
-			msg.send()
-
 			return HttpResponseRedirect('/index')
-
 
 	tvars = {
 
@@ -124,9 +95,7 @@ def process_request(request):
 
 	}
 
-
-
-	return templater.render_to_response(request, 'receipt.html', tvars)
+	return templater.render_to_response(request, 'email_receipt.html', tvars)
 
 class EmailReceiptForm(forms.Form):
 	email = forms.CharField(max_length=50, widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email Address',}))

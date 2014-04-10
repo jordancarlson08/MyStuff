@@ -34,12 +34,20 @@ LOGIN_URL = '/login/'
 
 
 #Email
-EMAIL_HOST = 'mx-mail.digitallifemyway.com'
-EMAIL_HOST_USER = 'webmaster@digitallifemyway.com'
-EMAIL_PORT = 25
-EMAIL_USE_TLS = False
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'iscore26@gmail.com'
+EMAIL_HOST_PASSWORD = 'Ifihadnomorals26'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# EMAIL_HOST = 'mx-mail.digitallifemyway.com'
+# EMAIL_HOST_USER = 'webmaster@digitallifemyway.com'
+# EMAIL_PORT = 25
+# EMAIL_USE_TLS = False
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 # Application definition

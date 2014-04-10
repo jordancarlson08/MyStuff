@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<body style="margin:25px 50px;font-family: sans-serif;">
+
+	<%
+
+	panel_panelDefault = "style='margin-bottom: 20px;background-color: #ffffff;border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);border-color: #dddddd;'"
+	panel_panelDefault2 = "style='margin-bottom: 20px;background-color: #ffffff;border: 1px solid transparent;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);border-color: #dddddd;min-width:700px;'"
+
+	panelHeading = "style='padding: 10px 15px;border-bottom: 1px solid transparent;border-top-right-radius: 3px;border-top-left-radius: 3px;color: #333333;background-color: #f5f5f5;border-color: #dddddd;'"
+	panelTitle = "style='margin-top: 0;margin-bottom: 0;font-size: 16px;color: inherit;'"
+	panelBody = "style='padding: 15px;'"
+
+	table = "style='border-collapse: collapse;border-spacing: 0;max-width: 100%;background-color: transparent;width: 100%;margin-bottom: 20px;'"
+	th = "style='padding: 0;text-align: left;'"
+	td = "style='padding: 0;'"
+	valign = "style='vertical-align:top;'"
+
+	%>
+
+
+	<table>
+		<tbody>
+			<tr>
+				<td><img alt="My Stuff" height="75" width="75" src="http://digitallifemyway.com/static/homepage/images/camera_icon_xs.png" /></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td><h1 style="font-family:sans-serif;">My Stuff - Digital Life My Way</h1></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br/>
+	<h2>Thank you for your order</h2>
+	<br/>
+	<table>
+		<tr>
+			<td ${valign}>
+				<table>
+					<tbody>
+						<tr>
+							<td>
+						        <div ${panel_panelDefault}>
+						          <div ${panelHeading}>
+						            <h4 ${panelTitle}>Billing Address</h4>
+						          </div>
+						          <div id="collapseOne" class="panel-collapse collapse in">
+						            <div ${panelBody}>
+						              <table>
+						              	<tbody>
+							                <tr>
+							                  <td><strong>${t.billing.first_name} ${t.billing.last_name}</strong></td>
+							                </tr>
+											<tr>
+												<td>${t.billing.street1}</td>
+											</tr>
+											<tr>
+												<td>${t.billing.street2}</td>
+											</tr>
+											<tr>
+												<td>${t.billing.city}, ${t.billing.state} ${t.billing.zipCode}</td>
+											</tr>
+											<tr>
+												<td>${t.billing.phone}</td>
+											</tr>
+											<tr>
+												<td>${t.billing.email}</td>
+											</tr>
+										</tbody>
+						              </table>          
+						            </div> <!--ends of panel body Billing container-->
+						          </div>
+						        </div>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td>
+						        %if showShip == True:
+						        <div ${panel_panelDefault}>
+						          <div ${panelHeading}>
+						            <h4 ${panelTitle}>Shipping Address</h4>
+						          </div>
+						          <div id="collapseTwo" class="panel-collapse collapse in">
+						            <div ${panelBody}>
+						              <table>
+						              	<tbody>
+							                <tr>
+							                  <td><strong>${t.shipping.first_name} ${t.shipping.last_name}</strong></td>
+							                </tr>
+											<tr>
+												<td>${t.shipping.street1}</td>
+											</tr>
+											<tr>
+												<td>${t.shipping.street2}</td>
+											</tr>
+											<tr>
+												<td>${t.shipping.city}, ${t.shipping.state} ${t.shipping.zipCode}</td>
+											</tr>
+											<tr>
+												<td>${t.shipping.phone}</td>
+											</tr>
+											<tr>
+												<td>${t.shipping.email}</td>
+											</tr>
+										</tbody>
+						              </table>  
+						            </div><!--ends Shipping container-->
+						          </div>
+						        </div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<div ${panel_panelDefault}>
+								  <div ${panelHeading}>
+								    <h4 ${panelTitle}>Shipping Method</h4>
+								  </div>
+								  <div id="collapseThree" class="panel-collapse collapse in">
+								    <div ${panelBody}>
+								        Standard 3 - 4 day shipping ($8.00)
+								        <br/>    
+								  	</div>
+								  </div>
+								</div>
+								<!-- end of panel, panel-default -->
+								%endif
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<div ${panel_panelDefault}>
+								  <div ${panelHeading}>
+								    <h4 ${panelTitle}>Payment Information</h4>
+								  </div>
+								  <div id="collapseFour" class="panel-collapse collapse in">
+								    <div ${panelBody}>
+								      <table>
+								        <tr>
+								          <td>
+								            <label for="OrderNum">Transaction ID:</label>
+								            <label for="OrderNum">${t.id}</label>
+								          </td>
+
+								        </tr>
+								        <tr>
+								          <td>
+								            <label for="CardNumber">Card Ending In:</label>
+								            <label for="CardNumber">XXXX-XXXX-XXXX-0654</label>
+								          </td>
+								        </tr>
+
+								        <tr>
+								          <td>
+								            <label for="ExpMonth">Expiration:</label>
+								            <label for="ExpMonth">10/2014</label>
+								          </td>
+
+								        </tr>
+								      </table>	  
+								    </div>
+								  </div>
+								</div>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</td>
+
+
+
+			<td ${valign}>
+				<table>
+					<tbody>
+
+						<tr>
+							<td>
+								%if sale != '':
+								  <div ${panel_panelDefault2}>
+								    <div ${panelHeading}><h4 ${panelTitle}>SALES</h4>
+								    </div>
+								      <div ${panelBody}>
+
+								      	<table ${table}>
+								      		<thead>
+								      			<th ${th}>Item</th>
+								      			<th ${th}>QTY</th>
+								      			<th ${th}>Price</th>
+								      			<th ${th}>Subtotal</th>
+								      		</thead>
+								      		<tbody>
+								      			%for s in ssi_list:
+								      			<tr>
+								      				<td>${s.item.catalogItem.manufacturer} ${s.item.catalogItem.name}</td>
+								      				<td>1</td>
+								      				<td>${s.item.catalogItem.listPrice}</td>
+								      				<td>${s.item.catalogItem.listPrice}</td>
+								      			</tr>
+								      			%endfor
+								      			%for c in sci_list:
+								      			<tr>
+								      				<td>${c.item.manufacturer} ${c.item.name}</td>
+								      				<td>${c.qty}</td>
+								      				<td>${c.item.listPrice}</td>
+								      				<td>${c.item.listPrice * c.qty}</td>
+								      			</tr>
+								      			%endfor
+								      		</tbody>
+								      	</table>
+
+								      </div>
+								  </div>
+								%endif
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								%if rental != '' and rentalreturn == '':
+								  <div ${panel_panelDefault}>
+								    <div ${panelHeading}><h4 ${panelTitle}>RENTALS</h4>
+								    </div>
+								      <div ${panelBody}>
+
+								      	<table ${table}>
+								      		<thead>
+								      			<th ${th}>Item</th>
+								      			<th ${th}>Days</th>
+								      			<th ${th}>Price/Day</th>
+								      			<th ${th}>Subtotal</th>
+								      		</thead>
+								      		<tbody>
+								      			%for s in ri_list:
+								      			<tr>
+								      				<td>${s.item.catalogItem.manufacturer} ${s.item.catalogItem.name}</td>
+								      				<td>${days}</td>
+								      				<td>${s.item.pricePerDay}</td>
+								      				<td>${s.item.pricePerDay * days}</td>
+								      			</tr>
+								      			%endfor
+								      		</tbody>
+								      	</table>
+
+								      </div>
+								  </div>
+								%endif
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								%if rentalreturn != '':
+								  <div ${panel_panelDefault}>
+								    <div ${panelHeading}><h4 ${panelTitle}>RETURNS</h4>
+								    </div>
+								      <div ${panelBody}>
+
+								      	<table ${table}>
+								      		<thead>
+								      			<th ${th}>Item</th>
+								      			<th ${th}>Date Due</th>
+								      			<th ${th}>Date In</th>
+								      			%for f in rentalreturn.fee.all():
+								      			<th ${th}>Fee</th>
+								      			%endfor
+								      			<th ${th}>Subtotal</th>
+								      		</thead>
+								      		<tbody>
+								      			%for ri in ri_return_list:
+								      			<tr>
+								      				<td>${ri.item.catalogItem.manufacturer} ${ri.item.catalogItem.name}</td>
+								      				<td>${rentalreturn.rental.dateDue}</td>
+								      				<td>${rentalreturn.dateIn}</td>
+								      				%for f in rentalreturn.fee.all():
+									      				<td>${f.amount}</td>
+								      				%endfor
+								      				<td>${rentalreturn.amount}</td>
+								      			</tr>
+								      			%endfor
+								      		</tbody>
+								      	</table>
+
+								      </div>
+								  </div>	
+								%endif
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								%if repair != '':
+								  <div ${panel_panelDefault}>
+								    <div ${panelHeading}><h4 ${panelTitle}>REPAIRS</h4>
+								    </div>
+								      <div ${panelBody}>
+						      	      	<table ${table}>
+						      	      		<thead>
+						      	      			<th ${th}>Item</th>
+						      	      			<th ${th}>Hours</th>
+						      	      			<th ${th}>Cost</th>
+						      	      		</thead>
+						      	      		<tbody>
+						      	      			<tr>
+						      	      				<td>${repair.itemName}</td>
+						      	      				<td>${repair.hours}</td>
+						      	      				<td>${repair.amount}</td>
+						      	      			</tr>
+						      	      		</tbody>
+						      	      	</table>
+								      </div>
+								  </div>
+								%endif
+							</td>
+						</tr>
+
+
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+
+</body>
+</html>

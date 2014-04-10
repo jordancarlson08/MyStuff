@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from manager import models as hmod
 from account import models as amod
 from . import templater
-from base_app.user_util import *
+from base_app.user_util import user_check, my_account
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 @login_required
@@ -27,7 +27,7 @@ def process_request(request):
 		return HttpResponseRedirect('/index/')
 	
 	try:
-		e = amod.Employee.objects.get(id=request.urlparams[0])
+		e = amod.Employee.objects.get(user=u)
 	except:
 		return HttpResponseRedirect('/index/')
 

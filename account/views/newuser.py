@@ -2,7 +2,9 @@ from django import forms
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from manager import models as hmod
-from account import models as amod
+from account.models import *
+from account.views.login import *
+from django.contrib.auth import authenticate, login
 from . import templater
 
 
@@ -10,14 +12,7 @@ from . import templater
 def process_request(request):
 	'''New User Page'''
 
-
-
-	if request.urlparams[0] != '':
-		
-		return HttpResponse('ERRORASDFLKJASDL')
-
-
-	u = amod.User()
+	u = User()
 	form = UserForm()
 
 	if request.method == 'POST':
@@ -39,7 +34,28 @@ def process_request(request):
 			u.zipCode = form.cleaned_data['zipCode']
 			u.is_staff = False
 			u.save()
-			return HttpResponseRedirect('/manager/searchusers/')
+
+			user = authenticate(username=form.cleaned_data['username'], 
+				password=form.cleaned_data['password'])
+			if user is not None:
+			    if user.is_active:
+			        login(request, user)
+			        #converts session to database -- see below
+			        add_history_to_database(request, user)
+
+			        request.session.set_expiry(0)
+			        # Redirect to a success page.
+
+			        return HttpResponse('<script> window.location.href="/index/";</script>')
+
+
+			    else:
+			        # Return a 'disabled account' error message
+			        return HttpResponseRedirect('/manager/searchinventory/')
+			else:
+			    # Return an 'invalid login' error message.
+			    return HttpResponseRedirect('/manager/searchstores/')
+
 
 
 	tvars = {
@@ -71,6 +87,6 @@ class UserForm(forms.Form):
 
 	def clean_username(self):
 	   username = self.cleaned_data.get('username')
-	   if username and amod.User.objects.filter(username=username).count() > 0:
+	   if username and User.objects.filter(username=username).count() > 0:
 	       raise forms.ValidationError('This username is already registered.')
 	   return username
