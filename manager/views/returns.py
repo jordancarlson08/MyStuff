@@ -15,6 +15,14 @@ def process_request(request):
 
 	#FixLater -- Make the date due yellow if its almost due!
 
+	
+	open_rentals = Rental.objects.filter(item__in=SerializedItem.objects.filter(isActive=True).filter(isRented=True))
+	for r in open_rentals:
+		ris = RentalItem.objects.filter(rental=r)
+		for ri in ris:
+			item = ri.item
+
+
 	rentalInfo_list=[]
 
 	rentalItems_list = SerializedItem.objects.filter(isActive=True).filter(isRented=True)

@@ -15,7 +15,7 @@ class Revenue(PolymorphicModel):
 class Sale(Revenue):
 	'''Class revenue from sale of goods'''
 	#amount: DecimalField
-	created = models.DateField(auto_now=True)
+	created = models.DateField(auto_now_add=True)
 
 class SaleCatItem(models.Model):
 	sale = models.ForeignKey(Sale)
@@ -30,7 +30,7 @@ class SaleSerialItem(models.Model):
 class Repair(Revenue):
 	'''Class for repairs'''
 	#amount: DecimalField
-	dateStart = models.DateField(auto_now=True)
+	dateStart = models.DateField(auto_now_add=True)
 	estComplete = models.DateField()
 	estCost = models.DecimalField(max_digits=16, decimal_places=2)
 	dateComplete = models.DateField(blank=True, null=True)
@@ -95,7 +95,7 @@ class Address(models.Model):
 
 class Transaction(models.Model):
 	'''Describes the condition of an item'''
-	created = models.DateField(auto_now=True)
+	created = models.DateField(auto_now_add=True)
 	revenue = models.ManyToManyField(Revenue)
 	user = models.ForeignKey(User)
 	store = models.ForeignKey(Store)
