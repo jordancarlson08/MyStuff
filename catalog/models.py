@@ -119,6 +119,8 @@ class Commission(models.Model):
     # date the commission was created
 	created = models.DateField(auto_now=True)
 	amount = models.DecimalField(max_digits=16, decimal_places=2, blank=True, null=True)
+	employee = models.ForeignKey(Employee)
+	transaction = models.ForeignKey(Transaction)
     
 # name for the journal entry and when created, and the transaction ID, and a note - this is helpful for recording transaction information
 class JournalEntry(models.Model):
