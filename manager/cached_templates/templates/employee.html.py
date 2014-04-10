@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396751387.635224
+_modified_time = 1397145332.63285
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/employee.html'
 _template_uri = 'employee.html'
@@ -28,11 +28,11 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        user = context.get('user', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        form = context.get('form', UNDEFINED)
         passwordForm = context.get('passwordForm', UNDEFINED)
+        form = context.get('form', UNDEFINED)
+        user = context.get('user', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\n')
@@ -48,11 +48,11 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        user = context.get('user', UNDEFINED)
         def content():
             return render_content(context)
-        form = context.get('form', UNDEFINED)
         passwordForm = context.get('passwordForm', UNDEFINED)
+        form = context.get('form', UNDEFINED)
+        user = context.get('user', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 3
         __M_writer('\n')
@@ -92,59 +92,56 @@ def render_content(context,**pageargs):
         __M_writer('</label>\n    </div>\n  </div>\n\n  <div class="row">\n    <div class="col-md-2" align="right">\n      <label for="inputEmail3">Phone Number: </label>\n    </div>\n    <div class="col-md-2" align="left">\n      <label for="inputEmail3">')
         # SOURCE LINE 68
         __M_writer(str(user.phone))
-        __M_writer('</label>\n    </div>\n  </div>\n\n  <div class="row">\n    <div class="col-md-2" align="right">\n      <label for="inputEmail3">Security Question: </label>\n    </div>\n    <div class="col-md-4" align="left">\n      <label for="inputEmail3">')
+        __M_writer('</label>\n    </div>\n  </div>\n\n\n  <div class="row">\n    <div class="col-md-2" align="right">\n      <label for="inputEmail3">Role: </label>\n    </div>\n')
         # SOURCE LINE 77
-        __M_writer(str(user.security_question))
-        __M_writer('</label>\n    </div>\n  </div>\n\n\n\n  <div class="row">\n    <div class="col-md-2" align="right">\n      <label for="inputEmail3">Role: </label>\n    </div>\n')
-        # SOURCE LINE 87
         if user.is_superuser==True:
-            # SOURCE LINE 88
+            # SOURCE LINE 78
             __M_writer('    <div class="col-md-2" align="left">\n      <label for="inputEmail3">Admin</label>\n    </div>\n')
-            # SOURCE LINE 91
+            # SOURCE LINE 81
         elif user.is_staff==True:
-            # SOURCE LINE 92
+            # SOURCE LINE 82
             __M_writer('    <div class="col-md-2" align="left">\n      <label for="inputEmail3">Manager</label>\n    </div>\n')
-            # SOURCE LINE 95
+            # SOURCE LINE 85
         else:
-            # SOURCE LINE 96
-            __M_writer('    <div class="col-md-2" align="left">\n      <label for="inputEmail3">User</label>\n    </div>\n')
-        # SOURCE LINE 100
+            # SOURCE LINE 86
+            __M_writer('    <div class="col-md-2" align="left">\n      <label for="inputEmail3">Employee</label>\n    </div>\n')
+        # SOURCE LINE 90
         __M_writer('  </div>\n\n\n  <hr/>\n\n  <button class="btn btn-primary" data-toggle="modal" data-target="#changePassword">Change Password</button>\n\n  <!--####### CHANGE PASSWORD MODAL WINDOW ########-->\n\n  <div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">\n    <div class="modal-dialog">\n      <div class="modal-content">\n        <div class="modal-header">\n          Change Password\n        </div>\n        <div class="modal-body">\n            <form class ="form-horizontal" role="form" method ="POST">\n\n')
-        # SOURCE LINE 118
+        # SOURCE LINE 108
         for field in passwordForm:
-            # SOURCE LINE 119
+            # SOURCE LINE 109
             __M_writer('              \n                <div class="form-group">\n                  <label class="col-sm-4 control-label" for="id_')
-            # SOURCE LINE 121
+            # SOURCE LINE 111
             __M_writer(str( field.name ))
             __M_writer('">')
             __M_writer(str( field.label ))
             __M_writer('</label>\n                    <div class="col-sm-4">\n                      ')
-            # SOURCE LINE 123
+            # SOURCE LINE 113
             __M_writer(str(field))
             __M_writer(' ')
             __M_writer(str(field.errors))
             __M_writer('\n                    </div>\n                </div>\n                \n')
-        # SOURCE LINE 128
+        # SOURCE LINE 118
         __M_writer('              ')
         __M_writer(str(form.non_field_errors()))
         __M_writer('\n          </div>\n          <div class=\'modal-footer\'>\n            <div class="form-group">\n              <div class="col-sm-offset-4 col-sm-4">\n                <input class="btn btn-success" type="submit" value="Save Changes">\n              </div>\n            </div>\n          </div>\n\n          </form>\n      </div><!-- /.modal-content -->\n    </div><!-- /.modal-dialog -->\n  </div><!-- /.modal -->\n  <!--####### END CHANGE PASSWORD MODAL WINDOW ########-->\n\n\n\n\n  <button class="btn btn-warning" data-toggle="modal" data-target="#editUser">Edit</button>\n\n\n  <!--####### EDIT USER MODAL WINDOW ########-->\n\n  <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">\n    <div class="modal-dialog">\n      <div class="modal-content">\n        <div class="modal-header">\n          Edit User Information\n        </div>\n        <div class="modal-body">\n\n          <form class ="form-horizontal" role="form" method ="POST">\n\n')
-        # SOURCE LINE 162
+        # SOURCE LINE 152
         for field in form:
-            # SOURCE LINE 163
+            # SOURCE LINE 153
             __M_writer('            \n              <div class="form-group">\n                <label class="col-sm-4 control-label" for="id_')
-            # SOURCE LINE 165
+            # SOURCE LINE 155
             __M_writer(str( field.name ))
             __M_writer('">')
             __M_writer(str( field.label ))
             __M_writer('</label>\n                  <div class="col-sm-4">\n                    ')
-            # SOURCE LINE 167
+            # SOURCE LINE 157
             __M_writer(str(field))
             __M_writer(' ')
             __M_writer(str(field.errors))
             __M_writer('\n                  </div>\n              </div>\n\n')
-        # SOURCE LINE 172
+        # SOURCE LINE 162
         __M_writer('\n        </div>\n        <div class=\'modal-footer\'>\n            <div class="form-group">\n              <div class="col-sm-offset-4 col-sm-4">\n                <input class="btn btn-success" type="submit" value="Save Changes">\n              </div>\n            </div>\n\n          </form>\n        </div>\n      </div><!-- /.modal-content -->\n    </div><!-- /.modal-dialog -->\n  </div><!-- /.modal -->\n  <!--####### END EDIT USER MODAL WINDOW ########-->\n\n\n\n\n  <button class="btn btn-danger" data-toggle="modal" data-target="#deleteUser">Delete</button>\n\n\n  <!--####### DELETE USER MODAL WINDOW ########-->\n\n  <div class="modal fade" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">\n    <div class="modal-dialog">\n      <div class="modal-content">\n        <div class="modal-header">\n          Delete Account\n        </div>\n        <div class="modal-body">\n          Are you sure you want to delete this account?\n        </div>\n        <div class="modal-footer">\n          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>\n          <a href="/manager/users/')
-        # SOURCE LINE 207
+        # SOURCE LINE 197
         __M_writer(str(user.id))
         __M_writer('/delete" class="btn btn-primary">Yes</a>\n        </div>\n      </div><!-- /.modal-content -->\n    </div><!-- /.modal-dialog -->\n  </div><!-- /.modal -->\n  <!--####### DELETE USER MODAL WINDOW ########-->\n\n\n\n  <div class=\'vertical_spacer6\'></div>\n\n\n\n\n\n\n\n        \n\n\n\n')
         return ''

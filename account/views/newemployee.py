@@ -29,8 +29,8 @@ def process_request(request):
 			u.last_name = form.cleaned_data['last_name']
 			u.email = form.cleaned_data['email']
 			u.phone = form.cleaned_data['phone']
-			u.security_question = form.cleaned_data['security_question']
-			u.security_answer = form.cleaned_data['security_answer']
+			# u.security_question = form.cleaned_data['security_question']
+			# u.security_answer = form.cleaned_data['security_answer']
 			u.is_staff = form.cleaned_data['is_staff']
 			u.street1 = form.cleaned_data['street1']
 			u.street2 = form.cleaned_data['street2']
@@ -63,8 +63,8 @@ class UserForm(forms.Form):
 	last_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name',}))
 	email = forms.CharField(max_length=50, widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'me@example.com',}))
 	phone = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '801-555-1234',}))
-	security_question = forms.CharField(label='Security Question', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'What is your mother\'s maiden name?',}))
-	security_answer = forms.CharField(label='Answer', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Smith',}))	
+	# security_question = forms.CharField(label='Security Question', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'What is your mother\'s maiden name?',}))
+	# security_answer = forms.CharField(label='Answer', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Smith',}))	
 	is_staff = forms.BooleanField(label='Manager?', widget=forms.CheckboxInput(), required=False, )
 	street1 = forms.CharField(label = "Street 1", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '123 Center St.',}))
 	street2 = forms.CharField(label = "Street 2", required = False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '#242',}))
