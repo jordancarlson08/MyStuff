@@ -129,6 +129,7 @@ def process_request(request):
 
 	if request.method == 'POST': #Only execute if the form has been submitted #FixLater #100 --- Execute only if form is valid --- remove from below
 		
+
 		t = Transaction() #Create one transaction for the entire checkout
 
 		form = CheckoutForm(request.POST)
@@ -183,8 +184,13 @@ def process_request(request):
 		t.tax = 0
 		t.total = 0
 		t.billing = a
-
 		t.save()
+
+		commission_list = []
+		c = Commission()
+		c.transaction = t
+		c.amount = 0
+		c.save()
 
 
 		################################################
@@ -217,6 +223,7 @@ def process_request(request):
 						ssi.save()
 						items_list.append(actual.listPrice)
 						cost_list.append(actual.cost)
+						commission_list.append(actual.listPrice * Decimal(actual.commissionRate))
 
 					else:
 						sci = SaleCatItem()
@@ -226,10 +233,14 @@ def process_request(request):
 						sci.save()
 						items_list.append(item.listPrice * sci.qty)
 						cost_list.append(item.cost * sci.qty)
+						commission_list.append(item.listPrice * Decimal(item.commissionRate) * sci.qty)
 
 
 				r.amount = sum(items_list) #updates the Revenue(Sale).amount to the subtotal of all items in cart
 				r.save()
+
+				c.amount = sum(commission_list)
+				c.save()
 
 				if(isEmployee!=True):
 					t.user = currentCustomer 					   #Logged In User

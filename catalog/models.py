@@ -7,7 +7,6 @@ from decimal import *
 from polymorphic import PolymorphicModel
 
 
-
 class Revenue(PolymorphicModel):
 	'''Class for Revenue sorce'''
 	amount = models.DecimalField(max_digits=16, decimal_places=2, blank=True, null=True)
@@ -108,11 +107,10 @@ class Transaction(models.Model):
 
 class Commission(models.Model):
 	'''Class for commissions'''
-	created = models.DateField(auto_now=True)
+	created = models.DateField(auto_now_add=True)
 	amount = models.DecimalField(max_digits=16, decimal_places=2, blank=True, null=True)
-	employee = models.ForeignKey(Employee)
 	transaction = models.ForeignKey(Transaction)
-    
+
 class JournalEntry(models.Model):
 	'''Class for Journal Entries'''
 	created = models.DateField(auto_now_add=True)
@@ -196,6 +194,3 @@ class Cart(object):
 		self.extended_sum = extended_sum
 		self.tax = tax
 		self.total = total
-
-
-
