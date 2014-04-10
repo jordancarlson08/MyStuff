@@ -57,9 +57,9 @@ class Damage(Fee):
 
 class Rental(Revenue):
 	'''Class for rentals'''
-	#amount: DecimalField
 	dateOut = models.DateField()
 	dateDue = models.DateField()
+	isClosed = models.BooleanField(default=false)
 
 class RentalItem(models.Model):
 	'''Class for single rental item'''
