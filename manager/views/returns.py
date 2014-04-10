@@ -31,11 +31,14 @@ def process_request(request):
 		rentalItem = RentalItem.objects.filter(item=i)
 		for r in rentalItem:
 			rental = r.rental
-			trans_list = Transaction.objects.filter(revenue=rental)
-			for t in trans_list:
-				user = t.user
-				ri = RentalInfo(i, rental, t, user)
-				rentalInfo_list.append(ri)
+			if rental.isClosed==True:
+				continue
+			else:
+				trans_list = Transaction.objects.filter(revenue=rental)
+				for t in trans_list:
+					user = t.user
+					ri = RentalInfo(i, rental, t, user)
+					rentalInfo_list.append(ri)
 
 	tvars = {
 

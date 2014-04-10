@@ -59,7 +59,7 @@ class Rental(Revenue):
 	'''Class for rentals'''
 	dateOut = models.DateField()
 	dateDue = models.DateField()
-	isClosed = models.BooleanField(default=false)
+	isClosed = models.BooleanField(default=False)
 
 class RentalItem(models.Model):
 	'''Class for single rental item'''

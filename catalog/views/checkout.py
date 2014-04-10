@@ -360,6 +360,8 @@ def process_request(request):
 					fee_list.append(late.amount)
 				rr.amount=(sum(fee_list))
 				rr.save()
+				rental.isClosed=True
+				rental.save()
 				lastT = Transaction.objects.get(revenue=rental)
 				t.user = lastT.user
 				t.employee = currentEmployee
