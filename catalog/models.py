@@ -113,17 +113,21 @@ class Transaction(models.Model):
 # 	amount = models.DecimalField(max_digits=16, decimal_places=2, blank=True, null=True)
 	
 
-
+# class for commissions
 class Commission(models.Model):
 	'''Class for commissions'''
+    # date the commission was created
 	created = models.DateField(auto_now=True)
-
+	amount = models.DecimalField(max_digits=16, decimal_places=2, blank=True, null=True)
+    
+# name for the journal entry and when created, and the transaction ID, and a note - this is helpful for recording transaction information
 class JournalEntry(models.Model):
 	'''Class for Journal Entries'''
 	created = models.DateField(auto_now_add=True)
 	transaction = models.ForeignKey(Transaction)
 	note = models.TextField()
 
+# name of the ledger the accounting entry is made in 
 class Ledger(models.Model):
 	'''Class for the different accounting ledgers'''
 	name = models.TextField()
@@ -131,6 +135,7 @@ class Ledger(models.Model):
 	def __str__(self):
 		return self.name
 
+# Class for the accounting entry 
 class AccountEntry(models.Model):
 	'''Class for accounting entries'''
 	isDebit = models.BooleanField()
@@ -139,10 +144,7 @@ class AccountEntry(models.Model):
 	journalEntry = models.ForeignKey(JournalEntry)
 
 
-
-
-
-#Classes to handle the cart more effectively
+#Classes to handle the Repair cart more effectively
 class RepairCartItem(object):
 	def __init__(self, rid):
 
@@ -150,7 +152,7 @@ class RepairCartItem(object):
 		self.repair = Repair.objects.get(id=rid)
 
 
-#Classes to handle the cart more effectively
+#Classes to handle the Rental cart more effectively
 class RentalCartItem(object):
 	def __init__(self, serializedItem):
 
