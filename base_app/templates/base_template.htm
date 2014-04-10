@@ -95,9 +95,6 @@
         </a>
       </li>
       
-
-
-
       </%block>
 
     %if request.user.is_anonymous() == True:
@@ -114,6 +111,7 @@
           <li><a href="/manager/dash/"><span class='glyphicon glyphicon-globe'></span>&nbsp; DASHBOARD</a></li>
           <li><a href="/manager/employee/${request.user.id}"><span class='glyphicon glyphicon-edit'></span>&nbsp; EDIT PROFILE</a></li>
         %else:
+          <li><a href="/account/myorders/"><span class='glyphicon glyphicon-inbox'></span>&nbsp; MY ORDERS</a></li>
           <li><a href="/index/not_implemented_yet"><span class='glyphicon glyphicon-camera'></span>&nbsp; RENTALS</a></li>
           <li><a href="/account/repairstatus/"><span class='glyphicon glyphicon-wrench'></span>&nbsp; REPAIRS</a></li>
           <li><a href="/account/user/${request.user.id}"><span class='glyphicon glyphicon-edit'></span>&nbsp; EDIT PROFILE</a></li>

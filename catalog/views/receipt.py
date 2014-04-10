@@ -72,10 +72,8 @@ def process_request(request):
 			print('valid')
 			email = form.cleaned_data['email']
 
-			email = 'jordancarlson08@gmail.com' #TestingPurposes --- delete
 			send_mail('Receipt for transaction number %s' %(str(t.id)), 'This is your transaction: ', 'sales@digitallifemyway.com',
 			[email], fail_silently=False)
-
 
 			return HttpResponseRedirect('/index')
 

@@ -1,0 +1,47 @@
+## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+<%inherit file="base.htm" />
+
+<%block name="content">
+<% %>
+
+  <h2>My Orders</h2><hr/><br/>
+
+%if transactions:
+  <table class="table table-hover">
+  	<thead>
+  		<tr>
+  			<th>ID</th>
+  			<th>Date</th>
+        <th>Total</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+%for t in transactions:
+<%
+date = t.created
+date = '%s-%s-%s' %(date.month, date.day, date.year)
+
+%>
+      <tr href='/catalog/receipt/${t.id}' class='clickableRow'>
+        <td>${t.id}</td>
+        <td>${date}</td>
+        <td>${t.total}</td>
+      </tr>
+%endfor
+  	</tbody>
+</table>
+
+%else:
+  <p>It looks like you don't have any active repairs at this time. If you have any questions contact our repairs department at 1-800-555-5555</p>
+  <div class="vertical_spacer6"></div>
+  <div class="vertical_spacer6"></div>
+%endif
+
+
+  <div class="vertical_spacer6"></div>
+  <div class="vertical_spacer6"></div>
+
+
+
+
+</%block>  

@@ -4,13 +4,13 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1397016641.331692
+_modified_time = 1397110932.95779
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\base_app\\templates/base_template.htm'
 _template_uri = 'base_template.htm'
 _source_encoding = 'ascii'
 import os, os.path, re
-_exports = ['shopping_cart_navigation_option', 'top', 'main']
+_exports = ['top', 'main', 'shopping_cart_navigation_option']
 
 
 # SOURCE LINE 5
@@ -23,15 +23,15 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def main():
-            return render_main(context._locals(__M_locals))
-        request = context.get('request', UNDEFINED)
-        len = context.get('len', UNDEFINED)
-        def top():
-            return render_top(context._locals(__M_locals))
         self = context.get('self', UNDEFINED)
+        len = context.get('len', UNDEFINED)
+        request = context.get('request', UNDEFINED)
         def shopping_cart_navigation_option():
             return render_shopping_cart_navigation_option(context._locals(__M_locals))
+        def top():
+            return render_top(context._locals(__M_locals))
+        def main():
+            return render_main(context._locals(__M_locals))
         __M_writer = context.writer()
         # SOURCE LINE 4
         __M_writer('\r\n')
@@ -66,63 +66,63 @@ def render_body(context,**pageargs):
         
         
         __M_locals_builtin_stored = __M_locals_builtin()
-        __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in ['manager_check','employee_check','isManager','isEmployee'] if __M_key in __M_locals_builtin_stored]))
+        __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in ['isEmployee','employee_check','isManager','manager_check'] if __M_key in __M_locals_builtin_stored]))
         # SOURCE LINE 40
         __M_writer('\r\n\r\n\r\n\r\n     <div id="fb-root"></div>\r\n\r\n  <nav class="navbar navbar-default" role="navigation">\r\n  <!-- Brand and toggle get grouped for better mobile display -->\r\n  <div class="navbar-header">\r\n    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">\r\n      <span class="sr-only">Toggle navigation</span>\r\n      <span class="icon-bar"></span>\r\n      <span class="icon-bar"></span>\r\n      <span class="icon-bar"></span>\r\n    </button>\r\n    <a class="navbar-brand" href="/index/" title="Home"><img src="/static/homepage/images/camera_icon.png" width="90" /></a>\r\n    <a class="navbar-brand-custom" href="/index/">My Stuff - Digital Life My Way</a>\r\n\r\n  </div>\r\n\r\n  <!-- Collect the nav links, forms, and other content for toggling -->\r\n<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\r\n\r\n    <ul class="nav navbar-nav navbar-right">\r\n      <li>\r\n        <form class="navbar-form navbar-left" role="form" method ="GET" action=\'/catalog/category/\'>\r\n          <div class="form-group">\r\n            <input type="text" name=\'search\' class="form-control" placeholder="Search...">\r\n          </div>\r\n          <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>\r\n        </form>\r\n      </li>\r\n      <!--placing most overhead options in a block prevents managers from seeing unnecessary items-->\r\n      ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'shopping_cart_navigation_option'):
             context['self'].shopping_cart_navigation_option(**pageargs)
         
 
-        # SOURCE LINE 101
+        # SOURCE LINE 98
         __M_writer('\r\n\r\n')
-        # SOURCE LINE 103
+        # SOURCE LINE 100
         if request.user.is_anonymous() == True:
-            # SOURCE LINE 104
+            # SOURCE LINE 101
             __M_writer("      <li>\r\n      <a id='login_button' href='#'>\r\n      LOG IN\r\n      </a></li>\r\n\r\n")
-            # SOURCE LINE 109
+            # SOURCE LINE 106
         else:
-            # SOURCE LINE 110
+            # SOURCE LINE 107
             __M_writer('      <li>\r\n        <a href="#" class="dropdown-toggle" data-toggle="dropdown">')
-            # SOURCE LINE 111
+            # SOURCE LINE 108
             __M_writer(str(request.user.username))
             __M_writer(' <b class="caret"></b></a>\r\n        <ul class="dropdown-menu">\r\n')
-            # SOURCE LINE 113
+            # SOURCE LINE 110
             if isEmployee == True:
-                # SOURCE LINE 114
+                # SOURCE LINE 111
                 __M_writer('          <li><a href="/manager/dash/"><span class=\'glyphicon glyphicon-globe\'></span>&nbsp; DASHBOARD</a></li>\r\n          <li><a href="/manager/employee/')
-                # SOURCE LINE 115
+                # SOURCE LINE 112
                 __M_writer(str(request.user.id))
                 __M_writer('"><span class=\'glyphicon glyphicon-edit\'></span>&nbsp; EDIT PROFILE</a></li>\r\n')
-                # SOURCE LINE 116
+                # SOURCE LINE 113
             else:
+                # SOURCE LINE 114
+                __M_writer('          <li><a href="/account/myorders/"><span class=\'glyphicon glyphicon-inbox\'></span>&nbsp; MY ORDERS</a></li>\r\n          <li><a href="/index/not_implemented_yet"><span class=\'glyphicon glyphicon-camera\'></span>&nbsp; RENTALS</a></li>\r\n          <li><a href="/account/repairstatus/"><span class=\'glyphicon glyphicon-wrench\'></span>&nbsp; REPAIRS</a></li>\r\n          <li><a href="/account/user/')
                 # SOURCE LINE 117
-                __M_writer('          <li><a href="/index/not_implemented_yet"><span class=\'glyphicon glyphicon-camera\'></span>&nbsp; RENTALS</a></li>\r\n          <li><a href="/account/repairstatus/"><span class=\'glyphicon glyphicon-wrench\'></span>&nbsp; REPAIRS</a></li>\r\n          <li><a href="/account/user/')
-                # SOURCE LINE 119
                 __M_writer(str(request.user.id))
                 __M_writer('"><span class=\'glyphicon glyphicon-edit\'></span>&nbsp; EDIT PROFILE</a></li>\r\n')
-            # SOURCE LINE 121
+            # SOURCE LINE 119
             __M_writer('          <li><a href="/account/logout/"><span class=\'glyphicon glyphicon-log-out\'></span>&nbsp; LOGOUT</a></li>\r\n        </ul>\r\n\r\n      </li>\r\n\r\n')
-        # SOURCE LINE 127
+        # SOURCE LINE 125
         __M_writer('\r\n    </ul>\r\n\r\n    \r\n  </div><!-- /.navbar-collapse -->\r\n</nav>\r\n  \r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'top'):
             context['self'].top(**pageargs)
         
 
-        # SOURCE LINE 136
+        # SOURCE LINE 134
         __M_writer('\r\n\r\n\r\n\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'main'):
             context['self'].main(**pageargs)
         
 
-        # SOURCE LINE 143
+        # SOURCE LINE 141
         __M_writer('  \r\n\r\n')
-        # SOURCE LINE 145
+        # SOURCE LINE 143
  
 
         __M_locals_builtin_stored = __M_locals_builtin()
         __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in [] if __M_key in __M_locals_builtin_stored]))
         __M_writer('\r\n\r\n\r\n\r\n\r\n<!-- Footer-->\r\n\r\n<footer>\r\n      \r\n\r\n  <div class="container">\r\n    <div class="row">\r\n      <div class="col-md-4">\r\n        <ul class="list-unstyled">\r\n          <li class="title">Home</li>\r\n          <li><a href="/account/newuser/">Signup</a></li>\r\n        </ul>\r\n      </div>\r\n      <div class="col-md-4">\r\n        <ul class="list-unstyled">\r\n          <li class="title">About</li>\r\n          <li><a href="/about/">About Us</a></li>\r\n        </ul>\r\n      </div>\r\n      <div class="col-md-3">\r\n        <ul class="list-unstyled">\r\n          <li class="title">Help</li>\r\n          <li><a href="/contact/">Contact Us</a></li>\r\n          <li><a href="/terms/">Terms</a></li>\r\n\r\n        </ul>\r\n      </div>\r\n\r\n      <div class="col-md-1">\r\n        <ul class="list-unstyled">\r\n          <li><a href="https://www.facebook.com/digitallifemyway"><img src="/static/homepage/images/facebook.png" /></a></li>\r\n          <li><a href="https://plus.google.com/"><img src="/static/homepage/images/google.png" /></a></li>\r\n          <li><a href="https://www.twitter.com/"><img src="/static/homepage/images/twitter.png" /></a></li>\r\n        </ul>\r\n      </div>\r\n\r\n\r\n    </div>\r\n  </div>\r\n\r\n</footer> \r\n    \r\n\r\n\r\n  \r\n\r\n  \r\n')
-        # SOURCE LINE 198
+        # SOURCE LINE 196
         __M_writer('    ')
         __M_writer(str( static_renderer.get_template_js(request, context)  ))
         __M_writer('\r\n  \r\n  </body>\r\n</html>\r\n')
@@ -131,11 +131,37 @@ def render_body(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_top(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def top():
+            return render_top(context)
+        __M_writer = context.writer()
+        # SOURCE LINE 133
+        __M_writer('\r\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_main(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def main():
+            return render_main(context)
+        __M_writer = context.writer()
+        # SOURCE LINE 139
+        __M_writer('\r\n  Site content goes here in sub-templates.\r\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_shopping_cart_navigation_option(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        request = context.get('request', UNDEFINED)
         len = context.get('len', UNDEFINED)
+        request = context.get('request', UNDEFINED)
         def shopping_cart_navigation_option():
             return render_shopping_cart_navigation_option(context)
         __M_writer = context.writer()
@@ -167,33 +193,7 @@ def render_shopping_cart_navigation_option(context,**pageargs):
             __M_writer(str(cart_length))
             __M_writer('</span>\r\n')
         # SOURCE LINE 95
-        __M_writer('        </a>\r\n      </li>\r\n      \r\n\r\n\r\n\r\n      ')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_top(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def top():
-            return render_top(context)
-        __M_writer = context.writer()
-        # SOURCE LINE 135
-        __M_writer('\r\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_main(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def main():
-            return render_main(context)
-        __M_writer = context.writer()
-        # SOURCE LINE 141
-        __M_writer('\r\n  Site content goes here in sub-templates.\r\n')
+        __M_writer('        </a>\r\n      </li>\r\n      \r\n      ')
         return ''
     finally:
         context.caller_stack._pop_frame()
