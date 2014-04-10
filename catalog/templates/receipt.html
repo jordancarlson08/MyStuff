@@ -25,22 +25,22 @@
               <table>
               	<tbody>
 	                <tr>
-	                  <td><strong>${t.user.first_name} ${t.user.last_name}</strong></td>
+	                  <td><strong>${t.billing.first_name} ${t.billing.last_name}</strong></td>
 	                </tr>
 					<tr>
-						<td>Stree1</td>
+						<td>${t.billing.street1}</td>
 					</tr>
 					<tr>
-						<td>Stree2</td>
+						<td>${t.billing.street2}</td>
 					</tr>
 					<tr>
-						<td>City, ST 84606</td>
+						<td>${t.billing.city}, ${t.billing.state} ${t.billing.zipCode}</td>
 					</tr>
 					<tr>
-						<td>801-555-5555</td>
+						<td>${t.billing.phone}</td>
 					</tr>
 					<tr>
-						<td>Jordan@digitallifemyway.com</td>
+						<td>${t.billing.email}</td>
 					</tr>
 				</tbody>
               </table>          
@@ -59,22 +59,22 @@
               <table>
               	<tbody>
 	                <tr>
-	                  <td><strong>${t.user.first_name} ${t.user.last_name}</strong></td>
+	                  <td><strong>${t.shipping.first_name} ${t.shipping.last_name}</strong></td>
 	                </tr>
 					<tr>
-						<td>Stree1</td>
+						<td>${t.shipping.street1}</td>
 					</tr>
 					<tr>
-						<td>Stree2</td>
+						<td>${t.shipping.street2}</td>
 					</tr>
 					<tr>
-						<td>City, ST 84606</td>
+						<td>${t.shipping.city}, ${t.shipping.state} ${t.shipping.zipCode}</td>
 					</tr>
 					<tr>
-						<td>801-555-5555</td>
+						<td>${t.shipping.phone}</td>
 					</tr>
 					<tr>
-						<td>Jordan@digitallifemyway.com</td>
+						<td>${t.shipping.email}</td>
 					</tr>
 				</tbody>
               </table>  
@@ -90,22 +90,9 @@
           </div>
           <div id="collapseThree" class="panel-collapse collapse in">
             <div class="panel-body">
-              <div class="container">
-                <form role="form">
-                  <div class="form-group">
-                    <div class="col-md-6">
-                      <h5><b>Delivery method</b></h5>
-                      <form>
-                        <span class="label label-success">Standard</span> 3 - 4 day shipping ($8.00)
-                        <br>
-                      </form>
-                      </br>
-                      <p>* Same-day shipping applies only to locations within 3 hours of warehouse location</p>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
+                <span class="label label-success">Standard</span> 3 - 4 day shipping ($8.00)
+                <br/>    
+          	</div>
           </div>
         </div>
         <!-- end of panel, panel-default -->
@@ -146,25 +133,8 @@
         <!-- end of panel, panel-default -->
       </div>
       <!--end accordion-->
-
-      <br/>
-      <h4>Email Customer Receipt</h4>
-
-      <form class="form-horizontal" role="form" method="POST">
-        <table class='table'>
-          <tbody>
-            %for f in form:
-            <tr>
-              <td width='99%'>${f}</td>
-              <td>
-                <button type="submit" class='btn btn-primary'>Send</button>
-              </td>
-            </tr>
-            %endfor
-          </tbody>
-        </table>
-      </form>
     </div><!--ends col-md-4 -->
+
 	<div class="col-md-8">
 		<div class="panel-group" id="accordion">
 
@@ -173,22 +143,62 @@
 		    <div class="panel-heading"><h4 class="panel-title">SALES</h4>
 		    </div>
 		      <div class="panel-body">
-		      	<table>
+
+		      	<table class='table'>
+		      		<thead>
+		      			<th>Item</th>
+		      			<th>QTY</th>
+		      			<th>Price</th>
+		      			<th>Subtotal</th>
+		      		</thead>
 		      		<tbody>
+		      			%for s in ssi_list:
 		      			<tr>
-		      				<td></td>
+		      				<td>${s.item.catalogItem.manufacturer} ${s.item.catalogItem.name}</td>
+		      				<td>1</td>
+		      				<td>${s.item.catalogItem.listPrice}</td>
+		      				<td>${s.item.catalogItem.listPrice}</td>
 		      			</tr>
+		      			%endfor
+		      			%for c in sci_list:
+		      			<tr>
+		      				<td>${c.item.manufacturer} ${c.item.name}</td>
+		      				<td>${c.qty}</td>
+		      				<td>${c.item.listPrice}</td>
+		      				<td>${c.item.listPrice * c.qty}</td>
+		      			</tr>
+		      			%endfor
 		      		</tbody>
 		      	</table>
+
 		      </div>
 		  </div>
 		%endif
-		%if rental != '':
+		%if rental != '' and rentalreturn == '':
 		  <div class="panel panel-default">
 		    <div class="panel-heading"><h4 class="panel-title">RENTALS</h4>
 		    </div>
 		      <div class="panel-body">
-		      	...
+
+		      	<table class='table'>
+		      		<thead>
+		      			<th>Item</th>
+		      			<th>Days</th>
+		      			<th>Price/Day</th>
+		      			<th>Subtotal</th>
+		      		</thead>
+		      		<tbody>
+		      			%for s in ri_list:
+		      			<tr>
+		      				<td>${s.item.catalogItem.manufacturer} ${s.item.catalogItem.name}</td>
+		      				<td>${days}</td>
+		      				<td>${s.item.pricePerDay}</td>
+		      				<td>${s.item.pricePerDay * days}</td>
+		      			</tr>
+		      			%endfor
+		      		</tbody>
+		      	</table>
+
 		      </div>
 		  </div>
 		%endif
@@ -197,97 +207,80 @@
 		    <div class="panel-heading"><h4 class="panel-title">RETURNS</h4>
 		    </div>
 		      <div class="panel-body">
-		      	...
+
+		      	<table class='table'>
+		      		<thead>
+		      			<th>Item</th>
+		      			<th>Date Due</th>
+		      			<th>Date In</th>
+		      			%for f in rentalreturn.fee.all():
+		      			<th>Fee</th>
+		      			%endfor
+		      			<th>Subtotal</th>
+		      		</thead>
+		      		<tbody>
+		      			%for ri in ri_return_list:
+		      			<tr>
+		      				<td>${ri.item.catalogItem.manufacturer} ${ri.item.catalogItem.name}</td>
+		      				<td>${rentalreturn.rental.dateDue}</td>
+		      				<td>${rentalreturn.dateIn}</td>
+		      				%for f in rentalreturn.fee.all():
+			      				<td>${f.amount}</td>
+		      				%endfor
+		      				<td>${rentalreturn.amount}</td>
+		      			</tr>
+		      			%endfor
+		      		</tbody>
+		      	</table>
+
 		      </div>
 		  </div>	
 		%endif
+
 		%if repair != '':
 		  <div class="panel panel-default">
 		    <div class="panel-heading"><h4 class="panel-title">REPAIRS</h4>
 		    </div>
 		      <div class="panel-body">
-		      	...
+      	      	<table class='table'>
+      	      		<thead>
+      	      			<th>Item</th>
+      	      			<th>Hours</th>
+      	      			<th>Cost</th>
+      	      		</thead>
+      	      		<tbody>
+      	      			<tr>
+      	      				<td>${repair.itemName}</td>
+      	      				<td>${repair.hours}</td>
+      	      				<td>${repair.amount}</td>
+      	      			</tr>
+      	      		</tbody>
+      	      	</table>
 		      </div>
 		  </div>
 		%endif
 
 		</div>
+		<br/>
+		<h4>Email Receipt</h4>
+
+		<form class="form-horizontal" role="form" method="POST">
+		  <table class='table'>
+		    <tbody>
+		      %for f in form:
+		      <tr>
+		        <td width='99%'>${f}</td>
+		        <td>
+		          <button type="submit" class='btn btn-primary'>Send</button>
+		        </td>
+		      </tr>
+		      %endfor
+		    </tbody>
+		  </table>
+		</form>
 	</div><!--ends col-md-8 -->
   </div><!--ends row-->
 </div> <!-- End Container -->
 
 </%block>
 
-
-
-
-<div class="well">
-		  <h3>Your Items</h3>
-		  <table>
-		    <h5><b>Nikon Coolpix S8000c</b></h5>
-		    <tr>
-		      <td rowspan="2">
-		        <img src="http://lghttp.22373.nexcesscdn.net/80A650/Magento/media/catalog/product/cache/1/small_image/150x/9df78eab33525d08d6e5fb8d27136e95/n/i/nikon_1_s800c_front.jpg" width=5 5px alt="Nikon Camera">&nbsp;&nbsp;</td>
-		      <td><b>Quantity: </b>
-		      </td>
-		      <td>1</td>
-		    </tr>
-		    <tr>
-		      <td><b>Price: </b>
-		      </td>
-		      <td>$189.99</td>
-		    </tr>
-		  </table>
-		  <hr>
-		  <table>
-		    <h5><b>Nikon 12-24mm f/4G ED-IF AF-S DX Lens</b></h5>
-		    <tr>
-		      <td rowspan="2">
-		        <img src="https://www.pictureline.com/media/catalog/product/cache/1/small_image/50x/9df78eab33525d08d6e5fb8d27136e95/n/i/nikon_2_12-24_side.jpg" alt="Lens">
-		      </td>
-		      <td><b>Quantity: </b>
-		      </td>
-		      <td>1</td>
-		    </tr>
-		    <tr>
-		      <td><b>Price: </b>
-		      </td>
-		      <td>$1,224.35</td>
-		    </tr>
-		  </table>
-
-		  <hr/>
-
-		  <table>
-		    <tr>
-		      <td><b>Subtotal: </b>
-		      </td>
-		      <td></td>
-		      <td></td>
-		      <td>$1,414.94</td>
-		    </tr>
-		    <tr>
-		      <td><b>Tax: </b>
-		      </td>
-		      <td></td>
-		      <td></td>
-		      <td>$35.00</td>
-		    </tr>
-		    <tr>
-		      <td><b>Shipping: </b>
-		      </td>
-		      <td></td>
-		      <td></td>
-		      <td>$8.00</td>
-		    </tr>
-		    <tr>
-		      <td><b>TOTAL: </b>
-		      </td>
-		      <td></td>
-		      <td></td>
-		      <td><u>$1,457.94</u>
-		      </td>
-		    </tr>
-		  </table>
-		  <br>
-		</div><!--closes the "well" -->

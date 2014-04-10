@@ -5,6 +5,7 @@ from manager.models import *
 from catalog.models import *
 from . import templater
 from datetime import *
+from decimal import *
 from base_app.user_util import *
 from django.contrib.auth.decorators import login_required, user_passes_test
 
@@ -54,10 +55,10 @@ def process_request(request):
 			df.description = form.cleaned_data['description']
 			df.waived = form.cleaned_data['waiveDamageFee']
 			if (df.waived == True):
-				df.amount = 0.01
+				df.amount = Decimal(0.01)
 			else:
 				df.amount = form.cleaned_data['damageFee']
-				df.amount += 0.01
+				df.amount += Decimal(0.01)
 			df.save()
 			d = df.id 
 

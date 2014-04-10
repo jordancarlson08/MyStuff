@@ -128,15 +128,62 @@ def process_request(request):
 	#case 4 - Employee - Sale & Rental Items
 
 	if request.method == 'POST': #Only execute if the form has been submitted #FixLater #100 --- Execute only if form is valid --- remove from below
-	# form = CheckoutForm(request.POST)
-	# if form.is_valid():
+		
 		t = Transaction() #Create one transaction for the entire checkout
+
+		form = CheckoutForm(request.POST)
+		if form.is_valid():
+			a = Address()
+			a.isBilling = True
+			a.first_name = form.cleaned_data['bill_first_name']
+			a.last_name = form.cleaned_data['bill_last_name']
+			a.street1 = form.cleaned_data['bill_street1']
+			a.street2 = form.cleaned_data['bill_street2']
+			a.city = form.cleaned_data['bill_city']
+			a.state = form.cleaned_data['bill_state']
+			a.zipCode = form.cleaned_data['bill_zipCode']
+			a.phone = form.cleaned_data['bill_phone']
+			a.email = form.cleaned_data['bill_email']
+			a.save()
+
+			if isEmployee==False:
+				if form.cleaned_data['use_bill']==True:
+					b = Address()
+					b.isBilling = False
+					b.first_name = form.cleaned_data['bill_first_name']
+					b.last_name = form.cleaned_data['bill_last_name']
+					b.street1 = form.cleaned_data['bill_street1']
+					b.street2 = form.cleaned_data['bill_street2']
+					b.city = form.cleaned_data['bill_city']
+					b.state = form.cleaned_data['bill_state']
+					b.zipCode = form.cleaned_data['bill_zipCode']
+					b.phone = form.cleaned_data['bill_phone']
+					b.email = form.cleaned_data['bill_email']
+					b.save()
+				else:
+					b = Address()
+					b.isBilling = False
+					b.first_name = form.cleaned_data['ship_first_name']
+					b.last_name = form.cleaned_data['ship_last_name']
+					b.street1 = form.cleaned_data['ship_street1']
+					b.street2 = form.cleaned_data['ship_street2']
+					b.city = form.cleaned_data['ship_city']
+					b.state = form.cleaned_data['ship_state']
+					b.zipCode = form.cleaned_data['ship_zipCode']
+					b.phone = form.cleaned_data['ship_phone']
+					b.email = form.cleaned_data['ship_email']
+					b.save()
+				t.shipping = b
+
+
 		t.user = User.objects.get(id=99998)
 		t.employee = Employee.objects.get(id=99998)    #Online Sales Employee (Commissionless)
 		t.store = Store.objects.get(id=99999) 
 		t.subtotal = 0
 		t.tax = 0
 		t.total = 0
+		t.billing = a
+
 		t.save()
 
 
@@ -178,7 +225,7 @@ def process_request(request):
 						sci.sale = r
 						sci.save()
 						items_list.append(item.listPrice * sci.qty)
-						cost_list.append(actual.cost * sci.qty)
+						cost_list.append(item.cost * sci.qty)
 
 
 				r.amount = sum(items_list) #updates the Revenue(Sale).amount to the subtotal of all items in cart
@@ -311,7 +358,8 @@ def process_request(request):
 					rr.fee.add(late)
 					rr.save()
 					fee_list.append(late.amount)
-
+				rr.amount=(sum(fee_list))
+				rr.save()
 				lastT = Transaction.objects.get(revenue=rental)
 				t.user = lastT.user
 				t.employee = currentEmployee

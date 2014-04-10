@@ -22,8 +22,13 @@ def process_request(request):
 		isWalkin=False
 
 	sale=''
+	sci_list=''
+	ssi_list=''
 	rental=''
+	ri_list=''
+	days=''
 	rentalreturn=''
+	ri_return_list=''
 	repair=''
 
 	# Gets a list of all revenue objects that are associated with the transaction
@@ -33,14 +38,22 @@ def process_request(request):
 		if r in Sale.objects.all():
 			print("Sale")
 			sale = r
+			sci_list = SaleCatItem.objects.filter(sale=sale)
+			ssi_list = SaleSerialItem.objects.filter(sale=sale)
 
 		if r in Rental.objects.all():
 			print("Rental")
 			rental = r
+			days = rental.dateDue - rental.dateOut
+			days = days.days
+			print(days)
+			ri_list = RentalItem.objects.filter(rental=rental)
 
 		if r in RentalReturn.objects.all():
 			print("Rental Return")
 			rentalreturn = r
+			rental = rentalreturn.rental
+			ri_return_list = RentalItem.objects.filter(rental=rental)
 
 		if r in Repair.objects.all():
 			print("Repair")
@@ -64,8 +77,13 @@ def process_request(request):
 
 	't':t,
 	'sale':sale,
+	'sci_list':sci_list,
+	'ssi_list':ssi_list,
 	'rental':rental,
+	'ri_list':ri_list,
+	'days':days,
 	'rentalreturn':rentalreturn,
+	'ri_return_list':ri_return_list,
 	'repair':repair,
 	'isWalkin':isWalkin,
 	'showShip':showShip,

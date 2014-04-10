@@ -80,18 +80,32 @@ class Shipping(models.Model):
 	def __str__(self):
 		return '%s - $ %s' %(self.name, self.price)
 
+class Address(models.Model):
+	'''Billing/Shipping address'''
+	isBilling = models.BooleanField(default=True)
+	first_name = models.TextField(blank=True, null=True)
+	last_name = models.TextField(blank=True, null=True)
+	street1 = models.TextField(blank=True, null=True)
+	street2 = models.TextField(blank=True, null=True)
+	city = models.TextField(blank=True, null=True)
+	state = models.TextField(blank=True, null=True)
+	zipCode = models.IntegerField(blank=True, null=True)
+	phone = models.TextField(blank=True, null=True)
+	email = models.TextField(blank=True, null=True)
 
 class Transaction(models.Model):
-  '''Describes the condition of an item'''
-  created = models.DateField(auto_now=True)
-  revenue = models.ManyToManyField(Revenue)
-  user = models.ForeignKey(User)
-  store = models.ForeignKey(Store)
-  employee = models.ForeignKey(Employee)
-  subtotal = models.DecimalField(max_digits=16, decimal_places=2, blank=True, null=True)
-  tax = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-  total =models.DecimalField(max_digits=16, decimal_places=2, blank=True, null=True)
-  paymentType = models.TextField()
+	'''Describes the condition of an item'''
+	created = models.DateField(auto_now=True)
+	revenue = models.ManyToManyField(Revenue)
+	user = models.ForeignKey(User)
+	store = models.ForeignKey(Store)
+	employee = models.ForeignKey(Employee)
+	subtotal = models.DecimalField(max_digits=16, decimal_places=2, blank=True, null=True)
+	tax = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+	total =models.DecimalField(max_digits=16, decimal_places=2, blank=True, null=True)
+	paymentType = models.TextField()
+	billing = models.ForeignKey(Address, related_name='billing')
+	shipping = models.ForeignKey(Address, related_name='shipping', blank=True, null=True)
 
 
 # class Payment(models.Model):
