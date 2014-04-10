@@ -113,7 +113,7 @@ class Transaction(models.Model):
 # 	amount = models.DecimalField(max_digits=16, decimal_places=2, blank=True, null=True)
 	
 
-# class for commissions
+# class for commissions with amounts, and employees and transactions
 class Commission(models.Model):
 	'''Class for commissions'''
     # date the commission was created
