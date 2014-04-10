@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 def process_request(request):
 	'''Shows the inventory'''
 
-	catItems = hmod.CatalogItem.objects.all()
+	catItems = hmod.CatalogItem.objects.all().order_by('-isActive', 'manufacturer') #TestingPurposes -- Test this
 	serial = hmod.SerializedItem.objects.exclude(isRental=True).order_by('catalogItem__id').exclude(isSold=True)
 	rental = hmod.SerializedItem.objects.filter(isRental=True).order_by('isRented').order_by('catalogItem__id').exclude(isRented=True)
 

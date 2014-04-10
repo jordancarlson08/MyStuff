@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396750674.797496
+_modified_time = 1397143571.320375
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\account\\templates/login.html'
 _template_uri = 'login.html'
@@ -40,13 +40,13 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
-        # SOURCE LINE 75
+        # SOURCE LINE 74
         __M_writer('  \n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'top'):
             context['self'].top(**pageargs)
         
 
-        # SOURCE LINE 77
+        # SOURCE LINE 76
         __M_writer('\n\n\n')
         return ''
     finally:
@@ -96,8 +96,8 @@ def render_content(context,**pageargs):
                 __M_writer(str(f.errors))
                 __M_writer(' Remember me\n          </label>\n         </div>\n      </div>\n    </div>\n')
         # SOURCE LINE 47
-        __M_writer('\n<br/>\n  <div class="form-group">\n    <div class="col-md-offset-3 col-md-8">\n\n      <ul class=\'list-inline\'>\n        <li><button id=\'submit_button\' class="btn btn-primary" type="submit">Sign In</button></li>\n        <li><a href="/account/newuser/" class="btn btn-success">Create Account</a></li>\n        <!-- <li><input type="submit" value="Submit" /></li> -->\n      </ul>\n\n    </div>\n  </div> \n</form>\n  \n  \n  <div class=\'row\'>\n    <div class=\'col-md-3\'>\n    </div>\n    <div class=\'col-md-5\'>\n      ')
-        # SOURCE LINE 67
+        __M_writer('\n<br/>\n  <div class="form-group">\n    <div class="col-md-offset-3 col-md-8">\n\n      <ul class=\'list-inline\'>\n        <li><button id=\'submit_button\' class="btn btn-primary" type="submit">Sign In</button></li>\n        <li><a href="/account/newuser/" class="btn btn-success">Create Account</a></li>\n      </ul>\n\n    </div>\n  </div> \n</form>\n  \n  \n  <div class=\'row\'>\n    <div class=\'col-md-3\'>\n    </div>\n    <div class=\'col-md-5\'>\n      ')
+        # SOURCE LINE 66
         __M_writer(str(form.non_field_errors()))
         __M_writer('\n    </div>\n\n  </div>\n\n\n\n\n')
         return ''

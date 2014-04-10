@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1397113121.7597
+_modified_time = 1397143914.296938
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/inventory.html'
 _template_uri = 'inventory.html'
@@ -28,15 +28,15 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        conditions_list = context.get('conditions_list', UNDEFINED)
-        item = context.get('item', UNDEFINED)
-        form = context.get('form', UNDEFINED)
-        stores_list = context.get('stores_list', UNDEFINED)
+        rentals = context.get('rentals', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        item = context.get('item', UNDEFINED)
+        stores_list = context.get('stores_list', UNDEFINED)
+        conditions_list = context.get('conditions_list', UNDEFINED)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        rentals = context.get('rentals', UNDEFINED)
         serial = context.get('serial', UNDEFINED)
+        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\r\n')
@@ -44,7 +44,7 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
-        # SOURCE LINE 435
+        # SOURCE LINE 458
         __M_writer('   \r\n')
         return ''
     finally:
@@ -54,15 +54,15 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        conditions_list = context.get('conditions_list', UNDEFINED)
-        item = context.get('item', UNDEFINED)
-        form = context.get('form', UNDEFINED)
-        stores_list = context.get('stores_list', UNDEFINED)
+        rentals = context.get('rentals', UNDEFINED)
         def content():
             return render_content(context)
+        item = context.get('item', UNDEFINED)
+        stores_list = context.get('stores_list', UNDEFINED)
+        conditions_list = context.get('conditions_list', UNDEFINED)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        rentals = context.get('rentals', UNDEFINED)
         serial = context.get('serial', UNDEFINED)
+        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 3
         __M_writer('\r\n')
@@ -201,10 +201,13 @@ def render_content(context,**pageargs):
         __M_writer('base_app/images/NikonCamera.jpg" alt="Nikon Camera 1 V2" class="img-rounded">\r\n                      <div class="carousel-caption">\r\n                        IMG1.jpg\r\n                      </div>\r\n                    </div>\r\n                    ...\r\n                  </div>\r\n\r\n                  <!-- Controls -->\r\n                  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">\r\n                    <span class="glyphicon glyphicon-chevron-left"></span>\r\n                  </a>\r\n                  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">\r\n                    <span class="glyphicon glyphicon-chevron-right"></span>\r\n                  </a>\r\n                </div>\r\n\r\n\r\n              </div>\r\n              <div class="modal-footer">\r\n                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>\r\n                <button type="button" class="btn btn-primary">Save changes</button>\r\n              </div>\r\n            </div>\r\n            <!-- /.modal-content -->\r\n          </div>\r\n          <!-- /.modal-dialog -->\r\n        </div>\r\n        <!-- /.modal -->\r\n\r\n\r\n\r\n        <br/>\r\n        <h3>Product Description</h3>\r\n        <hr>\r\n        <p>')
         # SOURCE LINE 409
         __M_writer(str(item.description))
-        __M_writer('\r\n          <a href="http://www.nikonusa.com/en/Nikon-Products/Product/Nikon1/27602/Nikon-1-V2.html" class="btn btn-info btn-xs">Go to Nikon</a>\r\n        </p>\r\n\r\n\r\n        <p></p>\r\n\r\n\r\n\r\n        <br/>\r\n        <h3>Tech Specs</h3>\r\n        <hr/>')
-        # SOURCE LINE 420
+        __M_writer('</p>\r\n\r\n\r\n        <br/>\r\n        <h3>Tech Specs</h3>\r\n        <hr/>\r\n        ')
+        # SOURCE LINE 415
         __M_writer(str(item.techSpecs))
-        __M_writer('\r\n\r\n\r\n\r\n        <hr>\r\n\r\n\r\n\r\n\r\n      </div>\r\n  \t</div>\r\n</div>\r\n\r\n\r\n\r\n')
+        __M_writer('\r\n\r\n\r\n\r\n        <hr/>\r\n        <br/>\r\n        <button class="btn btn-danger" data-toggle="modal" data-target="#Delete">Delete</button>\r\n\r\n        <!-- Modal -->\r\n        <div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\r\n          <div class="modal-dialog">\r\n            <div class="modal-content">\r\n\r\n              <div class="modal-header">\r\n                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\r\n                <h4 class="modal-title" id="myModalLabel">Delete Catalog Item</h4>\r\n              </div>\r\n\r\n              <div class="modal-body">\r\n                <h4>Are you sure you want to delete this item?</h4>  \r\n                <br/>\r\n                You will not be able to undo this action.\r\n              </div>\r\n\r\n              <div class="modal-footer">\r\n                <a href=\'/manager/inventory__delete/')
+        # SOURCE LINE 440
+        __M_writer(str(item.id))
+        __M_writer('\' class=\'btn btn-danger\'>Delete</a>\r\n                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>\r\n              </div>\r\n            </div>\r\n            <!-- /.modal-content -->\r\n          </div>\r\n          <!-- /.modal-dialog -->\r\n        </div>\r\n        <!-- /.modal -->\r\n\r\n\r\n\r\n      </div>\r\n  \t</div>\r\n</div>\r\n\r\n\r\n\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()

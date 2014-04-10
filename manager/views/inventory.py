@@ -89,3 +89,6 @@ def process_request__delete(request):
 	c.isActive = False
 	c.save()
 	return HttpResponseRedirect('/manager/searchinventory/')
+
+
+	 

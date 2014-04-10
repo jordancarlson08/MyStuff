@@ -21,7 +21,6 @@ def process_request(request):
 		return HttpResponseRedirect('/manager/inventory/' + str(s.catalogItem.id))
  
 
-
 	# get the serialized item
 	s = hmod.SerializedItem.objects.get(id=request.urlparams[0])
 	

@@ -406,23 +406,46 @@
         <br/>
         <h3>Product Description</h3>
         <hr>
-        <p>${item.description}
-          <a href="http://www.nikonusa.com/en/Nikon-Products/Product/Nikon1/27602/Nikon-1-V2.html" class="btn btn-info btn-xs">Go to Nikon</a>
-        </p>
-
-
-        <p></p>
-
+        <p>${item.description}</p>
 
 
         <br/>
         <h3>Tech Specs</h3>
-        <hr/>${item.techSpecs}
+        <hr/>
+        ${item.techSpecs}
 
 
 
-        <hr>
+        <hr/>
+        <br/>
+        <button class="btn btn-danger" data-toggle="modal" data-target="#Delete">Delete</button>
 
+        <!-- Modal -->
+        <div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Delete Catalog Item</h4>
+              </div>
+
+              <div class="modal-body">
+                <h4>Are you sure you want to delete this item?</h4>  
+                <br/>
+                You will not be able to undo this action.
+              </div>
+
+              <div class="modal-footer">
+                <a href='/manager/inventory__delete/${item.id}' class='btn btn-danger'>Delete</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
 
 
 

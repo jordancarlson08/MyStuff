@@ -40,6 +40,7 @@
         </thead>
         <tbody>
           %for i in catItems:
+          %if i.isActive == True:
           <tr class="clickableRow" href="/manager/inventory/${i.id}">
             <td>${i.sku}</td>
             <td>${i.manufacturer}</td>
@@ -49,6 +50,17 @@
             <td>${i.category.subName}</td>
             <td>${i.views}</td>
           </tr>
+          %else:
+          <tr class="clickableRow grayed-out" href="/manager/inventory/${i.id}">
+            <td>${i.sku}</td>
+            <td>${i.manufacturer}</td>
+            <td>${i.name}</td>
+            <td>$ ${i.listPrice}</td>
+            <td>$ ${i.cost}</td>
+            <td>${i.category.subName}</td>
+            <td>${i.views}</td>
+          </tr>
+          %endif
           %endfor
         </tbody>
       </table>
@@ -58,6 +70,7 @@
 
   <div class="tab-pane" id="Sale"><!--  Sale Inventory Tab -->
     <div class="tab-content">
+      %if serial:
           <div class="panel-group" id="accordion">
           <% 
 
@@ -100,7 +113,7 @@
                         <tbody>
             %endif
 
-                          <tr>
+                          <tr href='/manager/inventory/${i.catalogItem.id}#inStock' class='clickableRow'>
                             <td>${i.serialNum}</td>
                             <td>${i.catalogItem.manufacturer} ${i.catalogItem.name}</td>
                             <td>$ ${i.listPrice}</td>
@@ -117,8 +130,13 @@
             </div>
           </div>
         </div>
+        %else:
+
+        <div class="vertical_spacer6"></div>
+        <div class="vertical_spacer6"></div>
+        %endif
     </div>
-  </div><!--  End Rental Inventory Tab -->
+  </div><!--  End Serial Inventory Tab -->
 
 
 
@@ -127,6 +145,7 @@
 
   <div class="tab-pane" id="Rental"><!--  Rental Inventory Tab -->
     <div class="tab-content">
+      %if rental:
           <div class="panel-group" id="accordion">
           <% 
 
@@ -186,6 +205,13 @@
             </div>
           </div>
         </div>
+        %else:
+
+        <div class="vertical_spacer6"></div>
+        <div class="vertical_spacer6"></div>
+
+
+        %endif
     </div>
   </div><!--  End Rental Inventory Tab -->
 </div>
