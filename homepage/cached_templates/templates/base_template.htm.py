@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1397176072.922354
+_modified_time = 1397176373.35895
 _enable_loop = True
 _template_filename = '/Users/ecookson/Desktop/MyStuff/base_app/templates/base_template.htm'
 _template_uri = 'base_template.htm'
@@ -121,8 +121,8 @@ def render_body(context,**pageargs):
 
         __M_locals_builtin_stored = __M_locals_builtin()
         __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in [] if __M_key in __M_locals_builtin_stored]))
-        __M_writer('\n\n\n\n\n<!-- Footer-->\n\n<footer>\n      \n\n  <div class="container">\n    <div class="row">\n      <div class="col-md-4">\n        <ul class="list-unstyled">\n          <li class="title">Home</li>\n          <li><a href="/account/newuser/">Signup</a></li>\n        </ul>\n      </div>\n      <div class="col-md-4">\n        <ul class="list-unstyled">\n          <li class="title">About</li>\n          <li><a href="/about/">About Us</a></li>\n          <li><a href="/locations/">Locations</a></li>\n        </ul>\n      </div>\n      <div class="col-md-3">\n        <ul class="list-unstyled">\n          <li class="title">Help</li>\n          <li><a href="/contact/">Contact Us</a></li>\n          <li><a href="/terms/">Terms</a></li>\n\n        </ul>\n      </div>\n\n      <div class="col-md-1">\n        <ul class="list-unstyled">\n          <li><a href="https://www.facebook.com/digitallifemyway"><img src="/static/homepage/images/facebook.png" /></a></li>\n          <li><a href="https://plus.google.com/"><img src="/static/homepage/images/google.png" /></a></li>\n          <li><a href="https://www.twitter.com/"><img src="/static/homepage/images/twitter.png" /></a></li>\n        </ul>\n      </div>\n\n\n    </div>\n  </div>\n\n</footer> \n    \n\n\n  \n\n  \n')
-        # SOURCE LINE 197
+        __M_writer('\n\n\n\n\n<!-- Footer-->\n\n<footer>\n      \n\n  <div class="container">\n    <div class="row">\n      <div class="col-md-4">\n        <ul class="list-unstyled">\n          <li class="title">Home</li>\n          <li><a href="/account/newuser/">New Account</a></li>\n          <li><a href="/catalog/category">Search Products</a></li>\n        </ul>\n      </div>\n      <div class="col-md-4">\n        <ul class="list-unstyled">\n          <li class="title">About</li>\n          <li><a href="/about/">About Us</a></li>\n          <li><a href="/locations/">Locations</a></li>\n        </ul>\n      </div>\n      <div class="col-md-3">\n        <ul class="list-unstyled">\n          <li class="title">Help</li>\n          <li><a href="/contact/">Contact Us</a></li>\n          <li><a href="/terms/">Rental Policy</a></li>\n          <li><a href="/account/newuser/">Repair Terms</a></li>\n\n        </ul>\n      </div>\n\n      <div class="col-md-1">\n        <ul class="list-unstyled">\n          <li><a href="https://www.facebook.com/digitallifemyway"><img src="/static/homepage/images/facebook.png" /></a></li>\n          <li><a href="https://plus.google.com/"><img src="/static/homepage/images/google.png" /></a></li>\n          <li><a href="https://www.twitter.com/"><img src="/static/homepage/images/twitter.png" /></a></li>\n        </ul>\n      </div>\n\n\n    </div>\n  </div>\n\n</footer> \n    \n\n\n  \n\n  \n')
+        # SOURCE LINE 199
         __M_writer('    ')
         __M_writer(str( static_renderer.get_template_js(request, context)  ))
         __M_writer('\n  \n  </body>\n</html>\n')
