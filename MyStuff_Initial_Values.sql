@@ -55,8 +55,9 @@ INSERT INTO catalog_shipping VALUES (12, 'Next-Day (1 business day)', 40.00);
 
 
 -- User:       webmaster
--- Password:   Password1
-INSERT INTO account_user VALUES (99999, 'pbkdf2_sha256$12000$6452F1Q5YyYq$6dEZTD4EYWRlIsz0P3RDcBd72SJ0a538qFYrlk+r+Wo=', '2014-02-25 18:28:42.571127-07', true, 'webmaster', 'Website', 'Administrator', 'webmaster@digitallifemyway.com', true, true, '2014-02-05 20:09:48.693779-07', '801-555-5555', 'What is your mother''s maiden name?', 'Smith', '123 Center St', '', 'Provo', 'UT', 84606);
+-- Password:   Ifihadnomorals26
+INSERT INTO account_user VALUES (99999, 'pbkdf2_sha256$12000$IjO7WcPr4UAo$+KdUWvgPwd9RLLhPQPhVfB8cuC1PlaVCutFn+/ZWfr8=', '2014-04-11 12:44:49.542096-06', true, 'webmaster', 'Website', 'Administrator', 'webmaster@digitallifemyway.com', true, true, '2014-02-05 20:09:48.693779-07', '801-555-5555', 'What is your mother''s maiden name?', 'Smith', '123 Center St', '', 'Provo', 'UT', 84606, NULL, NULL);
+
 INSERT INTO account_employee VALUES (99999, 99999, '2013-08-18', 100000.00);
 
 --Walk-in user for instore sales
@@ -105,8 +106,19 @@ INSERT INTO manager_catalogitem VALUES (100027, 'D4', 'Nikon', 6199.00, 6199.00,
 INSERT INTO manager_catalogitem VALUES (100028, 'Lithium Ion AA Batteries', 'Energizer', 12.95, 10.95, 0.05, '<p style="margin-bottom: 1.5em; padding: 0px; line-height: 16.799999237060547px; font-family: Arial, Helvetica, sans-serif; font-size: 12px;">For the countless electronic gadgets that you can’t live without, get the latest lithium battery technology that’s proven to be the world’s longest lasting AA and AAA batteries in high-tech devices.</p><p style="margin-bottom: 1.5em; padding: 0px; line-height: 16.799999237060547px; font-family: Arial, Helvetica, sans-serif; font-size: 12px;"><em style="font-weight: inherit;">Energizer</em><span style="bottom: -0.3em; font-size: 0.75em; position: relative; vertical-align: baseline;">®</span>&nbsp;Ultimate Lithium batteries deliver long-lasting power to keep up with today’s high-tech, power hungry devices like&nbsp;digital cameras, photo flash units and handheld GPS devices.&nbsp;You’ll find&nbsp;<em style="font-weight: inherit;">Energizer</em>&nbsp;Ultimate Lithium AAs in convenient 2, 4 and 8 packs</p>', '<p></p><div><h3 style="margin-top: 0px; margin-bottom: 0.5em; padding: 0px; font-size: 12px; color: rgb(51, 51, 51); font-family: Arial, Helvetica, sans-serif; line-height: 16.799999237060547px;">Features and Functions</h3><ul style="margin-bottom: 1.4em; margin-left: 16px; list-style: none; font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 16.799999237060547px;"><li style="margin: 0.13em 0px 0.12em; padding: 0px; list-style: disc outside none;">Last up to 9x longer in digital cameras (versus&nbsp;<em style="font-weight: inherit;">Energizer</em><span style="bottom: -0.3em; font-size: 0.75em; position: relative; vertical-align: baseline;"><font size="1">®</font></span>&nbsp;MAX<font size="1"><span style="bottom: -0.3em; font-size: 0.75em; position: relative; vertical-align: baseline;">®</span></font>. results vary by camera.), which means 9x less waste</li><li style="margin: 0.13em 0px 0.12em; padding: 0px; list-style: disc outside none;">Weigh 1/3 less than standard alkaline batteries</li><li style="margin: 0.13em 0px 0.12em; padding: 0px; list-style: disc outside none;">Perform in extreme temperatures from -40°F to 140°F</li><li style="margin: 0.13em 0px 0.12em; padding: 0px; list-style: disc outside none;">Hold&nbsp;power for&nbsp;20 years when not in use</li><li style="margin: 0.13em 0px 0.12em; padding: 0px; list-style: disc outside none;">Leak resistant construction</li></ul></div><p></p>', 'ENAABATLI1', 15, '3 Days', '2014-04-11', 99999, 4, true, '/static/catalog/images/products/default.png', false, 0);
 
 
+--Manager acounts
+--flast
+--admin
+INSERT INTO account_user VALUES (100001, 'pbkdf2_sha256$12000$arwdJyJLFcmJ$mCBzmNpyHh7yG4eQtIxOMUSuLpx5AnB0+ZMJOB/yuSA=', '2014-04-11 12:36:58.938742-06', false, 'nford', 'Nancy', 'Ford', 'nford@digitallifemyway.com', true, true, '2014-04-11 12:36:58.938742-06', '801-555-5555', NULL, NULL, '458 Willow Creek Dr', '', 'Sandy', 'UT', 84555, NULL, NULL);
+INSERT INTO account_user VALUES (100002, 'pbkdf2_sha256$12000$7ccABfWprjC8$T1DEhMq8uubhtrz1Th7qOXzYEGidnFadnTedcWXTWs0=', '2014-04-11 12:38:13.252537-06', false, 'jadams', 'Jim', 'Adams', 'jadams@digitallifemyway.com', true, true, '2014-04-11 12:38:13.252537-06', '801-555-5555', NULL, NULL, '774 N. Westridge Rd.', '#12', 'Ogden', 'UT', 84401, NULL, NULL);
+INSERT INTO account_user VALUES (100003, 'pbkdf2_sha256$12000$CnrcEnBYSYzL$BsvqgVo81KWAYLNl/7uMFdJI1SAsOm/H2YDohIT5nEk=', '2014-04-11 12:40:06.960324-06', false, 'rkramer', 'Ray', 'Kramer', 'rkramer@digitallifemyway.com', true, true, '2014-04-11 12:40:06.960324-06', '801-555-5555', NULL, NULL, '252 E. 850 S.', '', 'Provo', 'UT', 84606, NULL, NULL);
 
+INSERT INTO account_employee VALUES (100001, 100001, '2011-10-14', 82000.00);
+INSERT INTO account_employee VALUES (100002, 100002, '2010-07-23', 89000.00);
+INSERT INTO account_employee VALUES (100003, 100003, '2012-03-12', 85000.00);
 
-INSERT INTO manager_store VALUES (99990, 'Provo', '485 Center St', '#1000', 'Provo', 'UT', 84606, '801-555-5555', true, 99999);
-INSERT INTO manager_store VALUES (99991, 'Sandy', '800 N. 450 E', '', 'Sandy', 'UT', 84555, '801-555-5555', true, 99999);
-INSERT INTO manager_store VALUES (99992, 'Ogden', '3251 Wall Avenue', '', 'Ogden', 'UT', 84401, '801-555-5555', true, 99999);
+--Stores
+
+INSERT INTO manager_store VALUES (99990, 'Provo', '485 Center St', '#1000', 'Provo', 'UT', 84606, '801-555-5555', true, 100003);
+INSERT INTO manager_store VALUES (99991, 'Sandy', '800 N. 450 E', '', 'Sandy', 'UT', 84555, '801-555-5555', true, 100001);
+INSERT INTO manager_store VALUES (99992, 'Ogden', '3251 Wall Avenue', '', 'Ogden', 'UT', 84401, '801-555-5555', true, 100002);
