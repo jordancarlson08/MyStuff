@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1397177597.698864
+_modified_time = 1397179300.309383
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\base_app\\templates/base_template.htm'
 _template_uri = 'base_template.htm'
@@ -23,14 +23,14 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def top():
-            return render_top(context._locals(__M_locals))
+        request = context.get('request', UNDEFINED)
+        len = context.get('len', UNDEFINED)
         def main():
             return render_main(context._locals(__M_locals))
-        request = context.get('request', UNDEFINED)
         def shopping_cart_navigation_option():
             return render_shopping_cart_navigation_option(context._locals(__M_locals))
-        len = context.get('len', UNDEFINED)
+        def top():
+            return render_top(context._locals(__M_locals))
         self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 4

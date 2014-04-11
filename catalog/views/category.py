@@ -1,6 +1,7 @@
 from django import forms
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.db.models import Q
 from manager import models as hmod
 from . import templater
 from django.contrib.auth.decorators import login_required
@@ -20,9 +21,9 @@ def process_request(request):
 		form = SearchForm(request.GET)
 		if form.is_valid():
 			search = form.cleaned_data['search']
-			items = hmod.CatalogItem.objects.filter(manufacturer__icontains=search)
-			if not items:
-				items = hmod.CatalogItem.objects.filter(name__icontains=search)
+			items = hmod.CatalogItem.objects.filter(Q(manufacturer__icontains=search) | Q(name__icontains=search))
+
+
 
 
 
