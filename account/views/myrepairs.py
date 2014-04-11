@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 def process_request(request):
 	'''Shows the users repairs'''
 
-	repairs = Repair.objects.filter(user=request.user)
+	repairs = Repair.objects.filter(user=request.user).order_by('-dateStart')
 
 	tvars = {
 
@@ -18,4 +18,4 @@ def process_request(request):
 
 	}
 
-	return templater.render_to_response(request, 'repairstatus.html', tvars)
+	return templater.render_to_response(request, 'myrepairs.html', tvars)

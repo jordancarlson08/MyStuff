@@ -21,7 +21,7 @@ def process_request(request):
 		form = SearchForm(request.GET)
 		if form.is_valid():
 			search = form.cleaned_data['search']
-			items = hmod.CatalogItem.objects.filter(Q(manufacturer__icontains=search) | Q(name__icontains=search))
+			items = hmod.CatalogItem.objects.filter(Q(manufacturer__icontains=search) | Q(name__icontains=search) | Q(sku__icontains=search))
 
 
 

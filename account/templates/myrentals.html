@@ -1,0 +1,56 @@
+## Mako can find this base file because it's in the settings.py -> MAKO_TEMPLATES_DIRS list
+<%inherit file="base.htm" />
+
+<%block name="content">
+<% %>
+
+  <h2>My Rentals</h2><hr/><br/>
+
+%if rentals:
+  <table class="table table-hover">
+  	<thead>
+  		<tr>
+  			<th>ID</th>
+  			<th>Date Out</th>
+        <th>Date Due</th>
+  			<th>Returned?</th>
+
+  		</tr>
+  	</thead>
+  	<tbody>
+  %for s in rentals:
+  <%
+  if s.isClosed == True:
+    isClosed = 'No'
+  else:
+    isClosed = 'Yes'
+  %>
+    %if s.isClosed==True:
+      <tr>
+        <td>${s.id}</td>
+        <td>${s.dateOut}</td>
+        <td>${s.dateDue}</td>
+        <td>${isClosed}</td>
+      </tr>
+    %else:
+      <tr class='grayed-out'>
+        <td>${s.id}</td>
+        <td>${s.dateOut}</td>
+        <td>${s.dateDue}</td>
+        <td>${isClosed}</td>
+      </tr>
+    %endif
+  %endfor
+  	</tbody>
+</table>
+
+%endif
+
+
+  <div class="vertical_spacer6"></div>
+  <div class="vertical_spacer6"></div>
+
+
+
+
+</%block>  
