@@ -109,7 +109,7 @@
         <ul class="dropdown-menu">
         %if isEmployee == True:
           <li><a href="/manager/dash/"><span class='glyphicon glyphicon-globe'></span>&nbsp; DASHBOARD</a></li>
-          <li><a href="/manager/employee/${request.user.id}"><span class='glyphicon glyphicon-edit'></span>&nbsp; EDIT PROFILE</a></li>
+          <li><a href="/manager/employee/${request.user.id}"><span class='glyphicon glyphicon-edit'></span>&nbsp; MY ACCOUNT</a></li>
         %else:
           <li><a href="/account/myorders/"><span class='glyphicon glyphicon-inbox'></span>&nbsp; MY ORDERS</a></li>
           <li><a href="/index/not_implemented_yet"><span class='glyphicon glyphicon-camera'></span>&nbsp; RENTALS</a></li>
