@@ -16,7 +16,6 @@ def process_request(request):
 		form = ForgotForm(request.POST)
 		if form.is_valid():
 			u = User.objects.get(username=form.cleaned_data['username'])
-			email = u.email
 			hours3 = datetime.now() + timedelta(hours=3)
 			# Generate Code and Expiration
 			u.passwordResetCode = uuid4()
@@ -26,8 +25,8 @@ def process_request(request):
 			url = 'http://localhost:8000/account/resetpassword/'+str(u.passwordResetCode)
 
 			#HTML/TXT Email
-
-			email= 'jordancarlson08@gmail.com' #TestingPurposes
+			
+			email = u.email
 
 			tvars = {'url':url}
 			html_content = templater.render(request, 'email_forgot_password.html', tvars)

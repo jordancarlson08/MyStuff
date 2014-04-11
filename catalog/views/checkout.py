@@ -476,9 +476,9 @@ def process_request(request):
 		################# SEND EMAIL ###################
 		################################################
 
-		# Sends a receipt - maybe put this into a special redirect.py page or something
-		send_mail('Receipt for transaction number %s' %(str(t.id)), 'This is your transaction: %s' %(r.text), 'webmaster@digitallifemyway.com',
-		['jordancarlson08@gmail.com'], fail_silently=False)
+		# # Sends a receipt - maybe put this into a special redirect.py page or something
+		# send_mail('Receipt for transaction number %s' %(str(t.id)), 'This is your transaction: %s' %(r.text), 'webmaster@digitallifemyway.com',
+		# ['jordancarlson08@gmail.com'], fail_silently=False)
 
 		# Clear out shopping cart
 		request.session['cart'] = {}	

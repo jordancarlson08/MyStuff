@@ -6,7 +6,7 @@ from account.models import *
 from catalog.models import *
 from . import templater
 from django_summernote.widgets import SummernoteWidget
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives, EmailMessage, send_mail
 from base_app.user_util import *
 from django.contrib.auth.decorators import login_required, user_passes_test
 
@@ -28,13 +28,17 @@ def process_request(request):
 			r.estCost = form.cleaned_data['estCost']
 			r.status = form.cleaned_data['status']
 			r.save()
-			send_mail(
-				'Receipt for Repair Request',
-			 	'Repair ID: %s --- Thank You ---' %(r.id),
-			  	'repairs@digitallifemyway.com',
-				['jordancarlson08@gmail.com'], #r.user.email
-				fail_silently=False
-			)
+
+			email = r.user.email
+			url = 'http://www.digitallifemyway.com/account/myrepairs/'
+
+			tvars= { 'r': r, 'url':url,  }
+			html_content = templater.render(request, 'email_repair.html', tvars)
+			subject, from_email= 'Repair Request', 'webmaster@digitallifemyway.com'
+			text_content = 'Thank you for your request to repair your %s. We will let you know as soon as we are finished fixing it up.' %(r.itemName)
+			msg = EmailMultiAlternatives(subject, text_content, from_email, [email])
+			msg.attach_alternative(html_content, "text/html")
+			msg.send()
 
 			return HttpResponseRedirect('/index/')
 

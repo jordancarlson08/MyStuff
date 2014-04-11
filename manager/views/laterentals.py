@@ -91,6 +91,18 @@ def process_request__email(request):
 			i = x.item
 			info = RentalInfo(i, r, t, u)
 
+			#HTML/TXT Email
+			
+			email = u.email
+			url = 'http://www.digitallifemyway.com/locations/'
+			tvars = {'url':url}
+			html_content = templater.render(request, 'email_late.html', tvars)
+			subject, from_email= 'Reset Your Password', 'webmaster@digitallifemyway.com'
+			text_content = 'Please use this link to reset your password %s, for security purposes this link will only be valid for the next 3 hours.' %(url)
+			msg = EmailMultiAlternatives(subject, text_content, from_email, [email])
+			msg.attach_alternative(html_content, "text/html")
+			msg.send()
+
 			send_mail(
 				'Outstanding Rental', #Subject
 				'The %s %s you rented was due %s days ago! Please return the item as soon as possible to avoid additional late penalties.' %(i.catalogItem.manufacturer, i.catalogItem.name, info.daysLate), #Body
