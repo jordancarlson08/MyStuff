@@ -11,7 +11,7 @@ def process_request(request):
 	'''Shows the users repairs'''
 
 	rentals = []
-	t_list = Transaction.objects.filter(user=request.user)
+	t_list = Transaction.objects.filter(user=request.user).order_by('-created')
 
 	for t in t_list:
 		r_list = t.revenue.all()

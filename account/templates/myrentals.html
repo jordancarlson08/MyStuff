@@ -14,6 +14,7 @@
   			<th>Date Out</th>
         <th>Date Due</th>
   			<th>Returned?</th>
+        <th>Status</th>
 
   		</tr>
   	</thead>
@@ -24,6 +25,17 @@
     isClosed = 'Yes'
   else:
     isClosed = 'No'
+
+  import datetime
+  if s.dateDue < datetime.date.today():
+    isLate = "Late"
+  else:
+    isLate = 'On time'
+  if isLate == 'Late' and isClosed =="No":
+    isLate = "<span class='label label-danger'>Late</span>"
+  elif isLate == 'On time' and isClosed == 'No':
+    isLate = "<span class='label label-success'>On time</span>"
+
   %>
     %if s.isClosed==True:
       <tr class='grayed-out'>
@@ -31,6 +43,7 @@
         <td>${s.dateOut}</td>
         <td>${s.dateDue}</td>
         <td>${isClosed}</td>
+        <td>${isLate}</td>
       </tr>
     %else:
       <tr>
@@ -38,6 +51,7 @@
         <td>${s.dateOut}</td>
         <td>${s.dateDue}</td>
         <td>${isClosed}</td>
+        <td>${isLate}</td>
       </tr>
     %endif
   %endfor
