@@ -22,15 +22,16 @@
       
          	<div class="media-body">	
            	<address>
-           		<strong>MyStuff, Inc.</strong><br>
-              <small>Contact Us: ${s.phone}</small></br>
-              <small> Hours: 8a - 8p Monday - Saturday </small></br>
-              <small>Manager: ${s.manager.user.first_name}    ${s.manager.user.last_name}</small><br>
+              
            		${s.street1}<br>
            		%if s.street2 != None:
            		${s.street2}<br>
            		%endif
-           		${s.city}, ${s.state} ${s.zipCode}<br>
+           		${s.city}, ${s.state} ${s.zipCode}<br><br>
+              
+              <small>Phone | ${s.phone}</small></br>
+              <small> Hours | Monday - Saturday 8a - 8p </small></br>
+              <small>Manager | ${s.manager.user.first_name}    ${s.manager.user.last_name}</small><br>
            	</address>
          	</div>
 
