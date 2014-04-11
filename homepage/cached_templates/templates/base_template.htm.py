@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1397151519.911398
+_modified_time = 1397177597.698864
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\base_app\\templates/base_template.htm'
 _template_uri = 'base_template.htm'
@@ -23,15 +23,15 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        def top():
+            return render_top(context._locals(__M_locals))
         def main():
             return render_main(context._locals(__M_locals))
-        self = context.get('self', UNDEFINED)
         request = context.get('request', UNDEFINED)
         def shopping_cart_navigation_option():
             return render_shopping_cart_navigation_option(context._locals(__M_locals))
         len = context.get('len', UNDEFINED)
-        def top():
-            return render_top(context._locals(__M_locals))
+        self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 4
         __M_writer('\r\n')
@@ -92,14 +92,14 @@ def render_body(context,**pageargs):
                 __M_writer('          <li><a href="/manager/dash/"><span class=\'glyphicon glyphicon-globe\'></span>&nbsp; DASHBOARD</a></li>\r\n          <li><a href="/manager/employee/')
                 # SOURCE LINE 112
                 __M_writer(str(request.user.id))
-                __M_writer('"><span class=\'glyphicon glyphicon-edit\'></span>&nbsp; EDIT PROFILE</a></li>\r\n')
+                __M_writer('"><span class=\'glyphicon glyphicon-edit\'></span>&nbsp; MY ACCOUNT</a></li>\r\n')
                 # SOURCE LINE 113
             else:
                 # SOURCE LINE 114
-                __M_writer('          <li><a href="/account/myorders/"><span class=\'glyphicon glyphicon-inbox\'></span>&nbsp; MY ORDERS</a></li>\r\n          <li><a href="/index/not_implemented_yet"><span class=\'glyphicon glyphicon-camera\'></span>&nbsp; RENTALS</a></li>\r\n          <li><a href="/account/repairstatus/"><span class=\'glyphicon glyphicon-wrench\'></span>&nbsp; REPAIRS</a></li>\r\n          <li><a href="/account/user/')
+                __M_writer('          <li><a href="/account/myorders/"><span class=\'glyphicon glyphicon-inbox\'></span>&nbsp; MY ORDERS</a></li>\r\n          <li><a href="/index/not_implemented_yet"><span class=\'glyphicon glyphicon-camera\'></span>&nbsp; MY RENTALS</a></li>\r\n          <li><a href="/account/repairstatus/"><span class=\'glyphicon glyphicon-wrench\'></span>&nbsp; MY REPAIRS</a></li>\r\n          <li><a href="/account/user/')
                 # SOURCE LINE 117
                 __M_writer(str(request.user.id))
-                __M_writer('"><span class=\'glyphicon glyphicon-edit\'></span>&nbsp; EDIT PROFILE</a></li>\r\n')
+                __M_writer('"><span class=\'glyphicon glyphicon-edit\'></span>&nbsp; MY ACCOUNT</a></li>\r\n')
             # SOURCE LINE 119
             __M_writer('          <li><a href="/account/logout/"><span class=\'glyphicon glyphicon-log-out\'></span>&nbsp; LOGOUT</a></li>\r\n        </ul>\r\n\r\n      </li>\r\n\r\n')
         # SOURCE LINE 125
@@ -121,8 +121,8 @@ def render_body(context,**pageargs):
 
         __M_locals_builtin_stored = __M_locals_builtin()
         __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in [] if __M_key in __M_locals_builtin_stored]))
-        __M_writer('\r\n\r\n\r\n\r\n\r\n<!-- Footer-->\r\n\r\n<footer>\r\n      \r\n\r\n  <div class="container">\r\n    <div class="row">\r\n      <div class="col-md-4">\r\n        <ul class="list-unstyled">\r\n          <li class="title">Home</li>\r\n          <li><a href="/account/newuser/">Signup</a></li>\r\n        </ul>\r\n      </div>\r\n      <div class="col-md-4">\r\n        <ul class="list-unstyled">\r\n          <li class="title">About</li>\r\n          <li><a href="/about/">About Us</a></li>\r\n        </ul>\r\n      </div>\r\n      <div class="col-md-3">\r\n        <ul class="list-unstyled">\r\n          <li class="title">Help</li>\r\n          <li><a href="/contact/">Contact Us</a></li>\r\n          <li><a href="/terms/">Terms</a></li>\r\n\r\n        </ul>\r\n      </div>\r\n\r\n      <div class="col-md-1">\r\n        <ul class="list-unstyled">\r\n          <li><a href="https://www.facebook.com/digitallifemyway"><img src="/static/homepage/images/facebook.png" /></a></li>\r\n          <li><a href="https://plus.google.com/"><img src="/static/homepage/images/google.png" /></a></li>\r\n          <li><a href="https://www.twitter.com/"><img src="/static/homepage/images/twitter.png" /></a></li>\r\n        </ul>\r\n      </div>\r\n\r\n\r\n    </div>\r\n  </div>\r\n\r\n</footer> \r\n    \r\n\r\n\r\n  \r\n\r\n  \r\n')
-        # SOURCE LINE 196
+        __M_writer('\r\n\r\n\r\n\r\n\r\n<!-- Footer-->\r\n\r\n<footer>\r\n      \r\n\r\n  <div class="container">\r\n    <div class="row">\r\n      <div class="col-md-4">\r\n        <ul class="list-unstyled">\r\n          <li class="title">Home</li>\r\n          <li><a href="/account/newuser/">New Account</a></li>\r\n          <li><a href="/catalog/category">Search Products</a></li>\r\n        </ul>\r\n      </div>\r\n      <div class="col-md-4">\r\n        <ul class="list-unstyled">\r\n          <li class="title">About</li>\r\n          <li><a href="/about/">About Us</a></li>\r\n          <li><a href="/locations/">Locations</a></li>\r\n        </ul>\r\n      </div>\r\n      <div class="col-md-3">\r\n        <ul class="list-unstyled">\r\n          <li class="title">Help</li>\r\n          <li><a href="/contact/">Contact Us</a></li>\r\n          <li><a href="/terms/">Rental Policy</a></li>\r\n          <li><a href="/account/newuser/">Repair Terms</a></li>\r\n\r\n        </ul>\r\n      </div>\r\n\r\n      <div class="col-md-1">\r\n        <ul class="list-unstyled">\r\n          <li><a href="https://www.facebook.com/digitallifemyway"><img src="/static/homepage/images/facebook.png" /></a></li>\r\n          <li><a href="https://plus.google.com/"><img src="/static/homepage/images/google.png" /></a></li>\r\n          <li><a href="https://www.twitter.com/"><img src="/static/homepage/images/twitter.png" /></a></li>\r\n        </ul>\r\n      </div>\r\n\r\n\r\n    </div>\r\n  </div>\r\n\r\n</footer> \r\n    \r\n\r\n\r\n  \r\n\r\n  \r\n')
+        # SOURCE LINE 199
         __M_writer('    ')
         __M_writer(str( static_renderer.get_template_js(request, context)  ))
         __M_writer('\r\n  \r\n  </body>\r\n</html>\r\n')
@@ -134,10 +134,10 @@ def render_body(context,**pageargs):
 def render_shopping_cart_navigation_option(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        request = context.get('request', UNDEFINED)
         def shopping_cart_navigation_option():
             return render_shopping_cart_navigation_option(context)
         len = context.get('len', UNDEFINED)
-        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 73
         __M_writer(' ')
