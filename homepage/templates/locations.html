@@ -27,7 +27,7 @@
               <small> Hours: 8a - 8p Monday - Saturday </small></br>
               <small>Manager: ${s.manager.user.first_name}    ${s.manager.user.last_name}</small><br>
            		${s.street1}<br>
-           		%if s.street2 != '':
+           		%if s.street2 != None:
            		${s.street2}<br>
            		%endif
            		${s.city}, ${s.state} ${s.zipCode}<br>
