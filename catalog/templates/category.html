@@ -93,7 +93,20 @@ ${message}
           <div class='col-md-4 col-sm-6 col-xs-12'>
             <a href='/catalog/inventory/${h.catalogItem.id}'>
               <div class="panel panel-primary" >
-                <div class='panel-heading lg-heading'><h3><strong>${h.catalogItem.manufacturer} ${h.catalogItem.name}</strong></h3></div>
+                <div class='panel-heading lg-heading'>
+                  <h3><strong>
+
+                    %if len(h.catalogItem.manufacturer+h.catalogItem.name) > 35:
+                    <% 
+                    x = 35 - len(h.catalogItem.manufacturer)
+                    %>
+                    ${h.catalogItem.manufacturer} ${h.catalogItem.name[:x]}...
+                    %else:
+                    ${h.catalogItem.manufacturer} ${h.catalogItem.name}
+                    %endif
+
+                  </strong></h3>
+                </div>
                 <div class='panel-body text-center'> <!-- panel body starts -->
                   <ul class='list-inline'>
                     <li>
@@ -120,7 +133,18 @@ ${message}
           <div class='col-md-4 col-sm-6 col-xs-12'>
             <a href='/catalog/inventory/${h.id}'>
               <div class="panel panel-primary" >
-                <div class='panel-heading lg-heading'><h3><strong>${h.manufacturer} ${h.name}</strong></h3></div>
+                <div class='panel-heading lg-heading'>
+                  <h3><strong>
+                    %if len(h.manufacturer+h.name) > 35:
+                    <% 
+                    x = 35 - len(h.manufacturer)
+                    %>
+                    ${h.manufacturer} ${h.name[:x]}...
+                    %else:
+                    ${h.manufacturer} ${h.name}
+                    %endif
+                  </strong></h3>
+                </div>
                 <div class='panel-body text-center'> <!-- panel body starts -->
                   <ul class='list-inline'>
                     <li>
@@ -154,7 +178,18 @@ ${message}
       <div class='col-md-4 col-sm-6 col-xs-12'>
         <a href='/catalog/inventory/${i.id}'>
           <div class="panel panel-primary" >
-            <div class='panel-heading lg-heading'><h3><strong>${i.manufacturer} ${i.name}</strong></h3></div>
+            <div class='panel-heading lg-heading'>
+              <h3><strong>
+                %if len(i.manufacturer+i.name) > 35:
+                <% 
+                x = 35 - len(i.manufacturer)
+                %>
+                ${i.manufacturer} ${i.name[:x]}...
+                %else:
+                ${i.manufacturer} ${i.name}
+                %endif
+              </strong></h3>
+            </div>
             <div class='panel-body text-center'> <!-- panel body starts -->
               <ul class='list-inline'>
                 <li>
