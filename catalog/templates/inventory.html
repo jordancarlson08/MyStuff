@@ -87,7 +87,7 @@
                   <li> 
                     %if item.isSerial == True:
                     %if rental_count == 0:
-                    <span class='label label-danger'>Not available to rent.</span>  
+                    <span class='label label-danger'>No rentals available.</span>  
                     %else:
                     <span class='label label-warning'>Available to rent in store.</span>
                     %endif
@@ -101,15 +101,22 @@
       </div>
 
         <br/>
-        <h3>Product Description</h3>
-        <hr>
-        <p>${item.description}</p>
+        <div class='container-fluid'>
+          <div class='row'>
+            <div class='col-md-10'>
+              <h3>Product Description</h3>
+              <hr>
+              <p>${item.description}</p>
 
-        <br/>
-        <h3>Tech Specs</h3>
-        <hr/>
-        ${item.techSpecs}
-        <hr>
+              <br/>
+              <h3>Tech Specs</h3>
+              <hr/>
+              ${item.techSpecs}
+              <hr>
+            </div>
+          </div>
+        </div>
+
 
       </div>
 </div>
