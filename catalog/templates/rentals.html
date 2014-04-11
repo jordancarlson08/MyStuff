@@ -55,7 +55,17 @@
     </div>
   </div>
 
+
 %endfor
+  <div class="panel panel-default">
+    <a href='/catalog/rentals/'>
+      <div class="panel-heading">
+        <h4 class="panel-title">
+            Rentals
+        </h4>
+      </div>
+    </a>
+  </div>
 </div>
 
 
@@ -67,19 +77,11 @@
 <% %>
 
 
-<h2>Catalog</h2><hr/>
-%if category != '':
 <ol class="breadcrumb">
   <li><a href='/catalog/category/'>Catalog</a></li>
-  %if subCategory == '':
-  <li class='active'>${category.categoryName}</li>
-  %endif
-  %if subCategory != '':
-  <li><a href='/catalog/category/${category.id}'>${category.categoryName}</a></li>
-  <li class="active">${subCategory.subName}</li>
-  %endif
+  <li class='active'>Rentals</li>
 </ol>
-%endif
+
 
 ${message}
 

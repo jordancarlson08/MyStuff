@@ -1,0 +1,25 @@
+.clickable a{
+	display:block;
+}
+.clickable a:hover{
+	text-decoration: none;
+}
+
+.panel-primary{
+	height: 350px;
+}
+
+.lg-heading{
+	height: 90px;
+}
+
+.max-img{
+	max-height: 175px;
+	width:auto;
+}
+a:hover{
+	text-decoration: none;
+}
+.panel-heading > a:hover {
+	text-decoration: none;
+}

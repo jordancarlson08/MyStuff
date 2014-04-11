@@ -16,51 +16,22 @@ def process_request(request):
 	subCategory = ''
 	history=''
 
+	rental_ids = []
+	all_rentals = hmod.SerializedItem.objects.filter(isRental=True)
+	for a in all_rentals:
+		rental_ids.append(a.catalogItem.id)
+
 	form = SearchForm()
-	if request.method == 'GET':
-		form = SearchForm(request.GET)
-		if form.is_valid():
-			search = form.cleaned_data['search']
-			items = hmod.SerializedItem.objects.filter(Q(catalogItem__manufacturer__icontains=search) | Q(catalogItem__name__icontains=search) | Q(catalogItem__sku__icontains=search))
+	print(rental_ids)
 
+	items = hmod.CatalogItem.objects.filter(id__in=rental_ids)
 
-
-
-
-
-	if request.urlparams[0] != '':
-		category = hmod.Category.objects.get(id=request.urlparams[0])
-		items = hmod.CatalogItem.objects.filter(category__category__id=request.urlparams[0])
-
-	if request.urlparams[1] != '':
-		subCategory = hmod.SubCategory.objects.get(id=request.urlparams[1])
-		items = hmod.CatalogItem.objects.filter(category=request.urlparams[1])
-
-	if request.urlparams[0] != '':
-		if not items:
-			message = "Sorry, it looks like there aren't any items here. Try another category!"
-		else:
-			message = ''
+	if not items:
+		message = "Sorry, it looks like there aren't any items here. Try another category!"
 	else:
-		if not items:
-			message = "Welcome! Select a category from the menu on the left to get started."
-			if request.user.is_authenticated()==True:
-				#Use the database if logged in
-				history= hmod.History.objects.filter(user=request.user).order_by('-last')[:6]
-			else:
-				#Use the session if not logged in
-				history={}
-				hist = request.session.get('history',{})
-				for i in hist.keys():
-					item = hmod.CatalogItem.objects.get(id=i)
-					history[item]= hist[i]
-				history = sorted(history, key=history.__getitem__, reverse=True)
+		message = ''
+	
 
-		else:
-			message = ''
-
-	catItems = hmod.CatalogItem.objects.all()
-	brands = hmod.CatalogItem.objects.distinct('manufacturer')
 	category_list = hmod.Category.objects.all().order_by('id')
 
 	tvars = {
@@ -71,13 +42,11 @@ def process_request(request):
 	'message': message,
 	'items': items,
 	'category_list':category_list,
-	'brands':brands,
-	'catItems':catItems,
 	'form':form,
 
 	}
 
-	return templater.render_to_response(request, 'category.html', tvars)
+	return templater.render_to_response(request, 'rentals.html', tvars)
 
 
 
