@@ -22,7 +22,7 @@ def process_request(request):
 				# days = days.days
 				rentals.append(r)
 
-	rentals = Rental.objects.filter()
+
 
 	tvars = {
 

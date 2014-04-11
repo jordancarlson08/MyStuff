@@ -21,19 +21,19 @@
   %for s in rentals:
   <%
   if s.isClosed == True:
-    isClosed = 'No'
-  else:
     isClosed = 'Yes'
+  else:
+    isClosed = 'No'
   %>
     %if s.isClosed==True:
-      <tr>
+      <tr class='grayed-out'>
         <td>${s.id}</td>
         <td>${s.dateOut}</td>
         <td>${s.dateDue}</td>
         <td>${isClosed}</td>
       </tr>
     %else:
-      <tr class='grayed-out'>
+      <tr>
         <td>${s.id}</td>
         <td>${s.dateOut}</td>
         <td>${s.dateDue}</td>
