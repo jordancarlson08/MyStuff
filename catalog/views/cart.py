@@ -42,8 +42,12 @@ def process_request(request):
 		
 
 	# Update Cart
+	print('-----')
+	print('Pre post!')
 
 	if request.method == 'POST':
+		print('-----')
+		print('Post post!')
 		qty = request.POST['qty']
 		print(qty)
 		pid = request.urlparams[0]

@@ -124,15 +124,15 @@ def process_request(request):
 
 	}
 
-	email = t.billing.email
+	# email = t.billing.email
 
-	html_content = templater.render(request, 'email_receipt.html', tvars)
-	print(html_content)
-	subject, from_email= 'Thank you for your order', 'webmaster@digitallifemyway.com'
-	text_content = 'Thank you for your order, view your receipt online under the "My Orders" section.'			
-	msg = EmailMultiAlternatives(subject, text_content, from_email, [email])
-	msg.attach_alternative(html_content, "text/html")
-	msg.send()
+	# html_content = templater.render(request, 'email_receipt.html', tvars)
+	# print(html_content)
+	# subject, from_email= 'Thank you for your order', 'webmaster@digitallifemyway.com'
+	# text_content = 'Thank you for your order, view your receipt online under the "My Orders" section.'			
+	# msg = EmailMultiAlternatives(subject, text_content, from_email, [email])
+	# msg.attach_alternative(html_content, "text/html")
+	# msg.send()
 
 	return templater.render_to_response(request, 'receipt.html', tvars)
 

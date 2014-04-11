@@ -30,7 +30,7 @@
 			<form role="form" method='POST' action='/catalog/cart/${c.item.id}'>
 				<td class='input'><input class='form-control' type='number' name='qty' value='${c.qty}'></td>
 				<td>
-					<button type='submit' class='btn btn-primary btn-sm'>Update</button>
+					<button type='submit' id='submit_${c.item.id}' class='btn btn-primary btn-sm'>Update</button>
 				</td>
 			</form>
 				<td><a href='/catalog/cart__delete/${c.item.id}'><button class='btn btn-danger btn-sm'><span class='glyphicon glyphicon-remove'></span></button></a></td>
