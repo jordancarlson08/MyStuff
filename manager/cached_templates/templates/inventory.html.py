@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1397248306.179853
+_modified_time = 1397255885.440061
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/inventory.html'
 _template_uri = 'inventory.html'
@@ -28,14 +28,14 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        rentals = context.get('rentals', UNDEFINED)
-        def content():
-            return render_content(context._locals(__M_locals))
+        serial = context.get('serial', UNDEFINED)
         stores_list = context.get('stores_list', UNDEFINED)
         conditions_list = context.get('conditions_list', UNDEFINED)
+        def content():
+            return render_content(context._locals(__M_locals))
         form = context.get('form', UNDEFINED)
         item = context.get('item', UNDEFINED)
-        serial = context.get('serial', UNDEFINED)
+        rentals = context.get('rentals', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer('\r\n')
@@ -43,7 +43,7 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
-        # SOURCE LINE 320
+        # SOURCE LINE 327
         __M_writer('   \r\n')
         return ''
     finally:
@@ -53,14 +53,14 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        rentals = context.get('rentals', UNDEFINED)
-        def content():
-            return render_content(context)
+        serial = context.get('serial', UNDEFINED)
         stores_list = context.get('stores_list', UNDEFINED)
         conditions_list = context.get('conditions_list', UNDEFINED)
+        def content():
+            return render_content(context)
         form = context.get('form', UNDEFINED)
         item = context.get('item', UNDEFINED)
-        serial = context.get('serial', UNDEFINED)
+        rentals = context.get('rentals', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 3
         __M_writer('\r\n')
@@ -193,14 +193,14 @@ def render_content(context,**pageargs):
             __M_writer(str( field.name ))
             __M_writer('"> -->\r\n                          </div>\r\n                      </div>\r\n\r\n')
         # SOURCE LINE 246
-        __M_writer('                    \r\n                  </div>\r\n                  <div class ="modal-footer">\r\n                    <div class="form-group">\r\n                      <div class="col-sm-offset-7 col-sm-4">\r\n                        <input class="btn btn-success" type="submit" value="Save Changes">\r\n                      </div>\r\n                    </div>\r\n                  </form>\r\n\r\n                </div>\r\n\r\n\r\n              </div>\r\n              <!-- /.modal-content -->\r\n            </div>\r\n            <!-- /.modal-dialog -->\r\n          </div>\r\n          <!-- /.modal -->  \r\n\r\n\r\n\r\n        <br/>\r\n        <h3>Product Description</h3>\r\n        <hr>\r\n        <p>')
-        # SOURCE LINE 271
+        __M_writer('                    \r\n                  </div>\r\n                  <div class ="modal-footer">\r\n                    <div class="form-group">\r\n                      <div class="col-sm-offset-7 col-sm-4">\r\n                        <input class="btn btn-success" type="submit" value="Save Changes">\r\n                      </div>\r\n                    </div>\r\n                  </form>\r\n\r\n                </div>\r\n\r\n\r\n              </div>\r\n              <!-- /.modal-content -->\r\n            </div>\r\n            <!-- /.modal-dialog -->\r\n          </div>\r\n          <!-- /.modal -->  \r\n\r\n\r\n        <div class=\'container-fluid\'>\r\n          <div class=\'row\'>\r\n            <div class=\'col-md-6\'>\r\n              <br/>\r\n              <h3>Product Description</h3>\r\n              <hr>\r\n              <p>')
+        # SOURCE LINE 273
         __M_writer(str(item.description))
-        __M_writer('</p>\r\n\r\n\r\n        <br/>\r\n        <h3>Tech Specs</h3>\r\n        <hr/>\r\n        ')
-        # SOURCE LINE 277
+        __M_writer('</p>\r\n\r\n\r\n              <br/>\r\n              <h3>Tech Specs</h3>\r\n              <hr/>\r\n              ')
+        # SOURCE LINE 279
         __M_writer(str(item.techSpecs))
-        __M_writer('\r\n\r\n\r\n\r\n        <hr/>\r\n        <br/>\r\n        <button class="btn btn-danger" data-toggle="modal" data-target="#Delete">Archive </button>\r\n\r\n        <!-- Modal -->\r\n        <div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\r\n          <div class="modal-dialog">\r\n            <div class="modal-content">\r\n\r\n              <div class="modal-header">\r\n                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\r\n                <h4 class="modal-title" id="myModalLabel">Delete Catalog Item</h4>\r\n              </div>\r\n\r\n              <div class="modal-body">\r\n                <h4>Are you sure you want to delete this item?</h4>  \r\n                <br/>\r\n                You will not be able to undo this action.\r\n              </div>\r\n\r\n              <div class="modal-footer">\r\n                <a href=\'/manager/inventory__delete/')
-        # SOURCE LINE 302
+        __M_writer('\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n\r\n\r\n\r\n\r\n        <hr/>\r\n        <br/>\r\n        <button class="btn btn-danger" data-toggle="modal" data-target="#Delete">Archive </button>\r\n\r\n        <!-- Modal -->\r\n        <div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\r\n          <div class="modal-dialog">\r\n            <div class="modal-content">\r\n\r\n              <div class="modal-header">\r\n                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\r\n                <h4 class="modal-title" id="myModalLabel">Delete Catalog Item</h4>\r\n              </div>\r\n\r\n              <div class="modal-body">\r\n                <h4>Are you sure you want to delete this item?</h4>  \r\n                <br/>\r\n                You will not be able to undo this action.\r\n              </div>\r\n\r\n              <div class="modal-footer">\r\n                <a href=\'/manager/inventory__delete/')
+        # SOURCE LINE 309
         __M_writer(str(item.id))
         __M_writer('\' class=\'btn btn-danger\'>Delete</a>\r\n                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>\r\n              </div>\r\n            </div>\r\n            <!-- /.modal-content -->\r\n          </div>\r\n          <!-- /.modal-dialog -->\r\n        </div>\r\n        <!-- /.modal -->\r\n\r\n\r\n\r\n      </div>\r\n  \t</div>\r\n</div>\r\n\r\n\r\n\r\n')
         return ''

@@ -13,10 +13,10 @@
     <a href="#Catalog" data-toggle="tab"><strong>Catalog</strong></a>
   </li>
   <li>
-    <a href="#Sale" data-toggle="tab"><strong>Sales Inventory</strong></a>
+    <a href="#Sale" data-toggle="tab"><strong>Sales</strong></a>
   </li>
   <li>
-    <a href="#Rental" data-toggle="tab"><strong>Rental Inventory</strong></a>
+    <a href="#Rental" data-toggle="tab"><strong>Rentals</strong></a>
   </li>
 </ul>
 
@@ -26,6 +26,16 @@
   <div class="tab-pane active" id="Catalog"><!-- Catalog Tab -->
     <div class="tab-content">
 
+      <form id="live-search" action="" class="form-horizontal col-md-5" method="post">
+          <fieldset>
+            <div class="input-group">
+              <span class="input-group-addon"><span class='glyphicon glyphicon-search'></span></span>
+              <input type="text" class="form-control" id="filter" value="" placeholder='Manufacturer, Name, SKU, Price, Views'>
+            </div>
+          </fieldset>
+      </form>
+      <br/>
+      <br/>
       <table class="table table-hover">
         <thead>
           <tr>
@@ -38,7 +48,7 @@
             <th>Views</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class='searchbody'>
 
           <tr>
             <td>

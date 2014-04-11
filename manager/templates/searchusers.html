@@ -22,7 +22,20 @@
     <div class="tab-pane active" id="Employee"><!-- Employee Tab -->
       <div class="tab-content">
 
-        <table class="table table-hover">
+        <br/>
+        <form id="live-search" action="" class="form-horizontal col-md-5" method="post">
+            <fieldset>
+              <div class="input-group">
+                <span class="input-group-addon"><span class='glyphicon glyphicon-search'></span></span>
+                <input type="text" class="form-control" id="filteremp" value="" placeholder='First, Last, Username, Email, Role'>
+              </div>
+            </fieldset>
+        </form>
+        <br/>
+        <br/>
+
+
+        <table class="table table-hover searchemp">
           <thead>
             <tr>
               <th>Role</th>
@@ -56,7 +69,20 @@
     <div class="tab-pane" id="User"><!-- User Tab -->
       <div class="tab-content">
 
-        <table class="table table-hover">
+        <br/>
+        <form id="live-search" action="" class="form-horizontal col-md-5" method="post">
+            <fieldset>
+              <div class="input-group">
+                <span class="input-group-addon"><span class='glyphicon glyphicon-search'></span></span>
+                <input type="text" class="form-control" id="filteruser" value="" placeholder='First, Last, Username, Email'>
+              </div>
+            </fieldset>
+        </form>
+        <br/>
+        <br/>
+
+
+        <table class="table table-hover searchuser">
           <thead>
             <tr>
               <th>Username</th>

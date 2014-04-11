@@ -85,93 +85,6 @@
 
 ${message}
 
-%if history:
-  <h3>Recently Viewed Items</h3>
-
-  <div class='container-fluid'>
-    <div class='row'>
-      %if request.user.is_authenticated()==True:
-        %for h in history:
-          <div class='col-md-4 col-sm-6 col-xs-12'>
-            <a href='/catalog/inventory/${h.catalogItem.id}'>
-              <div class="panel panel-primary" >
-                <div class='panel-heading lg-heading'>
-                  <h3><strong>
-
-                    %if len(h.catalogItem.manufacturer+h.catalogItem.name) > 35:
-                    <% 
-                    x = 35 - len(h.catalogItem.manufacturer)
-                    %>
-                    ${h.catalogItem.manufacturer} ${h.catalogItem.name[:x]}...
-                    %else:
-                    ${h.catalogItem.manufacturer} ${h.catalogItem.name}
-                    %endif
-
-                  </strong></h3>
-                </div>
-                <div class='panel-body text-center'> <!-- panel body starts -->
-                  <ul class='list-inline'>
-                    <li>
-                      <img class='max-img' src='${h.catalogItem.img}' width='200px'/>
-                    </li>
-                    <li>
-                      <ul class='list-unstyled'>
-                        <li>
-                          <strong>Price: $ ${h.catalogItem.listPrice}</strong>
-                        </li> 
-                        <li>
-                          SKU: ${h.catalogItem.sku}
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div> <!-- panel body ends -->
-              </div> <!-- panel ends -->
-            </a>
-          </div>
-        %endfor
-      %else:
-        %for h in history:
-          <div class='col-md-4 col-sm-6 col-xs-12'>
-            <a href='/catalog/inventory/${h.id}'>
-              <div class="panel panel-primary" >
-                <div class='panel-heading lg-heading'>
-                  <h3><strong>
-                    %if len(h.manufacturer+h.name) > 35:
-                    <% 
-                    x = 35 - len(h.manufacturer)
-                    %>
-                    ${h.manufacturer} ${h.name[:x]}...
-                    %else:
-                    ${h.manufacturer} ${h.name}
-                    %endif
-                  </strong></h3>
-                </div>
-                <div class='panel-body text-center'> <!-- panel body starts -->
-                  <ul class='list-inline'>
-                    <li>
-                      <img class='max-img' src='${h.img}' width='200px'/>
-                    </li>
-                    <li>
-                      <ul class='list-unstyled'>
-                        <li>
-                          <strong>Price: $ ${h.listPrice}</strong>
-                        </li> 
-                        <li>
-                          SKU: ${h.sku}
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div> <!-- panel body ends -->
-              </div> <!-- panel ends -->
-            </a>
-          </div>
-        %endfor
-      %endif    
-    </div>
-  </div>
-%endif
 
 
 <div class='container-fluid'>
@@ -196,16 +109,6 @@ ${message}
               <ul class='list-inline'>
                 <li>
                   <img class='max-img' src='${i.img}' width='200px'/>
-                </li>
-                <li>
-                  <ul class='list-unstyled'>
-                    <li>
-                      <strong>Price: $ ${i.listPrice}</strong>
-                    </li> 
-                    <li>
-                      SKU: ${i.sku}
-                    </li>
-                  </ul>
                 </li>
               </ul>
             </div> <!-- panel body ends -->

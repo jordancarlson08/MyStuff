@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1397243570.820811
+_modified_time = 1397256487.755059
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\templates/searchinventory.html'
 _template_uri = 'searchinventory.html'
@@ -28,11 +28,11 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        rental = context.get('rental', UNDEFINED)
+        catItems = context.get('catItems', UNDEFINED)
         serial = context.get('serial', UNDEFINED)
+        rental = context.get('rental', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        catItems = context.get('catItems', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 2
         __M_writer(' ')
@@ -45,7 +45,7 @@ def render_body(context,**pageargs):
             context['self'].content(**pageargs)
         
 
-        # SOURCE LINE 273
+        # SOURCE LINE 283
         __M_writer('  \r\n\r\n\r\n')
         return ''
     finally:
@@ -55,50 +55,23 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        rental = context.get('rental', UNDEFINED)
+        catItems = context.get('catItems', UNDEFINED)
         serial = context.get('serial', UNDEFINED)
+        rental = context.get('rental', UNDEFINED)
         def content():
             return render_content(context)
-        catItems = context.get('catItems', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 5
         __M_writer(' ')
  
 
-        __M_writer('\r\n\r\n <h2>Inventory Management</h2>\r\n<hr/>\r\n<br/>\r\n\r\n<ul class="nav nav-tabs">\r\n  <li class="active">\r\n    <a href="#Catalog" data-toggle="tab"><strong>Catalog</strong></a>\r\n  </li>\r\n  <li>\r\n    <a href="#Sale" data-toggle="tab"><strong>Sales Inventory</strong></a>\r\n  </li>\r\n  <li>\r\n    <a href="#Rental" data-toggle="tab"><strong>Rental Inventory</strong></a>\r\n  </li>\r\n</ul>\r\n\r\n<br/>\r\n<div class="tab-content">\r\n\r\n  <div class="tab-pane active" id="Catalog"><!-- Catalog Tab -->\r\n    <div class="tab-content">\r\n\r\n      <table class="table table-hover">\r\n        <thead>\r\n          <tr>\r\n            <th>SKU</th>\r\n            <th>Manufacturer</th>\r\n            <th>Name</th>\r\n            <th>List Prices</th>\r\n            <th>Cost</th>\r\n            <th>Category</th>\r\n            <th>Views</th>\r\n          </tr>\r\n        </thead>\r\n        <tbody>\r\n\r\n          <tr>\r\n            <td>\r\n            </td>\r\n            <td>\r\n              <select id=\'select_man\' class="form-control">\r\n                <option></option>\r\n                <option>A - Z</option>\r\n                <option>Z - A</option> <!-- Desc -->\r\n              </select>\r\n            </td>\r\n            <td>\r\n              <select id=\'select_name\' class="form-control">\r\n                <option></option>\r\n                <option>A - Z</option>\r\n                <option>Z - A</option> <!-- Desc --> \r\n              </select>\r\n            </td>\r\n            <td>\r\n              <select id=\'select_price\' class="form-control">\r\n                <option></option>\r\n                <option>Low - High</option>\r\n                <option>High - Low</option> <!-- Desc -->\r\n              </select>\r\n            </td>\r\n            <td>\r\n              <select id=\'select_cost\' class="form-control">\r\n                <option></option>\r\n                <option>Low - High</option>\r\n                <option>High - Low</option> <!-- Desc -->\r\n              </select>\r\n            </td>\r\n            <td>\r\n              <select id=\'select_cat\' class="form-control">\r\n                <option></option>\r\n                <option>A - Z</option>\r\n                <option>Z - A</option> <!-- Desc -->\r\n              </select>\r\n            </td>\r\n            <td>\r\n              <select id=\'select_views\' class="form-control">\r\n                <option></option>\r\n                <option>Low - High</option>\r\n                <option>High - Low</option> <!-- Desc -->\r\n              </select>\r\n            </td>\r\n          </tr>\r\n\r\n')
-        # SOURCE LINE 90
+        __M_writer('\r\n\r\n <h2>Inventory Management</h2>\r\n<hr/>\r\n<br/>\r\n\r\n<ul class="nav nav-tabs">\r\n  <li class="active">\r\n    <a href="#Catalog" data-toggle="tab"><strong>Catalog</strong></a>\r\n  </li>\r\n  <li>\r\n    <a href="#Sale" data-toggle="tab"><strong>Sales</strong></a>\r\n  </li>\r\n  <li>\r\n    <a href="#Rental" data-toggle="tab"><strong>Rentals</strong></a>\r\n  </li>\r\n</ul>\r\n\r\n<br/>\r\n<div class="tab-content">\r\n\r\n  <div class="tab-pane active" id="Catalog"><!-- Catalog Tab -->\r\n    <div class="tab-content">\r\n\r\n      <form id="live-search" action="" class="form-horizontal col-md-5" method="post">\r\n          <fieldset>\r\n            <div class="input-group">\r\n              <span class="input-group-addon"><span class=\'glyphicon glyphicon-search\'></span></span>\r\n              <input type="text" class="form-control" id="filter" value="" placeholder=\'Manufacturer, Name, SKU, Price, Views\'>\r\n            </div>\r\n          </fieldset>\r\n      </form>\r\n      <br/>\r\n      <br/>\r\n      <table class="table table-hover">\r\n        <thead>\r\n          <tr>\r\n            <th>SKU</th>\r\n            <th>Manufacturer</th>\r\n            <th>Name</th>\r\n            <th>List Prices</th>\r\n            <th>Cost</th>\r\n            <th>Category</th>\r\n            <th>Views</th>\r\n          </tr>\r\n        </thead>\r\n        <tbody class=\'searchbody\'>\r\n\r\n          <tr>\r\n            <td>\r\n            </td>\r\n            <td>\r\n              <select id=\'select_man\' class="form-control">\r\n                <option></option>\r\n                <option>A - Z</option>\r\n                <option>Z - A</option> <!-- Desc -->\r\n              </select>\r\n            </td>\r\n            <td>\r\n              <select id=\'select_name\' class="form-control">\r\n                <option></option>\r\n                <option>A - Z</option>\r\n                <option>Z - A</option> <!-- Desc --> \r\n              </select>\r\n            </td>\r\n            <td>\r\n              <select id=\'select_price\' class="form-control">\r\n                <option></option>\r\n                <option>Low - High</option>\r\n                <option>High - Low</option> <!-- Desc -->\r\n              </select>\r\n            </td>\r\n            <td>\r\n              <select id=\'select_cost\' class="form-control">\r\n                <option></option>\r\n                <option>Low - High</option>\r\n                <option>High - Low</option> <!-- Desc -->\r\n              </select>\r\n            </td>\r\n            <td>\r\n              <select id=\'select_cat\' class="form-control">\r\n                <option></option>\r\n                <option>A - Z</option>\r\n                <option>Z - A</option> <!-- Desc -->\r\n              </select>\r\n            </td>\r\n            <td>\r\n              <select id=\'select_views\' class="form-control">\r\n                <option></option>\r\n                <option>Low - High</option>\r\n                <option>High - Low</option> <!-- Desc -->\r\n              </select>\r\n            </td>\r\n          </tr>\r\n\r\n')
+        # SOURCE LINE 100
         for i in catItems:
-            # SOURCE LINE 91
+            # SOURCE LINE 101
             if i.isActive == True:
-                # SOURCE LINE 92
-                __M_writer('          <tr class="clickableRow" href="/manager/inventory/')
-                __M_writer(str(i.id))
-                __M_writer('">\r\n            <td>')
-                # SOURCE LINE 93
-                __M_writer(str(i.sku))
-                __M_writer('</td>\r\n            <td>')
-                # SOURCE LINE 94
-                __M_writer(str(i.manufacturer))
-                __M_writer('</td>\r\n            <td>')
-                # SOURCE LINE 95
-                __M_writer(str(i.name))
-                __M_writer('</td>\r\n            <td>$ ')
-                # SOURCE LINE 96
-                __M_writer(str(i.listPrice))
-                __M_writer('</td>\r\n            <td>$ ')
-                # SOURCE LINE 97
-                __M_writer(str(i.cost))
-                __M_writer('</td>\r\n            <td>')
-                # SOURCE LINE 98
-                __M_writer(str(i.category.subName))
-                __M_writer('</td>\r\n            <td>')
-                # SOURCE LINE 99
-                __M_writer(str(i.views))
-                __M_writer('</td>\r\n          </tr>\r\n')
-                # SOURCE LINE 101
-            else:
                 # SOURCE LINE 102
-                __M_writer('          <tr class="clickableRow grayed-out" href="/manager/inventory/')
+                __M_writer('          <tr class="clickableRow" href="/manager/inventory/')
                 __M_writer(str(i.id))
                 __M_writer('">\r\n            <td>')
                 # SOURCE LINE 103
@@ -122,13 +95,40 @@ def render_content(context,**pageargs):
                 # SOURCE LINE 109
                 __M_writer(str(i.views))
                 __M_writer('</td>\r\n          </tr>\r\n')
-        # SOURCE LINE 113
+                # SOURCE LINE 111
+            else:
+                # SOURCE LINE 112
+                __M_writer('          <tr class="clickableRow grayed-out" href="/manager/inventory/')
+                __M_writer(str(i.id))
+                __M_writer('">\r\n            <td>')
+                # SOURCE LINE 113
+                __M_writer(str(i.sku))
+                __M_writer('</td>\r\n            <td>')
+                # SOURCE LINE 114
+                __M_writer(str(i.manufacturer))
+                __M_writer('</td>\r\n            <td>')
+                # SOURCE LINE 115
+                __M_writer(str(i.name))
+                __M_writer('</td>\r\n            <td>$ ')
+                # SOURCE LINE 116
+                __M_writer(str(i.listPrice))
+                __M_writer('</td>\r\n            <td>$ ')
+                # SOURCE LINE 117
+                __M_writer(str(i.cost))
+                __M_writer('</td>\r\n            <td>')
+                # SOURCE LINE 118
+                __M_writer(str(i.category.subName))
+                __M_writer('</td>\r\n            <td>')
+                # SOURCE LINE 119
+                __M_writer(str(i.views))
+                __M_writer('</td>\r\n          </tr>\r\n')
+        # SOURCE LINE 123
         __M_writer('        </tbody>\r\n      </table>\r\n\r\n    </div>\r\n  </div><!--  End Catalog Tab -->\r\n\r\n  <div class="tab-pane" id="Sale"><!--  Sale Inventory Tab -->\r\n    <div class="tab-content">\r\n')
-        # SOURCE LINE 121
+        # SOURCE LINE 131
         if serial:
-            # SOURCE LINE 122
+            # SOURCE LINE 132
             __M_writer('          <div class="panel-group" id="accordion">\r\n          ')
-            # SOURCE LINE 123
+            # SOURCE LINE 133
  
 
             previousName = ''
@@ -136,82 +136,82 @@ def render_content(context,**pageargs):
             
             
             
-            # SOURCE LINE 128
+            # SOURCE LINE 138
             __M_writer('\r\n')
-            # SOURCE LINE 129
+            # SOURCE LINE 139
             for i in serial:
-                # SOURCE LINE 130
+                # SOURCE LINE 140
                 __M_writer('\r\n          ')
-                # SOURCE LINE 131
+                # SOURCE LINE 141
                 newName = i.catalogItem.manufacturer +' '+ i.catalogItem.name 
                 
                 __M_writer('\r\n\r\n')
-                # SOURCE LINE 133
+                # SOURCE LINE 143
                 if newName != previousName and previousName != '':
-                    # SOURCE LINE 134
+                    # SOURCE LINE 144
                     __M_writer('                      </tbody>\r\n                    </table>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n')
-                # SOURCE LINE 140
+                # SOURCE LINE 150
                 __M_writer('\r\n')
-                # SOURCE LINE 141
+                # SOURCE LINE 151
                 if newName != previousName:
-                    # SOURCE LINE 142
+                    # SOURCE LINE 152
                     __M_writer('                <div class="panel panel-default">\r\n                  <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse_')
-                    # SOURCE LINE 143
+                    # SOURCE LINE 153
                     __M_writer(str(i.id))
                     __M_writer('">\r\n                    <h4 id=\'title_')
-                    # SOURCE LINE 144
+                    # SOURCE LINE 154
                     __M_writer(str(i.id))
                     __M_writer('\' class="panel-title">\r\n                        <span class=\'glyphicon glyphicon-plus\'></span>&nbsp; ')
-                    # SOURCE LINE 145
+                    # SOURCE LINE 155
                     __M_writer(str(i.catalogItem.manufacturer))
                     __M_writer(' ')
                     __M_writer(str(i.catalogItem.name))
                     __M_writer('\r\n                    </h4>\r\n                  </div>\r\n                  <div id="collapse_')
-                    # SOURCE LINE 148
+                    # SOURCE LINE 158
                     __M_writer(str(i.id))
                     __M_writer('" class="panel-collapse collapse">\r\n                    <div class="panel-body">\r\n                      <table class=\'table table-hover\'>\r\n                        <thead>\r\n                          <tr>\r\n                            <th>Serial Number</th>\r\n                            <th>Name</th>\r\n                            <th>List Prices</th>\r\n                            <th>Cost</th>\r\n                            <th>Condition</th>\r\n                            <th>Category</th>\r\n                          </tr>\r\n                        </thead>\r\n                        <tbody>\r\n')
-                # SOURCE LINE 163
+                # SOURCE LINE 173
                 __M_writer("\r\n                          <tr href='/manager/inventory/")
-                # SOURCE LINE 164
+                # SOURCE LINE 174
                 __M_writer(str(i.catalogItem.id))
                 __M_writer("#inStock' class='clickableRow'>\r\n                            <td>")
-                # SOURCE LINE 165
+                # SOURCE LINE 175
                 __M_writer(str(i.serialNum))
                 __M_writer('</td>\r\n                            <td>')
-                # SOURCE LINE 166
+                # SOURCE LINE 176
                 __M_writer(str(i.catalogItem.manufacturer))
                 __M_writer(' ')
                 __M_writer(str(i.catalogItem.name))
                 __M_writer('</td>\r\n                            <td>$ ')
-                # SOURCE LINE 167
+                # SOURCE LINE 177
                 __M_writer(str(i.listPrice))
                 __M_writer('</td>\r\n                            <td>$ ')
-                # SOURCE LINE 168
+                # SOURCE LINE 178
                 __M_writer(str(i.cost))
                 __M_writer('</td>\r\n                            <td>')
-                # SOURCE LINE 169
+                # SOURCE LINE 179
                 __M_writer(str(i.condition.condition))
                 __M_writer('</td>\r\n                            <td>')
-                # SOURCE LINE 170
+                # SOURCE LINE 180
                 __M_writer(str(i.catalogItem.category.subName))
                 __M_writer('</td>\r\n                          </tr>\r\n\r\n            ')
-                # SOURCE LINE 173
+                # SOURCE LINE 183
                 previousName = newName 
                 
                 __M_writer('\r\n')
-            # SOURCE LINE 175
+            # SOURCE LINE 185
             __M_writer('                  </tbody>\r\n                </table>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n')
-            # SOURCE LINE 181
+            # SOURCE LINE 191
         else:
-            # SOURCE LINE 182
+            # SOURCE LINE 192
             __M_writer('\r\n        <div class="vertical_spacer6"></div>\r\n        <div class="vertical_spacer6"></div>\r\n')
-        # SOURCE LINE 186
-        __M_writer('    </div>\r\n  </div><!--  End Serial Inventory Tab -->\r\n\r\n\r\n\r\n\r\n\r\n\r\n  <div class="tab-pane" id="Rental"><!--  Rental Inventory Tab -->\r\n    <div class="tab-content">\r\n')
         # SOURCE LINE 196
+        __M_writer('    </div>\r\n  </div><!--  End Serial Inventory Tab -->\r\n\r\n\r\n\r\n\r\n\r\n\r\n  <div class="tab-pane" id="Rental"><!--  Rental Inventory Tab -->\r\n    <div class="tab-content">\r\n')
+        # SOURCE LINE 206
         if rental:
-            # SOURCE LINE 197
+            # SOURCE LINE 207
             __M_writer('          <div class="panel-group" id="accordion">\r\n          ')
-            # SOURCE LINE 198
+            # SOURCE LINE 208
  
 
             previousName = ''
@@ -219,73 +219,73 @@ def render_content(context,**pageargs):
             
             
             
-            # SOURCE LINE 203
+            # SOURCE LINE 213
             __M_writer('\r\n')
-            # SOURCE LINE 204
+            # SOURCE LINE 214
             for i in rental:
-                # SOURCE LINE 205
+                # SOURCE LINE 215
                 __M_writer('\r\n          ')
-                # SOURCE LINE 206
+                # SOURCE LINE 216
                 newName = i.catalogItem.manufacturer +' '+ i.catalogItem.name 
                 
                 __M_writer('\r\n\r\n')
-                # SOURCE LINE 208
+                # SOURCE LINE 218
                 if newName != previousName and previousName != '':
-                    # SOURCE LINE 209
+                    # SOURCE LINE 219
                     __M_writer('                      </tbody>\r\n                    </table>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n')
-                # SOURCE LINE 215
+                # SOURCE LINE 225
                 __M_writer('\r\n')
-                # SOURCE LINE 216
+                # SOURCE LINE 226
                 if newName != previousName:
-                    # SOURCE LINE 217
+                    # SOURCE LINE 227
                     __M_writer('                <div class="panel panel-default">\r\n                  <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse_')
-                    # SOURCE LINE 218
+                    # SOURCE LINE 228
                     __M_writer(str(i.id))
                     __M_writer('">\r\n                    <h4 id=\'title_')
-                    # SOURCE LINE 219
+                    # SOURCE LINE 229
                     __M_writer(str(i.id))
                     __M_writer('\' class="panel-title">\r\n                        <span class=\'glyphicon glyphicon-plus\'></span>&nbsp; ')
-                    # SOURCE LINE 220
+                    # SOURCE LINE 230
                     __M_writer(str(i.catalogItem.manufacturer))
                     __M_writer(' ')
                     __M_writer(str(i.catalogItem.name))
                     __M_writer('\r\n                    </h4>\r\n                  </div>\r\n                  <div id="collapse_')
-                    # SOURCE LINE 223
+                    # SOURCE LINE 233
                     __M_writer(str(i.id))
                     __M_writer('" class="panel-collapse collapse">\r\n                    <div class="panel-body">\r\n                      <table class=\'table table-hover\'>\r\n                        <thead>\r\n                          <tr>\r\n                            <th>Serial Number</th>\r\n                            <th>Name</th>\r\n                            <th>Price/Day</th>\r\n                            <th>Replacement Fee</th>\r\n                            <th>Category</th>\r\n                            <th></th>\r\n                          </tr>\r\n                        </thead>\r\n                        <tbody>\r\n')
-                # SOURCE LINE 238
+                # SOURCE LINE 248
                 __M_writer('\r\n                          <tr>\r\n                            <td>')
-                # SOURCE LINE 240
+                # SOURCE LINE 250
                 __M_writer(str(i.serialNum))
                 __M_writer('</td>\r\n                            <td>')
-                # SOURCE LINE 241
+                # SOURCE LINE 251
                 __M_writer(str(i.catalogItem.manufacturer))
                 __M_writer(' ')
                 __M_writer(str(i.catalogItem.name))
                 __M_writer('</td>\r\n                            <td>$ ')
-                # SOURCE LINE 242
+                # SOURCE LINE 252
                 __M_writer(str(i.pricePerDay))
                 __M_writer('</td>\r\n                            <td>$ ')
-                # SOURCE LINE 243
+                # SOURCE LINE 253
                 __M_writer(str(i.replacementFee))
                 __M_writer('</td>\r\n                            <td>')
-                # SOURCE LINE 244
+                # SOURCE LINE 254
                 __M_writer(str(i.catalogItem.category.subName))
                 __M_writer("</td>\r\n                            <td><button id='rent_")
-                # SOURCE LINE 245
+                # SOURCE LINE 255
                 __M_writer(str(i.id))
                 __M_writer("' class='btn btn-warning'><span class='glyphicon glyphicon-shopping-cart'></span>&nbsp; Rent</button></td>\r\n                          </tr>\r\n\r\n            ")
-                # SOURCE LINE 248
+                # SOURCE LINE 258
                 previousName = newName 
                 
                 __M_writer('\r\n')
-            # SOURCE LINE 250
+            # SOURCE LINE 260
             __M_writer('                  </tbody>\r\n                </table>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n')
-            # SOURCE LINE 256
+            # SOURCE LINE 266
         else:
-            # SOURCE LINE 257
+            # SOURCE LINE 267
             __M_writer('\r\n        <div class="vertical_spacer6"></div>\r\n        <div class="vertical_spacer6"></div>\r\n\r\n\r\n')
-        # SOURCE LINE 263
+        # SOURCE LINE 273
         __M_writer('    </div>\r\n  </div><!--  End Rental Inventory Tab -->\r\n</div>\r\n\r\n<div class="vertical_spacer6"></div>\r\n<div class="vertical_spacer6"></div>\r\n\r\n\r\n\r\n\r\n')
         return ''
     finally:
