@@ -14,16 +14,16 @@
 	<br/>
 	<h2 style="font-family:sans-serif;">Late Rental</h2>
 
-	<p 	style='font-family: sans-serif;'>The ${manufacturer} ${name} you rented on ${dateOut} was due ${dateDue}.<br/> 
-	A late fee of ${lateFee} per day can be applied for every day past this date. <br/>
+	<p 	style='font-family: sans-serif;'>The ${info.item.catalogItem.manufacturer} ${info.item.catalogItem.name} you rented on ${info.rental.dateOut} was due ${info.rental.dateDue}.<br/> 
+	A late fee of $ ${info.item.lateFee} per day can be applied for every day past this date. <br/>
 	Please return the item to the store nearest you as soon as possible to avoid any further charges.<br/><br/>
 	<a href="${url}" 
 	style=
 	'
 	font-family: sans-serif;
 	color:#fff;
-  	background-color: #3276b1;
-  	border-color: #285e8e;
+	background-color: #d9534f;
+	border-color: #d43f3a;
 	text-decoration:none;
 	display: inline-block;
 	padding: 6px 12px;

@@ -5,7 +5,7 @@ from manager import models as hmod
 from catalog.models import *
 from . import templater
 from datetime import *
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives, EmailMessage, send_mail
 from base_app.user_util import *
 from django.contrib.auth.decorators import login_required, user_passes_test
 
@@ -95,21 +95,13 @@ def process_request__email(request):
 			
 			email = u.email
 			url = 'http://www.digitallifemyway.com/locations/'
-			tvars = {'url':url}
+			tvars = {'url':url, 'info':info}
 			html_content = templater.render(request, 'email_late.html', tvars)
-			subject, from_email= 'Reset Your Password', 'webmaster@digitallifemyway.com'
+			subject, from_email= 'Late Rental Reminder', 'webmaster@digitallifemyway.com'
 			text_content = 'Please use this link to reset your password %s, for security purposes this link will only be valid for the next 3 hours.' %(url)
 			msg = EmailMultiAlternatives(subject, text_content, from_email, [email])
 			msg.attach_alternative(html_content, "text/html")
 			msg.send()
-
-			send_mail(
-				'Outstanding Rental', #Subject
-				'The %s %s you rented was due %s days ago! Please return the item as soon as possible to avoid additional late penalties.' %(i.catalogItem.manufacturer, i.catalogItem.name, info.daysLate), #Body
-				'rentals@digitallifemyway.com', #From
-				['jordancarlson08@gmail.com'],  #To u.email
-				fail_silently=False
-				)
 
 
 	return HttpResponseRedirect('/index/mailsent')
