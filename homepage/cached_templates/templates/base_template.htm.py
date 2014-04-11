@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1397177093.28641
+_modified_time = 1397178537.842269
 _enable_loop = True
 _template_filename = '/Users/ecookson/Desktop/MyStuff/base_app/templates/base_template.htm'
 _template_uri = 'base_template.htm'
@@ -92,7 +92,7 @@ def render_body(context,**pageargs):
                 __M_writer('          <li><a href="/manager/dash/"><span class=\'glyphicon glyphicon-globe\'></span>&nbsp; DASHBOARD</a></li>\n          <li><a href="/manager/employee/')
                 # SOURCE LINE 112
                 __M_writer(str(request.user.id))
-                __M_writer('"><span class=\'glyphicon glyphicon-edit\'></span>&nbsp; EDIT PROFILE</a></li>\n')
+                __M_writer('"><span class=\'glyphicon glyphicon-edit\'></span>&nbsp; MY ACCOUNT</a></li>\n')
                 # SOURCE LINE 113
             else:
                 # SOURCE LINE 114
