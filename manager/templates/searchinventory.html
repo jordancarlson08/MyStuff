@@ -39,6 +39,54 @@
           </tr>
         </thead>
         <tbody>
+
+          <tr>
+            <td>
+            </td>
+            <td>
+              <select id='select_man' class="form-control">
+                <option></option>
+                <option>A - Z</option>
+                <option>Z - A</option> <!-- Desc -->
+              </select>
+            </td>
+            <td>
+              <select id='select_name' class="form-control">
+                <option></option>
+                <option>A - Z</option>
+                <option>Z - A</option> <!-- Desc --> 
+              </select>
+            </td>
+            <td>
+              <select id='select_price' class="form-control">
+                <option></option>
+                <option>Low - High</option>
+                <option>High - Low</option> <!-- Desc -->
+              </select>
+            </td>
+            <td>
+              <select id='select_cost' class="form-control">
+                <option></option>
+                <option>Low - High</option>
+                <option>High - Low</option> <!-- Desc -->
+              </select>
+            </td>
+            <td>
+              <select id='select_cat' class="form-control">
+                <option></option>
+                <option>A - Z</option>
+                <option>Z - A</option> <!-- Desc -->
+              </select>
+            </td>
+            <td>
+              <select id='select_views' class="form-control">
+                <option></option>
+                <option>Low - High</option>
+                <option>High - Low</option> <!-- Desc -->
+              </select>
+            </td>
+          </tr>
+
           %for i in catItems:
           %if i.isActive == True:
           <tr class="clickableRow" href="/manager/inventory/${i.id}">

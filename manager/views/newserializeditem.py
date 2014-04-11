@@ -52,7 +52,7 @@ def process_request(request):
 class SerializedItemForm(forms.Form):
 	'''A form for new serialized item'''
 	store = forms.ModelChoiceField(label='Store', queryset=hmod.Store.objects.filter(isActive="TRUE").order_by('locationName').exclude(id=99999), widget=forms.Select(attrs={'class': 'form-control',}))
-	catalogItem = forms.ModelChoiceField(label='Catalog Item', queryset=hmod.CatalogItem.objects.filter(isSerial=True), widget=forms.Select(attrs={'class': 'form-control',}))
+	catalogItem = forms.ModelChoiceField(label='Catalog Item', queryset=hmod.CatalogItem.objects.filter(isSerial=True).order_by('manufacturer'), widget=forms.Select(attrs={'class': 'form-control',}))
 	listPrice = forms.DecimalField(label='List Price', max_digits=8, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'List Price',}))
 	cost = forms.DecimalField(max_digits=8, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Cost',}))
 	commissionRate = forms.ChoiceField(label='Commission Rate' ,choices=([(0.05, '5%'), (0.10, '10%'), (0.12, '12%'), (0.15, '15%')]), widget=forms.Select(attrs={'class': 'form-control',}))

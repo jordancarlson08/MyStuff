@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 9
-_modified_time = 1396987543.142459
+_modified_time = 1397244813.316661
 _enable_loop = True
 _template_filename = 'C:\\Users\\Jordan Carlson\\Desktop\\MyStuff\\manager\\scripts/searchinventory.jsm'
 _template_uri = 'searchinventory.jsm'
@@ -59,7 +59,7 @@ def render_body(context,**pageargs):
             __M_writer(str(i.id))
             __M_writer('\').on(\'show.bs.collapse\', function () {\r\n\t// \tconsole.log("Show!!!");\r\n\t// });\r\n\r\n\r\n\r\n\r\n});\r\n')
         # SOURCE LINE 75
-        __M_writer('\r\n$(function() {\r\n\r\n\r\n\r\n});')
+        __M_writer("\r\n$(function() {\r\n\r\n\t//This sorts the list by manufacturer\r\n\t$('#select_man').change(function(event) {\r\n\t\tvar url = '/manager/searchinventory/';\r\n\t\tvar value = ($('#select_man').val());\r\n\t\tvar url2;\r\n\t\tif (value === 'A - Z'){\r\n\t\t\turl2 = 'manufacturer/';\r\n\t\t} else if (value == 'Z - A') {\r\n\t\t\turl2 = 'manufacturer/-';\r\n\t\t} else {\r\n\t\t\turl2 = '';\r\n\t\t}\r\n\r\n\t\tvar newurl = url+url2;\r\n\t\twindow.location.href = newurl;\r\n\t});\r\n\r\n\r\n\t$('#select_name').change(function(event) {\r\n\t\tvar url = '/manager/searchinventory/';\r\n\t\tvar value = ($('#select_name').val());\r\n\t\tvar url2;\r\n\t\tif (value === 'A - Z'){\r\n\t\t\turl2 = 'name/';\r\n\t\t} else if (value == 'Z - A') {\r\n\t\t\turl2 = 'name/-';\r\n\t\t} else {\r\n\t\t\turl2 = '';\r\n\t\t}\r\n\r\n\t\tvar newurl = url+url2;\r\n\t\twindow.location.href = newurl;\r\n\t});\r\n\r\n\t$('#select_price').change(function(event) {\r\n\t\tvar url = '/manager/searchinventory/';\r\n\t\tvar value = ($('#select_price').val());\r\n\t\tvar url2;\r\n\t\tif (value === 'Low - High'){\r\n\t\t\turl2 = 'listPrice/';\r\n\t\t} else if (value == 'High - Low') {\r\n\t\t\turl2 = 'listPrice/-';\r\n\t\t} else {\r\n\t\t\turl2 = '';\r\n\t\t}\r\n\r\n\t\tvar newurl = url+url2;\r\n\t\twindow.location.href = newurl;\r\n\t});\r\n\r\n\t$('#select_cost').change(function(event) {\r\n\t\tvar url = '/manager/searchinventory/';\r\n\t\tvar value = ($('#select_cost').val());\r\n\t\tvar url2;\r\n\t\tif (value === 'Low - High'){\r\n\t\t\turl2 = 'cost/';\r\n\t\t} else if (value == 'High - Low') {\r\n\t\t\turl2 = 'cost/-';\r\n\t\t} else {\r\n\t\t\turl2 = '';\r\n\t\t}\r\n\r\n\t\tvar newurl = url+url2;\r\n\t\twindow.location.href = newurl;\r\n\t});\r\n\r\n\t$('#select_cat').change(function(event) {\r\n\t\tvar url = '/manager/searchinventory/';\r\n\t\tvar value = ($('#select_cat').val());\r\n\t\tvar url2;\r\n\t\tif (value === 'A - Z'){\r\n\t\t\turl2 = 'category/';\r\n\t\t} else if (value == 'Z - A') {\r\n\t\t\turl2 = 'category/-';\r\n\t\t} else {\r\n\t\t\turl2 = '';\r\n\t\t}\r\n\r\n\t\tvar newurl = url+url2;\r\n\t\twindow.location.href = newurl;\r\n\t});\r\n\r\n\t$('#select_views').change(function(event) {\r\n\t\tvar url = '/manager/searchinventory/';\r\n\t\tvar value = ($('#select_views').val());\r\n\t\tvar url2;\r\n\t\tif (value === 'Low - High'){\r\n\t\t\turl2 = 'views/';\r\n\t\t} else if (value == 'High - Low') {\r\n\t\t\turl2 = 'views/-';\r\n\t\t} else {\r\n\t\t\turl2 = '';\r\n\t\t}\r\n\r\n\t\tvar newurl = url+url2;\r\n\t\twindow.location.href = newurl;\r\n\t});\r\n\r\n});\r\n")
         return ''
     finally:
         context.caller_stack._pop_frame()

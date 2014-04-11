@@ -75,6 +75,102 @@ $(function() {
 
 $(function() {
 
+	//This sorts the list by manufacturer
+	$('#select_man').change(function(event) {
+		var url = '/manager/searchinventory/';
+		var value = ($('#select_man').val());
+		var url2;
+		if (value === 'A - Z'){
+			url2 = 'manufacturer/';
+		} else if (value == 'Z - A') {
+			url2 = 'manufacturer/-';
+		} else {
+			url2 = '';
+		}
 
+		var newurl = url+url2;
+		window.location.href = newurl;
+	});
+
+
+	$('#select_name').change(function(event) {
+		var url = '/manager/searchinventory/';
+		var value = ($('#select_name').val());
+		var url2;
+		if (value === 'A - Z'){
+			url2 = 'name/';
+		} else if (value == 'Z - A') {
+			url2 = 'name/-';
+		} else {
+			url2 = '';
+		}
+
+		var newurl = url+url2;
+		window.location.href = newurl;
+	});
+
+	$('#select_price').change(function(event) {
+		var url = '/manager/searchinventory/';
+		var value = ($('#select_price').val());
+		var url2;
+		if (value === 'Low - High'){
+			url2 = 'listPrice/';
+		} else if (value == 'High - Low') {
+			url2 = 'listPrice/-';
+		} else {
+			url2 = '';
+		}
+
+		var newurl = url+url2;
+		window.location.href = newurl;
+	});
+
+	$('#select_cost').change(function(event) {
+		var url = '/manager/searchinventory/';
+		var value = ($('#select_cost').val());
+		var url2;
+		if (value === 'Low - High'){
+			url2 = 'cost/';
+		} else if (value == 'High - Low') {
+			url2 = 'cost/-';
+		} else {
+			url2 = '';
+		}
+
+		var newurl = url+url2;
+		window.location.href = newurl;
+	});
+
+	$('#select_cat').change(function(event) {
+		var url = '/manager/searchinventory/';
+		var value = ($('#select_cat').val());
+		var url2;
+		if (value === 'A - Z'){
+			url2 = 'category/';
+		} else if (value == 'Z - A') {
+			url2 = 'category/-';
+		} else {
+			url2 = '';
+		}
+
+		var newurl = url+url2;
+		window.location.href = newurl;
+	});
+
+	$('#select_views').change(function(event) {
+		var url = '/manager/searchinventory/';
+		var value = ($('#select_views').val());
+		var url2;
+		if (value === 'Low - High'){
+			url2 = 'views/';
+		} else if (value == 'High - Low') {
+			url2 = 'views/-';
+		} else {
+			url2 = '';
+		}
+
+		var newurl = url+url2;
+		window.location.href = newurl;
+	});
 
 });
