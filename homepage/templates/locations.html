@@ -1,0 +1,54 @@
+<%inherit file="base_template.htm" />
+<%block name ="left_side"%>
+
+</%block%>
+<%block name="main">
+
+<div class='row text-center'>
+  <h1>Locations</h1>
+
+
+ <div class='container-fluid'>
+   <div class='row text-center'>
+    %for s in stores:
+     <div class="col-md-6">
+       <div class='content'>
+
+
+         	<div class="media">
+         	  <p class="lead"><h3>${s.locationName}, ${s.state}</h3></p>
+         	  <hr/>
+         	</div>
+      
+         	<div class="media-body">	
+           	<address>
+              
+           		${s.street1}<br>
+           		%if s.street2 != None:
+           		${s.street2}<br>
+           		%endif
+           		${s.city}, ${s.state} ${s.zipCode}<br><br>
+              
+              <small>Phone | ${s.phone}</small></br>
+              <small> Hours | Monday - Saturday 8a - 8p </small></br>
+              <small>Manager | ${s.manager.user.first_name}    ${s.manager.user.last_name}</small><br>
+           	</address>
+         	</div>
+
+     </div>
+     </div>
+     <div class="col-xs-6 col-sm-6">
+       <div class='content'>
+         <div class="Flexible-container">
+             <iframe width="500" height="275" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=de&amp;geocode=&amp;q=${s.street1}${s.city}&amp;output=embed&amp;iwloc=near"></iframe>
+         </div>
+      </div>
+     </div>
+     %endfor
+   </div>
+
+</div>
+
+
+
+</%block>  

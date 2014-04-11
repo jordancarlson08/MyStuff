@@ -14,7 +14,7 @@ isManager = manager_check(request.user)
 
 
 
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+<div id="carousel-example-generic" class="carousel slide " data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -23,18 +23,18 @@ isManager = manager_check(request.user)
   </ol>
 
   <!-- Wrapper for slides -->
-  <div class="carousel-inner"> <!-- Start Carousel Inner -->
+  <div class="carousel-inner "> <!-- Start Carousel Inner -->
     <div class="item active"> <!-- Start Item -->
       <img src="/static/homepage/images/e2.jpg" alt="Digital SLR">
       <div class="carousel-caption">
         <div class='box-semi'>
           <div class='vertical_spacer6'></div>
-          <div class='jumbo'>Digital SLR</div>
-          <h3>We have the largest selection of Nikon, Canon, Olympus, and other brands anywhere.</h3>
+          <div class='jumbo'>Welcome!</div>
+          <p class="lead">Large selection of Nikon, Canon, and Olympus cameras available. Offering premium service for repairs.</p>
           <br/>
           <ul class='list list-inline'>
-            <li><a href='/catalog/category/1/' class='btn btn-primary btn-lg'>Cameras</a></li>
-            <li><a href='/catalog/category/1/5/' class='btn btn-success btn-lg'>Accessories</a></li>
+            <li><a href='/locations' class='btn btn-primary btn'><span class="glyphicon glyphicon-home"></span>  Locations</a></li>
+            <li><a href='/catalog/category/1/5/' class='btn btn-success btn'>Shop</a></li>
           </ul>
           <br/>
         </div>
