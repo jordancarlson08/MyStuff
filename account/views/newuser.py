@@ -6,6 +6,7 @@ from account.models import *
 from account.views.login import *
 from django.contrib.auth import authenticate, login
 from . import templater
+from django.core.mail import EmailMultiAlternatives, EmailMessage, send_mail
 
 
 
@@ -34,6 +35,20 @@ def process_request(request):
 			u.zipCode = form.cleaned_data['zipCode']
 			u.is_staff = False
 			u.save()
+
+			#Welcome Email
+			#HTML/TXT Email
+			
+			email = u.email
+
+			tvars = {}
+			html_content = templater.render(request, 'email_welcome.html', tvars)
+			subject, from_email= 'Welcome to Digital Life My Way', 'webmaster@digitallifemyway.com'
+			text_content = 'Welcome to Digital Life My Way'
+			msg = EmailMultiAlternatives(subject, text_content, from_email, [email])
+			msg.attach_alternative(html_content, "text/html")
+			msg.send()
+
 
 			user = authenticate(username=form.cleaned_data['username'], 
 				password=form.cleaned_data['password'])
