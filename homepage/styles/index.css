@@ -24,6 +24,7 @@
 	font-size: 60px;
 }
 
+
 .smimg{
 	max-width: 200px;
 	height: auto;
@@ -32,6 +33,20 @@
 .panel-body > img{
 	max-height:100%;
 	max-width: 100%;
+}
+
+.panel-body > img {
+	max-height: 160px;
+	width: auto;
+}
+
+.feat-product{
+	height: 300px;
+	color: black;
+}
+
+a:hover .feat-product{
+	color: #8e8e8e;
 }
 
 a:hover{
@@ -44,3 +59,4 @@ a:hover{
 	opacity: .2;
 
 }
+
