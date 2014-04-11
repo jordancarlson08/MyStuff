@@ -118,13 +118,13 @@ ${message}
       %else:
         %for h in history:
           <div class='col-md-4 col-sm-6 col-xs-12'>
-            <a href='/catalog/inventory/${h.catalogItem.id}'>
+            <a href='/catalog/inventory/${h.id}'>
               <div class="panel panel-primary" >
                 <div class='panel-heading lg-heading'><h3><strong>${h.manufacturer} ${h.name}</strong></h3></div>
                 <div class='panel-body text-center'> <!-- panel body starts -->
                   <ul class='list-inline'>
                     <li>
-                      <img class='max-img' src='${h.catalogItem.img}' width='200px'/>
+                      <img class='max-img' src='${h.img}' width='200px'/>
                     </li>
                     <li>
                       <ul class='list-unstyled'>
